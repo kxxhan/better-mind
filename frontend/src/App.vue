@@ -1,25 +1,12 @@
 <template>
   <div id="app">
-
-    <NavBottom/>
-    <div id='nav'>
+    <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
   </div>
 </template>
-
-<script>
-import NavBottom from '@/components/nav/NavBottom.vue'
-
-export default {
-  name: 'App',
-  components: {
-    NavBottom,
-  },
-}
-</script>
 
 <style>
 #app {
