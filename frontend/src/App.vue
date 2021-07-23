@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <NavTop/>
+    <NavBottom/>
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -7,6 +9,19 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+import NavTop from '@/components/nav/NavTop.vue'
+import NavBottom from '@/components/nav/NavBottom.vue'
+
+export default {
+  name: 'App',
+  components: {
+    NavTop,
+    NavBottom,
+  }
+}
+</script>
 
 <style>
 #app {
