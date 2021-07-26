@@ -1,6 +1,5 @@
 package com.ssafy.api.response;
 
-import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.db.entity.User;
 
 import io.swagger.annotations.ApiModel;
@@ -15,23 +14,32 @@ import lombok.Setter;
 @Setter
 @ApiModel("UserResponse")
 public class UserRes{
-	@ApiModelProperty(name="직책")
-	private String position;
-	@ApiModelProperty(name="소속")
-	private String department;
-	@ApiModelProperty(name="이름")
+	@ApiModelProperty(name = "유저 ID")
+	private String id;
+	@ApiModelProperty(name = "유저 email")
+	private String email;
+	@ApiModelProperty(name = "유저 주소")
+	private String address;
+	@ApiModelProperty(name = "유저 전화번호")
+	private String phone;
+	@ApiModelProperty(name = "유저 이름")
 	private String name;
-	@ApiModelProperty(name="User ID")
-	private String userId;
-	@ApiModelProperty(name="허가")
+	@ApiModelProperty(name = "유저 증상 id")
+	private int symptom_id;
+	@ApiModelProperty(name = "유저 감정 id")
+	private int emotion_id;	
+	@ApiModelProperty(name = "권한")
 	private String role;
 	
 	public static UserRes of(User user) {
 		UserRes res = new UserRes();
-		res.setUserId(user.getUserId());
-		res.setDepartment(user.getDepartment());
+		res.setId(user.getUserId());
 		res.setName(user.getName());
-		res.setPosition(user.getPosition());
+		res.setAddress(user.getAddress());
+		res.setEmail(user.getEmail());
+		res.setPhone(user.getPhone());
+		res.setSymptom_id(user.getSymptom_id());
+		res.setEmotion_id(user.getEmotion_id());
 		res.setRole(user.getRole());
 		return res;
 	}
