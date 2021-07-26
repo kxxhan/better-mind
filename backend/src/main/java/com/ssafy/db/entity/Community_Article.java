@@ -18,11 +18,11 @@ import javax.persistence.PrePersist;
 @Entity
 @Getter
 @Setter
-public class Community_article extends BaseEntity {
+public class Community_Article extends BaseEntity {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private User userId;
+	private User user;
 	
 	private String title;
 	private String content;
@@ -32,11 +32,12 @@ public class Community_article extends BaseEntity {
 	@PrePersist
 	public void createdAt() {
 		this.created_at = new Date();
-	}
-	
-	@PrePersist
-	public void updatedAt() {
 		this.updated_at = new Date();
 	}
+	
+//	@PrePersist
+//	public void updatedAt() {
+//		this.updated_at = new Date();
+//	}
 }
 
