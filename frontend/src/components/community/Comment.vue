@@ -1,6 +1,9 @@
 <template>
-  <div id="programs">
-    전문가 프로그램 페이지
+  <div id="comment">
+    <ul>
+      <li>댓글 1</li>
+      <li>댓글 2</li>
+    </ul>
   </div>
 </template>
 
