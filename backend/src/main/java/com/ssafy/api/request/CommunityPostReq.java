@@ -14,7 +14,7 @@ import lombok.Setter;
 @ApiModel("CommunityPostRequest")
 public class CommunityPostReq {
 	@ApiModelProperty(name="유저 ID", example="ssafy_web")
-	private User user;	
+	private String userId;	
 	@ApiModelProperty(name="제목")
 	private String title;
 	@ApiModelProperty(name="내용")
