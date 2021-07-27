@@ -1,6 +1,7 @@
 package com.ssafy.db.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,7 +28,7 @@ public class Community_Article extends BaseEntity {
 	
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "comment_id")
-	private Community_Comment comment;
+	private List<Community_Comment> comment;
 	
 	private String title;
 	private String content;
