@@ -7,10 +7,16 @@ import com.ssafy.db.entity.Community_Article;
 
 public interface CommunityService {
 
-	Community_Article createArticle(CommunityPostReq communityPostReq);
+	CommunityPostReq createArticle(CommunityPostReq communityPostReq);
 
 	List<CommunityPostReq> getAllArticle(int page, int size);
 
 	int getAllArticleCount();
+
+	CommunityPostReq getOneArticle(int id);
+
+	int putOneArticle(int id);
+
+	int deleteOneArticle(int id);
 
 }
