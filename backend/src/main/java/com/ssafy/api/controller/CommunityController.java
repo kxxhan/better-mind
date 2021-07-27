@@ -3,6 +3,7 @@ package com.ssafy.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,13 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.api.request.CommunityPostReq;
 import com.ssafy.api.service.CommunityService;
 import com.ssafy.common.model.response.BaseResponseBody;
-import com.ssafy.db.entity.BaseEntity;
+import com.ssafy.db.entity.Community_Article;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -41,7 +41,7 @@ public class CommunityController {
     })
 	public ResponseEntity<BaseResponseBody> createArticle(@RequestBody CommunityPostReq communityPostReq){
 		
-		CommunityPostReq article = service.createArticle(communityPostReq);
+		Community_Article article = service.createArticle(communityPostReq);
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 	
@@ -52,9 +52,9 @@ public class CommunityController {
 		@ApiResponse(code = 401, message = "토큰 인증 실패"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<Integer> getAllArticleCount(){
+	public ResponseEntity<Long> getAllArticleCount(){
 		
-		int size = service.getAllArticleCount();
+		long size = service.getAllArticleCount();
 		return ResponseEntity.status(200).body(size);
 	}
 	
@@ -65,9 +65,9 @@ public class CommunityController {
 		@ApiResponse(code = 401, message = "토큰 인증 실패"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<List<CommunityPostReq>> getAllArticle(@RequestParam int page,@RequestParam int size){
+	public ResponseEntity<List<Community_Article>> getAllArticle(Pageable pageable){
 		
-		List<CommunityPostReq> articleList = service.getAllArticle(page,size);
+		List<Community_Article> articleList = service.getAllArticle(pageable);
 		return ResponseEntity.status(200).body(articleList);
 	}
 	
@@ -78,9 +78,9 @@ public class CommunityController {
 		@ApiResponse(code = 401, message = "토큰 인증 실패"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<CommunityPostReq> getOneArticle(@PathVariable(name="articleId") int id){
+	public ResponseEntity<Community_Article> getOneArticle(@PathVariable(name="articleId") Long id){
 		
-		CommunityPostReq article = service.getOneArticle(id);
+		Community_Article article = service.getOneArticle(id);
 		return ResponseEntity.status(200).body(article);
 	}
 	
@@ -91,9 +91,9 @@ public class CommunityController {
 		@ApiResponse(code = 401, message = "토큰 인증 실패"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<BaseResponseBody> putOneArticle(@PathVariable(name="articleId") int id){
+	public ResponseEntity<BaseResponseBody> putOneArticle(@PathVariable(name="articleId") Long id,@RequestBody CommunityPostReq communityPostReq){
 		
-		int result = service.putOneArticle(id);
+		Community_Article result = service.putOneArticle(id,communityPostReq);
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 	
@@ -104,9 +104,9 @@ public class CommunityController {
 		@ApiResponse(code = 401, message = "토큰 인증 실패"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<BaseResponseBody> deleteOneArticle(@PathVariable(name="articleId") int id){
+	public ResponseEntity<BaseResponseBody> deleteOneArticle(@PathVariable(name="articleId") Long id){
 		
-		int result = service.deleteOneArticle(id);
+		service.deleteOneArticle(id);
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 	

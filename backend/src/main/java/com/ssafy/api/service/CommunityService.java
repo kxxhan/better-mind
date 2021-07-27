@@ -2,21 +2,23 @@ package com.ssafy.api.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.ssafy.api.request.CommunityPostReq;
 import com.ssafy.db.entity.Community_Article;
 
 public interface CommunityService {
 
-	CommunityPostReq createArticle(CommunityPostReq communityPostReq);
+	Community_Article createArticle(CommunityPostReq communityPostReq);
 
-	List<CommunityPostReq> getAllArticle(int page, int size);
+	long getAllArticleCount();
 
-	int getAllArticleCount();
+	Community_Article getOneArticle(Long id);
 
-	CommunityPostReq getOneArticle(int id);
+	Community_Article putOneArticle(Long id, CommunityPostReq communityPostReq);
 
-	int putOneArticle(int id);
+	void deleteOneArticle(Long id);
 
-	int deleteOneArticle(int id);
+	List<Community_Article> getAllArticle(Pageable pageable);
 
 }
