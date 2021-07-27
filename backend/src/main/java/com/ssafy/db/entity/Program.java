@@ -28,4 +28,8 @@ public class Program extends BaseEntity {
 	private int count; // 프로그램 횟수
 	private String time; // 프로그램 날짜, 요일, 시간 = 일정
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "file_id")
+	private Program_File file;
+	
 }
