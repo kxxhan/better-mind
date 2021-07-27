@@ -1,5 +1,7 @@
 <template>
   <v-app>
+    <NavTop/>
+    <NavBottom/>
     <v-app-bar
       app
       color="primary"
@@ -27,14 +29,14 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn
+      <!-- <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
         text
       >
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-app-bar>
 
     <v-main>
@@ -44,9 +46,15 @@
 </template>
 
 <script>
+import NavTop from '@/components/nav/NavTop.vue'
+import NavBottom from '@/components/nav/NavBottom.vue'
 
 export default {
   name: 'App',
+  components: {
+    NavTop,
+    NavBottom,
+  },
 
   data: () => ({
     //
