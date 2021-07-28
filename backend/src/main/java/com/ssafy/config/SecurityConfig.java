@@ -1,8 +1,5 @@
 package com.ssafy.config;
 
-import com.ssafy.api.service.UserService;
-import com.ssafy.common.auth.JwtAuthenticationFilter;
-import com.ssafy.common.auth.SsafyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +12,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.filter.CorsFilter;
+
+import com.ssafy.api.service.UserService;
+import com.ssafy.common.auth.JwtAuthenticationFilter;
+import com.ssafy.common.auth.SsafyUserDetailService;
 
 /**
  * 인증(authentication) 와 인가(authorization) 처리를 위한 스프링 시큐리티 설정 정의.
@@ -23,6 +25,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private CorsFilter corsFilter;
+	
     @Autowired
     private SsafyUserDetailService ssafyUserDetailService;
     
@@ -53,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.addFilter(corsFilter)
                 .httpBasic().disable()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 토큰 기반 인증이므로 세션 사용 하지않음

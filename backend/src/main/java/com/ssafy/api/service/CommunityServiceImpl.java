@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.api.request.CommentPostReq;
 import com.ssafy.api.request.CommunityPostReq;
 import com.ssafy.db.entity.Community_Article;
+import com.ssafy.db.entity.Community_Comment;
 import com.ssafy.db.repository.Community_ArticleRepository;
+import com.ssafy.db.repository.Community_CommentRepository;
 import com.ssafy.db.repository.UserRepository;
 
 @Service("CommunityService")
@@ -21,8 +24,8 @@ public class CommunityServiceImpl implements CommunityService {
 	@Autowired
 	UserRepository userRepository;
 	
-//	@Autowired
-//	CommunityArticleRepositorySupport repositorySupport;
+	@Autowired
+	Community_CommentRepository commentRepository;
 
 	@Override
 	public Community_Article createArticle(CommunityPostReq communityPostReq) {
@@ -53,7 +56,7 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public Community_Article putOneArticle(Long id,CommunityPostReq communityPostReq) {
+	public Community_Article updateArticle(Long id,CommunityPostReq communityPostReq) {
 		// TODO Auto-generated method stub
 		Community_Article article = repository.getOne(id);
 		article.setContent(communityPostReq.getContent());
@@ -63,9 +66,35 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public void deleteOneArticle(Long id) {
+	public void deleteArticle(Long id) {
 		// TODO Auto-generated method stub
 		repository.deleteById(id);
+	}
+
+	@Override
+	public Community_Article createComment(Long id, CommentPostReq comment) {
+		// TODO Auto-generated method stub
+		Community_Comment com = new Community_Comment();
+		com.setContent(comment.getContent());
+		com.setUser(userRepository.findByUserId(comment.getUserId()).get());		
+		Community_Article com2 = repository.getOne(id);
+		com2.getComment().add(commentRepository.save(com));
+		return com2;
+	}
+
+	@Override
+	public Community_Comment updateComment(Long aId, Long cId, CommentPostReq comment) {
+		// TODO Auto-generated method stub
+		Community_Comment com =	commentRepository.getOne(cId);
+		com.setContent(comment.getContent());
+		com.setId(cId);
+		return commentRepository.save(com);
+	}
+
+	@Override
+	public void deleteComment(Long aId, Long cId) {
+		// TODO Auto-generated method stub
+		commentRepository.deleteById(cId);
 	}
 
 }
