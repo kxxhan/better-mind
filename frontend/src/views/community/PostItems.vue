@@ -47,14 +47,6 @@
                 height="250"
                 @click="toggle"
               >
-                <!-- <v-scroll-y-transition>
-                  <div
-                    v-if="active"
-                    class="text-h2 flex-grow-1 text-center"
-                  >
-                    Active
-                  </div>
-                </v-scroll-y-transition> -->
                 <v-card-title>
                   Card title
                 </v-card-title>
@@ -111,12 +103,19 @@ export default {
     createPost: function () {
       this.$router.push({ name: 'CreatePost' })
     }
-  }
+  },
+  // 전체 게시글 호출 API 연결 store
+  // computed: {
+  //   postList: function () {
+  //     return this.$store.state.postlist
+  //   }
+  // },
+  // created: function () {
+  //   this.$store.dispatch('getPosts')
+  // },
 }
 </script>
 
-<style scoped>
-#post-items {
-  margin-top: 3vw !important;
-}
+<style>
+
 </style>
