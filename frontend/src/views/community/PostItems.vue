@@ -1,14 +1,109 @@
 <template>
-  <div id="post-items">
-    <p>키워드 필터</p>
-    <p @click="showDetail()">작성된 글 리스트 (클릭하면 디테일로 이동)</p>
-    <button @click="createPost">작성</button>
-  </div>
+  <v-container id="post-items">
+
+    <!-- 분류 키워드 Chips Group -->
+    <v-row justify="center">
+      <v-col
+        cols="12"
+        sm="10"
+        md="9"
+        lg="8"
+      >
+        <v-sheet
+          elevation="10"
+          rounded="xl"
+        >
+          <div class="pa-4">
+            <v-chip-group
+              active-class="primary--text"
+              column
+              multiple
+            >
+              <v-chip
+              v-for="tag in tags"
+              :key="tag"
+              >
+                {{ tag }}
+              </v-chip>
+            </v-chip-group>
+          </div>
+        </v-sheet>
+      </v-col>
+    </v-row>
+
+    <!-- 게시글 리스트 -->
+    <v-item-group>
+      <v-container>
+        <v-row>
+          <v-col
+            v-for="n in 6"
+            :key="n"
+            cols="12"
+            md="6"
+          >
+            <v-item v-slot="{ toggle }">
+              <v-card
+                class="d-flex flex-column justify-center"
+                height="250"
+                @click="toggle"
+              >
+                <!-- <v-scroll-y-transition>
+                  <div
+                    v-if="active"
+                    class="text-h2 flex-grow-1 text-center"
+                  >
+                    Active
+                  </div>
+                </v-scroll-y-transition> -->
+                <v-card-title>
+                  Card title
+                </v-card-title>
+
+                <v-card-subtitle>
+                  Subtitle text
+                </v-card-subtitle>
+
+                <v-card-text>
+                  Greyhound divisively hello coldly wonderfully marginally far upon excluding.
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+
+                  <v-btn icon>
+                    <v-icon>mdi-heart</v-icon>
+                    <span>3</span>
+                  </v-btn>
+
+                  <v-btn icon>
+                    <v-icon>mdi-message-text</v-icon>
+                    <span>2</span>
+                  </v-btn>
+
+                </v-card-actions>
+              </v-card>
+            </v-item>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-item-group>
+
+  </v-container>
 </template>
 
 <script>
 export default {
   name: 'PostItems',
+  data: () => ({
+    tags: [
+      '학교',
+      '직장',
+      '대인 관계',
+      '가족',
+      '외모',
+      '등'
+    ]
+  }),
   methods: {
     showDetail: function () {
       this.$router.push({ name: 'PostDetail' })
@@ -20,6 +115,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+#post-items {
+  margin-top: 3vw !important;
+}
 </style>
