@@ -1,10 +1,68 @@
 <template>
-  <div id="program-detail">
-    <h3>프로그램 디테일</h3>
-    <p>소개소개소개소개소개소개</p>
-    <button @click="registratePrograme()">신청하기</button>
-    <button @click="previousPage()">이전</button>
-  </div>
+  <v-container id="program-detail">
+    <div>
+      <!-- 프로그램 소개 -->
+      <v-container>
+        <v-row>
+          <v-col>
+            <v-img
+              :src="`https://picsum.photos/500/300?image=20`"
+              class="thumnail"            
+            >
+            </v-img>
+          </v-col>
+          <v-col>
+            <div class="text-h4">상처없이 이야기하기 (가족편)</div>
+            <br>
+            <div class="text-h6">by 김싸피 상담사</div>
+            <br>
+            <div class="text-h6">7월 26일 ~ 8월 16일</div>
+            <br>
+            <div class="text-h6">주 2회 (월, 목) 19:00 ~ 21:00</div>
+            <br>
+            <div class="text-h6">#가족 #대인관계</div>
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <!-- 중간 네비게이션바 -->
+      <v-app-bar class="mt-5">
+        <v-tabs align-with-title>
+          <v-tab @click="clickProgramIntroduce()">프로그램 소개</v-tab>
+          <v-tab @click="clickExpertIntroduce()">전문가 소개</v-tab>
+          <v-tab @click="clickProgramReview()">후기</v-tab>
+          <v-tab @click="clickProgramResistraion()">신청하기</v-tab>
+        </v-tabs>
+      </v-app-bar>
+      <br>
+
+      <!-- 프로그램 디테일 소개 -->
+      <v-container>
+        <div class="text-h6" id="program-introduce">프로그램 내용 소개 글</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+      </v-container>
+      <br>
+      <v-container>
+        <div class="text-h6" id="expert-introduce">전문가 소개 글</div>
+        <div>김싸피 전문가</div>
+      </v-container>
+      <br>
+      <v-container>
+        <div class="text-h6" id="program-review">프로그램 이용 후기</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+      </v-container>
+      <br>
+      <v-container>
+      <div class="text-h6" id="program-registration">프로그램 신청하기</div>
+      <span class="text-decoration-line-through">59,000원</span>
+      <span> => 29,500원</span>
+      </v-container>
+      <br>
+      <v-btn @click="registrateProgram()">신청하기</v-btn>
+      <v-btn @click="previousPage()">이전</v-btn>
+    </div>
+  </v-container>
 </template>
 
 <script>
@@ -14,13 +72,28 @@ export default {
     previousPage: function () {
       this.$router.push({ name: 'ProgramItems' })
     },
-    registratePrograme: function () {
+    registrateProgram: function () {
       this.$router.push({ name: 'Payment' })
+    },
+    clickProgramIntroduce: function () {
+      window.location.href = '#program-introduce'
+    },
+    clickExpertIntroduce: function () {
+      window.location.href = '#expert-introduce'
+    },
+    clickProgramReview: function () {
+      window.location.href = '#program-review'
+    },
+    clickProgramResistraion: function () {
+      window.location.href = '#program-registration'
     }
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+.thumnail {
+  height: 400px;
+  width: 400px;
+}
 </style>
