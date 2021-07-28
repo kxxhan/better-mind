@@ -2,7 +2,8 @@
   <v-app>
     <NavTop/>
     <NavBottom/>
-    <v-main>
+    <v-main
+      class="box">
       <router-view/>
     </v-main>
   </v-app>
@@ -24,3 +25,8 @@ export default {
   }),
 };
 </script>
+<style scoped>
+.box {
+  margin: 80px 30px
+}
+</style>
