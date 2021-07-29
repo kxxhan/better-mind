@@ -34,7 +34,9 @@
     </v-card>
     
     <!-- 댓글작성 폼 -->
-    <v-row class="my-5 d-flex align-center">
+    <v-row 
+      class="my-5 d-flex align-center"
+    >
       <v-textarea
         prepend-inner-icon="mdi-comment"
         class="mx-2"
@@ -75,7 +77,9 @@ export default {
       this.$router.push({ name: 'UpdatePost' })
     },
     createComment: function () {
-      console.log(this.commentItem)
+      if (this.commentItem.length > 0) {
+        console.log(this.commentItem)
+      }
     }
   }
 }
