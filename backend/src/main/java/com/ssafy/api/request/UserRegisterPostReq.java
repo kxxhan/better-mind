@@ -24,11 +24,14 @@ public class UserRegisterPostReq {
 	private String phone;
 	@ApiModelProperty(name = "유저 이름", example = "홍길동")
 	private String name;
-	@ApiModelProperty(name = "유저 증상 id", example = "홍길동")
-	private int symptom_id;
-	@ApiModelProperty(name = "유저 감정 id", example = "홍길동")
-	private int emotion_id;	
+	@ApiModelProperty(name = "설명", example = "자기 소개")
+	private String description;
+	@ApiModelProperty(name = "분류", example = "증상이나 감정")
+	private String category;
 	@ApiModelProperty(name = "권한", example = "0->일반 사용자 , 1->전문가, 2->관리자")
-	private String role;
+	private String role;	
+	@ApiModelProperty(name = "자격번호", example = "000000000")
+	private String certificate;
+	
 	
 }

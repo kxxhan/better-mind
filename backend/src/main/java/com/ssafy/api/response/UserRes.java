@@ -1,5 +1,6 @@
 package com.ssafy.api.response;
 
+import com.ssafy.db.entity.Category;
 import com.ssafy.db.entity.User;
 
 import io.swagger.annotations.ApiModel;
@@ -24,10 +25,10 @@ public class UserRes{
 	private String phone;
 	@ApiModelProperty(name = "유저 이름")
 	private String name;
-	@ApiModelProperty(name = "유저 증상 id")
-	private int symptom_id;
-	@ApiModelProperty(name = "유저 감정 id")
-	private int emotion_id;	
+	@ApiModelProperty(name = "유저 카테고리")
+	private String category;
+	@ApiModelProperty(name = "유저 설명")
+	private String description;
 	@ApiModelProperty(name = "권한")
 	private String role;
 	
@@ -38,8 +39,13 @@ public class UserRes{
 		res.setAddress(user.getAddress());
 		res.setEmail(user.getEmail());
 		res.setPhone(user.getPhone());
-		res.setSymptom_id(user.getSymptom_id());
-		res.setEmotion_id(user.getEmotion_id());
+		StringBuilder sb = new StringBuilder();
+		for(Category k: user.getCategory()) {
+			sb.append(k.getName()+" ");
+		}
+		sb.setLength(sb.length()-1);
+		res.setCategory(sb.toString());
+		res.setDescription(user.getDescription());
 		res.setRole(user.getRole());
 		return res;
 	}

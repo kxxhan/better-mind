@@ -1,12 +1,17 @@
 package com.ssafy.db.entity;
 
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.Entity;
 
 /**
  * 유저 모델 정의.
@@ -22,8 +27,17 @@ public class User extends BaseEntity {
 	private String email;
 	private String address;
 	private String phone;
-	private int symptom_id;
-	private int emotion_id;
+	private String certificate; // 자격번호
+	private String description;
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category_id")
+	private List<Category> category;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "conference_id")
+	private List<User_Conference> conference;
+	
 	private int point;
 	private String profile_url;
 	
