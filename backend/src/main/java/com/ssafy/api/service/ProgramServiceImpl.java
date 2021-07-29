@@ -7,7 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.api.request.ProgramPostReq;
+import com.ssafy.api.request.ReviewPostReq;
 import com.ssafy.db.entity.Program;
+import com.ssafy.db.entity.Program_Review;
 import com.ssafy.db.repository.ProgramRepository;
 import com.ssafy.db.repository.Program_FileRepository;
 import com.ssafy.db.repository.Program_ReviewRepository;
@@ -21,9 +23,6 @@ public class ProgramServiceImpl implements ProgramService {
 	
 	@Autowired
 	UserRepository userRepository;
-	
-	@Autowired
-	Program_FileRepository fileRepository;
 	
 	@Autowired
 	Program_ReviewRepository reviewRepository;
@@ -69,6 +68,24 @@ public class ProgramServiceImpl implements ProgramService {
 	@Override
 	public void deleteProgram(Long id) {
 		repository.deleteById(id);
+	}
+
+	@Override
+	public Program_Review createReview(Long id, ReviewPostReq review) {
+//		Program_Review review = new Program
+		return null;
+	}
+
+	@Override
+	public Program_Review updateReview(Long id, Long rId, ReviewPostReq review) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteReview(Long pId, Long rId) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
