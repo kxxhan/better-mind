@@ -31,11 +31,9 @@ public class User extends BaseEntity {
 	private String description;
 	
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "category_id")
 	private List<Category> category;
 
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "conference_id")
 	private List<User_Conference> conference;
 	
 	private int point;

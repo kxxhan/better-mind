@@ -14,10 +14,10 @@ import lombok.Setter;
 public class User_Conference extends BaseEntity {
 	//ManyToOne은 즉시 로딩이 기본값인데 연결된 엔티티 정보까지 한 번에 가져오려고 해서 성능에 문제가 발생할 수 있다.
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "conference_id")
+	@JoinColumn
 	private Conference conference;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn
 	private User user;
 }

@@ -21,7 +21,7 @@ import lombok.Setter;
 public class Community_Comment extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn
 	private User user;
 	
 	private String content;

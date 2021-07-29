@@ -21,11 +21,9 @@ import lombok.Setter;
 public class Conference extends BaseEntity {
 
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "category_id")
 	private List<Category> category;
 
 	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
 	private List<User_Conference> user;
 	
 	private Date call_start_time;
