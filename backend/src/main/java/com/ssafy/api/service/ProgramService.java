@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 
 import com.ssafy.api.request.ProgramPostReq;
+import com.ssafy.api.request.ReviewPostReq;
 import com.ssafy.db.entity.Program;
 import com.ssafy.db.entity.Program_Review;
 
@@ -22,11 +23,10 @@ public interface ProgramService {
 
 	List<Program> getAllProgram(Pageable pageable);
 	
-//	List<Program_Review> createReview(Long id, ReviewPostReq review);
-//	
-//	Program_Review createReview(Long id, ReviewPostReq review);
-//	
-//	Program_Review updateReview(Long id, Long rId, ReviewPostReq review);
-//	
-//	void deleteReview(Long pId, Long rId);
+	Program_Review createReview(Long id, ReviewPostReq review);
+	
+	Program_Review updateReview(Long id, Long rId, ReviewPostReq review);
+	
+	void deleteReview(Long pId, Long rId);
+	
 }

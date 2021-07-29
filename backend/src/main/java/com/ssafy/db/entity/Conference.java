@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 public class Conference extends BaseEntity {
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")
 	private List<Category> category;
 
