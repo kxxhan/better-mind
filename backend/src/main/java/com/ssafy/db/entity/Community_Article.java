@@ -24,15 +24,13 @@ import lombok.Setter;
 public class Community_Article extends BaseEntity {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn
 	private User user;
 	
 	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-	@JoinColumn(name = "comment_id")
 	private List<Community_Comment> comment;
 	
 	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-	@JoinColumn(name = "file_id")
 	private List<Community_File> file;
 	
 	private String title;
