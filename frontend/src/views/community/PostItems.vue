@@ -44,11 +44,11 @@
             cols="12"
             md="6"
           >
-            <v-item v-slot="{ toggle }">
+            <v-item>
               <v-card
                 class="d-flex flex-column justify-center"
                 height="250"
-                @click="toggle"
+                @click="showDetail()"
               >
                 <v-card-title>
                   Card title
