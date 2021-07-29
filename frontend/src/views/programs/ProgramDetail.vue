@@ -40,6 +40,30 @@
       <v-container>
         <div class="text-h6" id="program-introduce">프로그램 내용 소개 글</div>
         <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
       </v-container>
       <br>
       <v-container>
@@ -49,6 +73,38 @@
       <br>
       <v-container>
         <div class="text-h6" id="program-review">프로그램 이용 후기</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>엄마를 이해할 수 있게 되었어요</div>
+        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
         <div>엄마를 이해할 수 있게 되었어요</div>
         <div>편안한 분위기에서 진행되어 좋았습니다!</div>
       </v-container>
@@ -76,16 +132,21 @@ export default {
       this.$router.push({ name: 'Payment' })
     },
     clickProgramIntroduce: function () {
-      window.location.href = '#program-introduce'
+      const programLocation = document.querySelector("#program-introduce").offsetTop;
+      window.scrollTo({top:programLocation-100, left:0, behavior:'auto'})
     },
     clickExpertIntroduce: function () {
-      window.location.href = '#expert-introduce'
+      const expertlocation = document.querySelector("#expert-introduce").offsetTop;
+      window.scrollTo({top:expertlocation, left:0, behavior:'auto'})
     },
     clickProgramReview: function () {
-      window.location.href = '#program-review'
+      const reviewLocation = document.querySelector("#program-review").offsetTop;
+      window.scrollTo({top:reviewLocation, left:0, behavior:'auto'})
     },
     clickProgramResistraion: function () {
-      window.location.href = '#program-registration'
+      const registLocation = document.querySelector("#program-registration").offsetTop;
+      window.scrollTo({top:registLocation, left:0, behavior:'auto'})
+      // window.location.href = '#program-registration'
     }
   }
 }
