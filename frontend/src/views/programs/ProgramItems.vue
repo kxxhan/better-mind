@@ -39,7 +39,7 @@
         sm="6"
         md="4"
         lg="3"
-        >
+      >
         <v-item class="d-flex flex-column justify-center mb-2">
           <v-card
             class="mx-auto"

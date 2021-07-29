@@ -11,7 +11,6 @@
       <span class="navlink mx-3">로그아웃</span>
       <router-link :to="{ name: 'MyPage' }" class="navlink mx-3">마이 페이지</router-link>
     </div>
-
   </v-app-bar>
 </template>
 
