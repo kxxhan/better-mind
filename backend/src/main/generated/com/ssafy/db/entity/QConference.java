@@ -28,7 +28,7 @@ public class QConference extends EntityPathBase<Conference> {
 
     public final DateTimePath<java.util.Date> call_start_time = createDateTime("call_start_time", java.util.Date.class);
 
-    public final QConference_Category conference_category;
+//    public final QConference_Category conference_category;
 
     public final StringPath description = createString("description");
 
@@ -59,7 +59,7 @@ public class QConference extends EntityPathBase<Conference> {
 
     public QConference(Class<? extends Conference> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.conference_category = inits.isInitialized("conference_category") ? new QConference_Category(forProperty("conference_category")) : null;
+//        this.conference_category = inits.isInitialized("conference_category") ? new QConference_Category(forProperty("conference_category")) : null;
     }
 
 }

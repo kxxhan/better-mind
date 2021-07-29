@@ -1,10 +1,9 @@
 <template>
-  <v-container id="post-items">
-
-    <!-- 분류 키워드 Chips Group -->
+  <v-container id="post-items">   
     <v-row justify="center">
+      <!-- 분류 키워드 Chips Group -->
       <v-col
-        cols="12"
+        cols="11"
         sm="10"
         md="9"
         lg="8"
@@ -28,6 +27,10 @@
             </v-chip-group>
           </div>
         </v-sheet>
+      </v-col>
+      <!-- 게시글 생성 페이지 이동 버튼 -->
+      <v-col cols="1">
+        <v-btn @click="createPost()">create</v-btn>
       </v-col>
     </v-row>
 
