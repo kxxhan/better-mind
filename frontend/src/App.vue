@@ -1,9 +1,10 @@
 <template>
   <v-app>
-    <NavTop/>
-    <NavBottom/>
-    <v-main
-      class="box">
+    <v-container class="sticky-header">
+      <NavTop/>
+      <NavBottom/>
+    </v-container>
+    <v-main class="box">
       <router-view/>
     </v-main>
   </v-app>

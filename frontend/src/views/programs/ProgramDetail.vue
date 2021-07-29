@@ -4,23 +4,23 @@
       <!-- 프로그램 소개 -->
       <v-container>
         <v-row>
-          <v-col>
+          <v-col class="d-flex justify-center">
             <v-img
               :src="`https://picsum.photos/500/300?image=20`"
-              class="thumnail"            
+              class="thumnail"        
             >
             </v-img>
           </v-col>
           <v-col>
-            <div class="text-h4">상처없이 이야기하기 (가족편)</div>
+            <div class="text-h4 d-flex justify-center">상처없이 이야기하기 (가족편)</div>
             <br>
-            <div class="text-h6">by 김싸피 상담사</div>
+            <div class="text-h6 d-flex justify-center">by 김싸피 상담사</div>
             <br>
-            <div class="text-h6">7월 26일 ~ 8월 16일</div>
+            <div class="text-h6 d-flex justify-center">7월 26일 ~ 8월 16일</div>
             <br>
-            <div class="text-h6">주 2회 (월, 목) 19:00 ~ 21:00</div>
+            <div class="text-h6 d-flex justify-center">주 2회 (월, 목) 19:00 ~ 21:00</div>
             <br>
-            <div class="text-h6">#가족 #대인관계</div>
+            <div class="text-h6 d-flex justify-center">#가족 #대인관계</div>
           </v-col>
         </v-row>
       </v-container>
