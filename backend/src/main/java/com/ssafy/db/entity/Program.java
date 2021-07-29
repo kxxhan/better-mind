@@ -2,6 +2,7 @@ package com.ssafy.db.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -39,9 +40,9 @@ public class Program extends BaseEntity {
 	private int count; // 프로그램 횟수
 	private String time; // 프로그램 날짜, 요일, 시간 = 일정
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
 	@JoinColumn(name = "file_id")
-	private Program_File file;
+	private List<Program_File> file;
 	
 	
 	
