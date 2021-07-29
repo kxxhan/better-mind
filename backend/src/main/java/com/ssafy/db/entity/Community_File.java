@@ -17,10 +17,6 @@ import lombok.Setter;
 @Setter
 public class Community_File extends BaseEntity {
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "article_id")
-	private Community_Article article;
-	
 	private String savefolder;
 	private String originfile;
 	private String savefile;

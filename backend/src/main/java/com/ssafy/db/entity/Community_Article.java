@@ -31,6 +31,10 @@ public class Community_Article extends BaseEntity {
 	@JoinColumn(name = "comment_id")
 	private List<Community_Comment> comment;
 	
+	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+	@JoinColumn(name = "file_id")
+	private List<Community_File> file;
+	
 	private String title;
 	private String content;
 	private Date created_at;
