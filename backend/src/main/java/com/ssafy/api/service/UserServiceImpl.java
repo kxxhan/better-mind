@@ -1,10 +1,14 @@
 package com.ssafy.api.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.api.request.UserRegisterPostReq;
+import com.ssafy.db.entity.Category;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.repository.UserRepository;
 import com.ssafy.db.repository.UserRepositorySupport;
@@ -33,8 +37,16 @@ public class UserServiceImpl implements UserService {
 		user.setName(userRegisterInfo.getName());
 		user.setPhone(userRegisterInfo.getPhone());
 		user.setAddress(userRegisterInfo.getAddress());
-		user.setSymptom_id(userRegisterInfo.getSymptom_id());
-		user.setEmotion_id(userRegisterInfo.getEmotion_id());
+		user.setCertificate(userRegisterInfo.getCertificate());
+		String[] array = userRegisterInfo.getCategory().split(" ");
+		List<Category> list = new ArrayList<>();
+		Category c = new Category();
+		for(String k : array) {
+			c.setId(Long.parseLong(k));
+			list.add(c);
+		}
+		user.setCategory(list);
+		user.setDescription(userRegisterInfo.getDescription());
 		user.setPoint(0);
 		user.setRole(userRegisterInfo.getRole());
 		//dsl 사용

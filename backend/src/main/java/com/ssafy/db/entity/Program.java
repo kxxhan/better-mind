@@ -1,9 +1,12 @@
 package com.ssafy.db.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,11 +21,19 @@ import lombok.Setter;
 public class Program extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "expert_id")
-	private Expert expert;
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	private String name;
-	private String category;
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category_id")
+	private List<Category> category;
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "review_id")
+	private List<Program_Review> review;
+	
 	private String report; // 프로그램 소개
 	private int price;
 	private int count; // 프로그램 횟수
@@ -31,5 +42,7 @@ public class Program extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "file_id")
 	private Program_File file;
+	
+	
 	
 }

@@ -3,7 +3,7 @@ package com.ssafy.db.entity;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,13 +17,9 @@ import lombok.Setter;
 @Setter
 public class Program_Review extends BaseEntity {
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "program_id")
-	private Program program_id;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "program_name")
-	private Program program_name;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	private String content;
 	

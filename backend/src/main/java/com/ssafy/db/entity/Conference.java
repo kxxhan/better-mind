@@ -1,11 +1,14 @@
 package com.ssafy.db.entity;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 
 import lombok.Getter;
@@ -18,9 +21,13 @@ import lombok.Setter;
 public class Conference extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "conference_category_id")
-	private Conference_Category conference_category;
+	@JoinColumn(name = "category_id")
+	private List<Category> category;
 
+	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private List<User_Conference> user;
+	
 	private Date call_start_time;
 	private Date call_end_time;
 	private String thumbnail_url;
