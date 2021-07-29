@@ -9,9 +9,10 @@ export default new Vuex.Store({
     postlist: [1],
   },
   mutations: {
+    // 커뮤니티 관련
     GET_POSTS: function (state, postlist) {
       state.postlist = postlist
-    }
+    },    
   },
   actions: {
     getPosts: function () {
