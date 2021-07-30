@@ -14,7 +14,7 @@
           <v-list-item
             v-for="item in pubItems"
             :key="item.title"
-            link
+            router :to="{ name: item.link }"
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
@@ -28,7 +28,7 @@
           <v-list-item
             v-for="item in expItems"
             :key="item.title"
-            link
+            router :to="{ name: item.link }"
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
@@ -45,18 +45,18 @@
 
 <script>
 export default {
-  name: "MypageNav",
+  name: "NavSide",
   data () {
     return {
       pubItems: [
-        { title: '활동내역', icon: 'mdi-home-city' },
-        { title: '모임정보', icon: 'mdi-account-group-outline' },
-        { title: '정보수정', icon: 'mdi-account' },
+        { title: '활동내역', icon: 'mdi-home-city', link: 'PubActivities'},
+        { title: '모임정보', icon: 'mdi-account-group-outline', link: 'PubMeetings' },
+        { title: '정보수정', icon: 'mdi-account', link: 'UpdateUserInfo'},
       ],
       expItems: [
-        { title: '모임정보', icon: 'mdi-home-city' },
-        { title: '프로그램 등록', icon: 'mdi-account-group-outline' },
-        { title: '정보수정', icon: 'mdi-account' },
+        { title: '모임정보', icon: 'mdi-home-city', link: 'ExpMeetings'},
+        { title: '프로그램 등록', icon: 'mdi-account-group-outline', link: 'ExpAddMeeting'},
+        { title: '정보수정', icon: 'mdi-account', link: 'UpdateUserInfo'},
       ],
     }
   },
