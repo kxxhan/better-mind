@@ -21,16 +21,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class User extends BaseEntity {
-	private String userId;
+	private String userid;
 	private String name;
 	private String role;
 	private String email;
-	private String address;
 	private String phone;
 	private String certificate; // 자격번호
 	private String description;
 	
 	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn
 	private List<Category> category;
 
 	@OneToMany(fetch = FetchType.LAZY)

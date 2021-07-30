@@ -18,6 +18,7 @@ import lombok.Setter;
 public class Program_Review extends BaseEntity {
 
 	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn
 	private User user;
 	
 	private String content;

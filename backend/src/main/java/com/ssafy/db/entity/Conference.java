@@ -21,6 +21,7 @@ import lombok.Setter;
 public class Conference extends BaseEntity {
 
 	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn
 	private List<Category> category;
 
 	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)

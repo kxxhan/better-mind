@@ -34,9 +34,8 @@ public class UserRes{
 	
 	public static UserRes of(User user) {
 		UserRes res = new UserRes();
-		res.setId(user.getUserId());
+		res.setId(user.getUserid());
 		res.setName(user.getName());
-		res.setAddress(user.getAddress());
 		res.setEmail(user.getEmail());
 		res.setPhone(user.getPhone());
 		StringBuilder sb = new StringBuilder();
