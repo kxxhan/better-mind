@@ -28,9 +28,11 @@ public class Program extends BaseEntity {
 	private String name;
 	
 	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn
 	private List<Category> category;
 	
 	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn
 	private List<Program_Review> review;
 	
 	private String report; // 프로그램 소개
@@ -39,6 +41,7 @@ public class Program extends BaseEntity {
 	private String time; // 프로그램 날짜, 요일, 시간 = 일정
 	
 	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+	@JoinColumn
 	private List<Program_File> file;
 	
 	

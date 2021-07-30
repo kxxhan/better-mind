@@ -31,7 +31,7 @@ public class CommunityServiceImpl implements CommunityService {
 	public Community_Article createArticle(CommunityPostReq communityPostReq) {
 		// TODO Auto-generated method stub
 		Community_Article article = new Community_Article();
-		article.setUser(userRepository.findByUserId(communityPostReq.getUserId()).get());
+		article.setUser(userRepository.findByUserid(communityPostReq.getUserId()).get());
 		article.setContent(communityPostReq.getContent());
 		article.setTitle(communityPostReq.getTitle());
 		return repository.save(article);
@@ -76,7 +76,7 @@ public class CommunityServiceImpl implements CommunityService {
 		// TODO Auto-generated method stub
 		Community_Comment com = new Community_Comment();
 		com.setContent(comment.getContent());
-		com.setUser(userRepository.findByUserId(comment.getUserId()).get());		
+		com.setUser(userRepository.findByUserid(comment.getUserId()).get());		
 		Community_Article com2 = repository.getOne(id);
 		com2.getComment().add(commentRepository.save(com));
 		return com2;

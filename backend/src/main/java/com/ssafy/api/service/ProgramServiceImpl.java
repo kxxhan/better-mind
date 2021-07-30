@@ -30,7 +30,7 @@ public class ProgramServiceImpl implements ProgramService {
 	@Override
 	public Program createProgram(ProgramPostReq programPostReq) {
 		Program program = new Program();
-		program.setUser(userRepository.findByUserId(programPostReq.getUserId()).get());
+		program.setUser(userRepository.findByUserid(programPostReq.getUserId()).get());
 		program.setName(programPostReq.getName());
 		program.setReport(programPostReq.getReport());
 		program.setPrice(programPostReq.getPrice());

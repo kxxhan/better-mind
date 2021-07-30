@@ -28,9 +28,11 @@ public class Community_Article extends BaseEntity {
 	private User user;
 	
 	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+	@JoinColumn
 	private List<Community_Comment> comment;
 	
 	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+	@JoinColumn
 	private List<Community_File> file;
 	
 	private String title;
