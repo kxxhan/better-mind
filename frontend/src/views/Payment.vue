@@ -1,20 +1,60 @@
 <template>
-  <v-card id="payment">
-    <v-card-title>
-      <h2>결제 페이지</h2>
-    </v-card-title>
-    <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-btn @click="onPayment">
-        결제하기
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+  <v-container>
+    <v-card id="payment">
+      <v-card-title>
+        <h2>프로그램 이름</h2>
+        <v-spacer></v-spacer>
+        <v-card-subtitle>전문가</v-card-subtitle>
+      </v-card-title>
+      <hr class="mx-3">
+      <v-card-text>일정</v-card-text>
+      <v-card-text>시간</v-card-text>
+      <v-card-text>회차</v-card-text>
+      <hr class="mx-3">
+      <v-card-actions>
+        <v-row class="d-flex flex-column justify-center">
+          <v-col
+            cols="12"
+            md="6"
+          >
+            <v-select
+              :items="pay_methods"
+              outlined
+              label="결제 수단"
+              v-model="pay_method"
+            ></v-select>
+          </v-col>
+          <v-col
+            cols="12"
+            md="6"  
+          >
+            <v-text-field
+              readonly
+              outlined
+              label="결제 금액"
+              v-model="price"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-spacer></v-spacer>
+        <v-btn @click="onPayment">
+          결제하기
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-container>
 </template>
 
 <script>
 export default {
   name: 'Payment',
+  data: function () {
+    return {
+      pay_methods: ['card', 'trans', 'vbank', 'phone', 'samsun', 'kpay', 'kakaopay', 'payco', 'lpay', 'ssgpay', 'tosspay', 'cultureland', 'smartculture', 'happymoney'],
+      pay_method: '',
+      price: 1,
+    }
+  },
   methods: {
     onPayment() {
       // 가맹점 식별
@@ -23,10 +63,10 @@ export default {
 
       // 결제 데이터 정보
       const data = {
-        pg: 'kakaopay',                           // PG사
-        pay_method: 'card',                           // 결제수단
+        pg: 'html5_inicis',                           // PG사
+        pay_method: this.pay_method,                           // 결제수단
         merchant_uid: `mid_${new Date().getTime()}`,   // 주문번호
-        amount: 1000,                                 // 결제금액
+        amount: this.price,                                 // 결제금액
         name: '테스트',                  // 주문명
         buyer_name: '김싸피',                           // 구매자 이름
         buyer_tel: '01012341234',                     // 구매자 전화번호
