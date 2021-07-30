@@ -9,7 +9,7 @@
       <router-link :to="{ name: 'Signup' }" class="navlink mx-3">회원가입</router-link>
       <LoginModal/>
       <span class="navlink mx-3">로그아웃</span>
-      <router-link :to="{ name: 'MyPage' }" class="navlink mx-3">마이 페이지</router-link>
+      <router-link :to="{ name: 'PubActivities' }" class="navlink mx-3">마이 페이지</router-link>
     </div>
   </v-app-bar>
 </template>
