@@ -38,7 +38,6 @@ public class User extends BaseEntity {
 	
 	private int point;
 	private String profile_url;
-	
 
 	@JsonIgnore
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
