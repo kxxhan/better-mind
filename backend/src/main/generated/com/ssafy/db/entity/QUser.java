@@ -7,7 +7,6 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
-import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -22,13 +21,9 @@ public class QUser extends EntityPathBase<User> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final StringPath address = createString("address");
-
-    public final ListPath<Category, QCategory> category = this.<Category, QCategory>createList("category", Category.class, QCategory.class, PathInits.DIRECT2);
+    public final ComparablePath<Enum<CategoryEnum>> category = createComparable("category", Enum.class);
 
     public final StringPath certificate = createString("certificate");
-
-    public final ListPath<User_Conference, QUser_Conference> conference = this.<User_Conference, QUser_Conference>createList("conference", User_Conference.class, QUser_Conference.class, PathInits.DIRECT2);
 
     public final StringPath description = createString("description");
 

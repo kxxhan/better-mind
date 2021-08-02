@@ -24,13 +24,11 @@ public class QCommunity_Article extends EntityPathBase<Community_Article> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final ListPath<Community_Comment, QCommunity_Comment> comment = this.<Community_Comment, QCommunity_Comment>createList("comment", Community_Comment.class, QCommunity_Comment.class, PathInits.DIRECT2);
+    public final ComparablePath<Enum<CategoryEnum>> category = createComparable("category", Enum.class);
 
     public final StringPath content = createString("content");
 
     public final DateTimePath<java.util.Date> created_at = createDateTime("created_at", java.util.Date.class);
-
-    public final ListPath<Community_File, QCommunity_File> file = this.<Community_File, QCommunity_File>createList("file", Community_File.class, QCommunity_File.class, PathInits.DIRECT2);
 
     //inherited
     public final NumberPath<Long> id = _super.id;

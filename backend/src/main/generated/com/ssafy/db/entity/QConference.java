@@ -7,7 +7,6 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
-import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -26,7 +25,7 @@ public class QConference extends EntityPathBase<Conference> {
 
     public final DateTimePath<java.util.Date> call_start_time = createDateTime("call_start_time", java.util.Date.class);
 
-    public final ListPath<Category, QCategory> category = this.<Category, QCategory>createList("category", Category.class, QCategory.class, PathInits.DIRECT2);
+    public final ComparablePath<Enum<CategoryEnum>> category = createComparable("category", Enum.class);
 
     public final StringPath description = createString("description");
 
@@ -38,8 +37,6 @@ public class QConference extends EntityPathBase<Conference> {
     public final StringPath thumbnail_url = createString("thumbnail_url");
 
     public final StringPath title = createString("title");
-
-    public final ListPath<User_Conference, QUser_Conference> user = this.<User_Conference, QUser_Conference>createList("user", User_Conference.class, QUser_Conference.class, PathInits.DIRECT2);
 
     public QConference(String variable) {
         super(Conference.class, forVariable(variable));

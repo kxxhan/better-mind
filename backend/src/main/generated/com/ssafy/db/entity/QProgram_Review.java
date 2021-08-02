@@ -26,8 +26,14 @@ public class QProgram_Review extends EntityPathBase<Program_Review> {
 
     public final StringPath content = createString("content");
 
+    public final DateTimePath<java.util.Date> created_at = createDateTime("created_at", java.util.Date.class);
+
     //inherited
     public final NumberPath<Long> id = _super.id;
+
+    public final QProgram program;
+
+    public final DateTimePath<java.util.Date> updated_at = createDateTime("updated_at", java.util.Date.class);
 
     public final QUser user;
 
@@ -49,6 +55,7 @@ public class QProgram_Review extends EntityPathBase<Program_Review> {
 
     public QProgram_Review(Class<? extends Program_Review> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.program = inits.isInitialized("program") ? new QProgram(forProperty("program"), inits.get("program")) : null;
         this.user = inits.isInitialized("user") ? new QUser(forProperty("user")) : null;
     }
 
