@@ -24,11 +24,9 @@ public class QProgram extends EntityPathBase<Program> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final ListPath<Category, QCategory> category = this.<Category, QCategory>createList("category", Category.class, QCategory.class, PathInits.DIRECT2);
+    public final ComparablePath<Enum<CategoryEnum>> category = createComparable("category", Enum.class);
 
     public final NumberPath<Integer> count = createNumber("count", Integer.class);
-
-    public final ListPath<Program_File, QProgram_File> file = this.<Program_File, QProgram_File>createList("file", Program_File.class, QProgram_File.class, PathInits.DIRECT2);
 
     //inherited
     public final NumberPath<Long> id = _super.id;
@@ -38,8 +36,6 @@ public class QProgram extends EntityPathBase<Program> {
     public final NumberPath<Integer> price = createNumber("price", Integer.class);
 
     public final StringPath report = createString("report");
-
-    public final ListPath<Program_Review, QProgram_Review> review = this.<Program_Review, QProgram_Review>createList("review", Program_Review.class, QProgram_Review.class, PathInits.DIRECT2);
 
     public final StringPath time = createString("time");
 

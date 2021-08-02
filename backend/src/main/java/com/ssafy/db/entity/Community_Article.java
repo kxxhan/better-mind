@@ -31,6 +31,7 @@ public class Community_Article extends BaseEntity {
 	private String content;
 	private Date created_at;
 	private Date updated_at;
+	private Enum<CategoryEnum> category;
 	
 	@PrePersist
 	public void createdAt() {

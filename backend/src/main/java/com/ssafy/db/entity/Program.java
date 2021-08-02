@@ -26,11 +26,7 @@ public class Program extends BaseEntity {
 	private User user;
 	
 	private String name;
-	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn
-	private List<Category> category;
-	
+	private Enum<CategoryEnum> category;
 	private String report; // 프로그램 소개
 	private int price;
 	private int count; // 프로그램 횟수

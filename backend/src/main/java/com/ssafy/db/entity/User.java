@@ -28,13 +28,10 @@ public class User extends BaseEntity {
 	private String phone;
 	private String certificate; // 자격번호
 	private String description;
-	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn
-	private List<Category> category;
+	private Enum<CategoryEnum> category;
 
-	@OneToMany(fetch = FetchType.LAZY)
-	private List<User_Conference> conference;
+//	@OneToMany(fetch = FetchType.LAZY)
+//	private List<User_Conference> conference;
 	
 	private int point;
 	private String profile_url;

@@ -20,12 +20,8 @@ import lombok.Setter;
 @Setter
 public class Conference extends BaseEntity {
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn
-	private List<Category> category;
-
-	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-	private List<User_Conference> user;
+//	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+//	private List<User_Conference> user;
 	
 	private Date call_start_time;
 	private Date call_end_time;
@@ -33,6 +29,7 @@ public class Conference extends BaseEntity {
 	private String title;
 	private String description;
 	private Boolean is_active;
+	private Enum<CategoryEnum> category;
 
 	@PrePersist
 	public void createdAt() {
