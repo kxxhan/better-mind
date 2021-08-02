@@ -21,6 +21,7 @@ import com.ssafy.api.request.CommentPostReq;
 import com.ssafy.api.request.CommunityPostReq;
 import com.ssafy.api.response.CommunityGetRes;
 import com.ssafy.api.response.FileDto;
+import com.ssafy.db.entity.CategoryEnum;
 import com.ssafy.db.entity.Community_Article;
 import com.ssafy.db.entity.Community_Comment;
 import com.ssafy.db.entity.Community_File;
@@ -57,6 +58,7 @@ public class CommunityServiceImpl implements CommunityService {
 		article.setUser(userRepository.findByUserid(communityPostReq.getUserId()).get());
 		article.setContent(communityPostReq.getContent());
 		article.setTitle(communityPostReq.getTitle());
+		article.setCategory(CategoryEnum.valueOf(communityPostReq.getCategory()));
 		article = repository.save(article);
 		if (files != null) {
 			String realPath = basedir;
@@ -92,14 +94,16 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public List<CommunityPostReq> getAllArticle(Pageable pageable) {
 		// TODO Auto-generated method stub
-		Page<Community_Article> list = repository.findAll(pageable);
+		List<Community_Article> list = repository.findAll(pageable).getContent();
 		List<CommunityPostReq> copy = new ArrayList<>();
 		CommunityPostReq resp;
 		for (Community_Article c : list) {
 			resp = new CommunityPostReq();
+			resp.setId(c.getId());
 			resp.setTitle(c.getTitle());
 			resp.setUserId(c.getUser().getUserid());
 			resp.setContent(c.getContent());
+			resp.setCategory(c.getCategory().name());
 			copy.add(resp);
 		}
 		return copy;
@@ -116,10 +120,22 @@ public class CommunityServiceImpl implements CommunityService {
 		// TODO Auto-generated method stub
 		Community_Article article = repository.findById(id).get();
 		CommunityGetRes c = new CommunityGetRes();
+		c.setId(article.getId());
 		c.setContent(article.getContent());
 		c.setTitle(article.getTitle());
 		c.setUserId(article.getUser().getUserid());
-		List<Community_File> list = fileRepository.findByCommunityarticle(id).get();
+		List<Community_Comment> clist = commentRepository.findByCommunityarticle_id(article.getId()).get();
+		if(clist != null) {
+			List<CommentPostReq> comments = new ArrayList<>();
+			for(Community_Comment k: clist) {
+				CommentPostReq l = new CommentPostReq();
+				l.setContent(k.getContent());
+				l.setUserId(k.getUser().getUserid());
+				comments.add(l);
+			}
+			c.setComments(comments);
+		}
+		List<Community_File> list = fileRepository.findByCommunityarticle_id(id).get();
 		if (list != null) {
 			List<FileDto> copy = new ArrayList<>();
 			for (Community_File fi : list) {
@@ -157,7 +173,7 @@ public class CommunityServiceImpl implements CommunityService {
 		com.setContent(comment.getContent());
 		com.setUser(userRepository.findByUserid(comment.getUserId()).get());
 		Community_Article com2 = repository.getOne(id);
-		com.setCommunity_article(com2);
+		com.setCommunityarticle(com2);
 		return commentRepository.save(com);
 	}
 
@@ -166,8 +182,6 @@ public class CommunityServiceImpl implements CommunityService {
 		// TODO Auto-generated method stub
 		Community_Comment com = commentRepository.getOne(cId);
 		com.setContent(comment.getContent());
-//		com.setId(cId);
-//		com.setCommunity_article(repository.getOne(aId));
 		com.setUpdated_at(new Date());
 		return commentRepository.save(com);
 	}
