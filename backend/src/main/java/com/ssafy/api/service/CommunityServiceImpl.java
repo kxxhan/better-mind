@@ -1,18 +1,32 @@
 package com.ssafy.api.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.api.request.CommentPostReq;
 import com.ssafy.api.request.CommunityPostReq;
+import com.ssafy.api.response.CommunityGetRes;
+import com.ssafy.api.response.FileDto;
 import com.ssafy.db.entity.Community_Article;
 import com.ssafy.db.entity.Community_Comment;
+import com.ssafy.db.entity.Community_File;
 import com.ssafy.db.repository.Community_ArticleRepository;
 import com.ssafy.db.repository.Community_CommentRepository;
+import com.ssafy.db.repository.Community_FileRepository;
 import com.ssafy.db.repository.UserRepository;
 
 @Service("CommunityService")
@@ -20,27 +34,75 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Autowired
 	Community_ArticleRepository repository;
-	
+
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	Community_CommentRepository commentRepository;
 
+	@Autowired
+	Community_FileRepository fileRepository;
+
+	// 저장할 기본 디렉토리 설정 application.property 파일에 설정하고 가져온다.
+	@Value("${server.tomcat.basedir}")
+	private String basedir;
+
 	@Override
-	public Community_Article createArticle(CommunityPostReq communityPostReq) {
+	@Transactional
+	public Community_Article createArticle(CommunityPostReq communityPostReq, MultipartFile[] files)
+			throws IllegalStateException, IOException {
 		// TODO Auto-generated method stub
 		Community_Article article = new Community_Article();
 		article.setUser(userRepository.findByUserid(communityPostReq.getUserId()).get());
 		article.setContent(communityPostReq.getContent());
 		article.setTitle(communityPostReq.getTitle());
-		return repository.save(article);
+		article = repository.save(article);
+		if (files != null) {
+			String realPath = basedir;
+			// 오늘날짜로 폴더 설정
+			String today = new SimpleDateFormat("yyMMdd").format(new Date());
+			// 실제 저장하는 폴더주소
+			String saveFolder = realPath + File.separator + today;
+			// 저장 폴더 주소를 불러왔는데
+			File folder = new File(saveFolder);
+			// 폴더가 존재하지 않으면 폴더 생성
+			if (!folder.exists())
+				folder.mkdirs();
+			for (MultipartFile f : files) {
+				// 원래 파일의 이름
+				String originalFileName = f.getOriginalFilename();
+				if (!originalFileName.isEmpty()) {
+					// 랜덤한 파일이름으로 가상 파일 이름을 생성시켜준다. subString을 통해서 확장자까지 저장
+					String saveFileName = UUID.randomUUID().toString()
+							+ originalFileName.substring(originalFileName.lastIndexOf('.'));
+					f.transferTo(new File(folder, saveFileName));
+					Community_File cfile = new Community_File();
+					cfile.setSavefolder(saveFolder);
+					cfile.setCommunityarticle(article);
+					cfile.setOriginfile(originalFileName);
+					cfile.setSavefile(saveFileName);
+					fileRepository.save(cfile);
+				}
+			}
+		}
+		return article;
 	}
 
 	@Override
-	public List<Community_Article> getAllArticle(Pageable pageable) {
+	public List<CommunityPostReq> getAllArticle(Pageable pageable) {
 		// TODO Auto-generated method stub
-		return repository.findAll();
+		Page<Community_Article> list = repository.findAll(pageable);
+		List<CommunityPostReq> copy = new ArrayList<>();
+		CommunityPostReq resp;
+		for (Community_Article c : list) {
+			resp = new CommunityPostReq();
+			resp.setTitle(c.getTitle());
+			resp.setUserId(c.getUser().getUserid());
+			resp.setContent(c.getContent());
+			copy.add(resp);
+		}
+		return copy;
 	}
 
 	@Override
@@ -50,13 +112,30 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public Community_Article getOneArticle(Long id) {
+	public CommunityGetRes getOneArticle(Long id) {
 		// TODO Auto-generated method stub
-		return repository.findById(id).get();
+		Community_Article article = repository.findById(id).get();
+		CommunityGetRes c = new CommunityGetRes();
+		c.setContent(article.getContent());
+		c.setTitle(article.getTitle());
+		c.setUserId(article.getUser().getUserid());
+		List<Community_File> list = fileRepository.findByCommunityarticle(id).get();
+		if (list != null) {
+			List<FileDto> copy = new ArrayList<>();
+			for (Community_File fi : list) {
+				FileDto dto = new FileDto();
+				dto.setOriginfile(fi.getOriginfile());
+				dto.setSavefile(fi.getSavefile());
+				dto.setSavefolder(fi.getSavefolder());
+				copy.add(dto);
+			}
+			c.setFiles(copy);
+		}
+		return c;
 	}
 
 	@Override
-	public Community_Article updateArticle(Long id,CommunityPostReq communityPostReq) {
+	public Community_Article updateArticle(Long id, CommunityPostReq communityPostReq) {
 		// TODO Auto-generated method stub
 		Community_Article article = repository.getOne(id);
 		article.setContent(communityPostReq.getContent());
@@ -72,22 +151,24 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public Community_Article createComment(Long id, CommentPostReq comment) {
+	public Community_Comment createComment(Long id, CommentPostReq comment) {
 		// TODO Auto-generated method stub
 		Community_Comment com = new Community_Comment();
 		com.setContent(comment.getContent());
-		com.setUser(userRepository.findByUserid(comment.getUserId()).get());		
+		com.setUser(userRepository.findByUserid(comment.getUserId()).get());
 		Community_Article com2 = repository.getOne(id);
-		com2.getComment().add(commentRepository.save(com));
-		return com2;
+		com.setCommunity_article(com2);
+		return commentRepository.save(com);
 	}
 
 	@Override
 	public Community_Comment updateComment(Long aId, Long cId, CommentPostReq comment) {
 		// TODO Auto-generated method stub
-		Community_Comment com =	commentRepository.getOne(cId);
+		Community_Comment com = commentRepository.getOne(cId);
 		com.setContent(comment.getContent());
-		com.setId(cId);
+//		com.setId(cId);
+//		com.setCommunity_article(repository.getOne(aId));
+		com.setUpdated_at(new Date());
 		return commentRepository.save(com);
 	}
 

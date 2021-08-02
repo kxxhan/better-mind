@@ -17,6 +17,10 @@ import lombok.Setter;
 @Setter
 public class Program_File extends BaseEntity {
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn
+	private Program program;
+	
 	private String savefolder;
 	private String originfile;
 	private String savefile;

@@ -24,6 +24,10 @@ public class Community_Comment extends BaseEntity {
 	@JoinColumn
 	private User user;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn
+	private Community_Article community_article;
+	
 	private String content;
 	private Date created_at;
 	private Date updated_at;

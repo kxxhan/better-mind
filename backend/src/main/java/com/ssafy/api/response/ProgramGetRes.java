@@ -1,4 +1,6 @@
-package com.ssafy.api.request;
+package com.ssafy.api.response;
+
+import java.util.List;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -7,10 +9,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@ApiModel("ProgramPostRequest")
-public class ProgramPostReq {
-
-	@ApiModelProperty(name="유저 ID", example="ssafy_web")
+@ApiModel("ProgramGetResponse")
+public class ProgramGetRes {
+	
+	@ApiModelProperty(name="유저 ID", example = "ssafy_web")
 	private String userId;
 	@ApiModelProperty(name="프로그램 명")
 	private String name;
@@ -22,5 +24,7 @@ public class ProgramPostReq {
 	private int count;
 	@ApiModelProperty(name="프로그램 날짜, 시간")
 	private String time;
+	@ApiModelProperty(name="파일")
+	private List<FileDto> files;
 	
 }

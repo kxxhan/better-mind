@@ -26,15 +26,7 @@ public class Community_Article extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
 	private User user;
-	
-	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-	@JoinColumn
-	private List<Community_Comment> comment;
-	
-	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-	@JoinColumn
-	private List<Community_File> file;
-	
+
 	private String title;
 	private String content;
 	private Date created_at;
