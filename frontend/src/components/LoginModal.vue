@@ -15,6 +15,10 @@
     </template>
 
     <v-card>
+      <v-card-title>
+        Login
+      </v-card-title>
+
       <v-card-text>
         <v-container>
           <v-row>
@@ -22,7 +26,7 @@
               cols="12"
             >
               <v-text-field
-                v-model="credentials.userid"
+                v-model="credentials.id"
                 label="ID"
                 required
               ></v-text-field>
@@ -44,10 +48,19 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn
+          @click="moveSignup"
+        >
+          Signup
+        </v-btn>
+        <v-btn
           @click="dialog = false"
         >
           Close
         </v-btn>
+
+        <!-- 아이디, 비밀번호 없을 때 경고문구 띄우기 -->
+
+
         <v-btn
           @click="login()"
         >
@@ -59,20 +72,39 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'LoginModal',
   data: function () {
     return {
       dialog: false,
       credentials: {
-        userid: '',
+        id: '',
         password: '',
       }
     }
   },
   methods: {
+    moveSignup: function () {
+      this.dialog = false
+      this.$router.push({ name: 'Signup' })
+    },
     login: function () {
-      console.log(this.credentials)
+      axios({
+        method: 'post',
+        url: '/api/v1/auth/login',
+        data: this.credentials,
+      })
+      .then((res) => {
+        this.dialog = false
+        localStorage.setItem('jwt', res.data.accessToken)
+        this.$router.go(0)
+      })
+      .catch(() => {
+        alert('The id or password is incorrect')
+        this.credentials.password = ''
+      })
     }
   }
 }
