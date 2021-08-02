@@ -1,6 +1,5 @@
 package com.ssafy.api.response;
 
-import com.ssafy.db.entity.Category;
 import com.ssafy.db.entity.User;
 
 import io.swagger.annotations.ApiModel;
@@ -38,12 +37,7 @@ public class UserRes{
 		res.setName(user.getName());
 		res.setEmail(user.getEmail());
 		res.setPhone(user.getPhone());
-		StringBuilder sb = new StringBuilder();
-		for(Category k: user.getCategory()) {
-			sb.append(k.getName()+" ");
-		}
-		sb.setLength(sb.length()-1);
-		res.setCategory(sb.toString());
+		res.setCategory(user.getCategory().toString());
 		res.setDescription(user.getDescription());
 		res.setRole(user.getRole());
 		return res;
