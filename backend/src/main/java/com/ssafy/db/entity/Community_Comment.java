@@ -26,7 +26,7 @@ public class Community_Comment extends BaseEntity {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
-	private Community_Article community_article;
+	private Community_Article communityarticle;
 	
 	private String content;
 	private Date created_at;

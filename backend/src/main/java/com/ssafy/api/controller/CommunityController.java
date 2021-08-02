@@ -87,7 +87,7 @@ public class CommunityController {
 	@ApiOperation(value = "글 전체 목록", notes = "<strong>page랑 한페이지에  들어갈 size >> ?size=10&page=1</strong>")
 	@ApiResponses({ @ApiResponse(code = 200, message = "성공"), @ApiResponse(code = 401, message = "토큰 인증 실패"),
 			@ApiResponse(code = 500, message = "서버 오류") })
-	public ResponseEntity<List<CommunityPostReq>> getAllArticle(@PageableDefault(page = 1) Pageable pageable) {
+	public ResponseEntity<List<CommunityPostReq>> getAllArticle(@PageableDefault(page = 0,size = 10) Pageable pageable) {
 
 		List<CommunityPostReq> articleList = service.getAllArticle(pageable);
 		return ResponseEntity.status(200).body(articleList);

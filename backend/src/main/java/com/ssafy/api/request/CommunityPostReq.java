@@ -13,10 +13,15 @@ import lombok.Setter;
 @Setter
 @ApiModel("CommunityPostRequest")
 public class CommunityPostReq {
+	@ApiModelProperty(name="글 번호 ID", example="Long")
+	private Long id;	
 	@ApiModelProperty(name="유저 ID", example="ssafy_web")
 	private String userId;	
 	@ApiModelProperty(name="제목")
 	private String title;
 	@ApiModelProperty(name="내용")
-	private String content;
+	private String content;	
+	@ApiModelProperty(name="분류")
+	private String category;
+	
 }
