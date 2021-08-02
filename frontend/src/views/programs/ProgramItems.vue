@@ -34,8 +34,8 @@
     <v-item-group>
       <v-row>
         <v-col
-          v-for="n in 12"
-          :key="n"
+          v-for="program in programList"
+          :key="program.id"
           cols="12"
           sm="6"
           md="4"
@@ -56,30 +56,14 @@
               </v-img>
 
               <v-card-subtitle class="pb-0 text-subtitle-1">
-                상처없이 이야기하기 (가족편) 
+                {{ program.name }} 
               </v-card-subtitle>
 
               <v-card-text class="text--primary">
-                <div>by 김싸피 상담사</div>
-                <div>7월 26일 ~ 8월 16일</div>
-                <div>주 2회 (월, 목) 19:00 ~ 21:00</div>
+                <div>{{ program.report }}</div>
+                <div>{{ program.count }}</div>
+                <div>{{ program.time }}</div>
               </v-card-text>
-
-              <!-- <v-card-actions>
-                <v-btn
-                  color="orange"
-                  text
-                >
-                  Share
-                </v-btn>
-
-                <v-btn
-                  color="orange"
-                  text
-                >
-                  Explore
-                </v-btn>
-              </v-card-actions> -->
             </v-card>
           </v-item>
         </v-col>
@@ -106,6 +90,14 @@ export default {
     showDetail: function () {
       this.$router.push({ name: 'ProgramDetail' })
     },
+  },
+  computed: {
+    programList: function () {
+      return this.$store.state.programlist
+    }
+  },
+  created: function () {
+    this.$store.dispatch('getPrograms')
   }
 }
 </script>
