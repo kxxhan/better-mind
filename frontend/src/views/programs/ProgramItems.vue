@@ -34,7 +34,7 @@
     <v-item-group>
       <v-row>
         <v-col
-          v-for="program in programList"
+          v-for="program in programlist"
           :key="program.id"
           cols="12"
           sm="6"
@@ -45,7 +45,7 @@
             <v-card
               class="mx-auto"
               max-width="350"
-              @click="showDetail()"
+              @click="showDetail(program)"
             >
               <v-img
                 class="white--text align-end"
@@ -87,12 +87,13 @@ export default {
     ]
   }),
   methods: {
-    showDetail: function () {
-      this.$router.push({ name: 'ProgramDetail' })
+    showDetail: function (program) {   
+      this.$store.commit('GET_PROGRAM', program)   
+      this.$router.push({ name: 'ProgramDetail', params: {program_pk: program.id} })
     },
   },
   computed: {
-    programList: function () {
+    programlist: function () {
       return this.$store.state.programlist
     }
   },
