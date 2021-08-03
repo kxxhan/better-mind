@@ -24,7 +24,7 @@ export default new Vuex.Store({
     getPrograms: function ({ commit }) {
       axios({
         method: 'get',
-        url: '/api/v1/program/all'
+        url: '/api/v1/program/all',
       })
       .then(res => {
         // null값으로 옴!
@@ -36,14 +36,17 @@ export default new Vuex.Store({
       })
     },
     // 커뮤니티 리스트
-    getPosts: function () {
+    getPosts: function ({ commit }) {
       axios({
         method: 'get',
-        url: 'https://localhost:8443/api/v1/article/all',
+        url: '/api/v1/article/all',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
       })
       .then(res => {
         console.log(res.data)
-        // commit('GET_POSTS', res.data)
+        commit('GET_POSTS', res.data)
       })
       .catch(err => {
         console.log(err)

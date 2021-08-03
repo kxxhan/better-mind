@@ -108,14 +108,15 @@ export default {
     }
   },
   // 전체 게시글 호출 API 연결 store
-  // computed: {
-  //   postList: function () {
-  //     return this.$store.state.postlist
-  //   }
-  // },
-  // created: function () {
-  //   this.$store.dispatch('getPosts')
-  // },
+  computed: {
+    postList: function () {
+      return this.$store.state.postlist
+    }
+  },
+  created: function () {
+    console.log(localStorage.getItem('jwt'))
+    this.$store.dispatch('getPosts')
+  },
 }
 </script>
 
