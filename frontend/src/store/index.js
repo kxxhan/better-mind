@@ -7,12 +7,18 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     programlist: [],
+    program: {},
     postlist: [1],
   },
   mutations: {
     //프로그램 관련
     GET_PROGRAMS: function (state, programlist) {
       state.programlist = programlist
+    },
+    // 프로그램 디테일
+    GET_PROGRAM: function (state, program) {
+      state.program = program
+      console.log(program)
     },
     // 커뮤니티 관련
     GET_POSTS: function (state, postlist) {
@@ -27,8 +33,21 @@ export default new Vuex.Store({
         url: '/api/v1/program/all',
       })
       .then(res => {
-        // null값으로 옴!
         commit('GET_PROGRAMS', res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+    // 프로그램 디테일
+    getProgram: function ({ commit }, program_pk) {
+      axios({
+        method: 'get',
+        url: `api/v1/program/${program_pk}`,
+      })
+      .then(res => {
+        commit('GET_PROGRAM', res.data)
+        console.log(res.data)
       })
       .catch(err => {
         console.log(err)

@@ -13,6 +13,7 @@
           </v-col>
           <v-col>
             <div class="text-h4 d-flex justify-center">상처없이 이야기하기 (가족편)</div>
+            <!-- <div class="text-h4 d-flex justify-center">{{ program.name }}</div> -->
             <br>
             <div class="text-h6 d-flex justify-center">by 김싸피 상담사</div>
             <br>
@@ -122,6 +123,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'ProgramDetail',
   methods: {
@@ -148,7 +151,10 @@ export default {
       window.scrollTo({top:registLocation, left:0, behavior:'auto'})
       // window.location.href = '#program-registration'
     }
-  }
+  },
+  created: function () {
+    this.$store.dispatch('getProgram', this.$route.params.program_pk)
+  },
 }
 </script>
 

@@ -66,7 +66,7 @@ const routes = [
   },
   {
     // pk값으로 넘겨주기
-    path: '/programs/1',
+    path: '/programs/:program_pk',
     name: 'ProgramDetail',
     component: ProgramDetail
   },
