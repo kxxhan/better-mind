@@ -39,8 +39,8 @@
       <v-container>
         <v-row>
           <v-col
-            v-for="n in 6"
-            :key="n"
+            v-for="post in postList"
+            :key="post.id"
             cols="12"
             md="6"
           >
@@ -51,15 +51,15 @@
                 @click="showDetail()"
               >
                 <v-card-title>
-                  Card title
+                  {{ post.title }}
                 </v-card-title>
 
                 <v-card-subtitle>
-                  Subtitle text
+                  {{ post.category }}
                 </v-card-subtitle>
 
                 <v-card-text>
-                  Greyhound divisively hello coldly wonderfully marginally far upon excluding.
+                  {{ post.content }}
                 </v-card-text>
 
                 <v-card-actions>
@@ -114,7 +114,6 @@ export default {
     }
   },
   created: function () {
-    console.log(localStorage.getItem('jwt'))
     this.$store.dispatch('getPosts')
   },
 }

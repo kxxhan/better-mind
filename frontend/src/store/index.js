@@ -28,7 +28,6 @@ export default new Vuex.Store({
       })
       .then(res => {
         // null값으로 옴!
-        console.log(res.data)
         commit('GET_PROGRAMS', res.data)
       })
       .catch(err => {
@@ -45,7 +44,6 @@ export default new Vuex.Store({
         }
       })
       .then(res => {
-        console.log(res.data)
         commit('GET_POSTS', res.data)
       })
       .catch(err => {
