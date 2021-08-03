@@ -2,6 +2,8 @@ package com.ssafy.api.response;
 
 import java.util.List;
 
+import com.ssafy.api.request.ReviewPostReq;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -12,6 +14,8 @@ import lombok.Setter;
 @ApiModel("ProgramGetResponse")
 public class ProgramGetRes {
 	
+	@ApiModelProperty(name="프로그램 번호 ID", example="Long")
+	private Long id;
 	@ApiModelProperty(name="유저 ID", example = "ssafy_web")
 	private String userId;
 	@ApiModelProperty(name="프로그램 명")
@@ -26,5 +30,6 @@ public class ProgramGetRes {
 	private String time;
 	@ApiModelProperty(name="파일")
 	private List<FileDto> files;
-	
+	@ApiModelProperty(name="리뷰")
+	private List<ReviewPostReq> reviews;
 }

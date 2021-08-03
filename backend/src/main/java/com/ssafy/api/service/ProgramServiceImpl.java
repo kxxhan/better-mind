@@ -21,6 +21,7 @@ import com.ssafy.api.request.ProgramPostReq;
 import com.ssafy.api.request.ReviewPostReq;
 import com.ssafy.api.response.FileDto;
 import com.ssafy.api.response.ProgramGetRes;
+import com.ssafy.db.entity.CategoryEnum;
 import com.ssafy.db.entity.Program;
 import com.ssafy.db.entity.Program_File;
 import com.ssafy.db.entity.Program_Review;
@@ -58,6 +59,7 @@ public class ProgramServiceImpl implements ProgramService {
 		program.setPrice(programPostReq.getPrice());
 		program.setCount(programPostReq.getCount());
 		program.setTime(programPostReq.getTime());
+		program.setCategory(CategoryEnum.valueOf(programPostReq.getCategory()));
 		program = repository.save(program);
 		// 성무님 코드 참고...
 		if(files != null) {
@@ -87,17 +89,20 @@ public class ProgramServiceImpl implements ProgramService {
 	
 	@Override
 	public List<ProgramPostReq> getAllProgram(Pageable pageable) {
-		Page<Program> list = repository.findAll(pageable);
+		List<Program> list = repository.findAll(pageable).getContent();
 		List<ProgramPostReq> copy = new ArrayList<>();
 		ProgramPostReq resp;
 		for(Program p : list) {
 			resp = new ProgramPostReq();
+			resp.setId(p.getId());
 			resp.setName(p.getName());
 			resp.setUserId(p.getUser().getUserid());
 			resp.setReport(p.getReport());
 			resp.setPrice(p.getPrice());
 			resp.setCount(p.getCount());
 			resp.setTime(p.getTime());
+			resp.setCategory(p.getCategory().name());
+			copy.add(resp);
 		}
 		return copy;
 	}
@@ -111,12 +116,24 @@ public class ProgramServiceImpl implements ProgramService {
 	public ProgramGetRes getOneProgram(Long id) {
 		Program program = repository.findById(id).get();
 		ProgramGetRes p = new ProgramGetRes();
+		p.setId(program.getId());
 		p.setUserId(program.getUser().getUserid());
 		p.setName(program.getName());
 		p.setReport(program.getReport());
 		p.setPrice(program.getPrice());
 		p.setCount(program.getCount());
 		p.setTime(program.getTime());
+		List<Program_Review> plist = reviewRepository.findByProgram_id(program.getId()).get();
+		if(plist != null) {
+			List<ReviewPostReq> reviews = new ArrayList<>();
+			for(Program_Review k: plist) {
+				ReviewPostReq r = new ReviewPostReq();
+				r.setContent(k.getContent());
+				r.setUserId(k.getUser().getUserid());
+				reviews.add(r);
+			}
+			p.setReviews(reviews);
+		}
 		List<Program_File> list = fileRepository.findByProgram(id).get();
 		if(list != null) {
 			List<FileDto> copy = new ArrayList<>();
@@ -152,7 +169,7 @@ public class ProgramServiceImpl implements ProgramService {
 	public Program_Review createReview(Long id, ReviewPostReq review) {
 		Program_Review rev = new Program_Review();
 		rev.setContent(review.getContent());
-		rev.setUser(userRepository.findByUserid(review.getUserid()).get());
+		rev.setUser(userRepository.findByUserid(review.getUserId()).get());
 		Program pro = repository.getOne(id);
 		rev.setProgram(pro);
 		return reviewRepository.save(rev);

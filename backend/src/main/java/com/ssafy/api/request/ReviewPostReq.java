@@ -9,6 +9,6 @@ import lombok.Setter;
 @ApiModel("ReviewPostReq")
 public class ReviewPostReq {
 
-	private String userid;
+	private String userId;
 	private String content;
 }

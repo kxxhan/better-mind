@@ -95,7 +95,7 @@ public class ProgramController {
         @ApiResponse(code = 500, message = "서버 오류")
 	})
 	
-	public ResponseEntity<List<ProgramPostReq>> getAllProgram(@PageableDefault(page=1) Pageable pageable) {
+	public ResponseEntity<List<ProgramPostReq>> getAllProgram(@PageableDefault(page=0, size=10) Pageable pageable) {
 		List<ProgramPostReq> programList = service.getAllProgram(pageable);
 		return ResponseEntity.status(200).body(programList);
 	}
