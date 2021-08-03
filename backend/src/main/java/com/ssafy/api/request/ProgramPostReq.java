@@ -10,6 +10,8 @@ import lombok.Setter;
 @ApiModel("ProgramPostRequest")
 public class ProgramPostReq {
 
+	@ApiModelProperty(name="프로그램 번호 ID", example="Long")
+	private Long id;	
 	@ApiModelProperty(name="유저 ID", example="ssafy_web")
 	private String userId;
 	@ApiModelProperty(name="프로그램 명")
@@ -22,5 +24,7 @@ public class ProgramPostReq {
 	private int count;
 	@ApiModelProperty(name="프로그램 날짜, 시간")
 	private String time;
+	@ApiModelProperty(name="분류")
+	private String category;
 	
 }
