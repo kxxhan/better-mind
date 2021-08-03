@@ -47,7 +47,12 @@ export default {
   name: 'PubMeetings',
   components: {
     NavSide,
-  }
+  },
+  methods: {
+    showDetail: function () {
+      this.$router.push({ name: 'ProgramDetail' })
+    },
+  },
 }
 </script>
 
