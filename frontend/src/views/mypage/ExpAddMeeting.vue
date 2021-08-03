@@ -1,6 +1,5 @@
 <template>
   <v-container id="exp-add-meeting">
-    <NavSide/>
     전문가 프로그램 등록 페이지 | 
     프로그램명, 전문가소개 => user정보에서 가져오기, 프로그램소개, 카테고리설정, 기간, 시간, 진행차시, 비용
     <v-form
@@ -93,13 +92,8 @@
 </template>
 
 <script>
-import NavSide from '@/components/nav/NavSide.vue'
-
 export default {
   name: 'ExpAddMeeting',
-  components: {
-    NavSide,
-  },
   data: () => ({
     valid: true,
     categories: ['우울', '불안', '성격문제', '애착', 
