@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,7 @@ import com.ssafy.api.request.CommentPostReq;
 import com.ssafy.api.request.CommunityPostReq;
 import com.ssafy.api.response.CommunityGetRes;
 import com.ssafy.api.service.CommunityService;
+import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.db.entity.Community_Article;
 import com.ssafy.db.entity.Community_Comment;
@@ -40,6 +42,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Api(value = "커뮤니티 게시판", tags = { "Article" })
 @RestController
@@ -87,9 +90,10 @@ public class CommunityController {
 	@ApiOperation(value = "글 전체 목록", notes = "<strong>page랑 한페이지에  들어갈 size >> ?size=10&page=1</strong>")
 	@ApiResponses({ @ApiResponse(code = 200, message = "성공"), @ApiResponse(code = 401, message = "토큰 인증 실패"),
 			@ApiResponse(code = 500, message = "서버 오류") })
-	public ResponseEntity<List<CommunityPostReq>> getAllArticle(@PageableDefault(page = 0,size = 10) Pageable pageable) {
-
-		List<CommunityPostReq> articleList = service.getAllArticle(pageable);
+	public ResponseEntity<List<CommunityPostReq>> getAllArticle(@PageableDefault(page = 0,size = 10) Pageable pageable,@ApiIgnore Authentication authentication) {
+		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+		String userId = userDetails.getUsername();
+		List<CommunityPostReq> articleList = service.getAllArticle(pageable,userId);
 		return ResponseEntity.status(200).body(articleList);
 	}
 
@@ -97,9 +101,10 @@ public class CommunityController {
 	@ApiOperation(value = "글 내용", notes = "<strong>글 내용</strong>")
 	@ApiResponses({ @ApiResponse(code = 200, message = "성공"), @ApiResponse(code = 401, message = "토큰 인증 실패"),
 			@ApiResponse(code = 500, message = "서버 오류") })
-	public ResponseEntity<CommunityGetRes> getOneArticle(@PathVariable(name = "articleId") Long id) {
-
-		CommunityGetRes article = service.getOneArticle(id);
+	public ResponseEntity<CommunityGetRes> getOneArticle(@PathVariable(name = "articleId") Long id,@ApiIgnore Authentication authentication) {
+		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+		String userId = userDetails.getUsername();
+		CommunityGetRes article = service.getOneArticle(id,userId);
 		return ResponseEntity.status(200).body(article);
 	}
 	
@@ -185,6 +190,28 @@ public class CommunityController {
 			@PathVariable(name = "commentId") Long cId) {
 
 		service.deleteComment(aId, cId);
+		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+	}
+	@GetMapping("/like/{articleId}")
+	@ApiOperation(value = "좋아요", notes = "<strong>댓글 내용</strong>")
+	@ApiResponses({ @ApiResponse(code = 200, message = "성공"), @ApiResponse(code = 401, message = "토큰 인증 실패"),
+		@ApiResponse(code = 500, message = "서버 오류") })
+	public ResponseEntity<BaseResponseBody> uplike(@PathVariable(name = "articleId") Long aId,
+			@ApiIgnore Authentication authentication) {
+		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+		Long cId = userDetails.getUser().getId();
+		service.upLike(aId, cId);
+		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+	}
+	@GetMapping("/hate/{articleId}")
+	@ApiOperation(value = "취소", notes = "<strong>댓글 내용</strong>")
+	@ApiResponses({ @ApiResponse(code = 200, message = "성공"), @ApiResponse(code = 401, message = "토큰 인증 실패"),
+		@ApiResponse(code = 500, message = "서버 오류") })
+	public ResponseEntity<BaseResponseBody> downlike(@PathVariable(name = "articleId") Long aId,
+			@ApiIgnore Authentication authentication) {
+		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+		Long cId = userDetails.getUser().getId();
+		service.downLike(aId, cId);
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 }
