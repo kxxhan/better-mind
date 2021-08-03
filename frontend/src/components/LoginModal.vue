@@ -98,6 +98,7 @@ export default {
       })
       .then((res) => {
         this.dialog = false
+        this.$store.commit('ON_LOGIN')
         localStorage.setItem('jwt', res.data.accessToken)
         this.$router.go(0)
       })
