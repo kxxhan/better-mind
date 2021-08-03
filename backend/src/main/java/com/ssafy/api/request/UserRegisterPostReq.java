@@ -18,8 +18,8 @@ public class UserRegisterPostReq {
 	private String password;
 	@ApiModelProperty(name = "유저 email", example = "your_email")
 	private String email;
-	@ApiModelProperty(name = "유저 주소", example = "경기도 용인시 처인구 남동")
-	private String address;
+//	@ApiModelProperty(name = "유저 주소", example = "경기도 용인시 처인구 남동")
+//	private String address;
 	@ApiModelProperty(name = "유저 전화번호", example = "010-2222-1111")
 	private String phone;
 	@ApiModelProperty(name = "유저 이름", example = "홍길동")

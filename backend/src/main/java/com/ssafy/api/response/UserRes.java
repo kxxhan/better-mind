@@ -18,8 +18,8 @@ public class UserRes{
 	private String id;
 	@ApiModelProperty(name = "유저 email")
 	private String email;
-	@ApiModelProperty(name = "유저 주소")
-	private String address;
+//	@ApiModelProperty(name = "유저 주소")
+//	private String address;
 	@ApiModelProperty(name = "유저 전화번호")
 	private String phone;
 	@ApiModelProperty(name = "유저 이름")
