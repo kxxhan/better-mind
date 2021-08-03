@@ -13,15 +13,54 @@
             <span>Mind</span>
           </v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn text color="grey" :to="{ name: 'Signup' }">
+          <v-btn v-if="isLogin" text color="grey" :to="{ name: 'Signup' }">
             <span>Signup</span>
           </v-btn>
-          <LoginModal/>
+          <LoginModal v-if="isLogin"/>
+
+          <v-menu offset-y rounded="lg">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                text
+                v-bind="attrs"
+                v-on="on"
+              >
+                <span class="grey--text">
+                  MyPage
+                </span>
+              </v-btn>
+            </template>
+            <v-list v-if="isCommon">
+              <v-list-item router :to="{ name: 'PubActivities' }">
+                <v-list-item-title class="grey--text">Activities</v-list-item-title>
+              </v-list-item>
+              <v-list-item router :to="{ name: 'PubMeetings' }">
+                <v-list-item-title class="grey--text">Counselings</v-list-item-title>
+              </v-list-item>
+              <v-list-item router :to="{ name: 'UpdateUserInfo' }">
+                <v-list-item-title class="grey--text">Edit Profile</v-list-item-title>
+              </v-list-item>
+            </v-list>
+            <v-list v-else>
+              <v-list-item router :to="{ name: 'ExpMeetings' }">
+                <v-list-item-title class="grey--text">Counselings</v-list-item-title>
+              </v-list-item>
+              <v-list-item router :to="{ name: 'ExpAddMeeting' }">
+                <v-list-item-title class="grey--text">Add Counseling</v-list-item-title>
+              </v-list-item>
+              <v-list-item router :to="{ name: 'UpdateUserInfo' }">
+                <v-list-item-title class="grey--text">Edit Profile</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+
+          <v-btn v-if="!isLogin" text color="grey">
+            <span>Logout</span>
+          </v-btn>
         </v-toolbar>
         <v-divider></v-divider>
       </v-col>
       
-
       <v-col cols="12">
         <!-- 하단 네브바 -->
         <v-toolbar flat>
@@ -47,10 +86,10 @@
                 </template>
                 <v-list>
                   <v-list-item router :to="{ name: 'ProgramItems' }">
-                    <v-list-item-title>Expert Consultation</v-list-item-title>
+                    <v-list-item-title class="grey--text">Expert Consultation</v-list-item-title>
                   </v-list-item>
                   <v-list-item>
-                    <v-list-item-title>Self-help group</v-list-item-title>
+                    <v-list-item-title class="grey--text">Self-help group</v-list-item-title>
                   </v-list-item>
                 </v-list>
               </v-menu>
@@ -81,6 +120,12 @@ export default {
   name: 'NavTop',
   components: {
     LoginModal
+  },
+  data: function () {
+    return {
+      isLogin: false,
+      isCommon: true,
+    }
   },
   methods: {
   }
