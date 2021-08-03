@@ -190,14 +190,26 @@ export default {
   methods: {
     submit: function () {
       if (this.$refs.form.validate()) {
-        console.log(this.credentials)
         axios({
           method: 'post',
           url: '/api/v1/users',
           data: this.credentials
         })
-        .then ((res) => {
-          console.log(res)
+        .then (() => {
+          // 회원가입 후 로그인 상태로, 메인 페이지 이동
+          const loginData = { id: this.credentials.id, password: this.credentials.password }
+          axios({
+            method: 'post',
+            url: '/api/v1/auth/login',
+            data: loginData
+          })
+          .then((res) => {
+            localStorage.setItem('jwt', res.data.accessToken)
+            this.$router.push({ name: 'Main' })
+          })
+          .catch((err) => {
+            console.log(err)
+          })
         })
         .catch(error => {
           console.log(error)
