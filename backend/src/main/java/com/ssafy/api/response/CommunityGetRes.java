@@ -28,4 +28,8 @@ public class CommunityGetRes {
 	@ApiModelProperty(name="코멘트")
 	private List<CommentPostReq> comments;
 	
+	private boolean like;
+	
+	private int likeCount;
+	
 }

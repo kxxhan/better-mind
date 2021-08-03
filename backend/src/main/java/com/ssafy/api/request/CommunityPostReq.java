@@ -22,6 +22,9 @@ public class CommunityPostReq {
 	@ApiModelProperty(name="내용")
 	private String content;	
 	@ApiModelProperty(name="분류")
-	private String category;
+	private String category;	
+	@ApiModelProperty(name="나의 좋아요 설정 생성때는 필요없음")
+	private boolean like;
+	
 	
 }

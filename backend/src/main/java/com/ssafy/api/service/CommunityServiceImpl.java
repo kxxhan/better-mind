@@ -12,8 +12,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,14 +21,19 @@ import com.ssafy.api.request.CommentPostReq;
 import com.ssafy.api.request.CommunityPostReq;
 import com.ssafy.api.response.CommunityGetRes;
 import com.ssafy.api.response.FileDto;
+import com.ssafy.common.auth.SsafyUserDetails;
+import com.ssafy.db.entity.Article_Like;
 import com.ssafy.db.entity.CategoryEnum;
 import com.ssafy.db.entity.Community_Article;
 import com.ssafy.db.entity.Community_Comment;
 import com.ssafy.db.entity.Community_File;
+import com.ssafy.db.repository.Article_LikeRepository;
 import com.ssafy.db.repository.Community_ArticleRepository;
 import com.ssafy.db.repository.Community_CommentRepository;
 import com.ssafy.db.repository.Community_FileRepository;
 import com.ssafy.db.repository.UserRepository;
+
+import springfox.documentation.annotations.ApiIgnore;
 
 @Service("CommunityService")
 public class CommunityServiceImpl implements CommunityService {
@@ -44,6 +49,9 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Autowired
 	Community_FileRepository fileRepository;
+	
+	@Autowired
+	Article_LikeRepository likeRepository;
 
 	// 저장할 기본 디렉토리 설정 application.property 파일에 설정하고 가져온다.
 	@Value("${server.tomcat.basedir}")
@@ -92,13 +100,15 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public List<CommunityPostReq> getAllArticle(Pageable pageable) {
+	public List<CommunityPostReq> getAllArticle(Pageable pageable,String userId) {
 		// TODO Auto-generated method stub
+		Long uid = userRepository.findByUserid(userId).get().getId();
 		List<Community_Article> list = repository.findAll(pageable).getContent();
 		List<CommunityPostReq> copy = new ArrayList<>();
 		CommunityPostReq resp;
 		for (Community_Article c : list) {
 			resp = new CommunityPostReq();
+			resp.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).isPresent());
 			resp.setId(c.getId());
 			resp.setTitle(c.getTitle());
 			resp.setUserId(c.getUser().getUserid());
@@ -116,14 +126,17 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public CommunityGetRes getOneArticle(Long id) {
+	public CommunityGetRes getOneArticle(Long id,String userId) {
 		// TODO Auto-generated method stub
 		Community_Article article = repository.findById(id).get();
+		Long uid = userRepository.findByUserid(userId).get().getId();
 		CommunityGetRes c = new CommunityGetRes();
 		c.setId(article.getId());
 		c.setContent(article.getContent());
 		c.setTitle(article.getTitle());
 		c.setUserId(article.getUser().getUserid());
+		c.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).isPresent());
+		c.setLikeCount(article.getLike());
 		List<Community_Comment> clist = commentRepository.findByCommunityarticle_id(article.getId()).get();
 		if(clist != null) {
 			List<CommentPostReq> comments = new ArrayList<>();
@@ -191,5 +204,26 @@ public class CommunityServiceImpl implements CommunityService {
 		// TODO Auto-generated method stub
 		commentRepository.deleteById(cId);
 	}
+	@Override
+	public void upLike(Long aId, Long uId) {
+		// TODO Auto-generated method stub
+		Article_Like like = new Article_Like();
+		like.setArticle(repository.getOne(aId));
+		like.setUser(userRepository.getOne(uId));
+		likeRepository.save(like);
+		Community_Article article = repository.getOne(aId);
+		article.setLike(article.getLike()+1);
+		repository.save(article);
+		
+	}
+	@Override
+	public void downLike(Long aId, Long uId) {
+		// TODO Auto-generated method stub
+		likeRepository.deleteById(likeRepository.findByUser_idAndArticle_id(uId, aId).get().getId());
+		Community_Article article = repository.getOne(aId);
+		article.setLike(article.getLike()-1);
+		repository.save(article);
+	}
+	
 
 }
