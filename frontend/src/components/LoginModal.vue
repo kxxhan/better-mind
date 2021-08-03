@@ -5,12 +5,12 @@
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
-        color="white"
+        color="grey"
         v-bind="attrs"
         v-on="on"
         text
       >
-        로그인
+        Login
       </v-btn>
     </template>
 
