@@ -12,7 +12,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -55,9 +54,11 @@ public class ProgramServiceImpl implements ProgramService {
 		Program program = new Program();
 		program.setUser(userRepository.findByUserid(programPostReq.getUserId()).get());
 		program.setName(programPostReq.getName());
+		program.setDescription(userRepository.findByDescription(programPostReq.getDescription()).get());
 		program.setReport(programPostReq.getReport());
 		program.setPrice(programPostReq.getPrice());
 		program.setCount(programPostReq.getCount());
+		program.setDate(programPostReq.getDate());
 		program.setTime(programPostReq.getTime());
 		program.setCategory(CategoryEnum.valueOf(programPostReq.getCategory()));
 		program = repository.save(program);
@@ -97,9 +98,11 @@ public class ProgramServiceImpl implements ProgramService {
 			resp.setId(p.getId());
 			resp.setName(p.getName());
 			resp.setUserId(p.getUser().getUserid());
+			resp.setDescription(p.getUser().getDescription());
 			resp.setReport(p.getReport());
 			resp.setPrice(p.getPrice());
 			resp.setCount(p.getCount());
+			resp.setDate(p.getDate());
 			resp.setTime(p.getTime());
 			resp.setCategory(p.getCategory().name());
 			copy.add(resp);
@@ -119,9 +122,11 @@ public class ProgramServiceImpl implements ProgramService {
 		p.setId(program.getId());
 		p.setUserId(program.getUser().getUserid());
 		p.setName(program.getName());
+		p.setDescription(program.getUser().getDescription());
 		p.setReport(program.getReport());
 		p.setPrice(program.getPrice());
 		p.setCount(program.getCount());
+		p.setDate(program.getDate());
 		p.setTime(program.getTime());
 		List<Program_Review> plist = reviewRepository.findByProgram_id(program.getId()).get();
 		if(plist != null) {
@@ -156,6 +161,7 @@ public class ProgramServiceImpl implements ProgramService {
 		program.setReport(programPostReq.getReport());
 		program.setPrice(programPostReq.getPrice());
 		program.setCount(programPostReq.getCount());
+		program.setDate(programPostReq.getDate());
 		program.setTime(programPostReq.getTime());
 		return repository.save(program);
 	}
