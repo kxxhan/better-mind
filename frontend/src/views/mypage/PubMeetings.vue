@@ -1,6 +1,5 @@
 <template>
   <v-container id="pub-meetings">
-    <NavSide/>
     <v-item-group>
       <v-row>
         <v-col
@@ -41,13 +40,8 @@
 </template>
 
 <script>
-import NavSide from '@/components/nav/NavSide.vue'
-
 export default {
   name: 'PubMeetings',
-  components: {
-    NavSide,
-  },
   methods: {
     showDetail: function () {
       this.$router.push({ name: 'ProgramDetail' })
