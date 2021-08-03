@@ -13,12 +13,12 @@
             <span>Mind</span>
           </v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn v-if="isLogin" text color="grey" :to="{ name: 'Signup' }">
+          <v-btn v-if="!isLogin" text color="grey" :to="{ name: 'Signup' }">
             <span>Signup</span>
           </v-btn>
-          <LoginModal v-if="isLogin"/>
+          <LoginModal v-if="!isLogin"/>
 
-          <v-menu offset-y rounded="lg">
+          <v-menu v-if="isLogin" offset-y rounded="lg">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 text
@@ -30,6 +30,7 @@
                 </span>
               </v-btn>
             </template>
+            <!-- 일반 사용자 마이페이지 리스트 -->
             <v-list v-if="isCommon">
               <v-list-item router :to="{ name: 'PubActivities' }">
                 <v-list-item-title class="grey--text">Activities</v-list-item-title>
@@ -41,6 +42,7 @@
                 <v-list-item-title class="grey--text">Edit Profile</v-list-item-title>
               </v-list-item>
             </v-list>
+            <!-- 전문가 마이페이지 리스트 -->
             <v-list v-else>
               <v-list-item router :to="{ name: 'ExpMeetings' }">
                 <v-list-item-title class="grey--text">Counselings</v-list-item-title>
@@ -54,7 +56,7 @@
             </v-list>
           </v-menu>
 
-          <v-btn v-if="!isLogin" text color="grey">
+          <v-btn v-if="isLogin" text color="grey" @click="onLogout">
             <span>Logout</span>
           </v-btn>
         </v-toolbar>
@@ -115,19 +117,55 @@
 
 <script>
 import LoginModal from '../LoginModal.vue'
+import axios from 'axios'
 
 export default {
   name: 'NavTop',
   components: {
     LoginModal
   },
-  data: function () {
-    return {
-      isLogin: false,
-      isCommon: true,
+  methods: {
+    onLogout: function () {
+      localStorage.removeItem('jwt')
+      this.$store.commit('ON_LOGOUT')
+      if (this.$route.path !== '/') {
+        this.$router.push({ name: 'Main' })
+      }
     }
   },
-  methods: {
+  created: function () {
+    // 현재 사용자의 로그인 상태
+    const token = localStorage.getItem('jwt')
+    if (token) {
+      this.$store.commit('ON_LOGIN')
+      
+      // 일반 전문가 사용자 판단
+      axios({
+        method: 'get',
+        url: '/api/v1/users/me',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
+      })
+      .then((res) => {
+        const role = res.data.role
+        if (role === '1') {
+          this.$store.state.isCommon = false
+        }
+        else {
+          this.$store.state.isCommon = true
+        }
+      })
+    }
+
+  },
+  computed: {
+    isLogin: function () {
+      return this.$store.state.isLogin
+    },
+    isCommon: function () {
+      return this.$store.state.isCommon
+    }
   }
 }
 </script>

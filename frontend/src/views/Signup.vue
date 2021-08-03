@@ -134,6 +134,7 @@
 
 <script>
 import axios from 'axios'
+
 export default {
   name: 'Signup',
   data: function () {
@@ -205,6 +206,7 @@ export default {
           })
           .then((res) => {
             localStorage.setItem('jwt', res.data.accessToken)
+            this.$store.commit('ON_LOGIN')
             this.$router.push({ name: 'Main' })
           })
           .catch((err) => {

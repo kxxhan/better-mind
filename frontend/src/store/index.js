@@ -8,7 +8,9 @@ export default new Vuex.Store({
   state: {
     programlist: [],
     program: {},
-    postlist: [1],
+    postlist: [],
+    isLogin: false,
+    isCommon: true,
   },
   mutations: {
     //프로그램 관련
@@ -23,7 +25,16 @@ export default new Vuex.Store({
     // 커뮤니티 관련
     GET_POSTS: function (state, postlist) {
       state.postlist = postlist
-    },    
+    },
+    
+    // 로그인 상태
+    ON_LOGIN: function (state) {
+      state.isLogin = true
+    },
+    // 로그아웃 상태
+    ON_LOGOUT: function (state) {
+      state.isLogin = false
+    }
   },
   actions: {
     // 프로그램 리스트
