@@ -1,24 +1,21 @@
 <template>
   <v-app>
-    <v-container class="sticky-header">
-      <NavTop/>
-      <NavBottom/>
+    <v-container>
+      <NavBar/>
+      <v-main class="my-4">
+        <router-view/>
+      </v-main>
     </v-container>
-    <v-main class="box">
-      <router-view/>
-    </v-main>
   </v-app>
 </template>
 
 <script>
-import NavTop from '@/components/nav/NavTop.vue'
-import NavBottom from '@/components/nav/NavBottom.vue'
+import NavBar from '@/components/nav/NavBar.vue'
 
 export default {
   name: 'App',
   components: {
-    NavTop,
-    NavBottom,
+    NavBar,
   },
 
   data: () => ({
@@ -27,7 +24,5 @@ export default {
 };
 </script>
 <style scoped>
-.box {
-  margin: 80px 30px
-}
+
 </style>
