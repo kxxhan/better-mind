@@ -54,7 +54,7 @@ public class ProgramServiceImpl implements ProgramService {
 		Program program = new Program();
 		program.setUser(userRepository.findByUserid(programPostReq.getUserId()).get());
 		program.setName(programPostReq.getName());
-		program.setDescription(userRepository.findByDescription(programPostReq.getDescription()).get());
+		program.setDescription(programPostReq.getDescription());
 		program.setReport(programPostReq.getReport());
 		program.setPrice(programPostReq.getPrice());
 		program.setCount(programPostReq.getCount());
@@ -98,7 +98,7 @@ public class ProgramServiceImpl implements ProgramService {
 			resp.setId(p.getId());
 			resp.setName(p.getName());
 			resp.setUserId(p.getUser().getUserid());
-			resp.setDescription(p.getUser().getDescription());
+			resp.setDescription(p.getDescription());
 			resp.setReport(p.getReport());
 			resp.setPrice(p.getPrice());
 			resp.setCount(p.getCount());
@@ -122,7 +122,7 @@ public class ProgramServiceImpl implements ProgramService {
 		p.setId(program.getId());
 		p.setUserId(program.getUser().getUserid());
 		p.setName(program.getName());
-		p.setDescription(program.getUser().getDescription());
+		p.setDescription(program.getDescription());
 		p.setReport(program.getReport());
 		p.setPrice(program.getPrice());
 		p.setCount(program.getCount());
@@ -158,6 +158,7 @@ public class ProgramServiceImpl implements ProgramService {
 	public Program updateProgram(Long id, ProgramPostReq programPostReq) {
 		Program program = repository.getOne(id);
 		program.setName(programPostReq.getName());
+		program.setDescription(programPostReq.getDescription());
 		program.setReport(programPostReq.getReport());
 		program.setPrice(programPostReq.getPrice());
 		program.setCount(programPostReq.getCount());

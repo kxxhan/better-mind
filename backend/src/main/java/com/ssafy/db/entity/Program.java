@@ -25,11 +25,8 @@ public class Program extends BaseEntity {
 	@JoinColumn
 	private User user;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn
-	private User description; // 전문가 소개
-	
 	private String name;
+	private String description; // 전문가 소개
 	private String report; // 프로그램 소개
 	private int price;
 	private int count; // 프로그램 횟수
