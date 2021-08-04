@@ -169,6 +169,7 @@ public class CommunityServiceImpl implements CommunityService {
 		Community_Article article = repository.getOne(id);
 		article.setContent(communityPostReq.getContent());
 		article.setTitle(communityPostReq.getTitle());
+		article.setCategory(CategoryEnum.valueOf(communityPostReq.getCategory()));
 		article.setUpdated_at(new Date());
 		return repository.save(article);
 	}
