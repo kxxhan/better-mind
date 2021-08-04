@@ -72,24 +72,34 @@
       ></v-text-field>
       
       <!-- 일반인 / 전문가  -->
-      <v-radio-group
-        label="Common or Expert"
-        v-model="credentials.role"
-        row
-        :rules="roleRules"
-        required
-      >
-        <v-radio
-          label="Common User"
-          value="0"
-        ></v-radio>
-        <v-radio
-          label="Expert User"
-          value="1"
-        ></v-radio>
-      </v-radio-group>
+      <v-row>
+        <v-col cols="5">
+          <v-radio-group
+            label="Common or Expert"
+            v-model="credentials.role"
+            row
+            :rules="roleRules"
+            required
+          >
+            <v-radio
+              label="Common User"
+              value="0"
+            ></v-radio>
+            <v-radio
+              label="Expert User"
+              value="1"
+            ></v-radio>
+          </v-radio-group>
+        </v-col>
+        <v-col cols="3" v-if="credentials.role === '1'">
+          <v-text-field
+            v-model="credentials.certificate"
+            label="Expert Certificate Num"
+          ></v-text-field>
+        </v-col>
+      </v-row>
 
-      <!-- 카테고리 -->
+      <!-- 카테고리 (리스트 형태가 아닌 단어 string으로 바인딩 수정 필요)-->
       <v-sheet
         class="py-4 px-1"
       >
@@ -97,9 +107,6 @@
           multiple
           active-class="primary--text"
         >
-        <!-- v-model="credentials.category" -->
-        <!-- 리스트 형태로 category가 넘어가므로 우선 '우울'을 디폴트 -->
-
           <v-chip
             v-for="item in categories"
             :key="item"
@@ -154,7 +161,7 @@ export default {
         role: '',
         address: '',
         category: '우울',
-        certificate: '000000',
+        certificate: '',
       },
       checkbox: false,
       idRules: [
