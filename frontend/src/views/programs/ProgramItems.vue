@@ -60,8 +60,8 @@
               </v-card-subtitle>
 
               <v-card-text class="text--primary">
-                <div>{{ program.report }}</div>
-                <div>{{ program.count }}</div>
+                <div>전문가: {{ program.userId }}</div>
+                <div>제한인원: {{ program.count }}명</div>
                 <div>{{ program.time }}</div>
               </v-card-text>
             </v-card>
