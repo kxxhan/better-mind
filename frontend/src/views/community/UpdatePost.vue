@@ -111,8 +111,7 @@ export default {
     this.$store.dispatch('getPost', this.$route.params.post_pk)
     this.title = this.$store.state.post.title
     this.content = this.$store.state.post.content
-    // 카테고리 값 넘어와야 적용 가능
-    // this.category = this.$store.state.post.category
+    this.category = this.$store.state.post.category
   }
 }
 </script>
