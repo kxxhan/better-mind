@@ -41,6 +41,4 @@ public class User extends BaseEntity {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 	
-//	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-//	private List<User_Program> program;
 }

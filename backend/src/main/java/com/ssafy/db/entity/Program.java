@@ -25,9 +25,6 @@ public class Program extends BaseEntity {
 	@JoinColumn
 	private User user;
 	
-//	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-//	private List<User_Program> user;
-	
 	private String name;
 	private String description; // 전문가 소개
 	private String report; // 프로그램 소개
