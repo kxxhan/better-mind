@@ -24,19 +24,12 @@
       ></v-textarea>
 
       <v-select
-        v-model="select"
-        :items="category"
+        v-model="category"
+        :items="categories"
         :rules="[v => !!v || 'Category is required']"
         label="Category"
         required
       ></v-select>
-
-      <v-text-field
-        v-model="hashtag"
-        :rules="hashtagRules"
-        label="Hashtag"
-        required
-      ></v-text-field>
 
       <v-btn
         :disabled="!valid"
@@ -66,21 +59,24 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data: () => ({
     valid: true,
     title: '',
+    content: '',
+    category: null,
     titleRules: [
       v => !!v || 'Title is required',
       v => (v && v.length <= 50) || 'Title must be less than 50 characters',
     ],
-    content: '',
     contentRules: [
       v => !!v || 'Content is required',
       v => (v && v.length > 0) || 'Content must be valid',
     ],
-    select: null,
-    category: [
+    categories: [
+      '우울',
       '학교',
       '직장',
       '대인 관계',
@@ -88,17 +84,29 @@ export default {
       '외모',
       '등'
     ],
-    hashtag: '',
-    hashtagRules: [
-      v => !!v || 'Hashtag is required',
-      v => (v && v.length > 0) || 'Hashtag must be valid',
-    ],
   }),
 
   methods: {
     submit () {
       if (this.$refs.form.validate()) {
-        console.log('submit')
+        const postItem = {
+          title: this.title,
+          content: this.content,
+          category: this.category,
+          userId: this.$store.state.userInfo.id,
+          like: true,
+        }
+        axios({
+          method: 'post',
+          url: '/api/v1/article',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+          },
+          data: postItem
+        })
+        .then(() => {
+          this.$router.push({ name: 'PostItems' })
+        })
       }
     },
     // reset () {
