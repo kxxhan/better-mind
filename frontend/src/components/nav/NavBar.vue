@@ -108,6 +108,13 @@
                 <span>Post-it</span>
               </v-btn>
             </v-col>
+            <v-col cols="6" md="3">
+              <v-btn text color="grey">
+                <span
+                @click="$router.push({ name: 'WebRTC' })"
+                >WebRTC</span>
+              </v-btn>
+            </v-col>
           </v-row>
         </v-toolbar>
       </v-col>
@@ -122,7 +129,7 @@ import LoginModal from '../LoginModal.vue'
 export default {
   name: 'NavTop',
   components: {
-    LoginModal
+    LoginModal,
   },
   methods: {
     onLogout: function () {
