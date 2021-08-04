@@ -55,7 +55,7 @@
     </v-row>
 
     <!-- 댓글 리스트 -->
-    <Comment :key="renderComponent"/>
+    <Comment :key="renderComponent" @render="deleteRender"/>
   </v-container>
 </template>
 
@@ -75,9 +75,11 @@ export default {
     Comment,
   },
   methods: {
+    // 게시글 업데이트 링크 이동
     updatePost: function () {
       this.$router.push({ name: 'UpdatePost', params: { post_pk: this.post.id }})
     },
+    // 게시글 삭제 Axios
     deletePost: function () {
       axios({
         method: 'delete',
@@ -90,6 +92,7 @@ export default {
         this.$router.push({ name: 'PostItems' })
       })
     },
+    // 댓글 작성 Axios + 작성 후 댓글 컴포넌트 reload
     createComment: function () {
       if (this.commentContent.length > 0) {
         const commentItem = { 
@@ -112,6 +115,10 @@ export default {
         })
       }
     },
+    // 삭제후 댓글 컴포넌트만 reload
+    deleteRender: function () {
+      this.renderComponent += 1
+    }
   },
   created: function () {
     this.$store.dispatch('getPost', this.$route.params.post_pk)
