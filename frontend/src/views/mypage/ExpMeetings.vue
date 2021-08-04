@@ -60,6 +60,13 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
+              <v-btn @click="updateProgram()">
+                프로그램 수정
+              </v-btn>
+
+              <v-btn>
+                프로그램 삭제
+              </v-btn>
 
               <v-btn
                 color="green darken-1"
@@ -96,6 +103,9 @@ export default {
     openDetail: function () {
       this.dialog = !this.dialog
     },
+    updateProgram: function () {
+      this.$router.push({ name: 'UpdateProgram'})
+    }
   },
 }
 </script>
