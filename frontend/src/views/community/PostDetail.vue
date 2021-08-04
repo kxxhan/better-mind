@@ -28,7 +28,7 @@
         
         <v-card-actions v-show="post.userId === this.$store.state.userInfo.id">
           <v-btn @click="updatePost(post)">수정</v-btn>
-          <v-btn>삭제</v-btn>
+          <v-btn @click="deletePost(post)">삭제</v-btn>
         </v-card-actions>
       </v-container>
     </v-card>
@@ -77,6 +77,18 @@ export default {
   methods: {
     updatePost: function () {
       this.$router.push({ name: 'UpdatePost', params: { post_pk: this.post.id }})
+    },
+    deletePost: function () {
+      axios({
+        method: 'delete',
+        url: `/api/v1/article/${this.post.id}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        },
+      })
+      .then(() => {
+        this.$router.push({ name: 'PostItems' })
+      })
     },
     createComment: function () {
       if (this.commentContent.length > 0) {

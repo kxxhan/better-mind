@@ -104,6 +104,7 @@ export default {
       }
     },
     movePost: function () {
+      this.$router.push({ name: 'PostDetail', params: {post_pk: this.$route.params.post_pk }})
     },
   },
   created: function () {
