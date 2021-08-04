@@ -10,5 +10,5 @@ import lombok.Setter;
 public class CommentPostReq {
 	private String userId;
 	private String content;
-	
+	private Long id;
 }
