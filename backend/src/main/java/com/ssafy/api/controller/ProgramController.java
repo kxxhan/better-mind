@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +32,6 @@ import com.ssafy.api.request.ProgramPostReq;
 import com.ssafy.api.request.ReviewPostReq;
 import com.ssafy.api.response.ProgramGetRes;
 import com.ssafy.api.service.ProgramService;
-import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.db.entity.Program;
 import com.ssafy.db.entity.Program_Review;
@@ -42,7 +40,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import springfox.documentation.annotations.ApiIgnore;
 
 @Api(value = "프로그램 api", tags = { "Program" })
 @RestController
