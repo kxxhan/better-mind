@@ -116,8 +116,9 @@ public class ProgramServiceImpl implements ProgramService {
 	}
 	
 	@Override
-	public ProgramGetRes getOneProgram(Long id) {
+	public ProgramGetRes getOneProgram(Long id, String userid){
 		Program program = repository.findById(id).get();
+		Long uid = userRepository.findByUserid(userid).get().getId();
 		ProgramGetRes p = new ProgramGetRes();
 		p.setId(program.getId());
 		p.setUserId(program.getUser().getUserid());

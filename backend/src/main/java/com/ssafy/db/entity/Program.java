@@ -22,8 +22,10 @@ import lombok.Setter;
 public class Program extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn
 	private User user;
+	
+//	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+//	private List<User_Program> user;
 	
 	private String name;
 	private String description; // 전문가 소개

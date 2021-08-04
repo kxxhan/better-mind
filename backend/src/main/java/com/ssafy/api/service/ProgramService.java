@@ -18,7 +18,7 @@ public interface ProgramService {
 	
 	long getAllProgramCount();
 	
-	ProgramGetRes getOneProgram(Long id);
+	ProgramGetRes getOneProgram(Long id, String userid);
 	
 	Program updateProgram(Long id, ProgramPostReq programPostReq);
 	

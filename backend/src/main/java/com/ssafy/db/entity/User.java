@@ -2,6 +2,7 @@ package com.ssafy.db.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -39,4 +40,7 @@ public class User extends BaseEntity {
 	@JsonIgnore
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
+	
+//	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+//	private List<User_Program> program;
 }
