@@ -1,12 +1,11 @@
 <template>
   <v-container id="exp-add-meeting">
-    전문가 프로그램 등록 페이지 | 
-    프로그램명, 전문가소개 => user정보에서 가져오기, 프로그램소개, 카테고리설정, 기간, 시간, 진행차시, 비용
-    
+    <h1>전문가 프로그램 등록 페이지</h1>
     <v-form
       ref="form"
       v-model="valid"
       lazy-validation
+      class="mt-5"
     >
       <v-text-field
         v-model="program.name"
@@ -115,7 +114,7 @@ export default {
       time: '',
       price: '',
       category: '',
-      userId: "ssafy_web"
+      userId: ''
     },
     nameRules: [
       v => !!v || 'Name is required',
@@ -150,6 +149,7 @@ export default {
   methods: {
     addProgram: function () {
       if (this.$refs.form.validate()) {
+        this.program.userId = this.$store.state.userInfo.id
         axios({
           method: 'post',
           url: '/api/v1/program',
