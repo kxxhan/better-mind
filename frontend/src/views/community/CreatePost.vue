@@ -40,14 +40,6 @@
         Submit
       </v-btn>
 
-      <!-- <v-btn
-        color="error"
-        class="mr-4"
-        @click="reset"
-      >
-        Reset Form
-      </v-btn> -->
-
       <v-btn
         color="warning"
         @click="movePostItems"
@@ -94,6 +86,7 @@ export default {
           content: this.content,
           category: this.category,
           userId: this.$store.state.userInfo.id,
+          // like 값은 왜 보내주는 이유? read only로 전환 필요
           like: true,
         }
         axios({

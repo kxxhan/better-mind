@@ -98,9 +98,10 @@ const routes = [
   },
   {
     // pk값으로 넘겨주기
-    path: '/community/update/1',
+    path: '/community/update/:post_pk',
     name: 'UpdatePost',
-    component: UpdatePost
+    component: UpdatePost,
+    props: true,
   },
   {
     // pk값으로 넘겨주기
