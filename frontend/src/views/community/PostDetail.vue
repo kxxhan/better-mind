@@ -5,25 +5,21 @@
       class="mx-auto mb-5"
     >
       <v-container id="post">
-        <v-card-title>
-          {{ post.title }}
-        </v-card-title>
-
-        <v-card-subtitle>
-          {{ post.userId }}
-        </v-card-subtitle>
 
         <v-card-text>
-          {{ post.content }}
+          <p class="text-h4 text--primary">{{ post.title }}</p>
+          <p class="text-subtitle-1">{{ post.userId }}</p>
+          <v-divider></v-divider>
+          <p class="text--primary mt-4">{{ post.content }}</p>
         </v-card-text>
 
         <v-card-actions>
+          <span class="text-subtitle-2"># {{ post.category }}</span>
           <v-spacer></v-spacer>
           <v-btn icon class="mx-2">
             <v-icon>mdi-heart</v-icon>
             <span>{{ post.likeCount }}</span>
           </v-btn>
-          <span>#해시태그</span>
         </v-card-actions>
         
         <v-card-actions v-show="post.userId === this.$store.state.userInfo.id">

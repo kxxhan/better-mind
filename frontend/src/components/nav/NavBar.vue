@@ -63,8 +63,8 @@
         <v-divider></v-divider>
       </v-col>
       
+      <!-- 하단 네브바 -->
       <v-col cols="12">
-        <!-- 하단 네브바 -->
         <v-toolbar flat>
           <v-row align="center" justify="center">
             <v-col cols="6" md="3">
@@ -97,24 +97,25 @@
               </v-menu>
             </v-col>
 
-            <v-col cols="6" md="3">
+            <v-col cols="6" md="2">
               <v-btn text color="grey" :to="{ name : 'PostItems' }">
                 <span>Community</span>
               </v-btn>
             </v-col>
 
-            <v-col cols="6" md="3">
-              <v-btn text color="grey">
+            <v-col cols="6" md="2">
+              <v-btn text color="grey" :to="{ name : 'Postit' }">
                 <span>Post-it</span>
               </v-btn>
             </v-col>
-            <v-col cols="6" md="3">
-              <v-btn text color="grey">
-                <span
-                @click="$router.push({ name: 'WebRTC' })"
-                >WebRTC</span>
-              </v-btn>
-            </v-col>
+
+          <v-col cols="6" md="2">
+            <v-btn text color="grey">
+              <span
+              @click="$router.push({ name: 'WebRTC' })"
+              >WebRTC</span>
+            </v-btn>
+          </v-col>
           </v-row>
         </v-toolbar>
       </v-col>

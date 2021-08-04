@@ -17,6 +17,7 @@ import CreatePost from '../views/community/CreatePost.vue'
 import UpdatePost from '../views/community/UpdatePost.vue'
 import Payment from '../views/Payment.vue'
 import WebRTCPractice from '../views/webrtc/WebRTCPractice.vue'
+import Postit from '../views/Postit.vue'
 
 Vue.use(VueRouter)
 
@@ -111,10 +112,16 @@ const routes = [
     component: Payment
   },
   {
-    //WebRTC
+    // WebRTC
     path: '/webrtc',
     name: 'WebRTC',
     component: WebRTCPractice
+  },
+  {
+    // path 이름 자체 서비스명으로 교체 필요
+    path: '/postit',
+    name: 'Postit',
+    component: Postit
   }
   
 ]
