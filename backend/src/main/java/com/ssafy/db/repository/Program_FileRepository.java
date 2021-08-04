@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.ssafy.db.entity.Program_File;
 
 public interface Program_FileRepository extends JpaRepository<Program_File, Long> {
-	Optional<List<Program_File>> findByProgram(Long program_id);
+	Optional<List<Program_File>> findByProgram_id(Long program_id);
 }

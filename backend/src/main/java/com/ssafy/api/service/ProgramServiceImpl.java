@@ -115,12 +115,14 @@ public class ProgramServiceImpl implements ProgramService {
 		return repository.count();
 	}
 	
+//	@Transactional
 	@Override
 	public ProgramGetRes getOneProgram(Long id){
 		Program program = repository.findById(id).get();
 //		Long uid = userRepository.findByUserid(userid).get().getId();
 		ProgramGetRes p = new ProgramGetRes();
 		p.setId(program.getId());
+//		System.out.println(program.getId());
 		p.setUserId(program.getUser().getUserid());
 		p.setName(program.getName());
 		p.setDescription(program.getDescription());
@@ -140,7 +142,7 @@ public class ProgramServiceImpl implements ProgramService {
 			}
 			p.setReviews(reviews);
 		}
-		List<Program_File> list = fileRepository.findByProgram(id).get();
+		List<Program_File> list = fileRepository.findByProgram_id(id).get();
 		if(list != null) {
 			List<FileDto> copy = new ArrayList<>();
 			for(Program_File fi : list) {
