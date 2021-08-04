@@ -115,7 +115,6 @@ public class ProgramServiceImpl implements ProgramService {
 		return repository.count();
 	}
 	
-//	@Transactional
 	@Override
 	public ProgramGetRes getOneProgram(Long id){
 		Program program = repository.findById(id).get();
@@ -131,6 +130,7 @@ public class ProgramServiceImpl implements ProgramService {
 		p.setCount(program.getCount());
 		p.setDate(program.getDate());
 		p.setTime(program.getTime());
+		p.setCategory(program.getCategory().name());
 		List<Program_Review> plist = reviewRepository.findByProgram_id(program.getId()).get();
 		if(plist != null) {
 			List<ReviewPostReq> reviews = new ArrayList<>();

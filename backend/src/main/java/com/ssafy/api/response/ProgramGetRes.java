@@ -32,6 +32,8 @@ public class ProgramGetRes {
 	private String date;
 	@ApiModelProperty(name="프로그램 시간")
 	private String time;
+	@ApiModelProperty(name = "분류", example = "증상이나 감정")
+	private String category;
 	@ApiModelProperty(name="파일")
 	private List<FileDto> files;
 	@ApiModelProperty(name="리뷰")
