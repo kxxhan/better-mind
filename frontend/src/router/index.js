@@ -10,6 +10,7 @@ import ExpAddMeeting from '../views/mypage/ExpAddMeeting.vue'
 import UpdateUserInfo from '../views/mypage/UpdateUserInfo.vue'
 import ProgramItems from '../views/programs/ProgramItems.vue'
 import ProgramDetail from '../views/programs/ProgramDetail.vue'
+import UpdateProgram from '../views/programs/UpdateProgram.vue'
 import PostItems from '../views/community/PostItems.vue'
 import PostDetail from '../views/community/PostDetail.vue'
 import CreatePost from '../views/community/CreatePost.vue'
@@ -69,6 +70,13 @@ const routes = [
     path: '/programs/:program_pk',
     name: 'ProgramDetail',
     component: ProgramDetail,
+    props: true,
+  },
+  {
+    // pk값으로 넘겨주기
+    path: '/programs/update/:program_pk',
+    name: 'UpdateProgram',
+    component: UpdateProgram,
     props: true,
   },
   {
