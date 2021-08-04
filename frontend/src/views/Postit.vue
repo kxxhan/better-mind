@@ -126,6 +126,9 @@ export default {
         return false
       }
     }
+  },
+  created: function () {
+    // 포스트잇 리스트 GET API 요청
   }
 }
 </script>
