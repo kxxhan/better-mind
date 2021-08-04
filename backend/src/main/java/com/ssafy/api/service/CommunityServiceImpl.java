@@ -142,6 +142,7 @@ public class CommunityServiceImpl implements CommunityService {
 			List<CommentPostReq> comments = new ArrayList<>();
 			for(Community_Comment k: clist) {
 				CommentPostReq l = new CommentPostReq();
+				l.setId(k.getId());
 				l.setContent(k.getContent());
 				l.setUserId(k.getUser().getUserid());
 				comments.add(l);

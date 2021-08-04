@@ -111,10 +111,10 @@ public class ProgramController {
         @ApiResponse(code = 500, message = "서버 오류")
 	})
 	
-	public ResponseEntity<ProgramGetRes> getOneProgram(@PathVariable(name="programId")Long id,@ApiIgnore Authentication authentication) {
-		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
-		String userId = userDetails.getUsername();
-		ProgramGetRes program = service.getOneProgram(id,userId);
+	public ResponseEntity<ProgramGetRes> getOneProgram(@PathVariable(name="programId")Long id) {
+//		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+//		String userId = userDetails.getUsername();
+		ProgramGetRes program = service.getOneProgram(id);
 		return ResponseEntity.status(200).body(program);
 	}
 	
