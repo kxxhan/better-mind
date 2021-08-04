@@ -21,15 +21,14 @@ public class CommunityGetRes {
 	private String title;
 	@ApiModelProperty(name="내용")
 	private String content;
-	
+	@ApiModelProperty(name="분류")
+	private String category;	
 	@ApiModelProperty(name="파일")
 	private List<FileDto> files;
-	
 	@ApiModelProperty(name="코멘트")
 	private List<CommentPostReq> comments;
 	
 	private boolean like;
-	
 	private int likeCount;
 	
 }

@@ -134,6 +134,7 @@ public class CommunityServiceImpl implements CommunityService {
 		c.setId(article.getId());
 		c.setContent(article.getContent());
 		c.setTitle(article.getTitle());
+		c.setCategory(article.getCategory().name());
 		c.setUserId(article.getUser().getUserid());
 		c.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).isPresent());
 		c.setLikeCount(article.getLike());
