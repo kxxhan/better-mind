@@ -26,8 +26,8 @@
           <span>#해시태그</span>
         </v-card-actions>
         
-        <v-card-actions>
-          <v-btn @click="updatePost()">수정</v-btn>
+        <v-card-actions v-show="post.userId === this.$store.state.userInfo.id">
+          <v-btn @click="updatePost(post)">수정</v-btn>
           <v-btn>삭제</v-btn>
         </v-card-actions>
       </v-container>
@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     updatePost: function () {
-      this.$router.push({ name: 'UpdatePost' })
+      this.$router.push({ name: 'UpdatePost', params: { post_pk: this.post.id }})
     },
     createComment: function () {
       if (this.commentContent.length > 0) {
