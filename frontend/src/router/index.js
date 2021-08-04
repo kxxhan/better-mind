@@ -16,6 +16,7 @@ import PostDetail from '../views/community/PostDetail.vue'
 import CreatePost from '../views/community/CreatePost.vue'
 import UpdatePost from '../views/community/UpdatePost.vue'
 import Payment from '../views/Payment.vue'
+import WebRTCPractice from '../views/webrtc/WebRTCPractice.vue'
 
 Vue.use(VueRouter)
 
@@ -109,6 +110,12 @@ const routes = [
     name: 'Payment',
     component: Payment
   },
+  {
+    //WebRTC
+    path: '/webrtc',
+    name: 'WebRTC',
+    component: WebRTCPractice
+  }
   
 ]
 
