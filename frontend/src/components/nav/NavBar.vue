@@ -31,7 +31,7 @@
               </v-btn>
             </template>
             <!-- 일반 사용자 마이페이지 리스트 -->
-            <v-list v-if="isCommon">
+            <v-list v-if="isCommon === '0'">
               <v-list-item router :to="{ name: 'PubActivities' }">
                 <v-list-item-title class="grey--text">Activities</v-list-item-title>
               </v-list-item>
@@ -117,7 +117,7 @@
 
 <script>
 import LoginModal from '../LoginModal.vue'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   name: 'NavTop',
@@ -133,38 +133,12 @@ export default {
       }
     }
   },
-  created: function () {
-    // 현재 사용자의 로그인 상태
-    const token = localStorage.getItem('jwt')
-    if (token) {
-      this.$store.commit('ON_LOGIN')
-      
-      // 일반 전문가 사용자 판단
-      axios({
-        method: 'get',
-        url: '/api/v1/users/me',
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        }
-      })
-      .then((res) => {
-        const role = res.data.role
-        if (role === '1') {
-          this.$store.state.isCommon = false
-        }
-        else {
-          this.$store.state.isCommon = true
-        }
-      })
-    }
-
-  },
   computed: {
     isLogin: function () {
       return this.$store.state.isLogin
     },
     isCommon: function () {
-      return this.$store.state.isCommon
+      return this.$store.state.userInfo.role
     }
   }
 }

@@ -68,19 +68,20 @@ const routes = [
     // pk값으로 넘겨주기
     path: '/programs/:program_pk',
     name: 'ProgramDetail',
-    component: ProgramDetail
+    component: ProgramDetail,
+    props: true,
   },
   {
-    // pk값으로 넘겨주기
     path: '/community',
     name: 'PostItems',
     component: PostItems
   },
   {
     // pk값으로 넘겨주기
-    path: '/community/1',
+    path: '/community/:post_pk',
     name: 'PostDetail',
-    component: PostDetail
+    component: PostDetail,
+    props: true,
   },
   {
     path: '/community/create',
