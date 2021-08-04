@@ -64,7 +64,7 @@
                 프로그램 수정
               </v-btn>
 
-              <v-btn>
+              <v-btn @click="deleteProgram()">
                 프로그램 삭제
               </v-btn>
 
@@ -105,6 +105,18 @@ export default {
     },
     updateProgram: function () {
       this.$router.push({ name: 'UpdateProgram'})
+    },
+    deleteProgram: function () {
+      axios ({
+        method: 'delete',
+        url: `api/v1/program/${program.id}`
+      })
+      .then(() => {
+        this.$router.push({ name: 'ExpMeetings' })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     }
   },
 }
