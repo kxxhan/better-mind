@@ -38,55 +38,55 @@
               </v-card-text>
             </v-card>
           </v-item>
-        </v-col>
-        <!-- 클릭 시 모달폼 -->
-        <v-dialog
-          v-model="dialog"
-          max-width="600"
-        >
-          <v-card>
-            <v-card-title class="text-h5">
-              프로그램 이름
-            </v-card-title>
+          <!-- 클릭 시 모달폼 -->
+          <v-dialog
+            v-model="dialog"
+            max-width="600"
+          >
+            <v-card>
+              <v-card-title class="text-h5">
+                {{ selectprogram.name }}
+              </v-card-title>
 
-            <v-card-text>
-              참가자목록
-            </v-card-text>
-            <v-card-text>
-              사람선택 체크박스
-            </v-card-text>
-            <v-card-text>
-              메세지나 메일 알람...??
-            </v-card-text>
+              <v-card-text>
+                참가자목록
+              </v-card-text>
+              <v-card-text>
+                사람선택 체크박스
+              </v-card-text>
+              <v-card-text>
+                메세지나 메일 알람...??
+              </v-card-text>
 
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn @click="updateProgram()">
-                프로그램 수정
-              </v-btn>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn @click="updateProgram()">
+                  프로그램 수정
+                </v-btn>
 
-              <v-btn @click="deleteProgram()">
-                프로그램 삭제
-              </v-btn>
+                <v-btn @click="deleteProgram()">
+                  프로그램 삭제
+                </v-btn>
 
-              <v-btn
-                color="green darken-1"
-                text
-                @click="dialog = false"
-              >
-                Disagree
-              </v-btn>
+                <v-btn
+                  color="green darken-1"
+                  text
+                  @click="dialog = false"
+                >
+                  Disagree
+                </v-btn>
 
-              <v-btn
-                color="green darken-1"
-                text
-                @click="dialog = false"
-              >
-                Agree
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
+                <v-btn
+                  color="green darken-1"
+                  text
+                  @click="dialog = false"
+                >
+                  Agree
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-col>        
       </v-row>
     </v-item-group>
   </v-container>
@@ -100,15 +100,24 @@ export default {
   data: function () {
     return {
       dialog: false,
+      selectprogram: {},
     }
   },
   methods: {
+    // 모달폼 열기 => 수정필요
     openDetail: function () {
+      for (program of myprogramlist) {
+        if (program.id === key) {
+          this.selectprogram = program
+        }
+      }
       this.dialog = !this.dialog
     },
+    // 프로그램 업데이트 링크
     updateProgram: function () {
-      this.$router.push({ name: 'UpdateProgram'})
+      this.$router.push({ name: 'UpdateProgram', params: { program_pk: this.program.id }})
     },
+    // 프로그램 삭제
     deleteProgram: function () {
       axios ({
         method: 'delete',
