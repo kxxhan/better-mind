@@ -6,22 +6,22 @@
     >
       <v-container id="post">
         <v-card-title>
-          Article title
+          {{ post.title }}
         </v-card-title>
 
         <v-card-subtitle>
-          Subtitle text
+          {{ post.userId }}
         </v-card-subtitle>
 
         <v-card-text>
-          Greyhound divisively hello coldly wonderfully marginally far upon excluding.
+          {{ post.content }}
         </v-card-text>
 
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn icon class="mx-2">
             <v-icon>mdi-heart</v-icon>
-            <span>3</span>
+            <span>{{ post.likeCount }}</span>
           </v-btn>
           <span>#해시태그</span>
         </v-card-actions>
@@ -43,30 +43,32 @@
         label="comment"
         rows="1"
         cols="12"
-        v-model="commentItem"
+        v-model="commentContent"
       ></v-textarea>
       <!-- <input type="text" id="comment" name="comment" required> -->
       <v-btn 
         cols="1"
-        @click="createComment()"
+        @click="createComment(post)"
       >
         작성
       </v-btn>
     </v-row>
 
     <!-- 댓글 리스트 -->
-    <Comment/>
+    <Comment :key="renderComponent"/>
   </v-container>
 </template>
 
 <script>
+import axios from 'axios'
 import Comment from '@/components/community/Comment.vue'
 
 export default {
   name: 'PostDetail',
   data: function () {
     return {
-      commentItem: '',
+      commentContent: '',
+      renderComponent: 0,
     }
   },
   components: {
@@ -77,10 +79,36 @@ export default {
       this.$router.push({ name: 'UpdatePost' })
     },
     createComment: function () {
-      if (this.commentItem.length > 0) {
-        console.log(this.commentItem)
+      if (this.commentContent.length > 0) {
+        const commentItem = { 
+          content: this.commentContent, 
+          userId: this.$store.state.userInfo.id 
+        }
+        axios({
+          method: 'post',
+          url: `/api/v1/article/${this.post.id}`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+          },
+          data: commentItem
+        })
+        .then(res => {
+          if (res.data.statusCode === 200) {
+            this.commentContent = ''
+            this.renderComponent += 1
+          }
+        })
       }
+    },
+  },
+  created: function () {
+    this.$store.dispatch('getPost', this.$route.params.post_pk)
+  },
+  computed: {
+    post: function () {
+      return this.$store.state.post
     }
+    
   }
 }
 </script>

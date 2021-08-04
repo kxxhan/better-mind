@@ -88,8 +88,8 @@ export default {
   }),
   methods: {
     showDetail: function (program) {   
-      this.$store.commit('GET_PROGRAM', program)   
-      this.$router.push({ name: 'ProgramDetail', params: {program_pk: program.id} })
+      // this.$store.commit('GET_PROGRAM', program)   
+      this.$router.push({ name: 'ProgramDetail', params: { program_pk: program.id }})
     },
   },
   computed: {

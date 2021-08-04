@@ -6,11 +6,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    userInfo: [],
     programlist: [],
     program: {},
     postlist: [],
+    post: {},
     isLogin: false,
-    isCommon: true,
   },
   mutations: {
     //프로그램 관련
@@ -20,11 +21,14 @@ export default new Vuex.Store({
     // 프로그램 디테일
     GET_PROGRAM: function (state, program) {
       state.program = program
-      console.log(program)
     },
     // 커뮤니티 관련
     GET_POSTS: function (state, postlist) {
       state.postlist = postlist
+    },
+    // 커뮤니티 디테일
+    GET_POST: function (state, post) {
+      state.post = post
     },
     
     // 로그인 상태
@@ -34,6 +38,10 @@ export default new Vuex.Store({
     // 로그아웃 상태
     ON_LOGOUT: function (state) {
       state.isLogin = false
+    },
+    // 사용자 정보
+    GET_MY_INFO: function (state, info) {
+      state.userInfo = info
     }
   },
   actions: {
@@ -54,7 +62,7 @@ export default new Vuex.Store({
     getProgram: function ({ commit }, program_pk) {
       axios({
         method: 'get',
-        url: `api/v1/program/${program_pk}`,
+        url: `/api/v1/program/${program_pk}`,
       })
       .then(res => {
         commit('GET_PROGRAM', res.data)
@@ -75,6 +83,35 @@ export default new Vuex.Store({
       })
       .then(res => {
         commit('GET_POSTS', res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+    // 커뮤니티 디테일
+    getPost: function ({ commit }, post_pk ) {
+      axios({
+        method: 'get',
+        url: `/api/v1/article/${post_pk}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
+      })
+      .then(res => {
+        commit('GET_POST', res.data)
+      })
+    },
+    // 내 정보 받아오기
+    getMyInfo: function ({ commit }) {
+      axios({
+        method: 'get',
+        url: '/api/v1/users/me',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
+      })
+      .then(res => {
+        commit('GET_MY_INFO', res.data)
       })
       .catch(err => {
         console.log(err)

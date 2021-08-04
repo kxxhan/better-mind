@@ -17,10 +17,14 @@ export default {
   components: {
     NavBar,
   },
-
-  data: () => ({
-    //
-  }),
+  created: function () {
+    // 현재 사용자의 로그인 상태
+    const token = localStorage.getItem('jwt')
+    if (token) {
+      this.$store.commit('ON_LOGIN')     
+      this.$store.dispatch('getMyInfo')
+    }
+  }
 };
 </script>
 <style scoped>

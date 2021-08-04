@@ -48,7 +48,7 @@
               <v-card
                 class="d-flex flex-column justify-center"
                 height="250"
-                @click="showDetail()"
+                @click="showDetail(post)"
               >
                 <v-card-title>
                   {{ post.title }}
@@ -67,12 +67,12 @@
 
                   <v-btn icon>
                     <v-icon>mdi-heart</v-icon>
-                    <span>3</span>
+                    <span>-</span>
                   </v-btn>
 
                   <v-btn icon>
                     <v-icon>mdi-message-text</v-icon>
-                    <span>2</span>
+                    <span>-</span>
                   </v-btn>
 
                 </v-card-actions>
@@ -100,8 +100,8 @@ export default {
     ]
   }),
   methods: {
-    showDetail: function () {
-      this.$router.push({ name: 'PostDetail' })
+    showDetail: function (post) {
+      this.$router.push({ name: 'PostDetail', params: { post_pk: post.id }})
     },
     createPost: function () {
       this.$router.push({ name: 'CreatePost' })

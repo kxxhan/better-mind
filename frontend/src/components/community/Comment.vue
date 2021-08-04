@@ -3,11 +3,11 @@
     <v-list disabled>
       <v-subheader>Comment List</v-subheader>
         <v-list-item
-          v-for="(item, i) in items"
+          v-for="(comment, i) in comments"
           :key="i"
         >
           <v-list-item-content>
-            <v-list-item-title v-text="item.text"></v-list-item-title>
+            <v-list-item-title v-text="comment.content"></v-list-item-title>
             <hr>
           </v-list-item-content>
         </v-list-item>
@@ -17,13 +17,18 @@
 
 <script>
 export default {
-  data: () => ({
-      items: [
-        { text: '댓글1'},
-        { text: '댓글2'},
-        { text: '댓글3'},
-      ],
-    }),
+  name: 'Comment',
+  methods: {
+
+  },
+  computed: {
+    comments: function () {
+      return this.$store.state.post.comments
+    }
+  },
+  created: function () {
+    this.$store.dispatch('getPost', this.$route.params.post_pk)
+  }
 }
 </script>
 
