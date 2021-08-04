@@ -12,16 +12,24 @@
             </v-img>
           </v-col>
           <v-col>
-            <div class="text-h4 d-flex justify-center">상처없이 이야기하기 (가족편)</div>
-            <!-- <div class="text-h4 d-flex justify-center">{{ program.name }}</div> -->
+            <!-- <div class="text-h4 d-flex justify-center">상처없이 이야기하기 (가족편)</div> -->
+            <div class="text-h4 d-flex justify-center">{{ program.name }}</div>
             <br>
+            <div class="text-h6 d-flex justify-center">By {{ program.userId }} 상담사</div>
+            <br>
+            <div class="text-h6 d-flex justify-center">{{ program.date }}</div>
+            <br>
+            <div class="text-h6 d-flex justify-center">{{ program.time }}</div>
+            <br>
+            <div class="text-h6 d-flex justify-center">{{ program.category }}</div>
+            <!-- <br>
             <div class="text-h6 d-flex justify-center">by 김싸피 상담사</div>
             <br>
             <div class="text-h6 d-flex justify-center">7월 26일 ~ 8월 16일</div>
             <br>
             <div class="text-h6 d-flex justify-center">주 2회 (월, 목) 19:00 ~ 21:00</div>
             <br>
-            <div class="text-h6 d-flex justify-center">#가족 #대인관계</div>
+            <div class="text-h6 d-flex justify-center">#가족 #대인관계</div> -->
           </v-col>
         </v-row>
       </v-container>
@@ -40,80 +48,24 @@
       <!-- 프로그램 디테일 소개 -->
       <v-container>
         <div class="text-h6" id="program-introduce">프로그램 내용 소개 글</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
-        <div>엄마를 사랑하지만, 엄마가 힘든 당신을 위해</div>
+        <div>{{ program.report }}</div>
       </v-container>
       <br>
       <v-container>
         <div class="text-h6" id="expert-introduce">전문가 소개 글</div>
-        <div>김싸피 전문가</div>
+        <div>{{ program.description }}</div>
       </v-container>
       <br>
       <v-container>
         <div class="text-h6" id="program-review">프로그램 이용 후기</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
-        <div>엄마를 이해할 수 있게 되었어요</div>
-        <div>편안한 분위기에서 진행되어 좋았습니다!</div>
+        <div>{{ program.review }}</div>
+
+
       </v-container>
       <br>
       <v-container>
       <div class="text-h6" id="program-registration">프로그램 신청하기</div>
-      <span class="text-decoration-line-through">59,000원</span>
-      <span> => 29,500원</span>
+      <span>{{ program.price }}</span>
       </v-container>
       <br>
       <v-btn @click="registrateProgram()">신청하기</v-btn>
@@ -155,6 +107,11 @@ export default {
   created: function () {
     this.$store.dispatch('getProgram', this.$route.params.program_pk)
   },
+  computed: {
+    program: function () {
+      return this.$store.state.program
+  }
+  }
 }
 </script>
 

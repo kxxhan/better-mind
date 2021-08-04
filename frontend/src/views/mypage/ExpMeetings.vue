@@ -7,8 +7,8 @@
     <v-item-group>
       <v-row>
         <v-col
-          v-for="n in 6"
-          :key="n"
+          v-for="program in myprogramlist"
+          :key="program.id"
           cols="12"
           sm="6"
           md="4"
@@ -28,12 +28,13 @@
               </v-img>
 
               <v-card-subtitle class="pb-0 text-subtitle-1">
-                프로그램 이름
+                {{ program.name }}
               </v-card-subtitle>
 
               <v-card-text class="text--primary">
                 <div>미팅주소</div>
                 <div>미팅시간</div>
+                <div>{{ program.userId }}</div>
               </v-card-text>
             </v-card>
           </v-item>
@@ -92,6 +93,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'ExpMeetings',
   data: function () {
@@ -119,6 +122,20 @@ export default {
       })
     }
   },
+  computed: {
+    myprogramlist: function () {
+      const myprogramlist = []
+      for (const program of this.$store.state.programlist) {
+        if (program.userId === this.$store.state.userInfo.id){
+          myprogramlist.push(program)
+        }
+      }
+      return myprogramlist
+    },
+  },
+  created: function () {
+    this.$store.dispatch('getPrograms')
+  }
 }
 </script>
 
