@@ -1,5 +1,7 @@
 package com.ssafy.api.request;
 
+import java.util.Date;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -13,5 +15,7 @@ public class QuestionPostReq {
 	private Long id;
 	@ApiModelProperty(name="질문 내용")
 	private String content;
+	@ApiModelProperty(name="작성시간")
+	private Date created_at;
 
 }

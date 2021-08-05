@@ -1,8 +1,11 @@
 package com.ssafy.api.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -135,6 +138,32 @@ public class PostitController {
 			@PathVariable(name = "answerId")Long aId) {
 		service.deleteAnswer(qId, aId);
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+	}
+	
+	@GetMapping("/allCount")
+	@ApiOperation(value = "질문 전체 카운트", notes = "<strong>Page 구성</strong>")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 401, message = "토큰 인증 실패"),
+        @ApiResponse(code = 500, message = "서버 오류")
+	})
+	
+	public ResponseEntity<Long> getAllQuestionCount() {
+		long size = service.getAllQuestionCount();
+		return ResponseEntity.status(200).body(size);
+	}
+	
+	@GetMapping("/all")
+	@ApiOperation(value = "질문 전체 목록", notes = "<strong>page랑 한페이지에  들어갈 size</strong>")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 401, message = "토큰 인증 실패"),
+        @ApiResponse(code = 500, message = "서버 오류")
+	})
+	
+	public ResponseEntity<List<QuestionPostReq>> getAllQuestion(Pageable pageable) {
+		List<QuestionPostReq> questionList = service.getAllQuestion((Pageable) pageable);
+		return ResponseEntity.status(200).body(questionList);
 	}
 	
 }
