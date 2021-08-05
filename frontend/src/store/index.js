@@ -79,7 +79,7 @@ export default new Vuex.Store({
         url: '/api/v1/article/all',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        }
+        },
       })
       .then(res => {
         commit('GET_POSTS', res.data)
