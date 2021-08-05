@@ -84,6 +84,15 @@
         Submit
       </v-btn>
 
+      <v-btn
+        :disabled="!valid"
+        color="warning"
+        class="mr-4"
+        @click="movePost()"
+      >
+        Back
+      </v-btn>
+
     </v-form>
   </v-container>
 </template>
@@ -140,7 +149,7 @@ export default {
     ],
     categoryRules: [
       v => !!v || 'Category is required',
-      v => v.length > 0 || 'Category must be more than 1 item',
+      v => v.length > 0 || 'Category must be 1 item',
     ],
   }),
 
@@ -163,7 +172,10 @@ export default {
     },
     choiceCategory: function (item) {
       this.program.category = item
-    }
+    },
+    movePost: function () {
+      this.$router.push({ name: 'ExpMeetings' })
+    },
   },
   created: function () {
     this.$store.dispatch('getProgram', this.$route.params.program_pk)
@@ -173,9 +185,7 @@ export default {
     this.program.date = this.$store.state.program.date
     this.program.time = this.$store.state.program.time
     this.program.count = this.$store.state.program.count
-    this.program.price = this.$store.state.program.price
-    // this.program.category = this.$store.state.program.category
-    
+    this.program.price = this.$store.state.program.price    
   },
 }
 </script>
