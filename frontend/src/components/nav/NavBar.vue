@@ -7,7 +7,7 @@
           <v-toolbar-title
             class="text-uppercase grey--text"
             style="cursor: pointer"
-            @click="$router.push({ name: 'Main' })"
+            @click="$router.push({ name: 'Main' }).catch(() => {})"
           >
             <span class="font-weight-light">Better</span>
             <span>Mind</span>
