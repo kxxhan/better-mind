@@ -163,6 +163,7 @@ export default {
           data: this.program
         })
         .then (() => {
+          console.log(this.program.category)
           this.$router.push({ name: 'ExpMeetings' })
         })
         .catch((err) => {
@@ -186,6 +187,7 @@ export default {
     this.program.time = this.$store.state.program.time
     this.program.count = this.$store.state.program.count
     this.program.price = this.$store.state.program.price    
+    this.program.category = this.$store.state.program.category    
   },
 }
 </script>
