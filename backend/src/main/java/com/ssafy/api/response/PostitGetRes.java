@@ -1,5 +1,6 @@
 package com.ssafy.api.response;
 
+import java.util.Date;
 import java.util.List;
 
 import com.ssafy.api.request.AnswerPostReq;
@@ -20,4 +21,6 @@ public class PostitGetRes {
 	private String content;
 	@ApiModelProperty(name="답변")
 	private List<AnswerPostReq> answer;
+	@ApiModelProperty(name="작성시간")
+	private Date created_at;
 }

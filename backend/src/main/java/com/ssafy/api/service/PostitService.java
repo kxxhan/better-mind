@@ -1,6 +1,9 @@
 package com.ssafy.api.service;
 
 import java.io.IOException;
+import java.util.List;
+
+import org.springframework.data.domain.Pageable;
 
 import com.ssafy.api.request.AnswerPostReq;
 import com.ssafy.api.request.QuestionPostReq;
@@ -24,4 +27,7 @@ public interface PostitService {
 	
 	void deleteAnswer(Long qId, Long aId);
 	
+	long getAllQuestionCount();
+	
+	List<QuestionPostReq> getAllQuestion(Pageable pageable);
 }
