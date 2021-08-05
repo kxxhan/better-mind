@@ -3,27 +3,29 @@
     <!-- 관리자 질문 등록용 -->
     <v-sheet v-if="isAdmin" class="mx-auto my-5" max-width="1000px">
       <v-row>
-          <v-text-field
-            v-model="question"
-            prepend-icon="mdi-chat-question"
-            outlined 
-            clearable
-            required
-          ></v-text-field>
-          <v-btn
-            text
-            x-large
-            @click="submit"
-          >
-            Submit
-          </v-btn>
+        <v-text-field
+          v-model="question"
+          prepend-icon="mdi-chat-question"
+          outlined 
+          clearable
+          required
+        ></v-text-field>
+        <v-btn
+          text
+          x-large
+          @click="submit"
+        >
+          Submit
+        </v-btn>
+
+        <EditBtn :key="renderComponent"/>
       </v-row>
     </v-sheet>
 
     <!-- 오늘의 질문 -->
     <v-card class="mx-auto" max-width="1000px">
       <div>
-        <p class="text-h4 text-center pt-8">지금 가장 먹고싶은 음식은 무엇인가요?</p>
+        <p class="text-h4 text-center pt-8">{{ this.$store.state.lastQuestion.content }}</p>
       </div>
       
       <div class="d-flex justify-center">
@@ -60,7 +62,7 @@
     <v-sheet class="mx-auto mt-10" max-width="800px">
       <v-row>
           <v-text-field
-            v-model="question"
+            v-model="postContent"
             outlined 
             clearable
             required
@@ -68,7 +70,7 @@
           <v-btn
             text
             x-large
-            @click="submit"
+            @click="postSubmit"
           >
             Submit
           </v-btn>
@@ -106,17 +108,48 @@
 </template>
 
 <script>
+import axios from 'axios'
+import EditBtn from '@/components/postit/EditBtn.vue'
+
 export default {
   name: 'Postit',
+  components: {
+    EditBtn
+  },
   data: function () {
     return {
       show: false,
       question: '',
+      postContent: '',
+      renderComponent: 0,
     }
   },
   methods: {
     submit: function () {
-      console.log(this.question)
+      axios({
+        method: 'post',
+        url: `/api/v1/postit`,
+        data: { content: this.question }
+      })
+      .then(() => {
+        this.question = ''
+        this.renderComponent += 1
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
+    postSubmit: function () {
+      console.log(this.$store.state.lastQuestion.id)
+      console.log(this.postContent)
+      axios({
+        method: 'post',
+        url: `api/v1/postit/${this.$store.state.lastQuestion.id}`,
+        data: { content: this.postContent, userId: "admin" }
+      })
+      .then((res) => {
+        console.log(res.data)
+      })
     }
   },
   computed: {
@@ -127,10 +160,11 @@ export default {
       else {
         return false
       }
-    }
+    },
   },
   created: function () {
     // 포스트잇 리스트 GET API 요청
+    this.$store.dispatch('getQuestions')
   }
 }
 </script>
