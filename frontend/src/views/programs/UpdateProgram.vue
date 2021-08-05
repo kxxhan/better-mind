@@ -163,7 +163,6 @@ export default {
           data: this.program
         })
         .then (() => {
-          console.log(this.program.category)
           this.$router.push({ name: 'ExpMeetings' })
         })
         .catch((err) => {
