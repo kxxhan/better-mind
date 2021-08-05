@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.api.request.UserRegisterPostReq;
+import com.ssafy.api.response.UserRes;
 import com.ssafy.db.entity.CategoryEnum;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.repository.UserRepository;
@@ -56,7 +57,6 @@ public class UserServiceImpl implements UserService {
 	public User updateUser(Long id, UserRegisterPostReq userRegisterInfo) {
 		User user = userRepository.getOne(id);
 		user.setName(userRegisterInfo.getName());
-		user.setPassword(userRegisterInfo.getPassword());
 		user.setEmail(userRegisterInfo.getEmail());
 		user.setPhone(userRegisterInfo.getPhone());
 		user.setDescription(userRegisterInfo.getDescription());
@@ -67,6 +67,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUser(Long id) {
 		userRepository.deleteById(id);
-		
 	}
+	
 }

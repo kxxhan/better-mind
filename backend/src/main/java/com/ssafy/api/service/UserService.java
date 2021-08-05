@@ -12,4 +12,5 @@ public interface UserService {
 	User getUserByUserId(String userId);
 	User updateUser(Long id, UserRegisterPostReq userRegisterInfo);
 	void deleteUser(Long id);
+	
 }

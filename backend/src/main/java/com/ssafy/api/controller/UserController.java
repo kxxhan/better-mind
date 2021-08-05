@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -81,8 +82,8 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<BaseResponseBody> updateUserInfo(@PathVariable(name = "userId") Long id,
-			@RequestBody UserRegisterPostReq userPostReq) {
-		User result = userService.updateUser(id, userPostReq);
+			@RequestBody UserRegisterPostReq userregisterPostReq) {
+		User result = userService.updateUser(id, userregisterPostReq);
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 	
