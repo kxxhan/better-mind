@@ -106,6 +106,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Postit',
   data: function () {
@@ -116,7 +118,14 @@ export default {
   },
   methods: {
     submit: function () {
-      console.log(this.question)
+      axios({
+        method: 'post',
+        url: `/api/v1/postit`,
+        data: { content: this.question }
+      })
+      .then((res) => {
+        console.log(res.data)
+      })
     }
   },
   computed: {
