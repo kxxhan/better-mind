@@ -25,14 +25,27 @@
 				<h1 id="session-title">{{ mySessionId }}</h1>
 				<input class="btn btn-large btn-danger" type="button" id="buttonLeaveSession" @click="leaveSession" value="Leave session">
 			</div>
-			<div id="main-video" class="col-md-6">
+            <!-- 자기자신 보여주는 비디오 -->
+			<!-- <div id="main-video" class="col-md-6">
 				<user-video :stream-manager="mainStreamManager"/>
-			</div>
+			</div> -->
+            <!-- 세션 참여자 모두를 보여줌 -->
 			<div id="video-container" class="col-md-6">
 				<user-video :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)"/>
 				<user-video v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub" @click.native="updateMainVideoStreamManager(sub)"/>
+                <!-- <button v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub" @click=subscriber.subscribeToAudio(audioEnabled)></button> -->
 			</div>
-		</div>
+            <div>
+                <div>
+                    <button v-if="this.publisher.stream.audioActive" @click="publisher.publishAudio(false);">Mute</button>
+                    <button v-else @click="publisher.publishAudio(true);">UnMute</button>
+                </div>
+                <div>
+                    <button v-if="this.publisher.stream.videoActive" @click="publisher.publishVideo(false);">비디오 중지</button>
+                    <button v-else @click="publisher.publishVideo(true);">비디오 시작</button>
+                </div>
+            </div>
+        </div>
 	</div>
 </template>
 
@@ -104,7 +117,7 @@ export default {
 					.then(() => {
 
 						// --- Get your own camera stream with the desired properties ---
-
+                        console.log("got a token!!!", token)
 						let publisher = this.OV.initPublisher(undefined, {
 							audioSource: undefined, // The source of audio. If undefined default microphone
 							videoSource: undefined, // The source of video. If undefined default webcam
@@ -127,7 +140,6 @@ export default {
 						console.log('There was an error connecting to the session:', error.code, error.message);
 					});
 			});
-
 			window.addEventListener('beforeunload', this.leaveSession)
 		},
 
@@ -145,8 +157,11 @@ export default {
 		},
 
 		updateMainVideoStreamManager (stream) {
+            console.log("here", this.publisher)
+            console.log("여기야 여기", this.publisher.stream)
 			if (this.mainStreamManager === stream) return;
 			this.mainStreamManager = stream;
+            console.log("bye")
 		},
 
 		/**
@@ -208,6 +223,7 @@ export default {
 					.catch(error => reject(error.response));
 			});
 		},
+
 	}
 }
 </script>
