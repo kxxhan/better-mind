@@ -147,7 +147,7 @@ export default {
     ],
     categoryRules: [
       v => !!v || 'Category is required',
-      v => v.length > 0 || 'Category must be more than 1 item',
+      v => v.length > 0 || 'Category must be 1 item',
     ],
   }),
 
