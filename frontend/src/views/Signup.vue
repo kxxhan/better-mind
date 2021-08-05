@@ -59,15 +59,8 @@
         v-model="credentials.phone"
         :rules="phoneRules"
         label="Phone Number"
-        :counter="11"
-        hint="ex) 01012345678"
-        required
-      ></v-text-field>
-      
-      <!-- 주소 -->
-      <v-text-field
-        v-model="credentials.address"
-        label="Address"
+        :counter="13"
+        hint="ex) 010-1234-5678"
         required
       ></v-text-field>
       
@@ -99,22 +92,14 @@
         </v-col>
       </v-row>
 
-      <!-- 카테고리 (리스트 형태가 아닌 단어 string으로 바인딩 수정 필요)-->
-      <v-sheet
-        class="py-4 px-1"
-      >
-        <v-chip-group
-          multiple
-          active-class="primary--text"
-        >
-          <v-chip
-            v-for="item in categories"
-            :key="item"
-          >
-            {{ item }}
-          </v-chip>
-        </v-chip-group>
-      </v-sheet>
+      <!-- 카테고리 -->
+      <v-select
+        v-model="credentials.category"
+        :items="categories"
+        :rules="[v => !!v || 'Category is required']"
+        label="Category"
+        required
+      ></v-select>
 
       <!-- 약관 동의 -->
       <v-checkbox
@@ -159,8 +144,7 @@ export default {
         name: '', 
         phone: '',
         role: '',
-        address: '',
-        category: '우울',
+        category: '',
         certificate: '',
       },
       checkbox: false,
@@ -187,8 +171,8 @@ export default {
       ],
       phoneRules: [
         v => !!v || 'Phone Number is required',
-        v => v.length >= 10 || 'Phone Number must be over than 10 characters',
-        v => v.length <= 11 || 'Phone Number must be less than 11 characters'
+        v => v.length >= 12 || 'Phone Number must be over than 12 characters',
+        v => v.length <= 13 || 'Phone Number must be less than 13 characters'
       ],
       roleRules: [
         v => !!v || 'You must choose one to continue'
