@@ -12,6 +12,8 @@ export default new Vuex.Store({
     postlist: [],
     post: {},
     isLogin: false,
+    questions: [],
+    lastQuestion: [],
   },
   mutations: {
     //프로그램 관련
@@ -42,6 +44,11 @@ export default new Vuex.Store({
     // 사용자 정보
     GET_MY_INFO: function (state, info) {
       state.userInfo = info
+    },
+    // 포스트잇 질문
+    GET_QUESTIONS: function (state, questions){
+      state.questions = questions
+      state.lastQuestion = questions[questions.length - 1]
     }
   },
   actions: {
@@ -115,6 +122,16 @@ export default new Vuex.Store({
       })
       .catch(err => {
         console.log(err)
+      })
+    },
+    // 포스트잇 질문 리스트 받아오기
+    getQuestions: function ({ commit }) {
+      axios({
+        method: 'get',
+        url: `/api/v1/postit/all`
+      })
+      .then(res => {
+        commit('GET_QUESTIONS', res.data)
       })
     }
   },
