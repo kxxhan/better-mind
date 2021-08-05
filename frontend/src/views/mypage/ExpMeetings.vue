@@ -1,8 +1,6 @@
 <template>
   <v-container id="exp-meetings">
-    전문가의 모임 정보
-    여러개 있을 수 있고
-    각 프로그램은 모달로 등장
+    <h1>전문가의 모임 정보</h1>
     <!-- 프로그램 목록 -->
     <v-item-group>
       <v-row>
@@ -17,7 +15,7 @@
             <v-card
               class="mx-auto"
               max-width="350"
-              @click="openDetail()"
+              @click="openDetail(program)"
             >
               <v-img
                 class="white--text align-end"
@@ -60,12 +58,20 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn @click="updateProgram()">
-                  프로그램 수정
+                <v-btn 
+                  color="green darken-1"
+                  text
+                  @click="updateProgram(selectprogram)"
+                >
+                  Update
                 </v-btn>
 
-                <v-btn @click="deleteProgram()">
-                  프로그램 삭제
+                <v-btn 
+                  color="green darken-1"
+                  text
+                  @click="deleteProgram(selectprogram)"
+                >
+                  Delete
                 </v-btn>
 
                 <v-btn
@@ -73,15 +79,7 @@
                   text
                   @click="dialog = false"
                 >
-                  Disagree
-                </v-btn>
-
-                <v-btn
-                  color="green darken-1"
-                  text
-                  @click="dialog = false"
-                >
-                  Agree
+                  Close
                 </v-btn>
               </v-card-actions>
             </v-card>
@@ -105,26 +103,24 @@ export default {
   },
   methods: {
     // 모달폼 열기 => 수정필요
-    openDetail: function () {
-      for (program of myprogramlist) {
-        if (program.id === key) {
-          this.selectprogram = program
-        }
-      }
+    openDetail: function (program) {
+      this.selectprogram = program
       this.dialog = !this.dialog
     },
     // 프로그램 업데이트 링크
-    updateProgram: function () {
-      this.$router.push({ name: 'UpdateProgram', params: { program_pk: this.program.id }})
+    updateProgram: function (selectprogram) {
+      this.$store.commit('GET_PROGRAM', selectprogram)
+      this.$router.push({ name: 'UpdateProgram', params: { program_pk: selectprogram.id }})
     },
     // 프로그램 삭제
-    deleteProgram: function () {
+    deleteProgram: function (selectprogram) {
       axios ({
         method: 'delete',
-        url: `api/v1/program/${program.id}`
+        url: `/api/v1/program/${selectprogram.id}`,
       })
       .then(() => {
-        this.$router.push({ name: 'ExpMeetings' })
+        this.$router.go()
+        this.dialog = !this.dialog
       })
       .catch((err) => {
         console.log(err)
