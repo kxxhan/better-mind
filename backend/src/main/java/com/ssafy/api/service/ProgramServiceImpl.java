@@ -167,6 +167,7 @@ public class ProgramServiceImpl implements ProgramService {
 		program.setCount(programPostReq.getCount());
 		program.setDate(programPostReq.getDate());
 		program.setTime(programPostReq.getTime());
+		program.setCategory(CategoryEnum.valueOf(programPostReq.getCategory()));
 		return repository.save(program);
 	}
 	
