@@ -102,7 +102,6 @@ export default {
     }
   },
   methods: {
-    // 모달폼 열기 => 수정필요
     openDetail: function (program) {
       this.selectprogram = program
       this.dialog = !this.dialog
@@ -131,7 +130,7 @@ export default {
     myprogramlist: function () {
       const myprogramlist = []
       for (const program of this.$store.state.programlist) {
-        if (program.userId === this.$store.state.userInfo.id){
+        if (program.userId === this.$store.state.userInfo.userid){
           myprogramlist.push(program)
         }
       }

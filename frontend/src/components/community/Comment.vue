@@ -13,7 +13,7 @@
               <v-list-item-subtitle v-text="comment.userId"></v-list-item-subtitle>
               <v-list-item-title v-text="comment.content"></v-list-item-title>
             </v-list-item-content>
-            <v-list-item-action v-show="comment.userId === userInfo.id">
+            <v-list-item-action v-show="comment.userId === userInfo.userid">
               <v-btn icon @click="deleteComment(comment)">
                 <v-icon>mdi-window-close</v-icon>
               </v-btn>

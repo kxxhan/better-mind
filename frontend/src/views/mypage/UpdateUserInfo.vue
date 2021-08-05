@@ -101,7 +101,7 @@ export default {
           '중독', '대인관계', '부부', '가족상담',
         ],
       credentials: {
-        id: this.$store.state.userInfo.id,
+        id: this.$store.state.userInfo.userid,
         password: this.$store.state.userInfo.password,
         email: this.$store.state.userInfo.email,
         name: this.$store.state.userInfo.name, 
