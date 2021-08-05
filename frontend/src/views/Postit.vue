@@ -76,45 +76,21 @@
           </v-btn>
       </v-row>
     </v-sheet>
-
-    <v-item-group>
-      <v-container>
-        <v-row>
-          <v-col
-            v-for="n in 12"
-            :key="n"
-            cols="12"
-            sm="6"
-            md="4"
-            lg="3"
-          >
-            <v-card class="d-flex flex-column justify-space-around" min-height="260px" max-width="260px" min-width="260px">
-              <v-card flat class="d-flex justify-space-between">
-                <p class="pl-5">oh</p>
-                <p class="pr-3">10분전</p>
-              </v-card>
-              <v-card flat>
-                <p class="text-center">고기</p>
-              </v-card>
-              <v-card flat>
-                <p></p>
-              </v-card>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-item-group>
+    <PostList/>
+    
   </v-container>
 </template>
 
 <script>
 import axios from 'axios'
 import EditBtn from '@/components/postit/EditBtn.vue'
+import PostList from '@/components/postit/PostList.vue'
 
 export default {
   name: 'Postit',
   components: {
-    EditBtn
+    EditBtn,
+    PostList,
   },
   data: function () {
     return {
@@ -140,12 +116,14 @@ export default {
       })
     },
     postSubmit: function () {
-      console.log(this.$store.state.lastQuestion.id)
-      console.log(this.postContent)
+      // 왜 DB 저장은 아이디가 아니라, pk로 되는거지
       axios({
         method: 'post',
-        url: `api/v1/postit/${this.$store.state.lastQuestion.id}`,
-        data: { content: this.postContent, userId: "admin" }
+        url: `/api/v1/postit/${this.$store.state.lastQuestion.id}`,
+        data: { 
+          content: this.postContent,
+          userId: this.$store.state.userInfo.userid
+        }
       })
       .then((res) => {
         console.log(res.data)
@@ -165,6 +143,8 @@ export default {
   created: function () {
     // 포스트잇 리스트 GET API 요청
     this.$store.dispatch('getQuestions')
+    // 포스트잇 answer, created_at null 값으로 넘어옴
+    this.$store.dispatch('getAnswer', 10)
   }
 }
 </script>
