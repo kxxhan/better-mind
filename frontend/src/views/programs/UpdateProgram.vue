@@ -156,7 +156,7 @@ export default {
   methods: {
     addProgram: function () {
       if (this.$refs.form.validate()) {
-        this.program.userId = this.$store.state.userInfo.id
+        this.program.userId = this.$store.state.userInfo.userid
         axios({
           method: 'put',
           url: `/api/v1/program/${this.$route.params.program_pk}`,

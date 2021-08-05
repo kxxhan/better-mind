@@ -74,7 +74,7 @@
         <!-- 선택 카테고리에 대한 프로그램 렌더링 -->
         <v-col
           v-for="program in programlist"
-          :key="program.d"
+          :key="program.id"
           cols="12"
           sm="6"
           md="4"

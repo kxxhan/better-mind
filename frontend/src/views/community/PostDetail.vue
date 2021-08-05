@@ -22,7 +22,7 @@
           </v-btn>
         </v-card-actions>
         
-        <v-card-actions v-show="post.userId === this.$store.state.userInfo.id">
+        <v-card-actions v-show="post.userId === this.$store.state.userInfo.userid">
           <v-btn @click="updatePost(post)">수정</v-btn>
           <v-btn @click="deletePost(post)">삭제</v-btn>
         </v-card-actions>
@@ -93,7 +93,7 @@ export default {
       if (this.commentContent.length > 0) {
         const commentItem = { 
           content: this.commentContent, 
-          userId: this.$store.state.userInfo.id 
+          userId: this.$store.state.userInfo.userid 
         }
         axios({
           method: 'post',

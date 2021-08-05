@@ -89,7 +89,7 @@ export default {
           title: this.title,
           content: this.content,
           category: this.category,
-          userId: this.$store.state.userInfo.id,
+          userId: this.$store.state.userInfo.userid,
           // like 값은 왜 보내주는 이유? read only로 전환 필요
           like: true,
         }
