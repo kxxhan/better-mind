@@ -8,6 +8,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.api.request.AnswerPostReq;
@@ -36,6 +37,7 @@ public class PostitServiceImpl implements PostitService {
 	public Postit_Question createQuestion(QuestionPostReq questionPostReq) throws IllegalStateException, IOException{
 		Postit_Question question = new Postit_Question();
 		question.setContent(questionPostReq.getContent());
+		question.setCreated_at(question.getCreated_at());
 		question = questionRepository.save(question);
 		return question;
 	}
@@ -53,6 +55,7 @@ public class PostitServiceImpl implements PostitService {
 				AnswerPostReq a = new AnswerPostReq();
 				a.setUserId(k.getUser().getUserid());
 				a.setContent(k.getContent());
+				a.setCreated_at(k.getCreated_at());
 				answers.add(a);
 			}
 		}
@@ -93,6 +96,25 @@ public class PostitServiceImpl implements PostitService {
 	@Override
 	public void deleteAnswer(Long qId, Long aId) {
 		answerRepository.deleteById(aId);
+	}
+
+	@Override
+	public long getAllQuestionCount() {
+		return questionRepository.count();
+	}
+
+	@Override
+	public List<QuestionPostReq> getAllQuestion(Pageable pageable) {
+		List<Postit_Question> list = questionRepository.findAll(pageable).getContent();
+		List<QuestionPostReq> copy = new ArrayList<>();
+		QuestionPostReq resp;
+		for(Postit_Question q : list) {
+			resp = new QuestionPostReq();
+			resp.setId(q.getId());
+			resp.setContent(q.getContent());
+			copy.add(resp);
+		}
+		return copy;
 	}
 	
 }
