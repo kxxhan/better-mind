@@ -84,13 +84,6 @@
         Submit
       </v-btn>
 
-      <v-btn
-        color="error"
-        class="mr-4"
-        @click="reset"
-      >
-        Reset Form
-      </v-btn>
     </v-form>
   </v-container>
 </template>
@@ -99,7 +92,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'ExpAddMeeting',
+  name: 'UpdateProgram',
   data: () => ({
     valid: true,
     category: ['우울', '불안', '성격문제', '애착', 
@@ -112,7 +105,8 @@ export default {
       description: '',
       date: '',
       time: '',
-      price: '',
+      count: 0,
+      price: 0,
       category: '',
       userId: ''
     },
@@ -138,11 +132,15 @@ export default {
     ],
     countRules: [
       v => !!v || 'Number of participants is required',
-      v =>  v.length > 0 || 'Number of participants must be more than 0',
+      v =>  v > 0 || 'Number of participants must be more than 0',
     ],
     priceRules: [
       v => !!v || 'Period is required',
-      v =>  v.length > 0 || 'Period must be more than 0 characters',
+      v =>  v > 0 || 'Price must be more than 0',
+    ],
+    categoryRules: [
+      v => !!v || 'Category is required',
+      v => v.length > 0 || 'Category must be more than 1 item',
     ],
   }),
 
@@ -152,7 +150,7 @@ export default {
         this.program.userId = this.$store.state.userInfo.id
         axios({
           method: 'put',
-          url: '/api/v1/program',
+          url: `/api/v1/program/${this.$route.params.program_pk}`,
           data: this.program
         })
         .then (() => {
@@ -166,20 +164,19 @@ export default {
     choiceCategory: function (item) {
       this.program.category = item
     }
-    // reset () {
-    //   this.$refs.form.reset()
-    // },
   },
   created: function () {
     this.$store.dispatch('getProgram', this.$route.params.program_pk)
-    this.name = this.$store.state.program.name
-    this.report = this.$store.state.program.report
-    this.description = this.$store.state.program.description
-    this.date = this.$store.state.program.date
-    this.time = this.$store.state.program.time
-    this.price = this.$store.state.program.price
-    this.category = this.$store.state.program.category
-  }
+    this.program.name = this.$store.state.program.name
+    this.program.report = this.$store.state.program.report
+    this.program.description = this.$store.state.program.description
+    this.program.date = this.$store.state.program.date
+    this.program.time = this.$store.state.program.time
+    this.program.count = this.$store.state.program.count
+    this.program.price = this.$store.state.program.price
+    // this.program.category = this.$store.state.program.category
+    
+  },
 }
 </script>
 

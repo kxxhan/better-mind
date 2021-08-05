@@ -112,7 +112,8 @@ export default {
       description: '',
       date: '',
       time: '',
-      price: '',
+      count: 0,
+      price: 0,
       category: '',
       userId: ''
     },
@@ -138,11 +139,15 @@ export default {
     ],
     countRules: [
       v => !!v || 'Number of participants is required',
-      v =>  v.length > 0 || 'Number of participants must be more than 0',
+      v =>  v > 0 || 'Number of participants must be more than 0',
     ],
     priceRules: [
       v => !!v || 'Period is required',
-      v =>  v.length > 0 || 'Period must be more than 0 characters',
+      v =>  v > 0 || 'Price must be more than 0',
+    ],
+    categoryRules: [
+      v => !!v || 'Category is required',
+      v => v.length > 0 || 'Category must be more than 1 item',
     ],
   }),
 
