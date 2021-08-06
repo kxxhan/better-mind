@@ -22,7 +22,7 @@ export default {
 	computed: {
 		clientData () {
 			const { clientData } = this.getConnectionData();
-            console.log("UserVideo 단",this.streamManager)
+            // console.log("UserVideo 단",this.streamManager)
 			return clientData;
 		},
 	},
