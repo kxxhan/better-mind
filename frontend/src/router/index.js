@@ -9,6 +9,7 @@ import ExpAddMeeting from '../views/mypage/ExpAddMeeting.vue'
 import UpdateUserInfo from '../views/mypage/UpdateUserInfo.vue'
 import ProgramItems from '../views/programs/ProgramItems.vue'
 import ProgramDetail from '../views/programs/ProgramDetail.vue'
+import PersonalMeeting from '../views/programs/PersonalMeeting.vue'
 import UpdateProgram from '../views/programs/UpdateProgram.vue'
 import PostItems from '../views/community/PostItems.vue'
 import PostDetail from '../views/community/PostDetail.vue'
@@ -60,6 +61,11 @@ const routes = [
     path: '/programs',
     name: 'ProgramItems',
     component: ProgramItems
+  },
+  {
+    path: '/programs/personal',
+    name: 'PersonalMeeting',
+    component: PersonalMeeting
   },
   {
     // pk값으로 넘겨주기

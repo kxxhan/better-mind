@@ -68,7 +68,7 @@
         <v-toolbar flat>
           <v-row align="center" justify="center">
             <v-col cols="6" md="3">
-              <v-btn text color="grey">
+              <v-btn text color="grey" :to="{ name : 'PersonalMeeting' }">
                 <span>Personal-Counseling</span>
               </v-btn>
             </v-col>
