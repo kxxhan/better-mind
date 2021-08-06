@@ -90,7 +90,7 @@
                   <v-list-item router :to="{ name: 'ProgramItems' }">
                     <v-list-item-title class="grey--text">Expert Consultation</v-list-item-title>
                   </v-list-item>
-                  <v-list-item>
+                  <v-list-item router :to="{ name: 'SelfGroupMeeting' }">
                     <v-list-item-title class="grey--text">Self-help group</v-list-item-title>
                   </v-list-item>
                 </v-list>
