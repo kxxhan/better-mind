@@ -68,7 +68,7 @@
       <span>{{ program.price }}</span>
       </v-container>
       <br>
-      <v-btn @click="registrateProgram()">신청하기</v-btn>
+      <v-btn @click="registrateProgram(program)">신청하기</v-btn>
       <v-btn @click="previousPage()">이전</v-btn>
     </div>
   </v-container>
@@ -83,8 +83,8 @@ export default {
     previousPage: function () {
       this.$router.push({ name: 'ProgramItems' })
     },
-    registrateProgram: function () {
-      this.$router.push({ name: 'Payment' })
+    registrateProgram: function (program) {
+      this.$router.push({ name: 'Payment', params: { program_pk: program.id }})
     },
     clickProgramIntroduce: function () {
       const programLocation = document.querySelector("#program-introduce").offsetTop;
@@ -110,7 +110,7 @@ export default {
   computed: {
     program: function () {
       return this.$store.state.program
-  }
+    }
   }
 }
 </script>

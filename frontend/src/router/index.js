@@ -101,9 +101,10 @@ const routes = [
   },
   {
     // pk값으로 넘겨주기
-    path: '/payment/1',
+    path: '/payment/:program_pk',
     name: 'Payment',
-    component: Payment
+    component: Payment,
+    props: true,
   },
   {
     // WebRTC
