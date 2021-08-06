@@ -136,19 +136,25 @@ export default new Vuex.Store({
       })
       .then(res => {
         commit('GET_QUESTIONS', res.data)
+        axios({
+          method: 'get',
+          url: `/api/v1/postit/${this.state.lastQuestion.id}`
+        })
+        .then(result => {
+          commit('GET_ANSWER', result.data.answer)
+        })
       })
     },
     // 포스트잇 답변 리스트 받아오기
-    getAnswer: function ({ commit }, questionId) {
-      axios({
-        method: 'get',
-        url: `/api/v1/postit/${questionId}`
-      })
-      .then(res => {
-        console.log(res.data)
-        commit('GET_ANSWER', res.data)
-      })
-    }
+    // getAnswer: function ({ commit }, questionId) {
+    //   axios({
+    //     method: 'get',
+    //     url: `/api/v1/postit/${questionId}`
+    //   })
+    //   .then(res => {
+    //     commit('GET_ANSWER', res.data.answer)
+    //   })
+    // }
   },
   modules: {
   }
