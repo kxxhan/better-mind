@@ -17,6 +17,8 @@ public class PostitGetRes {
 
 	@ApiModelProperty(name="질문 번호 ID", example = "Long")
 	private Long id;
+//	@ApiModelProperty(name="유저 ID", example = "ssafy_web")
+//	private String userId;
 	@ApiModelProperty(name="질문 내용")
 	private String content;
 	@ApiModelProperty(name="답변")
