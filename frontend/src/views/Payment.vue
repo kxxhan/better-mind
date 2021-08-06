@@ -2,14 +2,14 @@
   <v-container>
     <v-card id="payment">
       <v-card-title>
-        <h2>프로그램 이름</h2>
+        <h2>{{ program.name }}</h2>
         <v-spacer></v-spacer>
-        <v-card-subtitle>전문가</v-card-subtitle>
+        <v-card-subtitle>{{ program.userId }} 전문가</v-card-subtitle>
       </v-card-title>
       <hr class="mx-3">
-      <v-card-text>일정</v-card-text>
-      <v-card-text>시간</v-card-text>
-      <v-card-text>회차</v-card-text>
+      <v-card-text>일정 : {{ program.date }}</v-card-text>
+      <v-card-text>시간 : {{ program.time }}</v-card-text>
+      <v-card-text>카테고리 : {{ program.category }}</v-card-text>
       <hr class="mx-3">
       <v-card-actions>
         <v-row class="d-flex flex-column justify-center">
@@ -32,7 +32,7 @@
               readonly
               outlined
               label="결제 금액"
-              v-model="price"
+              v-model="program.price"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -63,18 +63,16 @@ export default {
 
       // 결제 데이터 정보
       const data = {
-        pg: 'html5_inicis',                           // PG사
-        pay_method: this.pay_method,                           // 결제수단
+        pg: 'html5_inicis',                            // PG사
+        pay_method: this.pay_method,                   // 결제수단
         merchant_uid: `mid_${new Date().getTime()}`,   // 주문번호
-        amount: this.price,                                 // 결제금액
-        name: '테스트',                  // 주문명
-        buyer_name: '김싸피',                           // 구매자 이름
-        buyer_tel: '01012341234',                     // 구매자 전화번호
-        buyer_email: 'ssafy@ssafy.com',               // 구매자 이메일
-        buyer_addr: '대전 유성구 삼성연수원',                    // 구매자 주소
-        buyer_postcode: '12345',                      // 구매자 우편번호
+        amount: this.program.price,                    // 결제금액
+        name: this.program.name,                       // 주문명
+        buyer_name: this.$store.state.userInfo.name,   // 구매자 이름
+        buyer_tel: this.$store.state.userInfo.phone,   // 구매자 전화번호
+        buyer_email: this.$store.state.userInfo.email, // 구매자 이메일
       }
-
+      console.log(data)
       // 결제창 호출
       IMP.request_pay(data, this.callback)
     },
@@ -92,6 +90,14 @@ export default {
       } else {
         alert(`결제 실패 : ${error_msg}`)
       }
+    }
+  },
+  created: function () {
+    this.$store.dispatch('getProgram', this.$route.params.program_pk)
+  },
+  computed: {
+    program: function () {
+      return this.$store.state.program
     }
   }
 }
