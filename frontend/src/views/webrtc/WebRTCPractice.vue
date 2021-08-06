@@ -37,12 +37,15 @@
 			</div>
             <div>
                 <div>
-                    <button v-if="this.publisher.stream.audioActive" @click="publisher.publishAudio(false);">Mute</button>
-                    <button v-else @click="publisher.publishAudio(true);">UnMute</button>
+                    <!-- 맨처음 created 단계에서 publisher.stream에 접근하지 못하는 듯 하다. -->
+                    <button v-if="this.publisher.stream.audioActive" @click="publisher.publishAudio(false);">음소거</button>
+                    <button v-else @click="publisher.publishAudio(true);">음소거 해제</button>
                 </div>
                 <div>
                     <button v-if="this.publisher.stream.videoActive" @click="publisher.publishVideo(false);">비디오 중지</button>
                     <button v-else @click="publisher.publishVideo(true);">비디오 시작</button>
+                    <!-- Filter -->
+                    <button @click="onFilter">Filter</button>
                 </div>
             </div>
         </div>
@@ -126,7 +129,7 @@ export default {
 							resolution: '640x480',  // The resolution of your video
 							frameRate: 30,			// The frame rate of your video
 							insertMode: 'APPEND',	// How the video is inserted in the target element 'video-container'
-							mirror: false       	// Whether to mirror your local video or not
+							mirror: false,       	// Whether to mirror your local video or not
 						});
 
 						this.mainStreamManager = publisher;
@@ -185,7 +188,7 @@ export default {
 			return new Promise((resolve, reject) => {
 				axios
 					.post(`${OPENVIDU_SERVER_URL}/openvidu/api/sessions`, JSON.stringify({
-						customSessionId: sessionId,
+						customSessionId: sessionId,                        
 					}), {
 						auth: {
 							username: 'OPENVIDUAPP',
@@ -212,18 +215,37 @@ export default {
 		createToken (sessionId) {
 			return new Promise((resolve, reject) => {
 				axios
-					.post(`${OPENVIDU_SERVER_URL}/openvidu/api/sessions/${sessionId}/connection`, {}, {
-						auth: {
+					.post(`${OPENVIDU_SERVER_URL}/openvidu/api/sessions/${sessionId}/connection`, {
+                        // filter 사용하기 위해 JSON에 kurentoOptions를 날린다.
+                        "kurentoOptions": {
+                            "allowedFilters": ["GStreamerFilter", "FaceOverlayFilter"]
+                        }
+                    }, {
+                        auth: {
 							username: 'OPENVIDUAPP',
 							password: OPENVIDU_SERVER_SECRET,
 						},
 					})
+                    // res.data 확인하는곳
 					.then(response => response.data)
 					.then(data => resolve(data.token))
 					.catch(error => reject(error.response));
 			});
 		},
+        // filter 적용 test
+        onFilter () {
+            this.publisher.stream.applyFilter("GStreamerFilter", { command: "videoflip method=vertical-flip" })
+                .then(() => {
+                    console.log("Video rotated!");
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
 
-	}
+        // whatIs () {
+
+        // }
+    }
 }
 </script>
