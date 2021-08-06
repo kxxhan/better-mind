@@ -76,7 +76,7 @@
           </v-btn>
       </v-row>
     </v-sheet>
-    <PostList/>
+    <PostList :key="renderComponent" @render="deleteRender"/>
     
   </v-container>
 </template>
@@ -116,7 +116,6 @@ export default {
       })
     },
     postSubmit: function () {
-      // 왜 DB 저장은 아이디가 아니라, pk로 되는거지
       axios({
         method: 'post',
         url: `/api/v1/postit/${this.$store.state.lastQuestion.id}`,
@@ -125,9 +124,13 @@ export default {
           userId: this.$store.state.userInfo.userid
         }
       })
-      .then((res) => {
-        console.log(res.data)
+      .then(() => {
+        this.postContent = ''
+        this.renderComponent += 1
       })
+    },
+    deleteRender: function () {
+      this.renderComponent += 1
     }
   },
   computed: {
@@ -141,10 +144,9 @@ export default {
     },
   },
   created: function () {
-    // 포스트잇 리스트 GET API 요청
+    // 포스트잇 질문 리스트 및 답변 GET API 요청
     this.$store.dispatch('getQuestions')
-    // 포스트잇 answer, created_at null 값으로 넘어옴
-    this.$store.dispatch('getAnswer', 10)
+    
   }
 }
 </script>
