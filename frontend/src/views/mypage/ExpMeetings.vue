@@ -22,7 +22,7 @@
                 height="250px"
                 src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
               >
-                <v-card-title>프로그램 이미지</v-card-title>
+                <v-card-title>{{ program.category }}</v-card-title>
               </v-img>
 
               <v-card-subtitle class="pb-0 text-subtitle-1">
