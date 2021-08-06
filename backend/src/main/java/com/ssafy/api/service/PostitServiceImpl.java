@@ -48,6 +48,7 @@ public class PostitServiceImpl implements PostitService {
 		PostitGetRes p = new PostitGetRes();
 		p.setId(question.getId());
 		p.setContent(question.getContent());
+		p.setCreated_at(question.getCreated_at());
 		List<Postit_Answer> alist = answerRepository.findByPostitquestion_id(question.getId()).get();
 		if(alist != null) {
 			List<AnswerPostReq> answers = new ArrayList<>();
@@ -56,8 +57,10 @@ public class PostitServiceImpl implements PostitService {
 				a.setUserId(k.getUser().getUserid());
 				a.setContent(k.getContent());
 				a.setCreated_at(k.getCreated_at());
+				a.setId(k.getId());
 				answers.add(a);
 			}
+			p.setAnswer(answers);
 		}
 		return p;
 	}
@@ -112,6 +115,7 @@ public class PostitServiceImpl implements PostitService {
 			resp = new QuestionPostReq();
 			resp.setId(q.getId());
 			resp.setContent(q.getContent());
+			resp.setCreated_at(q.getCreated_at());
 			copy.add(resp);
 		}
 		return copy;
