@@ -54,24 +54,26 @@
         </div>
         <div>
           <!-- Chat Send-->
-          <form @submit.prevent="sendMessage(msg)" action="#">
+          <!-- <form @submit.prevent="sendMessage(msg)" action="#">
             <input type="text" v-model="msg">
             <button type="submit">전송</button>
-          </form>
+          </form> -->
         </div>
         <div>
           <!-- Chat Receive -->
-          <p v-for="c in chatLog" :key="c[1]" >{{ c[0] }}</p>
+          <!-- <p v-for="c in chatLog" :key="c[1]" >{{ c[0] }}</p> -->
         </div>
+        <UserChat :chatLog="chatLog" @sendMessage="sendMessage"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import axios from 'axios';
-  import { OpenVidu } from 'openvidu-browser';
-  import UserVideo from '@/components/videomeeting/UserVideo';
+  import axios from 'axios'
+  import { OpenVidu } from 'openvidu-browser'
+  import UserVideo from '@/components/videomeeting/UserVideo'
+  import UserChat from '@/components/videomeeting/UserChat'
 
   axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -83,6 +85,7 @@
 
     components: {
       UserVideo,
+      UserChat,
     },
 
     data() {
@@ -186,8 +189,7 @@
       },
 
       updateMainVideoStreamManager(stream) {
-        console.log("here", this.publisher)
-        console.log("여기야 여기", this.publisher.stream)
+        console.log("비디오 클릭", this.publisher)
         if (this.mainStreamManager === stream) return;
         this.mainStreamManager = stream;
         console.log("bye")
@@ -215,7 +217,7 @@
           })
       },
 
-      //
+      // chat message 발신
       sendMessage(msg) {
         this.session.signal({
           data: msg,  // Any string (optional)
