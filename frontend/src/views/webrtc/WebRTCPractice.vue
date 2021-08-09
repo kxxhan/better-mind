@@ -52,6 +52,17 @@
           <button @click="onFilter">Filter On / </button>
           <button @click="offFilter">Filter Off</button>
         </div>
+        <div>
+          <!-- Chat Send-->
+          <form @submit.prevent="sendMessage(msg)" action="#">
+            <input type="text" v-model="msg">
+            <button type="submit">전송</button>
+          </form>
+        </div>
+        <div>
+          <!-- Chat Receive -->
+          <p v-for="c in chatLog" :key="c[1]" >{{ c[0] }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -84,6 +95,9 @@
 
         mySessionId: 'SessionA',
         myUserName: 'Participant' + Math.floor(Math.random() * 100),
+
+        // chat
+        chatLog: [],
       }
     },
 
@@ -116,6 +130,13 @@
           console.warn(exception);
         });
 
+        // Chat 수신
+        this.session.on('signal', (event) => {
+          this.chatLog.push([event.data, event.from.connectionId])
+          console.log(this.chatLog)
+          console.log("이벤트", event)
+          console.log("이벤트.데이터", event.data)
+        })
         // --- Connect to the session with a valid user token ---
 
         // 'getToken' method is simulating what your server-side should do.
@@ -192,6 +213,20 @@
           .catch(err => {
             console.error(err)
           })
+      },
+
+      //
+      sendMessage(msg) {
+        this.session.signal({
+          data: msg,  // Any string (optional)
+          to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
+        })
+          .then(() => {
+            console.log('Message successfully sent');
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
 
       /**
