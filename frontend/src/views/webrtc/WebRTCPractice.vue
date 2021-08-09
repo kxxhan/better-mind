@@ -32,8 +32,8 @@
 			</div> -->
       <!-- 세션 참여자 모두를 보여줌 -->
       <div id="video-container" class="col-md-6">
-        <user-video :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)" />
-        <user-video v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub"
+        <UserVideo :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)" />
+        <UserVideo v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub"
           @click.native="updateMainVideoStreamManager(sub)" />
         <!-- <button v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub" @click=subscriber.subscribeToAudio(audioEnabled)></button> -->
       </div>
@@ -71,7 +71,7 @@
 <script>
   import axios from 'axios';
   import { OpenVidu } from 'openvidu-browser';
-  import UserVideo from '@/components/UserVideo';
+  import UserVideo from '@/components/videomeeting/UserVideo';
 
   axios.defaults.headers.post['Content-Type'] = 'application/json';
 
