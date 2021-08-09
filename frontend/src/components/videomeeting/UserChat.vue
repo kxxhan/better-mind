@@ -3,7 +3,7 @@
     <h1>Chat Here</h1>
     <div>
       <form @submit.prevent="chatOccur(msg)" action="#">
-        <input type="text" v-model="msg">
+        <input type="text" v-model="msg" placeholder="chat here">
         <button type="submit">전송</button>
       </form>
     </div>
