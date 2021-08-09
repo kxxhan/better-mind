@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 import Signup from '../views/Signup.vue'
+import Login from '../views/Login.vue'
 import PubActivities from '../views/mypage/PubActivities.vue'
 import PubMeetings from '../views/mypage/PubMeetings.vue'
 import ExpMeetings from '../views/mypage/ExpMeetings.vue'
@@ -32,6 +33,11 @@ const routes = [
     path: '/signup',
     name: 'Signup',
     component: Signup
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
   {
     path: '/mypage/pubactivities',
