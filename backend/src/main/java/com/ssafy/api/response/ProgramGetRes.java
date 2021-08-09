@@ -38,4 +38,6 @@ public class ProgramGetRes {
 	private List<FileDto> files;
 	@ApiModelProperty(name="리뷰")
 	private List<ReviewPostReq> reviews;
+	@ApiModelProperty(name="미팅타입")
+	private String type;
 }
