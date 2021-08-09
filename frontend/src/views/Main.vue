@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <div>
-      <v-img
+      <!-- <v-img
         class="white--text align-end mt-2"
         height="400px"
         src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
@@ -25,7 +25,7 @@
         src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
       >
         <v-card-title>커뮤니티</v-card-title>
-      </v-img>
+      </v-img> -->
     </div>
   </div>
 </template>

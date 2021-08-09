@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12">
         <!-- 상단 네브바 -->
-        <v-toolbar flat app>
+        <v-toolbar flat app style="background-color: transparent !important;">
           <v-toolbar-title
             class="text-uppercase grey--text"
             style="cursor: pointer"
@@ -65,7 +65,7 @@
       
       <!-- 하단 네브바 -->
       <v-col cols="12">
-        <v-toolbar flat>
+        <v-toolbar flat style="background-color: transparent !important;">
           <v-row align="center" justify="center">
             <v-col cols="6" md="3">
               <v-btn text color="grey" :to="{ name : 'PersonalMeeting' }">

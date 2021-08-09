@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);">
     <v-container>
       <NavBar/>
       <v-main class="my-4">
@@ -27,6 +27,6 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style>
 
 </style>
