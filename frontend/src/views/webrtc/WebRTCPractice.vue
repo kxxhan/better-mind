@@ -197,7 +197,7 @@
 
       // filter 적용 test
       onFilter() {
-        this.publisher.stream.applyFilter("GStreamerFilter", { command: "textoverlay textcolor=red text='Embedded text' valignment=top halignment=right font-desc='Cantarell 25'" })
+        this.publisher.stream.applyFilter("GStreamerFilter", { command: "textoverlay text='Embedded text' valignment=top halignment=right font-desc='Cantarell 25'" })
           .then(() => {
             console.log("Video rotated!");
           })
