@@ -52,7 +52,7 @@ public class ProgramServiceImpl implements ProgramService {
 	public Program createProgram(ProgramPostReq programPostReq, MultipartFile[] files) 
 			throws IllegalStateException, IOException {
 		Program program = new Program();
-		program.setUser(userRepository.findByUserid(programPostReq.getUserId()).get());
+		program.setCreateuser(userRepository.findByUserid(programPostReq.getUserId()).get());
 		program.setName(programPostReq.getName());
 		program.setDescription(programPostReq.getDescription());
 		program.setReport(programPostReq.getReport());
@@ -97,7 +97,7 @@ public class ProgramServiceImpl implements ProgramService {
 			resp = new ProgramPostReq();
 			resp.setId(p.getId());
 			resp.setName(p.getName());
-			resp.setUserId(p.getUser().getUserid());
+			resp.setUserId(p.getCreateuser().getUserid());
 			resp.setDescription(p.getDescription());
 			resp.setReport(p.getReport());
 			resp.setPrice(p.getPrice());
@@ -118,11 +118,9 @@ public class ProgramServiceImpl implements ProgramService {
 	@Override
 	public ProgramGetRes getOneProgram(Long id){
 		Program program = repository.findById(id).get();
-//		Long uid = userRepository.findByUserid(userid).get().getId();
 		ProgramGetRes p = new ProgramGetRes();
 		p.setId(program.getId());
-//		System.out.println(program.getId());
-		p.setUserId(program.getUser().getUserid());
+		p.setUserId(program.getCreateuser().getUserid());
 		p.setName(program.getName());
 		p.setDescription(program.getDescription());
 		p.setReport(program.getReport());

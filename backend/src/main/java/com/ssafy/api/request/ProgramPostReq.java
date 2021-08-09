@@ -30,5 +30,6 @@ public class ProgramPostReq {
 	private String time;
 	@ApiModelProperty(name="분류")
 	private String category;
-	
+	@ApiModelProperty(name = "미팅 타입", example = "0->전문가 그룹미팅 , 1->전문가 일대일미팅, 2->자조모임")
+	private String type;	
 }
