@@ -1,7 +1,7 @@
 <template>
 <div v-if="streamManager">
-	<ov-video :stream-manager="streamManager"/>
-	<div><p>{{ clientData }}</p></div>
+	<ov-video :stream-manager="streamManager" class="startSpeaking"/>
+	<div @click="getSpeakingState"><p>{{ clientData }}</p></div>
 </div>
 </template>
 
@@ -17,6 +17,7 @@ export default {
 
 	props: {
 		streamManager: Object,
+		speaking: Boolean
 	},
 
 	computed: {
@@ -32,6 +33,22 @@ export default {
 			const { connection } = this.streamManager.stream;
 			return JSON.parse(connection.data);
 		},
+		getSpeakingState () {
+			console.log(this.speaking)
+		}
 	},
 };
 </script>
+<style>
+  .startSpeaking {
+    border-style: solid;
+    border-width: 2px;
+    border-color: cyan;
+    border-radius: 2em;
+  }
+  .stopSpeaking {
+    border-style: solid;
+    border-width: 2px;
+    border-color: red;
+  }
+</style>

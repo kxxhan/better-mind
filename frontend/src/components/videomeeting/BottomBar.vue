@@ -27,15 +27,15 @@ export default {
   },
 
   methods: {
-    onFilter() {
+    onFilter () {
       this.$emit('onFilter')
     },
-    offFilter() {
+    offFilter () {
       this.$emit('offFilter')
     }
   },
 
-  mounted() {
+  mounted () {
     console.log("Bottom Bar Mounted!!")
   }
 };
