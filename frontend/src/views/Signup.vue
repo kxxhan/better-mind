@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <BackBtn/>
     <v-form
       ref="form"
       v-model="valid"
@@ -126,6 +127,7 @@
 
 <script>
 import axios from 'axios'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'Signup',
@@ -178,6 +180,9 @@ export default {
         v => !!v || 'You must choose one to continue'
       ],
     }
+  },
+  components: {
+    BackBtn,
   },
   methods: {
     submit: function () {

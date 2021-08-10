@@ -1,5 +1,6 @@
 <template>
   <v-container id="program-items">
+    <BackBtn/>
     <!-- 분류 키워드 Chips Group -->
     <v-row justify="center">
       <v-col
@@ -112,6 +113,7 @@
 </template>
 
 <script>
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'ProgramItems',
@@ -123,6 +125,9 @@ export default {
     selectcategories: [],
     selectprograms: []
   }),
+  components: {
+    BackBtn,
+  },
   methods: {
     showDetail: function (program) {     
       this.$router.push({ name: 'ProgramDetail', params: { program_pk: program.id }})

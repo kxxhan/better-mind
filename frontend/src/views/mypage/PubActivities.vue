@@ -1,5 +1,6 @@
 <template>
   <v-container id="pub-activities">
+    <BackBtn/>
     <!-- <v-icon>{{ icons.mdiAccountStar }}</v-icon> -->
     <h1>Mind님의 활동내역</h1>
     <v-spacer></v-spacer>
@@ -153,6 +154,7 @@
 
 <script>
 // import { mdiAccountStar } from '@mdi/js'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'PubActivities',
@@ -183,6 +185,9 @@ export default {
     ],
     lorem: 'Lorem ipsum dolor sit amet, at aliquam vivendum vel, everti delicatissimi cu eos. Dico iuvaret debitis mel an, et cum zril menandri. Eum in consul legimus accusam. Ea dico abhorreant duo, quo illum minimum incorrupte no, nostro voluptaria sea eu. Suas eligendi ius at, at nemore equidem est. Sed in error hendrerit, in consul constituam cum.',
   }),
+  components: {
+    BackBtn,
+  },
 }
 </script>
 

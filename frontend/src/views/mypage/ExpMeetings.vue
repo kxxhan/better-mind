@@ -1,5 +1,6 @@
 <template>
   <v-container id="exp-meetings">
+    <BackBtn/>
     <h1>전문가의 모임 정보</h1>
     <!-- 프로그램 목록 -->
     <v-item-group>
@@ -92,6 +93,7 @@
 
 <script>
 import axios from 'axios'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'ExpMeetings',
@@ -100,6 +102,9 @@ export default {
       dialog: false,
       selectprogram: {},
     }
+  },
+  components: {
+    BackBtn,
   },
   methods: {
     openDetail: function (program) {
