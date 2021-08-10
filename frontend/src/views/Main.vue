@@ -49,7 +49,7 @@
         <v-card-title>커뮤니티</v-card-title>
       </v-img> -->
     </div>
-    <CircleBtn/>
+    <!-- <CircleBtn/> -->
     <Footer/>
   </div>
 </template>
