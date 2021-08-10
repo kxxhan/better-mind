@@ -1,136 +1,144 @@
 <template>
-  <v-container>
-    <BackBtn/>
-    <v-form
-      ref="form"
-      v-model="valid"
-      lazy-validation
-    >
-      <!-- 아이디 -->
-      <v-text-field
-        v-model="credentials.id"
-        :counter="20"
-        :rules="idRules"
-        label="ID"
-        required
-      ></v-text-field>
-      
-      <!-- 패스워드 -->
-      <v-text-field
-        v-model="credentials.password"
-        :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-        :rules="passwordRules"
-        :type="show ? 'text' : 'password'"
-        label="Password"
-        counter
-        required
-        @click:append="show = !show"
-      ></v-text-field>
-      
-      <!-- 패스워드 확인 -->
-      <v-text-field
-        v-model="confirmPassword"
-        :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-        :rules="confirmPasswordRules"
-        :type="show ? 'text' : 'password'"
-        label="Confirm Password"
-        counter
-        required
-        @click:append="show = !show"
-      ></v-text-field>
-
-      <!-- 이메일 -->
-      <v-text-field
-        v-model="credentials.email"
-        :rules="emailRules"
-        label="E-mail"
-        required
-      ></v-text-field>
-
-      <!-- 이름 -->
-      <v-text-field
-        v-model="credentials.name"
-        :rules="nameRules"
-        label="Name"
-        required
-      ></v-text-field>
-
-      <!-- 핸드폰 -->
-      <v-text-field
-        v-model="credentials.phone"
-        :rules="phoneRules"
-        label="Phone Number"
-        :counter="13"
-        hint="ex) 010-1234-5678"
-        required
-      ></v-text-field>
-      
-      <!-- 일반인 / 전문가  -->
-      <v-row>
-        <v-col cols="5">
-          <v-radio-group
-            label="Common or Expert"
-            v-model="credentials.role"
-            row
-            :rules="roleRules"
-            required
-          >
-            <v-radio
-              label="Common User"
-              value="0"
-            ></v-radio>
-            <v-radio
-              label="Expert User"
-              value="1"
-            ></v-radio>
-          </v-radio-group>
-        </v-col>
-        <v-col cols="3" v-if="credentials.role === '1'">
-          <v-text-field
-            v-model="credentials.certificate"
-            label="Expert Certificate Num"
-          ></v-text-field>
-        </v-col>
-      </v-row>
-
-      <!-- 카테고리 -->
-      <v-select
-        v-model="credentials.category"
-        :items="categories"
-        :rules="[v => !!v || 'Category is required']"
-        label="Category"
-        required
-      ></v-select>
-
-      <!-- 약관 동의 -->
-      <v-checkbox
-        v-model="checkbox"
-        :rules="[v => !!v || 'You must agree to continue!']"
-        label="Do you agree?"
-        required
-      ></v-checkbox>
-
-      <v-btn
-        class="mr-4"
-        :disabled="!valid && checkbox"
-        @click="submit"
+  <div>
+    <v-container>
+      <BackBtn/>
+      <v-form
+        ref="form"
+        v-model="valid"
+        lazy-validation
       >
-        submit
-      </v-btn>
+        <!-- 아이디 -->
+        <v-text-field
+          v-model="credentials.id"
+          :counter="20"
+          :rules="idRules"
+          label="ID"
+          required
+        ></v-text-field>
+        
+        <!-- 패스워드 -->
+        <v-text-field
+          v-model="credentials.password"
+          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+          :rules="passwordRules"
+          :type="show ? 'text' : 'password'"
+          label="Password"
+          counter
+          required
+          @click:append="show = !show"
+        ></v-text-field>
+        
+        <!-- 패스워드 확인 -->
+        <v-text-field
+          v-model="confirmPassword"
+          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+          :rules="confirmPasswordRules"
+          :type="show ? 'text' : 'password'"
+          label="Confirm Password"
+          counter
+          required
+          @click:append="show = !show"
+        ></v-text-field>
 
-      <v-btn @click="clear">
-        clear
-      </v-btn>
-    </v-form>
-  </v-container>
+        <!-- 이메일 -->
+        <v-text-field
+          v-model="credentials.email"
+          :rules="emailRules"
+          label="E-mail"
+          required
+        ></v-text-field>
+
+        <!-- 이름 -->
+        <v-text-field
+          v-model="credentials.name"
+          :rules="nameRules"
+          label="Name"
+          required
+        ></v-text-field>
+
+        <!-- 핸드폰 -->
+        <v-text-field
+          v-model="credentials.phone"
+          :rules="phoneRules"
+          label="Phone Number"
+          :counter="13"
+          hint="ex) 010-1234-5678"
+          required
+        ></v-text-field>
+        
+        <!-- 일반인 / 전문가  -->
+        <v-row>
+          <v-col cols="5">
+            <v-radio-group
+              label="Common or Expert"
+              v-model="credentials.role"
+              row
+              :rules="roleRules"
+              required
+            >
+              <v-radio
+                label="Common User"
+                value="0"
+              ></v-radio>
+              <v-radio
+                label="Expert User"
+                value="1"
+              ></v-radio>
+            </v-radio-group>
+          </v-col>
+          <v-col cols="3" v-if="credentials.role === '1'">
+            <v-text-field
+              v-model="credentials.certificate"
+              label="Expert Certificate Num"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <!-- 카테고리 -->
+        <v-select
+          v-model="credentials.category"
+          :items="categories"
+          :rules="[v => !!v || 'Category is required']"
+          label="Category"
+          required
+        ></v-select>
+
+        <!-- 약관 동의 -->
+        <v-checkbox
+          v-model="checkbox"
+          :rules="[v => !!v || 'You must agree to continue!']"
+          label="Do you agree?"
+          required
+        ></v-checkbox>
+
+        <v-btn
+          class="mr-4"
+          :disabled="!valid && checkbox"
+          @click="submit"
+        >
+          submit
+        </v-btn>
+
+        <v-btn @click="clear">
+          clear
+        </v-btn>
+      </v-form>
+    </v-container>
+    <Footer/>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Footer from '@/components/footer/Footer.vue'
 import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'Signup',
+  components: {
+    Footer,
+    BackBtn
+  },
   data: function () {
     return {
       valid: true,
@@ -180,9 +188,6 @@ export default {
         v => !!v || 'You must choose one to continue'
       ],
     }
-  },
-  components: {
-    BackBtn,
   },
   methods: {
     submit: function () {

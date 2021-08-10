@@ -1,45 +1,52 @@
 <template>
-  <v-box class="box">   
-    <v-container class="container"> 
-      <div class="form"> 
-        <h2>LOGIN to BetterMind</h2>
-        <div class="inputBx">
-          <input 
-            v-model="credentials.id"
-            type="text" 
-            required="required"
+  <div>
+    <v-box class="box">   
+      <v-container class="container"> 
+        <div class="form"> 
+          <h2>LOGIN to BetterMind</h2>
+          <div class="inputBx">
+            <input 
+              v-model="credentials.id"
+              type="text" 
+              required="required"
+            >
+            <span>ID</span>
+            <img src="https://www.flaticon.com/svg/static/icons/svg/709/709699.svg" alt="user">
+          </div>
+          <div class="inputBx password">
+            <input 
+              v-model="credentials.password" 
+              id="password-input" 
+              type="password" 
+              name="password" 
+              required="required"
+            >
+            <span>Password</span>
+            <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828471.svg" alt="lock">
+          </div>
+          <div
+            @click="login()" 
+            class="inputBx"
           >
-          <span>ID</span>
-          <img src="https://www.flaticon.com/svg/static/icons/svg/709/709699.svg" alt="user">
+            <input type="submit" value="Log in"> 
+          </div>
+          <p>Don't have an account <a href="#" @click="moveSignup()">Sign up</a></p>
         </div>
-        <div class="inputBx password">
-          <input 
-            v-model="credentials.password" 
-            id="password-input" 
-            type="password" 
-            name="password" 
-            required="required"
-          >
-          <span>Password</span>
-          <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828471.svg" alt="lock">
-        </div>
-        <div
-          @click="login()" 
-          class="inputBx"
-        >
-          <input type="submit" value="Log in"> 
-        </div>
-        <p>Don't have an account <a href="#" @click="moveSignup()">Sign up</a></p>
-      </div>
-    </v-container>    
-  </v-box>
+      </v-container>
+    </v-box>
+    <Footer/>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Footer from '@/components/footer/Footer.vue'
 
 export default {
   name: 'Login',
+  components: {
+    Footer
+  },
   data: function () {
     return {
       dialog: false,

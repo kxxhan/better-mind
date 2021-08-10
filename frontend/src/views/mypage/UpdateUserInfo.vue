@@ -1,99 +1,110 @@
 <template>
-  <v-container id="update-user-info">
-    <BackBtn/>
-    <v-form
-      ref="form"
-      v-model="valid"
-      lazy-validation
-    >
-      <!-- 아이디 -->
-      <v-text-field
-        v-model="credentials.id"
-        :counter="20"
-        :rules="idRules"
-        label="ID"
-        required
-      ></v-text-field>
-
-      <!-- 이메일 -->
-      <v-text-field
-        v-model="credentials.email"
-        :rules="emailRules"
-        label="E-mail"
-        required
-      ></v-text-field>
-
-      <!-- 이름 -->
-      <v-text-field
-        v-model="credentials.name"
-        :rules="nameRules"
-        label="Name"
-        required
-      ></v-text-field>
-
-      <!-- 핸드폰 -->
-      <v-text-field
-        v-model="credentials.phone"
-        :rules="phoneRules"
-        label="Phone Number"
-        :counter="13"
-        hint="ex) 010-1234-5678"
-        required
-      ></v-text-field>
-
-      <!-- 일반인 / 전문가  -->
-      <v-row>
-        <v-col cols="5">
-          <v-text-field
-            v-if="credentials.role == '1'"
-            value="Expert User"
-            label="Common or Expert"
-            readonly
-          ></v-text-field>
-          <v-text-field
-            v-else
-            value="Common User"
-            label="Common or Expert"
-            readonly
-          ></v-text-field>
-        </v-col>
-        <!-- certificate 번호는 넘어오지 않음 (요청필요)-->
-        <v-col cols="3" v-if="credentials.role === '1'">
-          <v-text-field
-            v-model="credentials.certificate"
-            label="Expert Certificate Num"
-            readonly
-          ></v-text-field>
-        </v-col>
-      </v-row>
-
-      <!-- 카테고리 -->
-      <v-select
-        v-model="credentials.category"
-        :items="categories"
-        :rules="[v => !!v || 'Category is required']"
-        label="Category"
-        required
-      ></v-select>
-
-      <v-btn
-        class="mr-4"
-        :disabled="!valid && checkbox"
-        @click="updateInfo"
+  <div>
+    <v-container id="update-user-info">
+      <BackBtn/>
+      <v-form
+        ref="form"
+        v-model="valid"
+        lazy-validation
       >
-        Edit Profile
-      </v-btn>
+        <!-- 아이디 -->
+        <v-text-field
+          v-model="credentials.id"
+          :counter="20"
+          :rules="idRules"
+          label="ID"
+          required
+        ></v-text-field>
 
-    </v-form>
-  </v-container>
+        <!-- 이메일 -->
+        <v-text-field
+          v-model="credentials.email"
+          :rules="emailRules"
+          label="E-mail"
+          required
+        ></v-text-field>
+
+        <!-- 이름 -->
+        <v-text-field
+          v-model="credentials.name"
+          :rules="nameRules"
+          label="Name"
+          required
+        ></v-text-field>
+
+        <!-- 핸드폰 -->
+        <v-text-field
+          v-model="credentials.phone"
+          :rules="phoneRules"
+          label="Phone Number"
+          :counter="13"
+          hint="ex) 010-1234-5678"
+          required
+        ></v-text-field>
+
+        <!-- 일반인 / 전문가  -->
+        <v-row>
+          <v-col cols="5">
+            <v-text-field
+              v-if="credentials.role == '1'"
+              value="Expert User"
+              label="Common or Expert"
+              readonly
+            ></v-text-field>
+            <v-text-field
+              v-else
+              value="Common User"
+              label="Common or Expert"
+              readonly
+            ></v-text-field>
+          </v-col>
+          <!-- certificate 번호는 넘어오지 않음 (요청필요)-->
+          <v-col cols="3" v-if="credentials.role === '1'">
+            <v-text-field
+              v-model="credentials.certificate"
+              label="Expert Certificate Num"
+              readonly
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <!-- 카테고리 -->
+        <v-select
+          v-model="credentials.category"
+          :items="categories"
+          :rules="[v => !!v || 'Category is required']"
+          label="Category"
+          required
+        ></v-select>
+
+        <v-btn
+          class="mr-4"
+          :disabled="!valid && checkbox"
+          @click="updateInfo"
+        >
+          Edit Profile
+        </v-btn>
+
+      </v-form>
+    </v-container>
+    <CircleBtn/>
+    <Footer/>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Footer from '@/components/footer/Footer.vue'
+import CircleBtn from '@/components/footer/CircleBtn.vue'
 import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'UpdateUserInfo',
+  components: {
+    Footer,
+    CircleBtn,
+    BackBtn
+  },
   data: function () {
     return {
       valid: true,
@@ -143,9 +154,6 @@ export default {
         v => !!v || 'You must choose one to continue'
       ],
     }
-  },
-  components: {
-    BackBtn,
   },
   methods: {
     updateInfo: function () {
