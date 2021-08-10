@@ -1,12 +1,13 @@
 <template>
   <v-container id="update-post">
     <BackBtn/>
+    <h1 class="d-flex justify-center">Update Post</h1>
     <v-form
+      class="mt-5"
       ref="form"
       v-model="valid"
       lazy-validation
-    >
-      <div class="text-h6">게시글 수정</div>
+    >      
       <v-text-field
         v-model="title"
         :counter="50"
@@ -34,7 +35,6 @@
 
       <v-btn
         :disabled="!valid"
-        color="success"
         class="mr-4"
         @click="submit"
       >
@@ -42,7 +42,6 @@
       </v-btn>
 
       <v-btn
-        color="warning"
         @click="movePost()"
       >
         Back
@@ -125,6 +124,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.container {
+  padding-left: 100px;
+  padding-right: 100px;
+}
 </style>
