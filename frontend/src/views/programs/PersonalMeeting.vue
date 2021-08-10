@@ -1,8 +1,50 @@
-<template>
+<template>  
   <v-container>
+    <BackBtn/>
+    <h1 class="d-flex justify-center">Personal Counseling</h1>
+  
+    <main class="page-content">
+      <v-col
+        v-for="n in 12"
+        :key="n"
+        cols="12"
+      >
+        <div class="card">
+          <div class="content">
+            <h2 class="title">To The Beach</h2>
+            <p class="copy">Plan your next beach trip with these fabulous destinations</p>
+            <button class="btn">View Trips</button>
+          </div>
+        </div>
+      </v-col>
+
+      <!-- <div class="card">
+        <div class="content">
+          <h2 class="title">To The Beach</h2>
+          <p class="copy">Plan your next beach trip with these fabulous destinations</p>
+          <button class="btn">View Trips</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="content">
+          <h2 class="title">Desert Destinations</h2>
+          <p class="copy">It's the desert you've always dreamed of</p>
+          <button class="btn">Book Now</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="content">
+          <h2 class="title">Explore The Galaxy</h2>
+          <p class="copy">Seriously, straight up, just blast off into outer space today</p>
+          <button class="btn">Book Now</button>
+        </div>
+      </div> -->
+    </main>
+  </v-container>
+  <!-- <v-container>
     <h1>Personal Counseling</h1>
     <BackBtn/>
-    <!-- 전문가 정보 -->
+    전문가 정보
     <v-item-group>
       <v-container>
         <v-row>
@@ -47,7 +89,7 @@
         </v-row>
       </v-container>
     </v-item-group>
-  </v-container>
+  </v-container> -->
 </template>
 
 <script>
@@ -61,6 +103,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+@import '../css/Card.css';
 </style>
