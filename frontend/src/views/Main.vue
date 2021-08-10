@@ -49,11 +49,20 @@
         <v-card-title>커뮤니티</v-card-title>
       </v-img> -->
     </div>
+    <CircleBtn/>
+    <Footer/>
   </div>
 </template>
 
 <script>
-export default {
+import Footer from '@/components/footer/Footer.vue'
+import CircleBtn from '@/components/footer/CircleBtn.vue'
+
+export default {  
+  components: {
+    Footer,
+    CircleBtn
+  },
   methods: {
     movePersonalMeeting: function () {
         this.$router.push({ name: 'PersonalMeeting' })

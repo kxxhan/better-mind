@@ -26,7 +26,6 @@ function parallaxScroll(evt) {
       //Down scroll
       ticking = true;
       if (currentSlideNumber !== totalSlideNumber - 1) {
-        console.log(currentSlideNumber, totalSlideNumber)
         currentSlideNumber++;
         nextItem();
       }
