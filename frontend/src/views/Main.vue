@@ -12,8 +12,6 @@
           <v-col>
             <button class="noselect" @click="moveSelfGroupMeeting()">Self</button>
           </v-col>
-        </v-row>
-        <v-row>
           <v-col>
             <button class="noselect" @click="movePostItems()">Community</button>
           </v-col>
