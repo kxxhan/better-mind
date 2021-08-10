@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-container id="pub-activities">
+      <BackBtn/>
       <!-- <v-icon>{{ icons.mdiAccountStar }}</v-icon> -->
       <h1>Mind님의 활동내역</h1>
       <v-spacer></v-spacer>
@@ -31,7 +32,6 @@
                 <!-- <span><i class="far fa-newspaper fa-3x" style="color:grey;"></i></span> -->
                 <span class="my-4 ms-2 fs-3 fw-bold">My Article</span>
               </div>
-
               <v-expansion-panels popout>
                 <v-expansion-panel
                   v-for="(message, i) in messages"
@@ -159,12 +159,14 @@
 // import { mdiAccountStar } from '@mdi/js'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'PubActivities',
   components: {
     Footer,
-    CircleBtn
+    CircleBtn,
+    BackBtn
   },
   data: () => ({
     // icons: {

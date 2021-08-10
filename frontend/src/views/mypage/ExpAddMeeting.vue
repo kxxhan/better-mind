@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-container id="exp-add-meeting">
+      <BackBtn/>
       <h1>전문가 프로그램 등록 페이지</h1>
       <v-form
         ref="form"
@@ -103,12 +104,14 @@
 import axios from 'axios'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'ExpAddMeeting',
   components: {
     Footer,
-    CircleBtn
+    CircleBtn,
+    BackBtn
   },
   data: () => ({
     valid: true,
@@ -160,7 +163,6 @@ export default {
       v => v.length > 0 || 'Category must be 1 item',
     ],
   }),
-
   methods: {
     addProgram: function () {
       if (this.$refs.form.validate()) {

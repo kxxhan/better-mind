@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-container>
+      <BackBtn/>
       <v-form
         ref="form"
         v-model="valid"
@@ -130,11 +131,13 @@
 <script>
 import axios from 'axios'
 import Footer from '@/components/footer/Footer.vue'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'Signup',
   components: {
     Footer,
+    BackBtn
   },
   data: function () {
     return {

@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-container>
+      <BackBtn/>
       <v-card>
         <v-container>
           <v-row>
@@ -94,12 +95,14 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'SelfGroupMeeting',
   components: {
     Footer,
-    CircleBtn
+    CircleBtn,
+    BackBtn,
   },
   data: () => ({
     category: [
@@ -109,7 +112,6 @@ export default {
     ],
     dummy: ['#우울 #불안', '#성격문제', '#부부 #가족상담', '#분노조절 #대인기피', '#중독 #우울']
   }),
-
 }
 </script>
 

@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-container id="update-user-info">
+      <BackBtn/>
       <v-form
         ref="form"
         v-model="valid"
@@ -95,12 +96,14 @@
 import axios from 'axios'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'UpdateUserInfo',
   components: {
     Footer,
-    CircleBtn
+    CircleBtn,
+    BackBtn
   },
   data: function () {
     return {

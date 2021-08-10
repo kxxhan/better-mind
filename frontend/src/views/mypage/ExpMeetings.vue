@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-container id="exp-meetings">
+      <BackBtn/>
       <h1>전문가의 모임 정보</h1>
       <!-- 프로그램 목록 -->
       <v-item-group>
@@ -98,12 +99,14 @@
 import axios from 'axios'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'ExpMeetings',
   components: {
     Footer,
-    CircleBtn
+    CircleBtn,
+    BackBtn
   },
   data: function () {
     return {

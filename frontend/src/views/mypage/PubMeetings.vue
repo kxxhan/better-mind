@@ -1,5 +1,6 @@
 <template>
   <div>
+    <BackBtn/>
     <v-container id="pub-meetings">
       <v-item-group>
         <v-row>
@@ -46,12 +47,14 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'PubMeetings',
   components: {
     Footer,
-    CircleBtn
+    CircleBtn,
+    BackBtn,
   },
   methods: {
     showDetail: function () {

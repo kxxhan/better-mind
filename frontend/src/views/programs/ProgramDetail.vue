@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-container id="program-detail">
+      <BackBtn/>
       <div>
         <!-- 프로그램 소개 -->
         <v-container>
@@ -81,12 +82,15 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
+// import axios from 'axios'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'ProgramDetail',
   components: {
     Footer,
-    CircleBtn
+    CircleBtn,
+    BackBtn,
   },
   methods: {
     previousPage: function () {

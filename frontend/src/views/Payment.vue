@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <BackBtn/>
     <v-card id="payment">
       <v-card-title>
         <h2>{{ program.name }}</h2>
@@ -50,12 +51,14 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'Payment',
   components: {
     Footer,
-    CircleBtn
+    CircleBtn,
+    BackBtn
   },
   data: function () {
     return {

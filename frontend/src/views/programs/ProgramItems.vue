@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-container id="program-items">
+      <BackBtn/>
       <!-- 분류 키워드 Chips Group -->
       <v-row justify="center">
         <v-col
@@ -118,12 +119,14 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'ProgramItems',
   components: {
     Footer,
-    CircleBtn
+    CircleBtn,
+    BackBtn
   },
   data: () => ({
     category: ['우울', '불안', '성격문제', '애착', 

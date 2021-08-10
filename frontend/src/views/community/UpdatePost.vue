@@ -1,5 +1,6 @@
 <template>
   <v-container id="update-post">
+    <BackBtn/>
     <v-form
       ref="form"
       v-model="valid"
@@ -52,6 +53,7 @@
 
 <script>
 import axios from 'axios'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'UpdatePost',
@@ -83,6 +85,9 @@ export default {
         '가족상담',
       ],
     }
+  },
+  components: {
+    BackBtn,
   },
   methods: {
     submit: function () {
