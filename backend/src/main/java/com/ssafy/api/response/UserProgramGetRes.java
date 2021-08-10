@@ -18,4 +18,7 @@ public class UserProgramGetRes {
 	private List<UserProgramPostReq> users;
 	@ApiModelProperty(name="프로그램 ID")
 	private Long program_id;
+	@ApiModelProperty(name="유저 ID")
+	private Long user_id;
+	
 }

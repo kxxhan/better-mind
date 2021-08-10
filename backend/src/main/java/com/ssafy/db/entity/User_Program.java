@@ -1,5 +1,7 @@
 package com.ssafy.db.entity;
 
+import java.util.Optional;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
