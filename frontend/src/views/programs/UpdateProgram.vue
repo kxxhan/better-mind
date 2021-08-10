@@ -1,107 +1,117 @@
 <template>
-  <v-container id="exp-add-meeting">
-    <h1>전문가 프로그램 등록 페이지</h1>
-    <v-form
-      ref="form"
-      v-model="valid"
-      lazy-validation
-      class="mt-5"
-    >
-      <v-text-field
-        v-model="program.name"
-        :rules="nameRules"
-        label="Name"
-        required
-      ></v-text-field>
-
-      <v-text-field
-        v-model="program.report"
-        :rules="reportRules"
-        label="Program Content"
-        required
-      ></v-text-field>
-
-      <v-text-field
-        v-model="program.description"
-        :rules="descriptionRules"
-        label="Expert Description"
-        required
-      ></v-text-field>
-
-      <!-- 가능하면 캘린더 사용 -->
-      <v-text-field
-        v-model="program.date"
-        :rules="dateRules"
-        label="2021-01-01/2021-12-31"
-        required
-      ></v-text-field> 
-
-      <v-text-field
-        v-model="program.time"
-        :rules="timeRules"
-        label="월, 목/19:30~21:00"
-        required
-      ></v-text-field>  
-
-      <v-text-field
-        v-model="program.count"
-        :rules="countRules"
-        label="Number of participants"
-        required
-      ></v-text-field>   
-      
-      <v-text-field
-        v-model="program.price"
-        :rules="priceRules"
-        label="Price"
-        required
-      ></v-text-field>   
-
-      <!-- 카테고리 -->
-      <v-sheet
-        class="py-4 px-1"
+  <div>
+    <v-container id="exp-add-meeting">
+      <h1>전문가 프로그램 등록 페이지</h1>
+      <v-form
+        ref="form"
+        v-model="valid"
+        lazy-validation
+        class="mt-5"
       >
-        <v-chip-group
-          multiple
-          active-class="primary--text"
+        <v-text-field
+          v-model="program.name"
+          :rules="nameRules"
+          label="Name"
+          required
+        ></v-text-field>
+
+        <v-text-field
+          v-model="program.report"
+          :rules="reportRules"
+          label="Program Content"
+          required
+        ></v-text-field>
+
+        <v-text-field
+          v-model="program.description"
+          :rules="descriptionRules"
+          label="Expert Description"
+          required
+        ></v-text-field>
+
+        <!-- 가능하면 캘린더 사용 -->
+        <v-text-field
+          v-model="program.date"
+          :rules="dateRules"
+          label="2021-01-01/2021-12-31"
+          required
+        ></v-text-field> 
+
+        <v-text-field
+          v-model="program.time"
+          :rules="timeRules"
+          label="월, 목/19:30~21:00"
+          required
+        ></v-text-field>  
+
+        <v-text-field
+          v-model="program.count"
+          :rules="countRules"
+          label="Number of participants"
+          required
+        ></v-text-field>   
+        
+        <v-text-field
+          v-model="program.price"
+          :rules="priceRules"
+          label="Price"
+          required
+        ></v-text-field>   
+
+        <!-- 카테고리 -->
+        <v-sheet
+          class="py-4 px-1"
         >
-          <v-chip
-            v-for="item in category"
-            :key="item"
-            @click="choiceCategory(item)"
+          <v-chip-group
+            multiple
+            active-class="primary--text"
           >
-            {{ item }}
-          </v-chip>
-        </v-chip-group>
-      </v-sheet> 
-      
-      <v-btn
-        :disabled="!valid"
-        color="success"
-        class="mr-4"
-        @click="addProgram"
-      >
-        Submit
-      </v-btn>
+            <v-chip
+              v-for="item in category"
+              :key="item"
+              @click="choiceCategory(item)"
+            >
+              {{ item }}
+            </v-chip>
+          </v-chip-group>
+        </v-sheet> 
+        
+        <v-btn
+          :disabled="!valid"
+          color="success"
+          class="mr-4"
+          @click="addProgram"
+        >
+          Submit
+        </v-btn>
 
-      <v-btn
-        :disabled="!valid"
-        color="warning"
-        class="mr-4"
-        @click="movePost()"
-      >
-        Back
-      </v-btn>
+        <v-btn
+          :disabled="!valid"
+          color="warning"
+          class="mr-4"
+          @click="movePost()"
+        >
+          Back
+        </v-btn>
 
-    </v-form>
-  </v-container>
+      </v-form>
+    </v-container>
+    <CircleBtn/>
+    <Footer/>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Footer from '@/components/footer/Footer.vue'
+import CircleBtn from '@/components/footer/CircleBtn.vue'
 
 export default {
   name: 'UpdateProgram',
+  components: {
+    Footer,
+    CircleBtn
+  },
   data: () => ({
     valid: true,
     category: ['우울', '불안', '성격문제', '애착', 

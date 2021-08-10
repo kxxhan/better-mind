@@ -42,12 +42,21 @@
         </v-btn>
       </v-card-actions>
     </v-card>
+    <CircleBtn/>
+    <Footer/>
   </v-container>
 </template>
 
 <script>
+import Footer from '@/components/footer/Footer.vue'
+import CircleBtn from '@/components/footer/CircleBtn.vue'
+
 export default {
   name: 'Payment',
+  components: {
+    Footer,
+    CircleBtn
+  },
   data: function () {
     return {
       pay_methods: ['card', 'trans', 'vbank', 'phone', 'samsun', 'kpay', 'kakaopay', 'payco', 'lpay', 'ssgpay', 'tosspay', 'cultureland', 'smartculture', 'happymoney'],
@@ -73,7 +82,7 @@ export default {
         buyer_email: this.$store.state.userInfo.email, // 구매자 이메일
       }
       console.log(data)
-      // 결제창 호출
+      // 결제창 호출  
       IMP.request_pay(data, this.callback)
     },
     callback(res) {
