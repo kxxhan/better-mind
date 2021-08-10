@@ -2,7 +2,9 @@
   <div>
     <v-container id="update-user-info">
       <BackBtn/>
+      <h1 class="d-flex justify-center">Edit Profile</h1>
       <v-form
+        class="mt-5"
         ref="form"
         v-model="valid"
         lazy-validation
@@ -179,6 +181,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.container {
+  padding-left: 100px;
+  padding-right: 100px;
+}
 </style>

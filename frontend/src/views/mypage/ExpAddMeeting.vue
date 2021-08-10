@@ -2,12 +2,12 @@
   <div>
     <v-container id="exp-add-meeting">
       <BackBtn/>
-      <h1>전문가 프로그램 등록 페이지</h1>
+      <h1 class="d-flex justify-center">Add Program</h1>
       <v-form
+        class="mt-5"
         ref="form"
         v-model="valid"
         lazy-validation
-        class="mt-5"
       >
         <v-text-field
           v-model="program.name"
@@ -62,6 +62,7 @@
         <!-- 카테고리 -->
         <v-sheet
           class="py-4 px-1"
+          color= transparent
         >
           <v-chip-group
             multiple
@@ -79,7 +80,6 @@
         
         <v-btn
           :disabled="!valid"
-          color="success"
           class="mr-4"
           @click="addProgram"
         >
@@ -87,7 +87,6 @@
         </v-btn>
 
         <v-btn
-          color="error"
           class="mr-4"
           @click="reset"
         >
@@ -190,6 +189,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.container {
+  padding-left: 100px;
+  padding-right: 100px;
+}
 </style>
