@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <BackBtn/>
     <v-card>
       <v-container>
         <v-row>
@@ -88,6 +89,8 @@
 </template>
 
 <script>
+import BackBtn from '@/components/BackBtn.vue'
+
 export default {
   name: 'SelfGroupMeeting',
   data: () => ({
@@ -98,7 +101,9 @@ export default {
     ],
     dummy: ['#우울 #불안', '#성격문제', '#부부 #가족상담', '#분노조절 #대인기피', '#중독 #우울']
   }),
-
+  components: {
+    BackBtn,
+  },
 }
 </script>
 
