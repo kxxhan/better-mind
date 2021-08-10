@@ -49,7 +49,6 @@ export default {
   },
   data: function () {
     return {
-      dialog: false,
       credentials: {
         id: '',
         password: '',
@@ -58,7 +57,6 @@ export default {
   },
   methods: {
     moveSignup: function () {
-      this.dialog = false
       this.$router.push({ name: 'Signup' })
     },
     login: function () {
@@ -68,9 +66,8 @@ export default {
         data: this.credentials,
       })
       .then((res) => {
-        this.dialog = false
         localStorage.setItem('jwt', res.data.accessToken)
-        this.$router.go(0)
+        this.$router.push({ name: 'Main' })
       })
       .catch(() => {
         alert('The id or password is incorrect')
