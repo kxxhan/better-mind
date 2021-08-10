@@ -1,7 +1,6 @@
 <template>
   <div id="main-container" class="container">
     <id id="join" v-if="!session">
-      <div id="img-div"><img src="resources/images/openvidu_grey_bg_transp_cropped.png" /></div>
       <div id="join-dialog" class="jumbotron vertical-center">
         <h1>Join a video session</h1>
         <div class="form-group">
@@ -38,15 +37,15 @@
         <!-- <button v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub" @click=subscriber.subscribeToAudio(audioEnabled)></button> -->
       </div>
       <div>
-        <div>
+        <!-- <div> -->
           <!-- 맨처음 created 단계에서 publisher.stream에 접근하지 못하는 듯 하다. -->
-          <button v-if="this.publisher.stream.audioActive" @click="publisher.publishAudio(false);">음소거</button>
+          <!-- <button v-if="this.publisher.stream.audioActive" @click="publisher.publishAudio(false);">음소거</button>
           <button v-else @click="publisher.publishAudio(true);">음소거 해제</button>
         </div>
         <div>
           <button v-if="this.publisher.stream.videoActive" @click="publisher.publishVideo(false);">비디오 중지</button>
           <button v-else @click="publisher.publishVideo(true);">비디오 시작</button>
-        </div>
+        </div> -->
         <div>
           <!-- Filter -->
           <button @click="onFilter">Filter On / </button>
@@ -63,6 +62,7 @@
           <!-- Chat Receive -->
           <!-- <p v-for="c in chatLog" :key="c[1]" >{{ c[0] }}</p> -->
         </div>
+        <BottomBar :publisher="publisher" @onFilter="onFilter" @offFilter="offFilter"/>
         <UserChat :chatLog="chatLog" @sendMessage="sendMessage"/>
       </div>
     </div>
@@ -73,6 +73,7 @@
   import axios from 'axios'
   import { OpenVidu } from 'openvidu-browser'
   import UserVideo from '@/components/videomeeting/UserVideo'
+  import BottomBar from '@/components/videomeeting/BottomBar'
   import UserChat from '@/components/videomeeting/UserChat'
 
   axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -86,6 +87,7 @@
     components: {
       UserVideo,
       UserChat,
+      BottomBar,
     },
 
     data() {
@@ -150,6 +152,7 @@
 
               // --- Get your own camera stream with the desired properties ---
               console.log("got a token!!!", token)
+              console.log("세션상태확인", this.session)
               let publisher = this.OV.initPublisher(undefined, {
                 audioSource: undefined, // The source of audio. If undefined default microphone
                 videoSource: undefined, // The source of video. If undefined default webcam

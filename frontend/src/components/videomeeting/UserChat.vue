@@ -17,12 +17,12 @@ export default {
 
   data: function () {
     return {
-
+      msg: ''
     }
   },
 
 	props: {
-    chatLog: Object,
+    chatLog: Array,
 	},
 
   methods: {
