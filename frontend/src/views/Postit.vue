@@ -1,5 +1,6 @@
 <template>
   <v-container id="post-it">
+    <BackBtn/>
     <!-- 관리자 질문 등록용 -->
     <v-sheet v-if="isAdmin" class="mx-auto my-5" max-width="1000px">
       <v-row>
@@ -85,12 +86,14 @@
 import axios from 'axios'
 import EditBtn from '@/components/postit/EditBtn.vue'
 import PostList from '@/components/postit/PostList.vue'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'Postit',
   components: {
     EditBtn,
     PostList,
+    BackBtn,
   },
   data: function () {
     return {

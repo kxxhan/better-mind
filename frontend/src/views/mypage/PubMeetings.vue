@@ -1,5 +1,6 @@
 <template>
   <v-container id="pub-meetings">
+    <BackBtn/>
     <v-item-group>
       <v-row>
         <v-col
@@ -40,8 +41,13 @@
 </template>
 
 <script>
+import BackBtn from '@/components/BackBtn.vue'
+
 export default {
   name: 'PubMeetings',
+  components: {
+    BackBtn,
+  },
   methods: {
     showDetail: function () {
       this.$router.push({ name: 'ProgramDetail' })

@@ -1,5 +1,6 @@
 <template>
   <v-container id="program-detail">
+    <BackBtn/>
     <div>
       <!-- 프로그램 소개 -->
       <v-container>
@@ -76,9 +77,13 @@
 
 <script>
 // import axios from 'axios'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'ProgramDetail',
+  components: {
+    BackBtn,
+  },
   methods: {
     previousPage: function () {
       this.$router.push({ name: 'ProgramItems' })

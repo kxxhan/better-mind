@@ -1,5 +1,6 @@
 <template>
   <v-container id="exp-add-meeting">
+    <BackBtn/>
     <h1>전문가 프로그램 등록 페이지</h1>
     <v-form
       ref="form"
@@ -97,6 +98,7 @@
 
 <script>
 import axios from 'axios'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'ExpAddMeeting',
@@ -150,7 +152,9 @@ export default {
       v => v.length > 0 || 'Category must be 1 item',
     ],
   }),
-
+  components: {
+    BackBtn,
+  },
   methods: {
     addProgram: function () {
       if (this.$refs.form.validate()) {

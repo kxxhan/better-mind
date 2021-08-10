@@ -1,5 +1,6 @@
 <template>
   <v-container id="post-detail">
+    <BackBtn/>
     <!-- 게시글 상세내용 -->
     <v-card
       class="mx-auto mb-5"
@@ -58,6 +59,7 @@
 <script>
 import axios from 'axios'
 import Comment from '@/components/community/Comment.vue'
+import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'PostDetail',
@@ -69,6 +71,7 @@ export default {
   },
   components: {
     Comment,
+    BackBtn,
   },
   methods: {
     // 게시글 업데이트 링크 이동

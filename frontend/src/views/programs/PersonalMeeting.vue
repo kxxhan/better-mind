@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <h1>Personal Counseling</h1>
+    <BackBtn/>
     <!-- 전문가 정보 -->
     <v-item-group>
       <v-container>
@@ -50,8 +51,13 @@
 </template>
 
 <script>
+import BackBtn from '@/components/BackBtn.vue'
+
 export default {
   name: 'PersonalMeeting',
+  components: {
+    BackBtn,
+  },
 }
 </script>
 

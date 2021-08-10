@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <BackBtn/>
     <v-card id="payment">
       <v-card-title>
         <h2>{{ program.name }}</h2>
@@ -46,6 +47,8 @@
 </template>
 
 <script>
+import BackBtn from '@/components/BackBtn.vue'
+
 export default {
   name: 'Payment',
   data: function () {
@@ -54,6 +57,9 @@ export default {
       pay_method: '',
       price: 1,
     }
+  },
+  components: {
+    BackBtn,
   },
   methods: {
     onPayment() {

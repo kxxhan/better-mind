@@ -1,5 +1,6 @@
 <template>
   <v-container id="post-items">   
+    <BackBtn/>
     <v-row justify="center">
       <!-- 분류 키워드 Chips Group -->
       <v-col
@@ -133,6 +134,8 @@
 </template>
 
 <script>
+import BackBtn from '@/components/BackBtn.vue'
+
 export default {
   name: 'PostItems',
   data: () => ({
@@ -143,6 +146,9 @@ export default {
     selectCategories: [],
     selectPosts: []
   }),
+  components: {
+    BackBtn,
+  },
   methods: {
     showDetail: function (post) {
       this.$router.push({ name: 'PostDetail', params: { post_pk: post.id }})
