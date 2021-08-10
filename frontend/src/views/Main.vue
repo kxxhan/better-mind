@@ -4,24 +4,24 @@
       <v-container class="body">
         <v-row>
           <v-col>
-            <button class="noselect">One-To-One</button>
+            <button class="noselect" @click="movePersonalMeeting()">One-To-One</button>
           </v-col>
           <v-col>
-            <button class="noselect">Group</button>
+            <button class="noselect" @click="moveProgramItems()">Group</button>
           </v-col>
           <v-col>
-            <button class="noselect">Self</button>
+            <button class="noselect" @click="moveSelfGroupMeeting()">Self</button>
           </v-col>
         </v-row>
         <v-row>
           <v-col>
-            <button class="noselect">Community</button>
+            <button class="noselect" @click="movePostItems()">Community</button>
           </v-col>
           <v-col>
-            <button class="noselect">Post-It</button>
+            <button class="noselect" @click="movePostit()">Post-It</button>
           </v-col>
           <v-col>
-            <button class="noselect">Mine</button>
+            <button class="noselect" @click="movePubMeetings()">Mine</button>
           </v-col>
         </v-row>
       </v-container>
@@ -56,7 +56,26 @@
 
 <script>
 export default {
-
+  methods: {
+    movePersonalMeeting: function () {
+        this.$router.push({ name: 'PersonalMeeting' })
+      },
+    moveProgramItems: function () {
+        this.$router.push({ name: 'ProgramItems' })
+      },
+    moveSelfGroupMeeting: function () {
+        this.$router.push({ name: 'SelfGroupMeeting' })
+      },
+    movePostItems: function () {
+        this.$router.push({ name: 'PostItems' })
+      },
+    movePostit: function () {
+        this.$router.push({ name: 'Postit' })
+      },
+    movePubMeetings: function () {
+        this.$router.push({ name: 'PubMeetings' })
+      },
+  }
 }
 </script>
 
