@@ -31,39 +31,15 @@
 			</div> -->
       <!-- 세션 참여자 모두를 보여줌 -->
       <div id="video-container" class="col-md-6">
-        <UserVideo :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)" />
+        <!-- <UserVideo :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)" :spaking="spaking"/> -->
+        <UserVideo :stream-manager="publisher" :spaking="spaking"/>
         <UserVideo v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub"
           @click.native="updateMainVideoStreamManager(sub)" />
         <!-- <button v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub" @click=subscriber.subscribeToAudio(audioEnabled)></button> -->
       </div>
       <div>
-        <!-- <div> -->
-          <!-- 맨처음 created 단계에서 publisher.stream에 접근하지 못하는 듯 하다. -->
-          <!-- <button v-if="this.publisher.stream.audioActive" @click="publisher.publishAudio(false);">음소거</button>
-          <button v-else @click="publisher.publishAudio(true);">음소거 해제</button>
-        </div>
-        <div>
-          <button v-if="this.publisher.stream.videoActive" @click="publisher.publishVideo(false);">비디오 중지</button>
-          <button v-else @click="publisher.publishVideo(true);">비디오 시작</button>
-        </div> -->
-        <div>
-          <!-- Filter -->
-          <button @click="onFilter">Filter On / </button>
-          <button @click="offFilter">Filter Off</button>
-        </div>
-        <div>
-          <!-- Chat Send-->
-          <!-- <form @submit.prevent="sendMessage(msg)" action="#">
-            <input type="text" v-model="msg">
-            <button type="submit">전송</button>
-          </form> -->
-        </div>
-        <div>
-          <!-- Chat Receive -->
-          <!-- <p v-for="c in chatLog" :key="c[1]" >{{ c[0] }}</p> -->
-        </div>
-        <BottomBar :publisher="publisher" @onFilter="onFilter" @offFilter="offFilter"/>
         <UserChat :chatLog="chatLog" @sendMessage="sendMessage"/>
+        <BottomBar :publisher="publisher" @onFilter="onFilter" @offFilter="offFilter"/>
       </div>
     </div>
   </div>
@@ -103,6 +79,9 @@
 
         // chat
         chatLog: [],
+
+        // speech detection
+        speaking: undefined,
       }
     },
 
@@ -142,6 +121,21 @@
           console.log("이벤트", event)
           console.log("이벤트.데이터", event.data)
         })
+        
+        // Speech Detection 근데 이게 publisher만 된다는데 여러 유저랑 확인해서 해봐야 할 듯 한데
+        this.session.on('publisherStartSpeaking', (event) => {
+          console.log('User ' + event.connection.connectionId + ' start speaking');
+          this.speaking = true
+          console.log('Now spaking state is', this.speaking)
+        });
+
+        // Speech Stop Detection
+        this.session.on('publisherStopSpeaking', (event) => {
+          console.log('User ' + event.connection.connectionId + ' stop speaking');
+          this.speaking = false
+          console.log('Now spaking state is', this.speaking)
+        });
+
         // --- Connect to the session with a valid user token ---
 
         // 'getToken' method is simulating what your server-side should do.
