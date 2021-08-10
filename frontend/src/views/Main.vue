@@ -4,22 +4,40 @@
       <v-container class="body">
         <v-row>
           <v-col>
-            <button class="noselect" @click="movePersonalMeeting()">One-To-One</button>
+            <button class="noselect" @click="movePersonalMeeting()">
+              <v-icon x-large>mdi-human-greeting</v-icon>
+              <p>One-To-One</p> 
+            </button>
           </v-col>
           <v-col>
-            <button class="noselect" @click="moveProgramItems()">Group</button>
+            <button class="noselect" @click="moveProgramItems()">
+              <v-icon x-large>mdi-account-group-outline</v-icon>
+              <p>Group</p>               
+            </button>
           </v-col>
           <v-col>
-            <button class="noselect" @click="moveSelfGroupMeeting()">Self</button>
+            <button class="noselect" @click="moveSelfGroupMeeting()">
+              <v-icon x-large>mdi-account-multiple-plus</v-icon>
+              <p>Self</p>  
+            </button>
           </v-col>
           <v-col>
-            <button class="noselect" @click="movePostItems()">Community</button>
+            <button class="noselect" @click="movePostItems()">
+              <v-icon x-large>mdi-tooltip-text-outline</v-icon>
+              <p>Community</p>              
+            </button>
           </v-col>
           <v-col>
-            <button class="noselect" @click="movePostit()">Post-It</button>
+            <button class="noselect" @click="movePostit()">
+              <v-icon x-large>mdi-sticker-emoji</v-icon>
+              <p>Post-It</p>
+            </button>
           </v-col>
           <v-col>
-            <button class="noselect" @click="movePubMeetings()">Mine</button>
+            <button class="noselect" @click="movePubMeetings()">
+              <v-icon x-large>mdi-heart-plus-outline</v-icon>
+              <p>Mine</p>               
+            </button>
           </v-col>
         </v-row>
       </v-container>
