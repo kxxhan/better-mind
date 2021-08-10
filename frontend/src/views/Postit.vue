@@ -2,8 +2,10 @@
   <div>
     <v-container id="post-it">
       <BackBtn/>
+      <h1 class="d-flex justify-center">Post it</h1>
+
       <!-- 관리자 질문 등록용 -->
-      <v-sheet v-if="isAdmin" class="mx-auto my-5" max-width="1000px">
+      <v-sheet v-if="isAdmin" class="mx-auto my-5" max-width="1000px" color="transparent">
         <v-row>
           <v-text-field
             v-model="question"
@@ -25,60 +27,39 @@
       </v-sheet>
 
       <!-- 오늘의 질문 -->
-      <v-card class="mx-auto" max-width="1000px">
+      <v-card class="mx-auto" max-width="1000px" rounded="lg" color="transparent" outlined>
         <div>
-          <p class="text-h4 text-center pt-8">{{ this.$store.state.lastQuestion.content }}</p>
+          <p class="text-center pt-8 td-question">{{ this.$store.state.lastQuestion.content }}</p>
         </div>
         
         <div class="d-flex justify-center">
           <v-btn
             icon
             @click="show = true"
+            disabled
           >
             <v-icon>mdi-chevron-down</v-icon>
           </v-btn>
         </div>
-
-        <v-expand-transition>
-          <v-card 
-            v-if="show" 
-            class="transition-fast-in-fast-out v-card--reveal" 
-            style="height: 100%;"
-          >
-            <div>
-              <p class="text-h5 text-center pt-8">인생은 고기서 고기다. <span class="text-subtitle-1 font-italic text--disabled">&nbsp;&nbsp;김준현</span></p>
-            </div>
-            <div class="d-flex justify-center">
-              <v-btn
-                icon
-                @click="show = false"
-              >
-                <v-icon>mdi-chevron-up</v-icon>
-              </v-btn>
-            </div>
-          </v-card>
-        </v-expand-transition>
       </v-card>
     
       <!-- 포스트잇 작성란 -->
-      <v-sheet class="mx-auto mt-10" max-width="800px">
+      <v-sheet class="mx-auto mt-10" max-width="800px" color="transparent">
         <v-row>
           <v-text-field
-            v-model="question"
-            prepend-icon="mdi-chat-question"
-            outlined 
+            v-model="postContent"
             clearable
             required
           ></v-text-field>
           <v-btn
             text
             x-large
-            @click="submit"
+            @click="postSubmit"
           >
             Submit
           </v-btn>
 
-          <EditBtn :key="renderComponent"/>
+          <EditBtn v-if="isAdmin" :key="renderComponent"/>
         </v-row>
       </v-sheet>
       <PostList :key="renderComponent" @render="deleteRender"/>
@@ -165,10 +146,21 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: 'MapoFlowerIsland';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.td-question {
+  font-family: 'MapoFlowerIsland';
+  font-size: 32px;
+}
 .v-card--reveal {
   bottom: 0;
   opacity: 1 !important;
   position: absolute;
   width: 100%;
 }
+
 </style>

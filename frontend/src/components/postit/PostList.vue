@@ -9,26 +9,29 @@
           sm="6"
           md="4"
           lg="3"
+          xl="2"
         >
-          <v-card class="d-flex flex-column justify-space-around" min-height="260px" max-width="260px" min-width="260px">
-            <v-card flat class="d-flex justify-space-between align-center" min-height="36px">
-              <div>
-                <span class="pl-5">{{ answer.userId }}</span>
-              </div>
-              <div >
-                <span class="pr-3">10분 전</span>
-                <v-btn v-show="answer.userId == userInfo.userid" icon @click="deleteComment(answer)">
-                  <v-icon>mdi-window-close</v-icon>
-                </v-btn>
-              </div>
+          <div class="postit">
+            <v-card class="d-flex flex-column justify-space-between" min-height="235px" max-width="235px" min-width="235px" color="transparent" outlined>
+              <v-card flat class="d-flex justify-space-between align-center" min-height="36px" color="transparent">
+                <div class="pt-1">
+                  <span class="pl-5">{{ answer.userId }}</span>
+                </div>
+                <div class="pt-3">
+                  <span class="pr-3">10분 전</span>
+                  <v-btn v-show="answer.userId == userInfo.userid" icon @click="deleteComment(answer)">
+                    <v-icon>mdi-window-close</v-icon>
+                  </v-btn>
+                </div>
+              </v-card>
+              <v-card flat color="transparent">
+                <p class="text-center">{{ answer.content }}</p>
+              </v-card>
+              <v-card flat color="transparent">
+                <p></p>
+              </v-card>
             </v-card>
-            <v-card flat>
-              <p class="text-center">{{ answer.content }}</p>
-            </v-card>
-            <v-card flat>
-              <p></p>
-            </v-card>
-          </v-card>
+          </div>          
         </v-col>
       </v-row>
     </v-container>
@@ -62,6 +65,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+@import '../css/PostList.css';
 </style>
