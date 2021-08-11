@@ -47,12 +47,16 @@
         Back
       </v-btn>
     </v-form>
+    <CircleBtn/>
+    <Footer/>
   </v-container>
 </template>
 
 <script>
 import axios from 'axios'
 import BackBtn from '@/components/BackBtn.vue'
+import Footer from '@/components/footer/Footer.vue'
+import CircleBtn from '@/components/footer/CircleBtn.vue'
 
 export default {
   data: () => ({
@@ -84,6 +88,8 @@ export default {
   }),
   components: {
     BackBtn,
+    Footer,
+    CircleBtn,
   },
   methods: {
     submit () {

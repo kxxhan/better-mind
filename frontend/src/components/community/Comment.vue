@@ -1,25 +1,22 @@
 <template>
   <v-container id="comment">
-    <v-list>
-      <v-subheader>Comment List</v-subheader>
-        <v-divider></v-divider>
-        <v-container>
-          <v-list-item
-            v-for="comment in comments"
-            :key="comment.id"
-          >
-            
-            <v-list-item-content>
-              <v-list-item-subtitle v-text="comment.userId"></v-list-item-subtitle>
-              <v-list-item-title v-text="comment.content"></v-list-item-title>
-            </v-list-item-content>
-            <v-list-item-action v-show="comment.userId === userInfo.userid">
-              <v-btn icon @click="deleteComment(comment)">
-                <v-icon>mdi-window-close</v-icon>
-              </v-btn>
-            </v-list-item-action>
-          </v-list-item>
-        </v-container>
+    <v-list color="transparent">
+      <v-container>
+        <v-list-item
+          v-for="comment in comments"
+          :key="comment.id"
+        >
+          <v-list-item-content>
+            <v-list-item-subtitle v-text="comment.userId"></v-list-item-subtitle>
+            <v-list-item-title v-text="comment.content"></v-list-item-title>
+          </v-list-item-content>
+          <v-list-item-action v-show="comment.userId === userInfo.userid">
+            <v-btn icon @click="deleteComment(comment)">
+              <v-icon>mdi-window-close</v-icon>
+            </v-btn>
+          </v-list-item-action>
+        </v-list-item>
+      </v-container>
     </v-list>
   </v-container>
 </template>

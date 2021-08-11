@@ -32,7 +32,13 @@
         <p class="content-text">정신과 의사 혹은 심리상담사를 찾아 나서기에는 사회적 편견이 우리 발목을 붙잡습니다.</p>
         <p class="content-text">여러분들이 더는 혼자 힘들어하지 않을 수 있도록 "익명 보장 마음 치유 서비스"를 제공합니다.</p>
       </div>
-      <v-btn>이거 버튼임 누르면 로그인하러갈꺼고 로그인해야 서비스 전체를 이용할 수 있음</v-btn>
+      <div class="d-flex justify-center">
+        <v-btn width="20vw" min-height="70px" @click="$router.push({ name: 'Login' })">
+          <span class="text-h6">
+            BETTERMIND 방문하기
+          </span>
+        </v-btn>
+      </div>
     </section>
   </div>
 </template>
