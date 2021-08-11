@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <Header/>
-    <div>
+    <div class="page-content">
       <v-container class="body">
         <v-row>
           <v-col>
@@ -87,6 +87,11 @@ export default {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+}
+.page-content {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .body {
