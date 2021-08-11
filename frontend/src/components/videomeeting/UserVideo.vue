@@ -47,11 +47,6 @@ export default {
   //   isSpeaking: function () {
   //     console.log(`${this.isSpeaking}이 변경되었습니다.`)
   //   }
-	// }
-  mounted: function () {
-    console.log('gasdgadgㅋㄹㅋㄹㅋㄹ', this.isSpeaking)
-  }
-
 };
 </script>
 <style>
