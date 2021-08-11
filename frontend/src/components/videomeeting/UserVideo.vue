@@ -1,6 +1,6 @@
 <template>
 <div v-if="streamManager">
-	<ov-video :stream-manager="streamManager" :class="{startSpeaking: isSpeaking, stopSpeaking: !isSpeaking}"/>
+	<ov-video :stream-manager="streamManager" :class="{startSpeaking: hasSpeaker, stopSpeaking: !hasSpeaker}"/>
 	<div><p>{{ clientData }}</p></div>
 </div>
 </template>
@@ -30,11 +30,19 @@ export default {
   computed: {
     clientData () {
       const { clientData } = this.getConnectionData();
-            // console.log("UserVideo 단",this.streamManager)
       return clientData;
     },
-    isSpeaking () {
-      return this.$store.state.isSpeaking
+    // isSpeaking () {
+    //   return this.$store.state.isSpeaking
+    // },
+    // 이 UV에 있는 사람이 발언중인가?
+    hasSpeaker () {
+      const { clientData } = this.getConnectionData()
+      if (this.$store.state.speakers.includes(clientData)) {
+        return true
+      } else {
+        return false
+      }
     }
   },
 };
