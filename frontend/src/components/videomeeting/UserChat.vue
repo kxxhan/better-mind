@@ -7,7 +7,7 @@
         <button type="submit">전송</button>
       </form>
     </div>
-    <p v-for="chat in chatLog" :key="chat[1]">{{ chat[0] }}</p>
+    <p v-for="chat in chatLog" :key="chat.id">{{ chat[0] }} from {{ chat[1].clientData }}</p>
   </div>  
 </template>
 
