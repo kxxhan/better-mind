@@ -12,7 +12,9 @@ import com.ssafy.db.entity.User_Program;
 
 @Repository
 public interface User_ProgramRepository extends JpaRepository<User_Program, Long>{
-	User findByUser_id(Long user_id);
-	Program findByProgram_id(Long program_id);
+	Optional<User_Program> findByUser_id(Long user_id);
+	Optional<User_Program> findByProgram_id(Long program_id);
+	Optional<User_Program> findByUser_idAndProgram_id(Long user_id,Long program_id);
+	List<Program> findProgramListByUser_id(Long user_id);
 }
 

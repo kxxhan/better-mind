@@ -32,6 +32,8 @@ public class UserRes{
 	private String description;
 	@ApiModelProperty(name = "권한")
 	private String role;
+//	@ApiModelProperty(name = "신청 프로그램")
+//	private Long program_id;
 	
 	public static UserRes of(User user) {
 		UserRes res = new UserRes();
