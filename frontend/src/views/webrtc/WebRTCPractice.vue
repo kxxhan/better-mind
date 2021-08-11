@@ -31,8 +31,7 @@
 			</div> -->
       <!-- 세션 참여자 모두를 보여줌 -->
       <div id="video-container" class="col-md-6">
-        <!-- <UserVideo :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)" :spaking="spaking"/> -->
-        <UserVideo :stream-manager="publisher"/>
+        <UserVideo :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)"/>
         <UserVideo v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub"
           @click.native="updateMainVideoStreamManager(sub)" />
         <!-- <button v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub" @click=subscriber.subscribeToAudio(audioEnabled)></button> -->
@@ -58,6 +57,7 @@
   axios.defaults.headers.post['Content-Type'] = 'application/json';
 
   const OPENVIDU_SERVER_URL = "https://" + location.hostname + ":4443";
+  // const OPENVIDU_SERVER_URL = "https://192.168.0.11:4443";
   const OPENVIDU_SERVER_SECRET = "MY_SECRET";
 
   export default {
@@ -124,14 +124,17 @@
         
         // Speech Detection 근데 이게 publisher만 된다는데 여러 유저랑 확인해서 해봐야 할 듯 한데
         this.session.on('publisherStartSpeaking', (event) => {
-          console.log('User ' + event.connection.connectionId + ' start speaking');
-          this.$store.dispatch('startSpeaking')
+          console.log(event)
+          console.log('User ' + event.connection.data + ' start speaking');
+          // this.$store.dispatch('startSpeaking')
+          this.$store.dispatch('addSpeaker', JSON.parse(event.connection.data).clientData)
         });
 
         // Speech Stop Detection
         this.session.on('publisherStopSpeaking', (event) => {
           console.log('User ' + event.connection.connectionId + ' stop speaking');
-          this.$store.dispatch('stopSpeaking')
+          // this.$store.dispatch('stopSpeaking')
+          this.$store.dispatch('removeSpeaker', JSON.parse(event.connection.data).clientData)
         });
 
         // --- Connect to the session with a valid user token ---

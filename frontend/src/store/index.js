@@ -15,7 +15,8 @@ export default new Vuex.Store({
     questions: [],
     answers : [],
     lastQuestion: [],
-    isSpeaking: false,
+    // isSpeaking: false,
+    speakers: [],
   },
   mutations: {
     //프로그램 관련
@@ -56,16 +57,26 @@ export default new Vuex.Store({
     GET_ANSWER: function (state, answers) {
       state.answers = answers
     },
-    // Speaking 시작
-    START_SPEAKING: function (state) {
-      state.isSpeaking = true
-      console.log(`isSpeaking ${state.isSpeaking}으로 바뀜`)
+    // // Speaking 시작
+    // START_SPEAKING: function (state) {
+    //   state.isSpeaking = true
+    //   console.log(`isSpeaking ${state.isSpeaking}으로 바뀜`)
+    // },
+    // // Speaking 멈춤
+    // STOP_SPEAKING: function (state) {
+    //   state.isSpeaking = false
+    //   console.log(`isSpeaking ${state.isSpeaking}으로 바뀜`)
+    // },
+    // 현재 말하고있는 사람 정보 추가
+    ADD_SPEAKER: function (state, data) {
+      state.speakers.push(data)
+      console.log('speaker 추가된 후 ', state.speakers)
     },
-    // Speaking 멈춤
-    STOP_SPEAKING: function (state) {
-      state.isSpeaking = false
-      console.log(`isSpeaking ${state.isSpeaking}으로 바뀜`)
-    },
+    // 발언 멈춘 사람 정보 삭제
+    REMOVE_SPEAKER: function (state, data) {
+      state.speakers.splice(state.speakers.indexOf(data))
+      console.log('speaker 삭제된 후 ', state.speakers)
+    }
   },
   actions: {
     // 프로그램 리스트
@@ -166,14 +177,22 @@ export default new Vuex.Store({
     //     commit('GET_ANSWER', res.data.answer)
     //   })
     // },
-    // Speaking 시작
-    startSpeaking: function(context) {
-      context.commit('START_SPEAKING')
+    // // Speaking 시작
+    // startSpeaking: function(context) {
+    //   context.commit('START_SPEAKING')
+    // },
+    // // Speaking 멈춤
+    // stopSpeaking: function(context) {
+    //   context.commit('STOP_SPEAKING')
+    // },
+    // 현재 말하고 있는 사람 정보 추가
+    addSpeaker: function(context, data) {
+      context.commit('ADD_SPEAKER', data)
     },
-    // Speaking 멈춤
-    stopSpeaking: function(context) {
-      context.commit('STOP_SPEAKING')
-    },
+    // 발언 멈춘 사람 정보 삭제
+    removeSpeaker: function(context, data) {
+      context.commit('REMOVE_SPEAKER', data)
+    }
   },
   // getters: {
   //   getIsSpeaking() {
