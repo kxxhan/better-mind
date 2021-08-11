@@ -14,8 +14,10 @@ import lombok.Setter;
 @ApiModel("UserProgramResponse")
 public class UserProgramGetRes {
 
-	@ApiModelProperty(name="신청자들")
-	private List<UserProgramPostReq> users;
+	@ApiModelProperty(name = "유저 프로그램 ID", example = "Long")
+	private Long id;
+//	@ApiModelProperty(name="신청자들")
+//	private List<UserProgramPostReq> users;
 	@ApiModelProperty(name="프로그램 ID")
 	private Long program_id;
 	@ApiModelProperty(name="유저 ID")
