@@ -8,8 +8,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.api.request.UserProgramPostReq;
+import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.api.response.UserProgramGetRes;
+import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.User_Program;
+import com.ssafy.db.repository.ProgramRepository;
+import com.ssafy.db.repository.UserRepository;
 import com.ssafy.db.repository.User_ProgramRepository;
 
 @Service("userprogramService")
@@ -17,6 +21,12 @@ public class UserProgramServiceImpl implements UserProgramService {
 
 	@Autowired
 	User_ProgramRepository userprogramRepository;
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired
+	ProgramRepository programRepository;
 	
 	@Override
 	public User_Program createUserProgram(UserProgramPostReq userprogramPostReq) {
@@ -36,8 +46,17 @@ public class UserProgramServiceImpl implements UserProgramService {
 //	public UserProgramGetRes getOneUserProgram(Long id) {
 //		User_Program userprogram = userprogramRepository.findById(id).get();
 //		UserProgramGetRes up = new UserProgramGetRes();
-//		up.setUser_id(userprogram.getUser().getId());
 //		up.setProgram_id(userprogram.getProgram().getId());
+//		List<User> ulist = userRepository.findByProgram_id(userprogram.getProgram().getId());
+//		if(ulist != null) {
+//			List<UserRegisterPostReq> users = new ArrayList<>();
+//			for(User k : ulist) {
+//				UserRegisterPostReq u = new UserRegisterPostReq();
+//				u.setId(k.getId());
+//				users.add(u);
+//			}
+//			up.setUsers(users);
+//		}
 //		return up;
 //	}
 //

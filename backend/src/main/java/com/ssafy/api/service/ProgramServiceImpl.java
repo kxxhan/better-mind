@@ -18,16 +18,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.api.request.ProgramPostReq;
 import com.ssafy.api.request.ReviewPostReq;
+import com.ssafy.api.request.UserProgramPostReq;
 import com.ssafy.api.response.FileDto;
 import com.ssafy.api.response.ProgramGetRes;
 import com.ssafy.db.entity.CategoryEnum;
 import com.ssafy.db.entity.Program;
 import com.ssafy.db.entity.Program_File;
 import com.ssafy.db.entity.Program_Review;
+import com.ssafy.db.entity.User_Program;
 import com.ssafy.db.repository.ProgramRepository;
 import com.ssafy.db.repository.Program_FileRepository;
 import com.ssafy.db.repository.Program_ReviewRepository;
 import com.ssafy.db.repository.UserRepository;
+import com.ssafy.db.repository.User_ProgramRepository;
 
 @Service("ProgramService")
 public class ProgramServiceImpl implements ProgramService {
@@ -43,6 +46,9 @@ public class ProgramServiceImpl implements ProgramService {
 	
 	@Autowired
 	Program_FileRepository fileRepository;
+	
+	@Autowired
+	User_ProgramRepository userprogramRepository;
 	
 	@Value("${server.tomcat.basedir}")
 	private String basedir;
@@ -197,5 +203,21 @@ public class ProgramServiceImpl implements ProgramService {
 		reviewRepository.deleteById(rId);
 		
 	}
+
+//	@Override
+//	public ProgramGetRes getOneProgramUsers(Long id) {
+//		Program program = repository.findById(id).get();
+//		ProgramGetRes p = new ProgramGetRes();
+//		p.setId(program.getId());
+//		List<User_Program> ulist = userprogramRepository.findByProgram_id(program.getId()).get();
+//		if(ulist != null) {
+//			List<UserProgramPostReq> users = new ArrayList<>();
+//			for(User_Program k : ulist) {
+//				UserProgramPostReq up = new UserProgramPostReq();
+//				up.setUser_id(k.getUser().getUserid());
+//				users.add(up);
+//		}
+//		return null;
+//	}
 	
 }

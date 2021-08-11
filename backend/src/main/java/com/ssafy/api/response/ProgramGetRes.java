@@ -3,6 +3,7 @@ package com.ssafy.api.response;
 import java.util.List;
 
 import com.ssafy.api.request.ReviewPostReq;
+import com.ssafy.api.request.UserProgramPostReq;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -40,4 +41,7 @@ public class ProgramGetRes {
 	private List<ReviewPostReq> reviews;
 	@ApiModelProperty(name="미팅타입")
 	private String type;
+	@ApiModelProperty(name="신청자들")
+	private List<UserProgramPostReq> users;
+	
 }
