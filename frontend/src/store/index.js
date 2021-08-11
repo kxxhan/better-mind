@@ -15,6 +15,7 @@ export default new Vuex.Store({
     questions: [],
     answers : [],
     lastQuestion: [],
+    isSpeaking: false,
   },
   mutations: {
     //프로그램 관련
@@ -54,7 +55,17 @@ export default new Vuex.Store({
     // 포스트잇 답변
     GET_ANSWER: function (state, answers) {
       state.answers = answers
-    }
+    },
+    // Speaking 시작
+    START_SPEAKING: function (state) {
+      state.isSpeaking = true
+      console.log(`isSpeaking ${state.isSpeaking}으로 바뀜`)
+    },
+    // Speaking 멈춤
+    STOP_SPEAKING: function (state) {
+      state.isSpeaking = false
+      console.log(`isSpeaking ${state.isSpeaking}으로 바뀜`)
+    },
   },
   actions: {
     // 프로그램 리스트
@@ -154,7 +165,15 @@ export default new Vuex.Store({
     //   .then(res => {
     //     commit('GET_ANSWER', res.data.answer)
     //   })
-    // }
+    // },
+    // Speaking 시작
+    startSpeaking: function(context) {
+      context.commit('START_SPEAKING')
+    },
+    // Speaking 멈춤
+    stopSpeaking: function(context) {
+      context.commit('STOP_SPEAKING')
+    },
   },
   modules: {
   }

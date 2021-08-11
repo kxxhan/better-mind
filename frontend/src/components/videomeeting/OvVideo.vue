@@ -16,7 +16,7 @@ export default {
 
   methods: {
     detectSpeech () {
-      console.log('여기까지는 되는듯')
+      console.log('OvVideo mounted 여기까지는 되는듯')
     }
   },
 
