@@ -58,30 +58,30 @@ public class UserProgramController {
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 	
-	@GetMapping("/{userprogramId}")
-	@ApiOperation(value = "신청 프로그램", notes = "<strong>신청 프로그램</strong>")
-	@ApiResponses({
-		@ApiResponse(code = 200, message = "성공"),
-        @ApiResponse(code = 401, message = "토큰 인증 실패"),
-        @ApiResponse(code = 500, message = "서버 오류")
-	})
-
-	public ResponseEntity<UserProgramGetRes> getOneUserProgram(@PathVariable(name = "userprogramId")Long id) {
-		UserProgramGetRes userprogram = service.getOneUserProgram(id);
-		return ResponseEntity.status(200).body(userprogram);
-	}
-	
-	@GetMapping("/all")
-	@ApiOperation(value = "프로그램 신청자들", notes = "<strong>프로그램 신청자들</strong>")
-	@ApiResponses({
-		@ApiResponse(code = 200, message = "성공"),
-        @ApiResponse(code = 401, message = "토큰 인증 실패"),
-        @ApiResponse(code = 500, message = "서버 오류")
-	})
-	
-	public ResponseEntity<List<UserProgramPostReq>> getAllUserProgram(Pageable pageable) {
-		List<UserProgramPostReq> userprogramList = service.getAllUserProgram(pageable);
-		return ResponseEntity.status(200).body(userprogramList);
-	}
+//	@GetMapping("/{programId}")
+//	@ApiOperation(value = "신청 프로그램", notes = "<strong>신청 프로그램</strong>")
+//	@ApiResponses({
+//		@ApiResponse(code = 200, message = "성공"),
+//        @ApiResponse(code = 401, message = "토큰 인증 실패"),
+//        @ApiResponse(code = 500, message = "서버 오류")
+//	})
+//
+//	public ResponseEntity<UserProgramGetRes> getOneUserProgram(@PathVariable(name = "programId")Long program_id) {
+//		UserProgramGetRes userprogram = service.getOneUserProgram(program_id);
+//		return ResponseEntity.status(200).body(userprogram);
+//	}
+//	
+//	@GetMapping("/all")
+//	@ApiOperation(value = "프로그램 신청자들", notes = "<strong>프로그램 신청자들</strong>")
+//	@ApiResponses({
+//		@ApiResponse(code = 200, message = "성공"),
+//        @ApiResponse(code = 401, message = "토큰 인증 실패"),
+//        @ApiResponse(code = 500, message = "서버 오류")
+//	})
+//	
+//	public ResponseEntity<List<UserProgramPostReq>> getAllUserProgram(Pageable pageable) {
+//		List<UserProgramPostReq> userprogramList = service.getAllUserProgram(pageable);
+//		return ResponseEntity.status(200).body(userprogramList);
+//	}
 	
 }
