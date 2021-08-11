@@ -2,6 +2,7 @@
 // Vue3 관련 설정 파일
 module.exports = {
   devServer: {
+    // https://mc500.tistory.com/196 Invalid Host header 임시방편
     disableHostCheck: true,
     https: true,
     port: 8083,

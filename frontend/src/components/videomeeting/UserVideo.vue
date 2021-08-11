@@ -1,6 +1,6 @@
 <template>
 <div v-if="streamManager">
-	<ov-video :stream-manager="streamManager" class="startSpeaking"/>
+	<ov-video :stream-manager="streamManager" :class="{startSpeaking: isSpeaking, stopSpeaking: !isSpeaking}"/>
 	<div @click="getSpeakingState"><p>{{ clientData }}</p></div>
 </div>
 </template>
@@ -11,13 +11,18 @@ import OvVideo from './OvVideo';
 export default {
 	name: 'UserVideo',
 
+	data: function () {
+		return {
+			isSpeaking: this.$store.state.isSpeaking
+		}
+	},
+
 	components: {
 		OvVideo,
 	},
 
 	props: {
 		streamManager: Object,
-		speaking: Boolean
 	},
 
 	computed: {
@@ -34,9 +39,19 @@ export default {
 			return JSON.parse(connection.data);
 		},
 		getSpeakingState () {
-			console.log(this.speaking)
+			console.log(`isSpaking은 지금 ${this.isSpeaking}`)
 		}
 	},
+
+	// watch: {
+  //   isSpeaking: function () {
+  //     console.log(`${this.isSpeaking}이 변경되었습니다.`)
+  //   }
+	// }
+  mounted: function () {
+    console.log('gasdgadgㅋㄹㅋㄹㅋㄹ', this.isSpeaking)
+  }
+
 };
 </script>
 <style>

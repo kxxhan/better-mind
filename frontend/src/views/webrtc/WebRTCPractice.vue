@@ -38,6 +38,9 @@
         <!-- <button v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub" @click=subscriber.subscribeToAudio(audioEnabled)></button> -->
       </div>
       <div>
+        <button @click="getHost">location.hostname test</button>
+      </div>
+      <div>
         <UserChat :chatLog="chatLog" @sendMessage="sendMessage"/>
         <BottomBar :publisher="publisher" @onFilter="onFilter" @offFilter="offFilter"/>
       </div>
@@ -79,9 +82,7 @@
 
         // chat
         chatLog: [],
-
-        // speech detection
-        speaking: undefined,
+        // speaking: undefined
       }
     },
 
@@ -125,15 +126,17 @@
         // Speech Detection 근데 이게 publisher만 된다는데 여러 유저랑 확인해서 해봐야 할 듯 한데
         this.session.on('publisherStartSpeaking', (event) => {
           console.log('User ' + event.connection.connectionId + ' start speaking');
-          this.speaking = true
-          console.log('Now spaking state is', this.speaking)
+          // this.speaking = true
+          this.$store.dispatch('startSpeaking')
+          // console.log('Now spaking state is', this.speaking)
         });
 
         // Speech Stop Detection
         this.session.on('publisherStopSpeaking', (event) => {
           console.log('User ' + event.connection.connectionId + ' stop speaking');
-          this.speaking = false
-          console.log('Now spaking state is', this.speaking)
+          this.$store.dispatch('stopSpeaking')
+          // this.speaking = false
+          // console.log('Now spaking state is', this.speaking)
         });
 
         // --- Connect to the session with a valid user token ---
@@ -227,6 +230,10 @@
           .catch(error => {
             console.error(error);
           });
+      },
+
+      getHost() {
+        console.log('로케이션.호스트네임 = ', location.hostname)
       },
 
       /**
