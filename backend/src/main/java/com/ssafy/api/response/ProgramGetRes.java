@@ -41,7 +41,7 @@ public class ProgramGetRes {
 	private List<ReviewPostReq> reviews;
 	@ApiModelProperty(name="미팅타입")
 	private String type;
-	@ApiModelProperty(name="신청자들")
-	private List<UserProgramPostReq> users;
+//	@ApiModelProperty(name="신청자들")
+//	private List<UserProgramPostReq> users;
 	
 }

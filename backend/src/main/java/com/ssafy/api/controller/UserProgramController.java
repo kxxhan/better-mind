@@ -17,6 +17,7 @@ import com.ssafy.api.request.UserProgramPostReq;
 import com.ssafy.api.response.UserProgramGetRes;
 import com.ssafy.api.service.UserProgramService;
 import com.ssafy.common.model.response.BaseResponseBody;
+import com.ssafy.db.entity.Program;
 import com.ssafy.db.entity.User_Program;
 
 import io.swagger.annotations.Api;
@@ -58,6 +59,19 @@ public class UserProgramController {
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 	
+	@GetMapping("/programlist/{userId}")
+    @ApiOperation(value = "신청한 프로그램 리스트", notes = "<strong>신청 유저프로그램 리스트</strong>")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 401, message = "토큰 인증 실패"),
+        @ApiResponse(code = 500, message = "서버 오류")
+	})
+	
+    public ResponseEntity<List<Program>> getUserProgramList(@PathVariable Long user_id) {
+        List<Program> pList  = service.getOneUserProgram(user_id);
+        return ResponseEntity.status(200).body(pList);
+    }
+
 //	@GetMapping("/{programId}")
 //	@ApiOperation(value = "신청 프로그램", notes = "<strong>신청 프로그램</strong>")
 //	@ApiResponses({

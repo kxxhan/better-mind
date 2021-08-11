@@ -13,6 +13,7 @@ import com.ssafy.db.entity.CategoryEnum;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.repository.UserRepository;
 import com.ssafy.db.repository.UserRepositorySupport;
+import com.ssafy.db.repository.User_ProgramRepository;
 
 /**
  * 유저 관련 비즈니스 로직 처리를 위한 서비스 구현 정의.
@@ -22,6 +23,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	User_ProgramRepository userprogramRepository;
+	
 	@Autowired
 	UserRepositorySupport userRepositorySupport;
 

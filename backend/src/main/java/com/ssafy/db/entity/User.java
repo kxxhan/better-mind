@@ -31,8 +31,8 @@ public class User extends BaseEntity {
 	private String description;
 	private Enum<CategoryEnum> category;
 
-	@OneToMany(fetch = FetchType.LAZY)
-	private List<User_Program> program;
+//	@OneToMany(fetch = FetchType.LAZY)
+//	private List<User_Program> program;
 	
 	private int point;
 	private String profile_url;

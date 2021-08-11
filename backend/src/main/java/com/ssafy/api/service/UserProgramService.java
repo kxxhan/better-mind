@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.ssafy.api.request.UserProgramPostReq;
 import com.ssafy.api.response.UserProgramGetRes;
+import com.ssafy.db.entity.Program;
 import com.ssafy.db.entity.User_Program;
 
 public interface UserProgramService {
@@ -14,8 +15,9 @@ public interface UserProgramService {
 	
 	void deleteUserProgram(Long id);
 	
-//	UserProgramGetRes getOneUserProgram(Long id);
+//	UserProgramGetRes getOneUserProgram(Long user_id);
 	
 //	List<UserProgramPostReq> getAllUserProgram(Pageable pageable);
 	
+	List<Program> getOneUserProgram(Long user_id);
 }
