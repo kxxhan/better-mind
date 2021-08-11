@@ -32,7 +32,7 @@
       <!-- 세션 참여자 모두를 보여줌 -->
       <div id="video-container" class="col-md-6">
         <!-- <UserVideo :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)" :spaking="spaking"/> -->
-        <UserVideo :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)"/>
+        <UserVideo :stream-manager="publisher"/>
         <UserVideo v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub"
           @click.native="updateMainVideoStreamManager(sub)" />
         <!-- <button v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub" @click=subscriber.subscribeToAudio(audioEnabled)></button> -->
