@@ -10,6 +10,58 @@
         </div>
       </header>
 
+      <v-row class="mt-5">
+        <!-- 분류 키워드 Chips Group -->
+        <v-col
+          cols="10"
+        >
+          <v-sheet
+            color= transparent
+          >
+            <div class="pa-4">
+              <v-chip-group
+                active-class="primary--text"
+                column
+                multiple
+              >
+                <v-chip
+                  large
+                  v-for="item in category"
+                  :key="item"
+                  @click="selectCategory(item)"
+                >
+                  {{ item }}
+                </v-chip>
+              </v-chip-group>
+            </div>
+          </v-sheet>
+        </v-col>
+      </v-row>
+
+      <!-- 선택 카테고리 프로그램 -->
+      <v-row v-if="selectCategories.length">
+        <v-col
+          v-for="program in selectPrograms"
+          :key="program.id"
+          cols="12"
+          md="6"
+        >
+          <!-- 프로그램 카드 -->
+        </v-col>
+      </v-row>
+
+      <!-- 카테고리 미 선택 시 전체 프로그램 렌더링 -->
+      <v-row v-else>
+        <v-col
+          v-for="program in selectPrograms"
+          :key="program.id"
+          cols="12"
+          md="6"
+        >
+          <!-- 프로그램 카드 -->
+        </v-col>
+      </v-row>
+
       <v-row class="my-5">
         <v-col
           v-for="n in 6"
@@ -17,13 +69,6 @@
           cols="12"
           md="6"
         >
-          <!-- <div class="card">
-            <div class="content">
-              <h2 class="title">To The Beach</h2>
-              <p class="copy">Plan your next beach trip with these fabulous destinations</p>
-              <button class="btn">View Trips</button>
-            </div>
-          </div> -->
           <v-card class="mt-4" color="transparent" rounded="lg" outlined>
             <v-row>
               <v-col cols="4" class="ps-6 d-flex flex-column justify-center">
@@ -46,6 +91,7 @@
                 <v-divider></v-divider>
                 <v-card-text class="card-content text-body-1">간단한 프로그램 소개가 작성되는 공간입니다.</v-card-text>
                 <v-card-actions class="pe-6">
+                  <!-- 결제 페이지로 바로 연결 -->
                   <v-btn outlined color="indigo">APPLY</v-btn>
                 </v-card-actions>
               </v-col>
@@ -67,11 +113,43 @@ import CircleBtn from '@/components/footer/CircleBtn.vue'
 
 export default {
   name: 'PersonalMeeting',
+  data: () => ({
+    category: [
+      '일반고민', '취업/진로', '직장', '연애', 
+      '성추행', '대인관계', '외모', 
+      '가족', '학업', '금전', '이별/이혼', 
+      '육아', '중독', '건강', '성격'
+    ],
+    selectCategories: [],
+    selectPrograms: []
+  }),
   components: {
     BackBtn,
     Footer,
     CircleBtn,
   },
+  methods: {
+    registrateProgram: function (program) {
+      this.$router.push({ name: 'Payment', params: { program_pk: program.id }})
+    },
+    // 선택한 카테고리에 해당하는 게시글 필터링
+    selectCategory: function (item) {
+      this.selectPrograms = []
+      if (this.selectCategories.includes(item)){
+        const idx = this.selectCategories.indexOf(item)
+        this.selectCategories.splice(idx, 1)
+      } else {
+        this.selectCategories.push(item)
+      }      
+      for (const category of this.selectCategories) {
+        for (const program of this.$store.state.programlist) {
+            if (program.category === category){
+            this.selectPrograms.push(program)
+          }
+        }
+      }
+    },
+  }
 }
 </script>
 
