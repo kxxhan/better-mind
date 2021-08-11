@@ -15,7 +15,7 @@ public interface UserProgramService {
 	void deleteUserProgram(Long id);
 	
 //	UserProgramGetRes getOneUserProgram(Long id);
-//	
+	
 //	List<UserProgramPostReq> getAllUserProgram(Pageable pageable);
 	
 }
