@@ -117,11 +117,6 @@ header{
 .card-img {
   border-radius: 20px;
 }
-.page-content {
-  padding: 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
 .card-title {
   font-family: 'NEXON Lv1 Gothic OTF Bold' !important;
 }
