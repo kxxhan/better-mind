@@ -156,11 +156,5 @@ export default {
   font-family: 'MapoFlowerIsland';
   font-size: 32px;
 }
-.v-card--reveal {
-  bottom: 0;
-  opacity: 1 !important;
-  position: absolute;
-  width: 100%;
-}
 
 </style>

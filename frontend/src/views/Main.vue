@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <Header/>
-    <div>
+    <div class="page-layout">
       <v-container class="body">
         <v-row>
           <v-col>
@@ -88,7 +88,11 @@ export default {
 	padding: 0;
 	box-sizing: border-box;
 }
-
+.page-layout {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 .body {
 	height: 70vh;
 	overflow: hidden;
@@ -97,7 +101,6 @@ export default {
 	align-items: center;
 	justify-content: center;
 }
-
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -107,7 +110,6 @@ export default {
   user-select: none;
 	-webkit-tap-highlight-color: transparent;
 }
-
 .main-button {
 	width: 150px;
 	height: 150px;
@@ -123,13 +125,11 @@ export default {
 	background-position: right;
 	transition: 1s;
 }
-
 .main-button:hover {
 	background-position: left;
 	color: rgb(238, 177, 219);
 	box-shadow: inset 0px 3px 5px rgba(255,255,255,1), 0px 0px 10px rgba(0,0,0,0.25);
 }
-
 .main-button:focus {
 	outline: none;
 }
