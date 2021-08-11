@@ -1,71 +1,47 @@
 <template>
   <div id="main">
+    <Header/>
     <div>
       <v-container class="body">
         <v-row>
           <v-col>
-            <button class="noselect" @click="movePersonalMeeting()">
+            <button class="main-button noselect" @click="movePersonalMeeting()">
               <v-icon x-large>mdi-human-greeting</v-icon>
               <p>One-To-One</p> 
             </button>
           </v-col>
           <v-col>
-            <button class="noselect" @click="moveProgramItems()">
+            <button class="main-button noselect" @click="moveProgramItems()">
               <v-icon x-large>mdi-account-group-outline</v-icon>
               <p>Group</p>               
             </button>
           </v-col>
           <v-col>
-            <button class="noselect" @click="moveSelfGroupMeeting()">
+            <button class="main-button noselect" @click="moveSelfGroupMeeting()">
               <v-icon x-large>mdi-account-multiple-plus</v-icon>
               <p>Self</p>  
             </button>
           </v-col>
           <v-col>
-            <button class="noselect" @click="movePostItems()">
+            <button class="main-button noselect" @click="movePostItems()">
               <v-icon x-large>mdi-tooltip-text-outline</v-icon>
               <p>Community</p>              
             </button>
           </v-col>
           <v-col>
-            <button class="noselect" @click="movePostit()">
+            <button class="main-button noselect" @click="movePostit()">
               <v-icon x-large>mdi-sticker-emoji</v-icon>
               <p>Post-It</p>
             </button>
           </v-col>
           <v-col>
-            <button class="noselect" @click="movePubMeetings()">
+            <button class="main-button noselect" @click="movePubMeetings()">
               <v-icon x-large>mdi-heart-plus-outline</v-icon>
               <p>Mine</p>               
             </button>
           </v-col>
         </v-row>
       </v-container>
-      <!-- <v-img
-        class="white--text align-end mt-2"
-        height="400px"
-        src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
-      >
-        <v-card-title>환영인사</v-card-title>
-      </v-img>
-    </div>
-    <div>
-      <v-img
-        class="white--text align-end mt-2"
-        height="500px"
-        src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
-      >
-        <v-card-title>그룹테라피 - 전문가모임, 자조모임 소개 글</v-card-title>
-      </v-img>
-    </div>
-    <div>
-      <v-img
-        class="white--text align-end mt-2"
-        height="250px"
-        src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
-      >
-        <v-card-title>커뮤니티</v-card-title>
-      </v-img> -->
     </div>
     <CircleBtn/>
     <Footer/>
@@ -75,11 +51,13 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
+import Header from '@/components/header/Header.vue'
 
 export default {  
   components: {
     Footer,
-    CircleBtn
+    CircleBtn,
+    Header
   },
   methods: {
     movePersonalMeeting: function () {
@@ -112,7 +90,7 @@ export default {
 }
 
 .body {
-	height: 100vh;
+	height: 70vh;
 	overflow: hidden;
 	display: flex;
   justify-content: center;
@@ -130,7 +108,7 @@ export default {
 	-webkit-tap-highlight-color: transparent;
 }
 
-button {
+.main-button {
 	width: 150px;
 	height: 150px;
 	cursor: pointer;
@@ -146,13 +124,13 @@ button {
 	transition: 1s;
 }
 
-button:hover {
+.main-button:hover {
 	background-position: left;
 	color: rgb(238, 177, 219);
 	box-shadow: inset 0px 3px 5px rgba(255,255,255,1), 0px 0px 10px rgba(0,0,0,0.25);
 }
 
-button:focus {
+.main-button:focus {
 	outline: none;
 }
 </style>
