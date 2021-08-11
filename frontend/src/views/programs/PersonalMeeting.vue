@@ -1,5 +1,5 @@
 <template>
-  <div class="page-content">
+  <div class="page-layout">
     <v-container>
       <BackBtn/>
       <h1 class="d-flex justify-center">Personal Counseling</h1>
@@ -90,7 +90,11 @@ export default {
     font-weight: normal;
     font-style: normal;
 }
-
+.page-layout {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 header{
   background:#ededed;
 }
@@ -118,11 +122,9 @@ header{
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .card-title {
   font-family: 'NEXON Lv1 Gothic OTF Bold' !important;
 }
-
 .card-content {
   font-family: 'NEXON Lv1 Gothic OTF' !important;
 }
