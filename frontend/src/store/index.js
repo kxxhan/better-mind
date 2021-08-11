@@ -175,6 +175,11 @@ export default new Vuex.Store({
       context.commit('STOP_SPEAKING')
     },
   },
+  // getters: {
+  //   getIsSpeaking() {
+  //     return this.state.isSpeaking
+  //   }
+  // },
   modules: {
   }
 })
