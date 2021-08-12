@@ -32,7 +32,7 @@ public class UserProgramServiceImpl implements UserProgramService {
 	@Override
 	public User_Program createUserProgram(UserProgramPostReq userprogramPostReq) {
 		User_Program userprogram = new User_Program();
-//		userprogram.setUser(userprogramPostReq.getUser_id());
+//		userprogram.setUser(userprogramPostReq.getUser_id()); //왜 null값들어감 ㅡㅡ?
 //		userprogram.setProgram(userprogramPostReq.getProgram_id());
 //		userprogram.setProgram(userprogramRepository.findByProgram_id(userprogramPostReq.getProgram_id()));
 		userprogram = userprogramRepository.save(userprogram);
@@ -44,42 +44,19 @@ public class UserProgramServiceImpl implements UserProgramService {
 		userprogramRepository.deleteById(id);
 	}
 
-	@Override
-	public List<Program> getOneUserProgram(Long user_id) {
-		return userprogramRepository.findProgramListByUser_id(user_id);
-	}
-
 //	@Override
-//	public UserProgramGetRes getOneUserProgram(Long user_id) {
+//	public List<UserProgramPostReq> getOneUserProgram(Pageable pageable, Long user_id) {
 //		Long uid = userprogramRepository.findByUser_id(user_id).get().getId();
-////		User_Program userprogram = userprogramRepository.findById(id).get();
-//		UserProgramGetRes up = new UserProgramGetRes();
-//		up.setProgram_id(userprogram.getProgram().getId());
-//		List<User> ulist = userRepository.findByProgram_id(userprogram.getProgram().getId());
-//		if(ulist != null) {
-//			List<UserRegisterPostReq> users = new ArrayList<>();
-//			for(User k : ulist) {
-//				UserRegisterPostReq u = new UserRegisterPostReq();
-//				u.setId(k.getId());
-//				users.add(u);
-//			}
-//			up.setUsers(users);
-//		}
-//		return up;
-//	}
-//
-//	@Override
-//	public List<UserProgramPostReq> getAllUserProgram(Pageable pageable) {
 //		List<User_Program> list = userprogramRepository.findAll(pageable).getContent();
 //		List<UserProgramPostReq> copy = new ArrayList<>();
 //		UserProgramPostReq resp;
 //		for(User_Program up : list) {
 //			resp = new UserProgramPostReq();
-//			resp.setUser_id(up.getUser().getId());
 //			resp.setProgram_id(up.getProgram().getId());
 //			copy.add(resp);
 //		}
 //		return copy;
+////		return userprogramRepository.findProgramListByUser_id(user_id);
 //	}
 
 }
