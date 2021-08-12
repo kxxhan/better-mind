@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
 			List<UserProgramPostReq> programs = new ArrayList<>();
 			for(User_Program k : uplist) {
 				UserProgramPostReq l = new UserProgramPostReq();
-				l.setProgram_id(k.getUser().getId());
+				l.setProgram_id(k.getProgram().getId());
 				programs.add(l);
 			}
 			u.setPrograms(programs);
