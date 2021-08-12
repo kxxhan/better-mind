@@ -177,4 +177,8 @@ export default {
 .my-font-reg {
   font-family: 'NEXON Lv1 Gothic OTF' !important;
 }
+#post-detail {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 </style>
