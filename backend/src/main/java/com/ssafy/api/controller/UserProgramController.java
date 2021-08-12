@@ -1,5 +1,6 @@
 package com.ssafy.api.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.yaml.snakeyaml.representer.BaseRepresenter;
 
 import com.ssafy.api.request.UserProgramPostReq;
 import com.ssafy.api.response.UserProgramGetRes;
@@ -42,7 +44,15 @@ public class UserProgramController {
 	})
 	
 	public ResponseEntity<BaseResponseBody> createUserProgram(@RequestBody UserProgramPostReq userprogramPostReq) {
-		User_Program userprogram = service.createUserProgram(userprogramPostReq);
+		try {
+			User_Program userprogram = service.createUserProgram(userprogramPostReq);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			return ResponseEntity.status(500).body(BaseResponseBody.of(500, "fail"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return ResponseEntity.status(500).body(BaseResponseBody.of(500, "fail"));
+		}
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 	
@@ -58,44 +68,5 @@ public class UserProgramController {
 		service.deleteUserProgram(id);
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
-	
-//	@GetMapping("/{user_id}")
-//    @ApiOperation(value = "신청한 프로그램 리스트", notes = "<strong>신청 유저프로그램 리스트</strong>")
-//	@ApiResponses({
-//		@ApiResponse(code = 200, message = "성공"),
-//        @ApiResponse(code = 401, message = "토큰 인증 실패"),
-//        @ApiResponse(code = 500, message = "서버 오류")
-//	})
-//	
-//    public ResponseEntity<List<UserProgramPostReq>> getUserProgramList(Pageable pageable, @PathVariable Long user_id) {
-//        List<UserProgramPostReq> upList  = service.getOneUserProgram(pageable, user_id);
-//        return ResponseEntity.status(200).body(upList);
-//    }
-
-//	@GetMapping("/{programId}")
-//	@ApiOperation(value = "신청 프로그램", notes = "<strong>신청 프로그램</strong>")
-//	@ApiResponses({
-//		@ApiResponse(code = 200, message = "성공"),
-//        @ApiResponse(code = 401, message = "토큰 인증 실패"),
-//        @ApiResponse(code = 500, message = "서버 오류")
-//	})
-//
-//	public ResponseEntity<UserProgramGetRes> getOneUserProgram(@PathVariable(name = "programId")Long program_id) {
-//		UserProgramGetRes userprogram = service.getOneUserProgram(program_id);
-//		return ResponseEntity.status(200).body(userprogram);
-//	}
-//	
-//	@GetMapping("/all")
-//	@ApiOperation(value = "프로그램 신청자들", notes = "<strong>프로그램 신청자들</strong>")
-//	@ApiResponses({
-//		@ApiResponse(code = 200, message = "성공"),
-//        @ApiResponse(code = 401, message = "토큰 인증 실패"),
-//        @ApiResponse(code = 500, message = "서버 오류")
-//	})
-//	
-//	public ResponseEntity<List<UserProgramPostReq>> getAllUserProgram(Pageable pageable) {
-//		List<UserProgramPostReq> userprogramList = service.getAllUserProgram(pageable);
-//		return ResponseEntity.status(200).body(userprogramList);
-//	}
 	
 }
