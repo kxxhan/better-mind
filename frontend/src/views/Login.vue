@@ -67,6 +67,7 @@ export default {
       })
       .then((res) => {
         localStorage.setItem('jwt', res.data.accessToken)
+        this.$store.dispatch('getMyInfo')
         this.$router.push({ name: 'Main' })
       })
       .catch(() => {
