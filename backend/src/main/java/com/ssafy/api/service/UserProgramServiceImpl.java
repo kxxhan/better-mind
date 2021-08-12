@@ -1,17 +1,11 @@
 package com.ssafy.api.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.api.request.UserProgramPostReq;
-import com.ssafy.api.request.UserRegisterPostReq;
-import com.ssafy.api.response.UserProgramGetRes;
-import com.ssafy.db.entity.Program;
-import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.User_Program;
 import com.ssafy.db.repository.ProgramRepository;
 import com.ssafy.db.repository.UserRepository;
@@ -30,7 +24,7 @@ public class UserProgramServiceImpl implements UserProgramService {
 	ProgramRepository programRepository;
 	
 	@Override
-	public User_Program createUserProgram(UserProgramPostReq userprogramPostReq) {
+	public User_Program createUserProgram(UserProgramPostReq userprogramPostReq) throws IllegalStateException, IOException{
 		User_Program userprogram = new User_Program();
 		userprogram.setUser(userprogramPostReq.getUser_id()); //왜 null값들어감 ㅡㅡ?
 		userprogram.setProgram(userprogramPostReq.getProgram_id());
@@ -43,20 +37,5 @@ public class UserProgramServiceImpl implements UserProgramService {
 	public void deleteUserProgram(Long id) {
 		userprogramRepository.deleteById(id);
 	}
-
-//	@Override
-//	public List<UserProgramPostReq> getOneUserProgram(Pageable pageable, Long user_id) {
-//		Long uid = userprogramRepository.findByUser_id(user_id).get().getId();
-//		List<User_Program> list = userprogramRepository.findAll(pageable).getContent();
-//		List<UserProgramPostReq> copy = new ArrayList<>();
-//		UserProgramPostReq resp;
-//		for(User_Program up : list) {
-//			resp = new UserProgramPostReq();
-//			resp.setProgram_id(up.getProgram().getId());
-//			copy.add(resp);
-//		}
-//		return copy;
-////		return userprogramRepository.findProgramListByUser_id(user_id);
-//	}
 
 }
