@@ -61,13 +61,11 @@
         ></v-textarea>
         <!-- <input type="text" id="comment" name="comment" required> -->
         <v-btn 
-          icon
+          text
           cols="1"
           @click="createComment(post)"
         >
-          <v-icon>
-            mdi-subdirectory-arrow-left
-          </v-icon>
+          SUBMIT
         </v-btn>
       </v-row>
 
