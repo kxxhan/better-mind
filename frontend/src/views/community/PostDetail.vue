@@ -71,8 +71,8 @@
 
       <!-- 댓글 리스트 -->
       <Comment :key="renderComponent" @render="deleteRender"/>
-      <CircleBtn/>
       <Footer/>
+      <CircleBtn/>
     </v-container>
   <!-- </div> -->
 </template>
