@@ -1,6 +1,7 @@
 package com.ssafy.api.request;
 
 import java.util.Date;
+import java.util.List;
 
 import com.ssafy.db.entity.User;
 
@@ -25,6 +26,8 @@ public class CommunityPostReq {
 	private String category;	
 	@ApiModelProperty(name="나의 좋아요 설정 생성때는 필요없음")
 	private boolean like;
-	
+	private int likeCount;
+	@ApiModelProperty(name="코멘트")
+	private int commentCount;
 	
 }
