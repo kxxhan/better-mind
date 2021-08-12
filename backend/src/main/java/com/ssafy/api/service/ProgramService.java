@@ -32,5 +32,5 @@ public interface ProgramService {
 	
 	void deleteReview(Long pId, Long rId);
 	
-//	ProgramGetRes getOneProgramUsers(Long id); // 프로그램 신청자들
+	ProgramGetRes getOneProgramUser(Long id); // 프로그램 신청자들
 }

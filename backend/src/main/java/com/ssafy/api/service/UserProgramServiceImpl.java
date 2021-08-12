@@ -32,8 +32,8 @@ public class UserProgramServiceImpl implements UserProgramService {
 	@Override
 	public User_Program createUserProgram(UserProgramPostReq userprogramPostReq) {
 		User_Program userprogram = new User_Program();
-//		userprogram.setUser(userprogramPostReq.getUser_id()); //왜 null값들어감 ㅡㅡ?
-//		userprogram.setProgram(userprogramPostReq.getProgram_id());
+		userprogram.setUser(userprogramPostReq.getUser_id()); //왜 null값들어감 ㅡㅡ?
+		userprogram.setProgram(userprogramPostReq.getProgram_id());
 //		userprogram.setProgram(userprogramRepository.findByProgram_id(userprogramPostReq.getProgram_id()));
 		userprogram = userprogramRepository.save(userprogram);
 		return userprogram;

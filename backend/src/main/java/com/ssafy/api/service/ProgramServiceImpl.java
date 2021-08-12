@@ -204,22 +204,22 @@ public class ProgramServiceImpl implements ProgramService {
 		
 	}
 
-//	@Override
-//	public ProgramGetRes getOneProgramUsers(Long id) {
-//		Program program = repository.findById(id).get();
-//		ProgramGetRes p = new ProgramGetRes();
-//		p.setId(program.getId());
-//		List<User_Program> ulist = userprogramRepository.findByProgram_id(program.getId()).getId();
-//		if(ulist != null) {
-//			List<UserProgramPostReq> users = new ArrayList<>();
-//			for(User_Program k : ulist) {
-//				UserProgramPostReq up = new UserProgramPostReq();
-//				up.setUser_id(k.getUser().getUserid());
-//				users.add(up);
-//			}
-//			p.setUsers(users);
-//		}
-//		return p;
-//	}
+	@Override
+	public ProgramGetRes getOneProgramUser(Long id) {
+		Program program = repository.findById(id).get();
+		ProgramGetRes p = new ProgramGetRes();
+		p.setId(program.getId());
+		List<User_Program> uplist = userprogramRepository.findByProgram_id(program.getId());
+		if(uplist != null) {
+			List<UserProgramPostReq> users = new ArrayList<>();
+			for(User_Program k : uplist) {
+				UserProgramPostReq l = new UserProgramPostReq();
+				l.setUser_id(k.getUser().getId());
+				users.add(l);
+			}
+			p.setUsers(users);
+		}
+		return p;
+	}
 	
 }
