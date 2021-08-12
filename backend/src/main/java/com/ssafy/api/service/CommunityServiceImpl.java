@@ -109,12 +109,25 @@ public class CommunityServiceImpl implements CommunityService {
 		for (Community_Article c : list) {
 			resp = new CommunityPostReq();
 			resp.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).isPresent());
+			resp.setLikeCount(c.getLike());
 			resp.setId(c.getId());
 			resp.setTitle(c.getTitle());
 			resp.setUserId(c.getUser().getUserid());
 			resp.setContent(c.getContent());
 			resp.setCategory(c.getCategory().name());
 			copy.add(resp);
+			List<Community_Comment> clist = commentRepository.findByCommunityarticle_id(c.getId()).get();
+			if(clist != null) {
+				List<CommentPostReq> comments = new ArrayList<>();
+				for(Community_Comment k: clist) {
+					CommentPostReq l = new CommentPostReq();
+					l.setId(k.getId());
+					l.setContent(k.getContent());
+					l.setUserId(k.getUser().getUserid());
+					comments.add(l);
+				}
+				resp.setCommentCount(comments.size());
+			}
 		}
 		return copy;
 	}
