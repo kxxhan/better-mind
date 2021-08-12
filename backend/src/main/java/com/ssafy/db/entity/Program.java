@@ -25,10 +25,10 @@ public class Program extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
-	private User createuser;
+	private User user;
 	
-//	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-//	private List<User_Program> user;
+	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+	private List<User_Program> users;
 	
 	private String name;
 	private String description; // 전문가 소개
