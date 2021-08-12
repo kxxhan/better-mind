@@ -131,8 +131,8 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  padding-left: 100px;
-  padding-right: 100px;
+#update-post {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 </style>
