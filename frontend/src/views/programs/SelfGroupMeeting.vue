@@ -292,6 +292,75 @@
           </a>
         </v-col>
 
+
+        
+        <!-- 모달폼 -->
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <v-dialog
+            transition="dialog-bottom-transition"
+            max-width="600"
+          >
+            <!-- 카드 -->
+            <template v-slot:activator="{ on, attrs }">
+              <a 
+                class="card color14"
+                v-bind="attrs"
+                v-on="on"
+              >            
+                <div class="overlay"></div>
+                <v-icon 
+                  class="circle"
+                  x-large
+                >
+                  mdi-heart-broken
+                </v-icon>
+                <p class="card-title">모달폼</p>
+              </a>
+            </template>
+            <!-- 폼 -->
+            <template v-slot:default="dialog">
+              <v-card class="modal-font">
+                <v-toolbar
+                  color="#D1C4E9"
+                  class="text-h5"
+                  dark
+                >자조모임 신청하기</v-toolbar>
+                <v-card-text class="mt-5">
+                  <v-icon>mdi-palette-outline</v-icon>
+                  <span class="text-h6 m-2">월요일 17:00~18:00</span>
+                  <v-btn 
+                    outlined 
+                    color="#D1C4E9" 
+                    class="ms-2"
+                  >                    
+                    Apply
+                  </v-btn>
+                  <br>
+                  <v-icon>mdi-palette-outline</v-icon>
+                  <span class="text-h6 m-2">수요일 20:00~21:00</span>
+                  <v-btn outlined color="#D1C4E9" class="ms-2">Apply</v-btn>
+                  <br>
+                  <v-icon>mdi-palette-outline</v-icon>
+                  <span class="text-h6 m-2">금요일 15:00~16:00</span>
+                  <v-btn outlined color="#D1C4E9" class="ms-2">Apply</v-btn>
+                  <br>
+                </v-card-text>
+                <v-card-actions class="justify-end">
+                  <v-btn
+                    text
+                    @click="dialog.value = false"
+                  >Close</v-btn>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
+        </v-col>
       </v-row>
     </v-container>
     <CircleBtn/>
