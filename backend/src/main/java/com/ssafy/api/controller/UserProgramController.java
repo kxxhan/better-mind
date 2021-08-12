@@ -45,7 +45,11 @@ public class UserProgramController {
 	
 	public ResponseEntity<BaseResponseBody> createUserProgram(@RequestBody UserProgramPostReq userprogramPostReq) {
 		try {
+//			System.out.println(userprogramPostReq.getUser_id());
+//			System.out.println(userprogramPostReq.getProgram_id());
 			User_Program userprogram = service.createUserProgram(userprogramPostReq);
+//			System.out.println(userprogram.getUser().getId());
+//			System.out.println(userprogram.getProgram().getId());
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 			return ResponseEntity.status(500).body(BaseResponseBody.of(500, "fail"));
