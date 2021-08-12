@@ -45,7 +45,7 @@
             outlined 
             color="indigo"
           >
-            create
+            NEW
           </v-btn>
         </v-col>
       </v-row>
@@ -73,9 +73,17 @@
                 #{{ post.category }}
               </v-card-subtitle>
 
-              <v-card-text class="card-content text-subtitle-1">
+              <v-card-text class="card-content text-subtitle-1 text-truncate">
                 {{ post.content }}
               </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-icon>mdi-comment</v-icon>
+                <span class="ms-1 text-overline grey--text text--darken-2">{{ post.commentCount }}</span>
+                <v-icon>mdi-heart</v-icon>
+                <span class="ms-1 text-overline grey--text text--darken-2">{{ post.likeCount }}</span>
+              </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
@@ -100,15 +108,27 @@
                 #{{ post.category }}
               </v-card-subtitle>
 
-              <v-card-text class="card-content text-subtitle-1">
+              <v-card-text class="card-content text-subtitle-1 text-truncate">
                 {{ post.content }}
               </v-card-text>
+
+              <v-card-actions class="mt-2">
+                <v-spacer></v-spacer>
+                <div>
+                  <v-icon>mdi-comment</v-icon>
+                  <span class="ms-1 text-overline grey--text text--darken-2">{{ post.commentCount }}</span>
+                </div>
+                <div class="ms-3">
+                  <v-icon>mdi-heart</v-icon>
+                  <span class="ms-1 text-overline grey--text text--darken-2">{{ post.likeCount }}</span>
+                </div>
+              </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
       </v-container>
-      <CircleBtn/>
       <Footer/>
+      <CircleBtn/>
     </v-container>
   </div>
 </template>
@@ -137,7 +157,6 @@ export default {
   },
   methods: {
     showDetail: function (post) {
-      console.log(post)
       this.$router.push({ name: 'PostDetail', params: { post_pk: post.id }})
     },
     createPost: function () {
