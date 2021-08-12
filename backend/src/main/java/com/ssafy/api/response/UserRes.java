@@ -1,5 +1,8 @@
 package com.ssafy.api.response;
 
+import java.util.List;
+
+import com.ssafy.api.request.UserProgramPostReq;
 import com.ssafy.db.entity.User;
 
 import io.swagger.annotations.ApiModel;
@@ -20,8 +23,6 @@ public class UserRes{
 	private String userid;
 	@ApiModelProperty(name = "유저 email")
 	private String email;
-//	@ApiModelProperty(name = "유저 주소")
-//	private String address;
 	@ApiModelProperty(name = "유저 전화번호")
 	private String phone;
 	@ApiModelProperty(name = "유저 이름")
@@ -32,8 +33,8 @@ public class UserRes{
 	private String description;
 	@ApiModelProperty(name = "권한")
 	private String role;
-//	@ApiModelProperty(name = "신청 프로그램")
-//	private Long program_id;
+	@ApiModelProperty(name = "신청 프로그램")
+	private List<UserProgramPostReq> programs;
 	
 	public static UserRes of(User user) {
 		UserRes res = new UserRes();

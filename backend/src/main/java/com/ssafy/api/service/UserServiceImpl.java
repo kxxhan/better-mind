@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.api.request.UserProgramPostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.api.response.UserRes;
 import com.ssafy.db.entity.CategoryEnum;
 import com.ssafy.db.entity.User;
+import com.ssafy.db.entity.User_Program;
 import com.ssafy.db.repository.UserRepository;
 import com.ssafy.db.repository.UserRepositorySupport;
 import com.ssafy.db.repository.User_ProgramRepository;
@@ -71,6 +74,25 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUser(Long id) {
 		userRepository.deleteById(id);
+	}
+
+	@Override
+	public UserRes getOneUserProgram(Long id) {
+		User user = userRepository.findById(id).get();
+//		Long uid = userprogramRepository.findByUser_id(id).get(0).getId();
+		UserRes u = new UserRes();
+		u.setId(user.getId());
+		List<User_Program> uplist = userprogramRepository.findByUser_id(user.getId());
+		if(uplist != null) {
+			List<UserProgramPostReq> programs = new ArrayList<>();
+			for(User_Program k : uplist) {
+				UserProgramPostReq l = new UserProgramPostReq();
+				l.setProgram_id(k.getUser().getId());
+				programs.add(l);
+			}
+			u.setPrograms(programs);
+		}
+		return u;
 	}
 	
 }

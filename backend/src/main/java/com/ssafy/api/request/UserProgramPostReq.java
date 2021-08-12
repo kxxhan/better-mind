@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @ApiModel("UserProgramPostRequest")
 public class UserProgramPostReq {
-
+	
 	@ApiModelProperty(name="유저 ID")
 	private Long user_id;
 	@ApiModelProperty(name="프로그램 ID")
