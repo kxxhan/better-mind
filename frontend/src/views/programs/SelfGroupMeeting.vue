@@ -1,91 +1,298 @@
 <template>
-  <div>
+  <div class="page-layout">
     <v-container>
       <BackBtn/>
-      <v-card>
-        <v-container>
-          <v-row>
-            <v-col
-              v-for="(item, n) in dummy"
-              :key="n"
-              cols="12"
-              md="6"
+      <h1 class="d-flex justify-center">SelfGroup Meeting</h1>
+
+      <header>
+        <div class="banner">
+          <h2>We help you achieve your goals</h2>
+        </div>
+      </header>
+      <!-- 카드 -->
+      <v-row class="mt-5">
+        
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color1">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
             >
-              <v-item>
-                <v-card min-height="250px">
-                  <v-img
-                    src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1"
-                    height="150px"
-                  ></v-img>
+              mdi-account-star
+            </v-icon>
+            <p class="card-title">취업/진로</p>
+          </a>
+        </v-col>
 
-                  <v-card-title>
-                    {{ n+1 }}번 자조모임 제목
-                  </v-card-title>
-
-                  <v-card-subtitle>
-                    {{ item }}
-                  </v-card-subtitle>
-
-                  <v-card-actions v-if="n === 1">
-                    <v-btn
-                      color="error"
-                      text
-                    >
-                      마감 임박
-                    </v-btn>
-                  </v-card-actions>
-                  <v-card-actions v-else-if="n === 0 || n === 4">
-                    <v-btn
-                      color="warning"
-                      text
-                    >
-                      4/7
-                    </v-btn>
-                  </v-card-actions>
-                  <v-card-actions v-else>
-                    <v-btn
-                      color="green"
-                      text
-                    >
-                      3/8
-                    </v-btn>
-                  </v-card-actions>
-
-                </v-card>
-              </v-item>
-            </v-col>
-          </v-row>
-        </v-container>
-        <v-divider></v-divider>
-        <v-row justify="center" align="center">
-          <v-col
-            cols="12"
-            sm="10"
-          >
-            <v-card
-              class="my-4"
-              flat
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color2">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
             >
-              <div class="pa-4">
-                <v-chip-group
-                  active-class="primary--text"
-                  column
-                >
-                  <v-chip
-                    v-for="item in category"
-                    :key="item"
-                  >
-                    {{ item }}
-                  </v-chip>
-                </v-chip-group>
-              </div>
-            </v-card>
-          </v-col>
-          <v-col cols="12" sm="2">
-            <v-btn x-large>신청</v-btn>
-          </v-col>
-        </v-row>
-      </v-card>
+              mdi-office-building
+            </v-icon>
+            <p class="card-title">직장</p>
+          </a>
+        </v-col>
+
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color3">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
+            >
+              mdi-account-heart
+            </v-icon>
+            <p class="card-title">연애</p>
+          </a>
+        </v-col>
+
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color4">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
+            >
+              mdi-account-group
+            </v-icon>
+            <p class="card-title">대인관계</p>
+          </a>
+        </v-col>
+
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color5">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
+            >
+              mdi-face-woman-shimmer
+            </v-icon>
+            <p class="card-title">외모</p>
+          </a>
+        </v-col>
+
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color6">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
+            >
+              mdi-home-heart
+            </v-icon>
+            <p class="card-title">가족</p>
+          </a>
+        </v-col>
+
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color7">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
+            >
+              mdi-book-open-variant
+            </v-icon>
+            <p class="card-title">학업</p>
+          </a>
+        </v-col>
+
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color8">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
+            >
+              mdi-currency-usd
+            </v-icon>
+            <p class="card-title">금전</p>
+          </a>
+        </v-col>
+
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color9">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
+            >
+              mdi-baby-face-outline
+            </v-icon>
+            <p class="card-title">육아</p>
+          </a>
+        </v-col>
+
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color10">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
+            >
+              mdi-head-sync-outline
+            </v-icon>
+            <p class="card-title">성격</p>
+          </a>
+        </v-col>
+
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color11">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
+            >
+              mdi-hospital-box-outline
+            </v-icon>
+            <p class="card-title">건강</p>
+          </a>
+        </v-col>
+
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color12">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
+            >
+              mdi-emoticon-dead-outline
+            </v-icon>
+            <p class="card-title">중독</p>
+          </a>
+        </v-col>
+
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color13">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
+            >
+              mdi-emoticon-cry-outline
+            </v-icon>
+            <p class="card-title">성추행</p>
+          </a>
+        </v-col>
+
+        <v-col
+          class="d-flex justify-center"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <a href="#" class="card color14">
+            
+            <div class="overlay"></div>
+            <v-icon 
+              class="circle"
+              x-large
+            >
+              mdi-heart-broken
+            </v-icon>
+            <p class="card-title">이별/이혼</p>
+          </a>
+        </v-col>
+
+      </v-row>
     </v-container>
     <CircleBtn/>
     <Footer/>
@@ -106,15 +313,40 @@ export default {
   },
   data: () => ({
     category: [
-      '우울', '불안', '성격문제', '애착', 
-      '대인기피', '분노조절', '자존감', 
-      '중독', '대인관계', '부부', '가족상담',
+      '취업/진로', '직장', '연애', 
+      '성추행', '대인관계', '외모', 
+      '가족', '학업', '금전', '이별/이혼', 
+      '육아', '중독', '건강', '성격'
     ],
-    dummy: ['#우울 #불안', '#성격문제', '#부부 #가족상담', '#분노조절 #대인기피', '#중독 #우울']
   }),
 }
 </script>
 
-<style>
+<style scoped>
+@import '../css/SelfGroupMeeting.css';
 
+.page-layout {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+header{
+  background:#ededed;
+}
+.banner{
+  background:#B5C3D5;
+  height:280px;
+  margin-top: 20px;
+}
+.banner>h2{
+  /* height:50px; */
+  line-height:50px;
+  position:relative;
+  text-align:center;
+  top:115px;
+  margin:0 auto;  
+  width:50%;
+  font-size:2.5em;
+  color:#25271E;
+}
 </style>
