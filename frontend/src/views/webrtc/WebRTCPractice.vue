@@ -195,10 +195,10 @@
 
       // filter 적용 test
       onFilter() {
-        this.publisher.stream.applyFilter("GStreamerFilter", { "command": "textoverlay text='Embedded text' valignment=top halignment=right font-desc='Cantarell 25'" })
-        // this.publisher.stream.applyFilter("GStreamerFilter", { "command": "gdkpixbufoverlay location=https://cdn.pixabay.com/photo/2013/07/12/14/14/derby-148046_960_720.png offset-x=10 offset-y=10 overlay-height=50 overlay-width=50" })
+        // this.publisher.stream.applyFilter("GStreamerFilter", { "command": "textoverlay text='Embedded text' valignment=top halignment=right font-desc='Cantarell 25'" })
+        this.publisher.stream.applyFilter("GStreamerFilter", { "command": "gdkpixbufoverlay location=/tmp/312341-middle.png offset-x=10 offset-y=10 overlay-height=50 overlay-width=50" })
           .then(() => {
-            console.log("Video rotated!");
+            console.log("Video filltered!");
           })
           .catch(error => {
             console.error(error);
@@ -220,7 +220,7 @@
       sendMessage(msg) {
         this.session.signal({
           data: msg,  // Any string (optional)
-          to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
+          to: [],  // Array of Connection objects (optional. Broadcast to everyone if empty)
         })
           .then(() => {
             console.log('Message successfully sent');
