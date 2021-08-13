@@ -111,10 +111,12 @@ export default {
     return {
       valid: true,
       show: false,
-      categories: ['우울', '불안', '성격문제', '애착', 
-          '대인기피', '분노조절', '자존감', 
-          '중독', '대인관계', '부부', '가족상담',
-        ],
+      category: [
+        '일반고민', '취업진로', '직장', '연애', 
+        '성추행', '대인관계', '외모', 
+        '가족', '학업', '금전', '이별이혼', 
+        '육아', '중독', '건강', '성격'
+      ],
       credentials: {
         id: this.$store.state.userInfo.userid,
         password: this.$store.state.userInfo.password,

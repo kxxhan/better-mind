@@ -104,7 +104,7 @@ export default {
     selectprograms: [],
     items: [
       {
-        name: '취업/진로',
+        name: '취업진로',
         class: 'card color1',
         icon: 'mdi-account-star'
       },
@@ -169,7 +169,7 @@ export default {
         icon: 'mdi-emoticon-cry-outline'
       },
       {
-        name: '이별/이혼',
+        name: '이별이혼',
         class: 'card color14',
         icon: 'mdi-heart-broken'
       },
