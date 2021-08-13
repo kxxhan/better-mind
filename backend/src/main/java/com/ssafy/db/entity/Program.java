@@ -27,7 +27,7 @@ public class Program extends BaseEntity {
 	@JoinColumn
 	private User user;
 	
-	@OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<User_Program> users;
 	
 	private String name;

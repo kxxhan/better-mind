@@ -20,5 +20,6 @@ public abstract class BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(insertable = false,updatable = false)
+//	@Column
 	private Long id;
 }
