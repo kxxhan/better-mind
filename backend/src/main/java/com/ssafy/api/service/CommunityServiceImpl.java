@@ -235,7 +235,7 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public void downLike(Long aId, Long uId) {
 		// TODO Auto-generated method stub
-		likeRepository.deleteById(likeRepository.findByUser_idAndArticle_id(uId, aId).get().getId());
+		likeRepository.deleteById(((CommentPostReq) likeRepository.findByUser_idAndArticle_id(uId, aId).get()).getId());
 		Community_Article article = repository.getOne(aId);
 		article.setLike(article.getLike()-1);
 		repository.save(article);
