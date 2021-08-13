@@ -52,6 +52,7 @@
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
 import BackBtn from '@/components/BackBtn.vue'
+import axios from 'axios'
 
 export default {
   name: 'Payment',
@@ -99,10 +100,23 @@ export default {
       if (success) {
         alert('결제 성공')
         console.log(`${merchant_uid}`)
+        const applyInfo = {
+          program_id: this.program.id,
+          user_id: this.program.user_id
+        }
+        axios ({
+          method: 'post',
+          url: '/api/v1/userprogram',
+          data: applyInfo
+        })
+        .then(() => {
+          console.log('신청성공')
+          this.$router.push({ name: 'PersonalMeeting' })
+        })
       } else {
         alert(`결제 실패 : ${error_msg}`)
       }
-    }
+    },
   },
   created: function () {
     this.$store.dispatch('getProgram', this.$route.params.program_pk)
@@ -110,7 +124,7 @@ export default {
   computed: {
     program: function () {
       return this.$store.state.program
-    }
+    },
   }
 }
 </script>
