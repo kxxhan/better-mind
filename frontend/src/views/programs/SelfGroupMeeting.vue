@@ -180,7 +180,7 @@ export default {
     selectPrograms: function (category) {
       this.selectprograms = []
       for (const program of this.$store.state.programlist) {
-        if (program.type === 2 && program.category === category){
+        if (program.type === '2' && program.category === category){
           this.selectprograms.push(program)
         }
       }
