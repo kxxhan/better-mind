@@ -35,6 +35,7 @@ public class UserProgramController {
 	@Autowired
 	private UserProgramService service;
 	
+	@SuppressWarnings("unused")
 	@PostMapping()
 	@ApiOperation(value = "유저프로그램 신청", notes = "<strong>유저프로그램 신청</strong>")
 	@ApiResponses({
