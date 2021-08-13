@@ -28,15 +28,16 @@ public class UserProgramServiceImpl implements UserProgramService {
 	public User_Program createUserProgram(UserProgramPostReq userprogramPostReq) throws IllegalStateException, IOException{
 		User_Program userprogram = new User_Program();
 		userprogram.setUser(userprogramPostReq.getUser_id()); //왜 null값들어감 ㅡㅡ?
-//		System.out.println(userprogramPostReq.getUser_id());
 		userprogram.setProgram(userprogramPostReq.getProgram_id());
+//		System.out.println(userprogramPostReq.getUser_id());
+//		System.out.println(userprogramPostReq.getProgram_id());
 //		userprogram.setUser(userprogramRepository.findByUser_id(userprogramPostReq.getUser_id()));
 //		userprogram.setProgram(userprogramRepository.findByProgram_id(userprogramPostReq.getProgram_id()));
 //		userprogram.setUser(userRepository.findByUser_id(userprogramPostReq.getUser_id().getLong(null)));
 //		userprogram.setUser(userprogramRepository.findByUserid(userprogramPostReq.getUser_id()));
 //		userprogram.setProgram(userprogramRepository.findByProgramid(userprogramPostReq.getProgram_id()));
+//		System.out.println(userprogramRepository.save(userprogram));
 		userprogram = userprogramRepository.save(userprogram);
-//		User user = userRepository.findByUserid(userprogramPostReq.getUser_id());
 		return userprogram;
 	}
 
