@@ -22,8 +22,12 @@
           <v-card-actions>
             <span class="grey--text my-font-reg ms-3"># {{ post.category }}</span>
             <v-spacer></v-spacer>
-            <v-btn text class="mx-2" color="grey darken-2">
+            <v-btn v-if="post.like" text class="mx-2" color="grey darken-2" @click="unlikePost(post)">
               <v-icon class="mr-1">mdi-heart</v-icon>
+              <span>{{ post.likeCount }}</span>
+            </v-btn>
+            <v-btn v-else text class="mx-2" color="grey darken-2" @click="likePost(post)">
+              <v-icon class="mr-1">mdi-heart-outline</v-icon>
               <span>{{ post.likeCount }}</span>
             </v-btn>
           </v-card-actions>
@@ -138,6 +142,31 @@ export default {
           }
         })
       }
+    },
+    // 좋아요 기능 확인하기
+    likePost: function (post) {
+      axios({
+        method: 'get',
+        url: `/api/v1/article/like/${this.post.id}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        },
+      })
+      .then(res => {
+        console.log(res.data)
+      })
+    },
+    unlikePost: function (post) {
+      axios({
+        method: 'get',
+        url: `/api/v1/article/like/${this.post.id}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        },
+      })
+      .then(res => {
+        console.log(res.data)
+      })
     },
     // 삭제후 댓글 컴포넌트만 reload
     deleteRender: function () {
