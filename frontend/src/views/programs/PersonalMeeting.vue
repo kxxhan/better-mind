@@ -46,26 +46,42 @@
           cols="12"
           md="6"
         >
-          <!-- 프로그램 카드 -->
+          <v-card class="mt-4" color="transparent" rounded="lg" outlined>
+            <v-row>
+              <v-col cols="4" class="ps-6 d-flex flex-column justify-center">
+                <v-img
+                  class="card-img"
+                  src="https://images.unsplash.com/photo-1604882355447-02f728a295a2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGNvdW5zZWxpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                  width="300px"
+                >
+                </v-img>
+              </v-col>
+
+              <v-col cols="8" class="pe-6 d-flex flex-column justify-center">
+                <v-card-title class="card-title text-h5">
+                  {{ program.name }}
+                </v-card-title>
+                <v-card-subtitle>
+                  # {{ program.category }}
+                </v-card-subtitle>
+                <v-card-text class="grey--text">{{ program.description }}</v-card-text>
+                <v-divider></v-divider>
+                <v-card-text class="card-content text-body-1">{{ program.report }}</v-card-text>
+                <v-card-actions class="pe-6">
+                  <!-- 결제 페이지로 바로 연결 -->
+                  <v-btn outlined color="indigo">APPLY</v-btn>
+                </v-card-actions>
+              </v-col>
+            </v-row>
+          </v-card>
         </v-col>
       </v-row>
 
       <!-- 카테고리 미 선택 시 전체 프로그램 렌더링 -->
       <v-row v-else>
         <v-col
-          v-for="program in selectPrograms"
+          v-for="program in programlist"
           :key="program.id"
-          cols="12"
-          md="6"
-        >
-          <!-- 프로그램 카드 -->
-        </v-col>
-      </v-row>
-
-      <v-row class="my-5">
-        <v-col
-          v-for="n in 6"
-          :key="n"
           cols="12"
           md="6"
         >
@@ -82,14 +98,14 @@
 
               <v-col cols="8" class="pe-6 d-flex flex-column justify-center">
                 <v-card-title class="card-title text-h5">
-                  프로그램 이름
+                  {{ program.name }}
                 </v-card-title>
                 <v-card-subtitle>
-                  # 카테고리
+                  # {{ program.category }}
                 </v-card-subtitle>
-                <v-card-text class="grey--text">간단한 전문가 소개가 작성되는 공간입니다.</v-card-text>
+                <v-card-text class="grey--text">{{ program.description }}</v-card-text>
                 <v-divider></v-divider>
-                <v-card-text class="card-content text-body-1">간단한 프로그램 소개가 작성되는 공간입니다.</v-card-text>
+                <v-card-text class="card-content text-body-1">{{ program.report }}</v-card-text>
                 <v-card-actions class="pe-6">
                   <!-- 결제 페이지로 바로 연결 -->
                   <v-btn outlined color="indigo">APPLY</v-btn>
@@ -97,7 +113,6 @@
               </v-col>
             </v-row>
           </v-card>
-
         </v-col>
       </v-row>
     </v-container>
@@ -143,12 +158,26 @@ export default {
       }      
       for (const category of this.selectCategories) {
         for (const program of this.$store.state.programlist) {
-            if (program.category === category){
+            if (program.category === category && program.type === '0'){
             this.selectPrograms.push(program)
           }
         }
       }
     },
+  },
+  computed: {
+    programlist: function () {
+      const programset = []
+      for (const program of this.$store.state.programlist) {
+        if (program.type === '0'){
+          programset.push(program)
+        }        
+      }
+      return programset
+    }
+  },
+  created: function () {
+    this.$store.dispatch('getPrograms')
   }
 }
 </script>
