@@ -99,6 +99,7 @@ export default new Vuex.Store({
         url: `/api/v1/program/${program_pk}`,
       })
       .then(res => {
+        console.log(res.data)
         commit('GET_PROGRAM', res.data)
       })
       .catch(err => {

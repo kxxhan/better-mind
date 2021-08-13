@@ -139,9 +139,9 @@
           </v-col>
         </v-row>
       </v-container>
-      <Footer/>
-      <CircleBtn/>
     </v-container>
+    <Footer/>
+    <CircleBtn/>
   </div>
 </template>
 
