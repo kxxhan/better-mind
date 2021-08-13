@@ -108,7 +108,7 @@
                 <v-card-text class="card-content text-body-1">{{ program.report }}</v-card-text>
                 <v-card-actions class="pe-6">
                   <!-- 결제 페이지로 바로 연결 -->
-                  <v-btn outlined color="indigo">APPLY</v-btn>
+                  <v-btn outlined color="indigo" @click="registrateProgram(program)">APPLY</v-btn>
                 </v-card-actions>
               </v-col>
             </v-row>
