@@ -27,11 +27,13 @@ public class User_Program extends BaseEntity {
 	private Program program;
 
 	public void setUser(Long user_id) {
-		this.user=user;
+//		this.getUser().getId();
+//		this.user=user;
 	}
 
 	public void setProgram(Long program_id) {
-		this.program=program;	
+//		this.getProgram().getId();
+//		this.program=program;	
 	}
 	
 }
