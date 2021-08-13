@@ -79,10 +79,18 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-icon>mdi-comment</v-icon>
-                <span class="ms-1 text-overline grey--text text--darken-2">{{ post.commentCount }}</span>
-                <v-icon>mdi-heart</v-icon>
-                <span class="ms-1 text-overline grey--text text--darken-2">{{ post.likeCount }}</span>
+                <div>
+                  <v-icon>mdi-comment</v-icon>
+                  <span class="ms-1 text-overline grey--text text--darken-2">{{ post.commentCount }}</span>
+                </div>
+                <div class="ms-3" v-if="post.like">
+                  <v-icon>mdi-heart</v-icon>
+                  <span class="ms-1 text-overline grey--text text--darken-2">{{ post.likeCount }}</span>
+                </div>
+                <div class="ms-3" v-else>
+                  <v-icon>mdi-heart-outline</v-icon>
+                  <span class="ms-1 text-overline grey--text text--darken-2">{{ post.likeCount }}</span>
+                </div>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -112,14 +120,18 @@
                 {{ post.content }}
               </v-card-text>
 
-              <v-card-actions class="mt-2">
+              <v-card-actions>
                 <v-spacer></v-spacer>
                 <div>
                   <v-icon>mdi-comment</v-icon>
                   <span class="ms-1 text-overline grey--text text--darken-2">{{ post.commentCount }}</span>
                 </div>
-                <div class="ms-3">
+                <div class="ms-3" v-if="post.like">
                   <v-icon>mdi-heart</v-icon>
+                  <span class="ms-1 text-overline grey--text text--darken-2">{{ post.likeCount }}</span>
+                </div>
+                <div class="ms-3" v-else>
+                  <v-icon>mdi-heart-outline</v-icon>
                   <span class="ms-1 text-overline grey--text text--darken-2">{{ post.likeCount }}</span>
                 </div>
               </v-card-actions>
