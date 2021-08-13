@@ -56,6 +56,9 @@ public class UserProgramController {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return ResponseEntity.status(500).body(BaseResponseBody.of(500, "fail"));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(500).body(BaseResponseBody.of(500, "fail"));
 		}
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}

@@ -29,6 +29,8 @@ public class Community_Article extends BaseEntity {
 	private User user;
 
 	private String title;
+	
+	@Column(columnDefinition = "LONGTEXT")
 	private String content;
 	
 	@Column(name = "like_count")

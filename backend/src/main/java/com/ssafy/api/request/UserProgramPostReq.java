@@ -1,9 +1,5 @@
 package com.ssafy.api.request;
 
-import java.util.List;
-
-import com.ssafy.db.entity.User_Program;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
