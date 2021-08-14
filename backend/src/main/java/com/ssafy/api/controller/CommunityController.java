@@ -93,7 +93,7 @@ public class CommunityController {
 	public ResponseEntity<List<CommunityPostReq>> getAllArticle(Pageable pageable,@ApiIgnore Authentication authentication) {
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 		String userId = userDetails.getUsername();
-		List<CommunityPostReq> articleList = service.getAllArticle(pageable,userId);
+		List<CommunityPostReq> articleList = service.getAllArticle(pageable,userId); //여기
 		return ResponseEntity.status(200).body(articleList);
 	}
 
