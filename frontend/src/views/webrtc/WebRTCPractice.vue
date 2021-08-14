@@ -57,7 +57,10 @@
   axios.defaults.headers.post['Content-Type'] = 'application/json';
 
   const OPENVIDU_SERVER_URL = "https://" + location.hostname + ":4443";
+  // 한건 로컬 주소
   // const OPENVIDU_SERVER_URL = "https://192.168.0.11:4443";
+  // EC2 public ipV4
+  // const OPENVIDU_SERVER_URL = "https://13.124.26.183:4443";
   const OPENVIDU_SERVER_SECRET = "MY_SECRET";
 
   export default {
@@ -193,10 +196,12 @@
         console.log("bye")
       },
 
-      // filter 적용 test
+      // filter 적용 test Ubuntu 18.04 Version FaceOverlayFilter 사용 불가
       onFilter() {
         // this.publisher.stream.applyFilter("GStreamerFilter", { "command": "textoverlay text='Embedded text' valignment=top halignment=right font-desc='Cantarell 25'" })
         this.publisher.stream.applyFilter("GStreamerFilter", { "command": "gdkpixbufoverlay location=/tmp/312341-middle.png offset-x=10 offset-y=10 overlay-height=50 overlay-width=50" })
+        // EC2 안에 있는 hat 파일 이름 다름 주의
+        // this.publisher.stream.applyFilter("GStreamerFilter", { "command": "gdkpixbufoverlay location=/tmp/santa-hat-transparent-11549385190r3okqt8gir.png offset-x=10 offset-y=10 overlay-height=50 overlay-width=50" })
           .then(() => {
             console.log("Video filltered!");
           })
