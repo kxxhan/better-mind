@@ -35,7 +35,7 @@
             </button>
           </v-col>
           <v-col>
-            <button class="main-button noselect" @click="movePubMeetings()">
+            <button class="main-button noselect" @click="moveMeetings()">
               <v-icon x-large>mdi-heart-plus-outline</v-icon>
               <p>Mine</p>               
             </button>
@@ -75,9 +75,13 @@ export default {
     movePostit: function () {
         this.$router.push({ name: 'Postit' })
       },
-    movePubMeetings: function () {
+    moveMeetings: function () {
+      if (this.$store.state.userInfo.role === '0') {
         this.$router.push({ name: 'PubMeetings' })
-      },
+      } else {
+        this.$router.push({ name: 'ExpMeetings' })
+      }
+    },
   }
 }
 </script>
