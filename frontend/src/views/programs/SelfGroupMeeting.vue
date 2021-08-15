@@ -71,6 +71,7 @@
                       outlined 
                       color="#D1C4E9" 
                       class="ms-2"
+                      @click="applyProgram(program)"
                     >                    
                       Apply
                     </v-btn>
@@ -97,6 +98,7 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
+import axios from 'axios'
 
 export default {
   name: 'SelfGroupMeeting',
@@ -192,6 +194,23 @@ export default {
     },
     moveBack: function () {
       this.$router.push({ name: 'Main' })
+    },
+    // 프로그램 신청
+    applyProgram: function(program) {
+      const applyInfo = {
+          program_id: program.id,
+          user_id: this.$store.state.userInfo.id
+        }
+        console.log(applyInfo)
+        axios ({
+          method: 'post',
+          url: '/api/v1/userprogram',
+          data: applyInfo
+        })
+        .then(() => {
+          console.log('신청성공')
+          this.$router.push({ name: 'PersonalMeeting' })
+        })
     }
   },
   computed: {
