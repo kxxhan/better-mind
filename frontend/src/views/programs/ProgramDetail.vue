@@ -1,7 +1,14 @@
 <template>
   <div>
     <v-container id="program-detail">
-      <BackBtn/>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+
       <v-card class="mt-5" color="transparent" flat>
         <v-row>
           <v-col class="d-flex justify-center px-6">
@@ -69,42 +76,6 @@
           </v-card>
         </v-tab-item>
       </v-tabs-items>
-
-      <!-- <div>
-        <v-app-bar class="mt-16" color="transparent" flat>
-          <v-tabs class="d-flex justify-space-around" align-with-title>
-            <v-tab class="me-5" @click="clickProgramIntroduce()">프로그램 소개</v-tab>
-            <v-tab class="me-5" @click="clickExpertIntroduce()">전문가 소개</v-tab>
-            <v-tab class="me-5" @click="clickProgramReview()">후기</v-tab>
-          </v-tabs>
-        </v-app-bar>
-        <br>
-
-        <v-container>
-          <div class="text-h6" id="program-introduce">프로그램 내용 소개 글</div>
-          <div>{{ program.report }}</div>
-        </v-container>
-        <br>
-        <v-container>
-          <div class="text-h6" id="expert-introduce">전문가 소개 글</div>
-          <div>{{ program.description }}</div>
-        </v-container>
-        <br>
-        <v-container>
-          <div class="text-h6" id="program-review">프로그램 이용 후기</div>
-          <div>{{ program.review }}</div>
-
-
-        </v-container>
-        <br>
-        <v-container>
-        <div class="text-h6" id="program-registration">프로그램 신청하기</div>
-        <span>{{ program.price }}</span>
-        </v-container>
-        <br>
-        <v-btn @click="registrateProgram(program)">신청하기</v-btn>
-        <v-btn @click="previousPage()">이전</v-btn>
-      </div> -->
     </v-container>
     <Footer/>
     <CircleBtn/>
@@ -114,15 +85,12 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
-// import axios from 'axios'
-import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'ProgramDetail',
   components: {
     Footer,
     CircleBtn,
-    BackBtn,
   },
   data: function () {
     return {
@@ -152,6 +120,9 @@ export default {
       const registLocation = document.querySelector("#program-registration").offsetTop;
       window.scrollTo({top:registLocation, left:0, behavior:'auto'})
       // window.location.href = '#program-registration'
+    },
+    moveBack: function () {
+      this.$router.push({ name: 'ProgramItems' })
     }
   },
   created: function () {
@@ -175,5 +146,9 @@ export default {
 }
 .tab-card-item {
   background-color: transparent !important;
+}
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
 }
 </style>

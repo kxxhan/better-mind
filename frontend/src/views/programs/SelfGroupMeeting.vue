@@ -1,7 +1,14 @@
 <template>
   <div class="page-layout">
     <v-container>
-      <BackBtn/>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+
       <h1 class="d-flex justify-center">SelfGroup Meeting</h1>
 
       <header>
@@ -90,14 +97,12 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
-import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'SelfGroupMeeting',
   components: {
     Footer,
     CircleBtn,
-    BackBtn,
   },
   data: () => ({
     selectcategories: [],
@@ -185,6 +190,9 @@ export default {
         }
       }
     },
+    moveBack: function () {
+      this.$router.push({ name: 'Main' })
+    }
   },
   computed: {
     programlist: function () {
@@ -223,5 +231,9 @@ header{
   width:50%;
   font-size:2.5em;
   color:#25271E;
+}
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
 }
 </style>

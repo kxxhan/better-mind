@@ -193,4 +193,9 @@
   .card:focus-within .content > *:not(.title) {
     transition-duration: 0s;
   }
+
+  .backbtn {
+    text-decoration-line:line-through;
+    background-color: none;
+  }
 }

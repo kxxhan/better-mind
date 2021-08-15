@@ -1,7 +1,14 @@
 <template>
   <div>
     <v-container id="update-user-info">
-      <BackBtn/>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+
       <h1 class="d-flex justify-center">Edit Profile</h1>
       <v-form
         class="mt-5"
@@ -98,20 +105,18 @@
 import axios from 'axios'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
-import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'UpdateUserInfo',
   components: {
     Footer,
     CircleBtn,
-    BackBtn
   },
   data: function () {
     return {
       valid: true,
       show: false,
-      category: [
+      categories: [
         '일반고민', '취업진로', '직장', '연애', 
         '성추행', '대인관계', '외모', 
         '가족', '학업', '금전', '이별이혼', 
@@ -176,6 +181,9 @@ export default {
         })
       }
     },
+    moveBack: function () {
+      this.$router.push({ name: 'Main' })
+    }
   },
   computed: {
     
@@ -187,5 +195,9 @@ export default {
 .container {
   padding-left: 100px;
   padding-right: 100px;
+}
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
 }
 </style>

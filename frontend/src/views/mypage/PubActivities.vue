@@ -1,8 +1,14 @@
 <template>
   <div>
     <v-container id="pub-activities">
-      <BackBtn/>
-      <!-- <v-icon>{{ icons.mdiAccountStar }}</v-icon> -->
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+
       <h1>Mind님의 활동내역</h1>
       <v-spacer></v-spacer>
       <v-row class="d-flex mt-5">
@@ -159,14 +165,12 @@
 // import { mdiAccountStar } from '@mdi/js'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
-import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'PubActivities',
   components: {
     Footer,
     CircleBtn,
-    BackBtn
   },
   data: () => ({
     // icons: {
@@ -195,9 +199,17 @@ export default {
     ],
     lorem: 'Lorem ipsum dolor sit amet, at aliquam vivendum vel, everti delicatissimi cu eos. Dico iuvaret debitis mel an, et cum zril menandri. Eum in consul legimus accusam. Ea dico abhorreant duo, quo illum minimum incorrupte no, nostro voluptaria sea eu. Suas eligendi ius at, at nemore equidem est. Sed in error hendrerit, in consul constituam cum.',
   }),
+  methods: {
+    moveBack: function () {
+      this.$router.push({ name: 'Main' })
+    }
+  }
 }
 </script>
 
-<style>
-
+<style scoped>
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
+}
 </style>

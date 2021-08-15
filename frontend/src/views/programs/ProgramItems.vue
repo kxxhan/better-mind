@@ -1,7 +1,14 @@
 <template>
   <div class="page-layout">
     <v-container>
-      <BackBtn/>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+      
       <h1 class="d-flex justify-center">Personal Counseling</h1>
 
       <header>
@@ -126,14 +133,12 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
-import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'ProgramItems',
   components: {
     Footer,
     CircleBtn,
-    BackBtn
   },
   data: () => ({
     category: [
@@ -166,6 +171,9 @@ export default {
         }
       }
     },
+    moveBack: function () {
+      this.$router.push({ name: 'Main' })
+    }
   },
   computed: {
     programlist: function () {
@@ -230,5 +238,9 @@ header{
 }
 .card-content {
   font-family: 'NEXON Lv1 Gothic OTF' !important;
+}
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
 }
 </style>
