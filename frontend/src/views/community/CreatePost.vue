@@ -1,6 +1,13 @@
 <template>
   <v-container id="create-post">
-    <BackBtn/>
+    <v-btn 
+      @click="moveBack()"
+      icon
+      x-large
+    >
+      <v-icon>mdi-arrow-left-thick</v-icon>
+    </v-btn>
+
     <h1 class="d-flex justify-center">Create Post</h1>
     <v-form
       class="mt-5"
@@ -54,7 +61,6 @@
 
 <script>
 import axios from 'axios'
-import BackBtn from '@/components/BackBtn.vue'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
 
@@ -72,7 +78,7 @@ export default {
       v => !!v || 'Content is required',
       v => (v && v.length > 0) || 'Content must be valid',
     ],
-    category: [
+    categories: [
       '일반고민', '취업진로', '직장', '연애', 
       '성추행', '대인관계', '외모', 
       '가족', '학업', '금전', '이별이혼', 
@@ -80,7 +86,6 @@ export default {
     ],
   }),
   components: {
-    BackBtn,
     Footer,
     CircleBtn,
   },
@@ -114,6 +119,9 @@ export default {
     movePostItems () {
       this.$router.push({ name: 'PostItems' })
     },
+    moveBack: function () {
+      this.$router.push({ name: 'PostItems' })
+    }
   },
 }
 </script>
@@ -122,5 +130,9 @@ export default {
 #create-post {
   max-width: 1200px;
   margin: 0 auto;
+}
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
 }
 </style>

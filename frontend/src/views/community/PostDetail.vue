@@ -1,7 +1,13 @@
 <template>
   <!-- <div class="page-layout"> -->
     <v-container id="post-detail">
-      <BackBtn/>
+      <v-btn 
+      @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
       <!-- 게시글 상세내용 -->
       <v-card
         class="mx-auto mb-5"
@@ -84,7 +90,6 @@
 <script>
 import axios from 'axios'
 import Comment from '@/components/community/Comment.vue'
-import BackBtn from '@/components/BackBtn.vue'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
 
@@ -98,7 +103,6 @@ export default {
   },
   components: {
     Comment,
-    BackBtn,
     Footer,
     CircleBtn,
   },
@@ -171,6 +175,9 @@ export default {
     // 삭제후 댓글 컴포넌트만 reload
     deleteRender: function () {
       this.renderComponent += 1
+    },
+    moveBack: function () {
+      this.$router.push({ name: 'PostItems' })
     }
   },
   created: function () {

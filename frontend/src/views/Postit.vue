@@ -1,7 +1,13 @@
 <template>
   <div>
     <v-container id="post-it">
-      <BackBtn/>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
       <h1 class="d-flex justify-center">Post it</h1>
 
       <!-- 관리자 질문 등록용 -->
@@ -75,7 +81,6 @@ import EditBtn from '@/components/postit/EditBtn.vue'
 import PostList from '@/components/postit/PostList.vue'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
-import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'Postit',
@@ -84,7 +89,6 @@ export default {
     PostList,
     Footer,
     CircleBtn,
-    BackBtn,
   },
   data: function () {
     return {
@@ -125,6 +129,9 @@ export default {
     },
     deleteRender: function () {
       this.renderComponent += 1
+    },
+    moveBack: function () {
+      this.$router.push({ name: 'Main' })
     }
   },
   computed: {
@@ -155,6 +162,10 @@ export default {
 .td-question {
   font-family: 'MapoFlowerIsland';
   font-size: 32px;
+}
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
 }
 
 </style>

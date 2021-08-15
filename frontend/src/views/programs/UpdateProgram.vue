@@ -1,8 +1,15 @@
 <template>
   <div>
     <v-container id="exp-add-meeting">
-      <BackBtn/>
-      <h1>전문가 프로그램 등록 페이지</h1>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+
+      <h1 class="d-flex justify-center">Edit Program</h1>
       <v-form
         ref="form"
         v-model="valid"
@@ -106,13 +113,11 @@
 import axios from 'axios'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
-import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'UpdateProgram',
   components: {
     Footer,
-    BackBtn,
     CircleBtn
   },
   data: () => ({
@@ -190,6 +195,9 @@ export default {
     movePost: function () {
       this.$router.push({ name: 'ExpMeetings' })
     },
+    moveBack: function () {
+      this.$router.push({ name: 'ExpMeetings' })
+    }
   },
   created: function () {
     this.$store.dispatch('getProgram', this.$route.params.program_pk)
@@ -205,6 +213,13 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.container {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
+}
 </style>

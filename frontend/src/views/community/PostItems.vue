@@ -1,7 +1,14 @@
 <template>
   <div class="page-layout">
     <v-container>   
-      <BackBtn/>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+
       <h1 class="d-flex justify-center">Community</h1>
       <header>
         <div class="banner">
@@ -146,7 +153,6 @@
 </template>
 
 <script>
-import BackBtn from '@/components/BackBtn.vue'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
 
@@ -163,7 +169,6 @@ export default {
     selectPosts: []
   }),
   components: {
-    BackBtn,
     Footer,
     CircleBtn,
   },
@@ -191,6 +196,9 @@ export default {
         }
       }
     },
+    moveBack: function () {
+      this.$router.push({ name: 'Main' })
+    }
   },
   // 전체 게시글 호출 API 연결 store
   computed: {
@@ -249,5 +257,9 @@ header{
 }
 .card-content {
   font-family: 'NEXON Lv1 Gothic OTF' !important;
+}
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
 }
 </style>
