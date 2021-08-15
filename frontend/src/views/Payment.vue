@@ -100,9 +100,10 @@ export default {
       if (success) {
         alert('결제 성공')
         console.log(`${merchant_uid}`)
+        // 프로그램 신청 처리
         const applyInfo = {
           program_id: this.program.id,
-          user_id: this.program.user_id
+          user_id: this.$store.state.userInfo.id
         }
         axios ({
           method: 'post',
