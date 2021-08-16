@@ -56,11 +56,11 @@
 
   axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-  // const OPENVIDU_SERVER_URL = "https://" + location.hostname + ":4443";
+  const OPENVIDU_SERVER_URL = "https://" + location.hostname + ":4443";
   // 한건 로컬 주소
   // const OPENVIDU_SERVER_URL = "https://192.168.0.11:4443";
   // EC2 public ipV4
-  const OPENVIDU_SERVER_URL = "https://13.124.26.183:4443";
+  // const OPENVIDU_SERVER_URL = "https://13.124.26.183:4443";
   const OPENVIDU_SERVER_SECRET = "MY_SECRET";
 
   export default {

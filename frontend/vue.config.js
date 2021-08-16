@@ -1,4 +1,4 @@
-
+const path = require("path")
 // Vue3 관련 설정 파일
 module.exports = {
   devServer: {
@@ -9,7 +9,7 @@ module.exports = {
     open: true,
     proxy: {
       '/api/v1': {
-        target: 'https://i5b208.p.ssafy.io:8443/'
+        target: 'https://localhost:8443/'
       }
     },
     historyApiFallback: true,
@@ -17,7 +17,8 @@ module.exports = {
   },
 
   lintOnSave: false,
-  outputDir: '../backend/src/main/resources/dist',
+  // outputDir: '../backend/src/main/resources/dist',
+  outputDir: path.resolve(__dirname, "./dist"),
 
   transpileDependencies: [
     'vuetify'
