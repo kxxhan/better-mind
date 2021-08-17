@@ -30,9 +30,9 @@ public class CommunityPostReq {
 	private int likeCount;
 	@ApiModelProperty(name="코멘트")
 	private int commentCount;
-	public void setLike(Article_Like orElseGet) {
-		// TODO Auto-generated method stub
-		
-	}
+//	public void setLike(Article_Like orElseGet) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 	
 }

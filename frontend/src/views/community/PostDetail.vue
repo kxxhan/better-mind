@@ -28,14 +28,7 @@
           <v-card-actions>
             <span class="grey--text my-font-reg ms-3"># {{ post.category }}</span>
             <v-spacer></v-spacer>
-            <v-btn v-if="post.like" text class="mx-2" color="grey darken-2" @click="unlikePost(post)">
-              <v-icon class="mr-1">mdi-heart</v-icon>
-              <span>{{ post.likeCount }}</span>
-            </v-btn>
-            <v-btn v-else text class="mx-2" color="grey darken-2" @click="likePost(post)">
-              <v-icon class="mr-1">mdi-heart-outline</v-icon>
-              <span>{{ post.likeCount }}</span>
-            </v-btn>
+            <LikeBtn :key="renderComponent" @likeRender="updateLike"/>
           </v-card-actions>
           
           <v-card-actions class="mt-3" v-show="post.userId === this.$store.state.userInfo.userid">
@@ -90,6 +83,7 @@
 <script>
 import axios from 'axios'
 import Comment from '@/components/community/Comment.vue'
+import LikeBtn from '@/components/community/LikeBtn.vue'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
 
@@ -105,6 +99,7 @@ export default {
     Comment,
     Footer,
     CircleBtn,
+    LikeBtn
   },
   methods: {
     // 게시글 업데이트 링크 이동
@@ -147,30 +142,9 @@ export default {
         })
       }
     },
-    // 좋아요 기능 확인하기
-    likePost: function (post) {
-      axios({
-        method: 'get',
-        url: `/api/v1/article/like/${this.post.id}`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        },
-      })
-      .then(res => {
-        console.log(res.data)
-      })
-    },
-    unlikePost: function (post) {
-      axios({
-        method: 'get',
-        url: `/api/v1/article/hate/${this.post.id}`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        },
-      })
-      .then(res => {
-        console.log(res.data)
-      })
+    // 좋아요 클릭 후 컴포넌트만 reload
+    updateLike: function () {
+      this.renderComponent += 1
     },
     // 삭제후 댓글 컴포넌트만 reload
     deleteRender: function () {

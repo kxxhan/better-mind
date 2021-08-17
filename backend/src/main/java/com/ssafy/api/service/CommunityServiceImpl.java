@@ -108,7 +108,7 @@ public class CommunityServiceImpl implements CommunityService {
 		CommunityPostReq resp;
 		for (Community_Article c : list) {
 			resp = new CommunityPostReq();
-//			resp.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).isPresent());
+			resp.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).isPresent());
 //			resp.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).orElseGet(null));
 			resp.setLikeCount(c.getLike());
 			resp.setId(c.getId());
@@ -150,7 +150,7 @@ public class CommunityServiceImpl implements CommunityService {
 		c.setTitle(article.getTitle());
 		c.setCategory(article.getCategory().name());
 		c.setUserId(article.getUser().getUserid());
-//		c.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).isPresent());
+		c.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).isPresent());
 //		c.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).orElseGet(null));
 		c.setLikeCount(article.getLike());
 		List<Community_Comment> clist = commentRepository.findByCommunityarticle_id(article.getId()).get();

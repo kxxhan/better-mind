@@ -31,9 +31,9 @@ public class CommunityGetRes {
 	
 	private boolean like;
 	private int likeCount;
-	public void setLike(Article_Like orElseGet) {
-		// TODO Auto-generated method stub
-		
-	}
+//	public void setLike(boolean b) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 	
 }
