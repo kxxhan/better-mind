@@ -115,11 +115,11 @@
             "mediaNode": {
               "id": "media_i-0c58bcdd26l11d0sd"
             }
-          }.then((res) => {
-            console.log(res)
-          }).catch((err) => {
-            console.log(err)
-          })
+          }
+        }).then((res) => {
+          console.log(res)
+        }).catch((err) => {
+          console.log(err)
         })
       },
       // joinSession() {
