@@ -35,8 +35,8 @@ public class UserProgramServiceImpl implements UserProgramService {
 //		userprogram.setUser(userprogramRepository.findByUser_id(userprogramPostReq.getUser_id()));
 //		userprogram.setProgram(userprogramRepository.findByProgram_id(userprogramPostReq.getProgram_id()));
 //		userprogram.setUser(userRepository.findByUser_id(userprogramPostReq.getUser_id().getLong(null)));
-//		userprogram.setUser((User) userprogramRepository.findByUser_id(userprogramPostReq.getUser_id()));
-//		userprogram.setProgram((Program) userprogramRepository.findByProgram_id(userprogramPostReq.getProgram_id()));
+//		userprogram.setUser(userprogramRepository.findByUser_id(userprogramPostReq.getUserid()));
+//		userprogram.setProgram(userprogramRepository.findByProgram_id(userprogramPostReq.getProgramid()));
 //		System.out.println(userprogramRepository.save(userprogram));
 		userprogram = userprogramRepository.save(userprogram);
 		return userprogram;
