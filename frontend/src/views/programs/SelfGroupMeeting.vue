@@ -209,7 +209,8 @@ export default {
         })
         .then(() => {
           console.log('신청성공')
-          this.$router.push({ name: 'PersonalMeeting' })
+          this.$router.push({ name: 'SelfGroupMeeting' })
+          alert('프로그램이 신청되었습니다.')
         })
     }
   },

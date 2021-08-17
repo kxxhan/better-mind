@@ -18,9 +18,7 @@
 
       <v-row class="mt-5">
         <!-- 분류 키워드 Chips Group -->
-        <v-col
-          cols="10"
-        >
+        <v-col>
           <v-sheet
             color= transparent
           >
@@ -42,9 +40,10 @@
             </div>
           </v-sheet>
         </v-col>
-        <!-- 게시글 생성 페이지 이동 버튼 -->
+      </v-row>
+      <!-- 게시글 생성 페이지 이동 버튼 -->
+      <v-row>
         <v-col 
-          cols="2"
           class="d-flex align-center justify-end text-h6"
           @click="createPost()"
         >
