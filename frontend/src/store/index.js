@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     userInfo: [],
     programlist: [],
+    myprogramlist: [],
     program: {},
     postlist: [],
     post: {},
@@ -22,6 +23,10 @@ export default new Vuex.Store({
     //프로그램 관련
     GET_PROGRAMS: function (state, programlist) {
       state.programlist = programlist
+    },
+    // 내가 신청한 프로그램 리스트
+    GET_MYPROGRAMS: function (state, myprogramlist) {
+      state.myprogramlist = myprogramlist
     },
     // 프로그램 디테일
     GET_PROGRAM: function (state, program) {
@@ -87,6 +92,50 @@ export default new Vuex.Store({
       })
       .then(res => {
         commit('GET_PROGRAMS', res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+    // 내가 신청한 프로그램 리스트
+    getMyPrograms: function ({ commit }) {
+      const myprogramlist = []
+      // userInfo 가져오기
+      axios({
+        method: 'get',
+        url: '/api/v1/users/me',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
+      })
+      .then(res => {
+        commit('GET_MY_INFO', res.data)
+        // 해당 유저의 신청 프로그램 id 가져오기
+        axios({
+          method: 'get',
+          url: `/api/v1/users/${this.state.userInfo.id}`,
+        })
+        .then(res => {
+          // 각 프로그램 상세정보 가져오기
+          const myprogram = res.data.programs
+          for (const program of myprogram) {
+            axios({
+              method: 'get',
+              url: `/api/v1/program/${program.program_id}`,
+            })
+            .then(res => {
+              console.log(res.data)
+              myprogramlist.push(res.data)
+            })
+            .catch(err => {
+              console.log(err)
+            })
+          } 
+          commit('GET_MYPROGRAMS', myprogramlist)         
+        })
+        .catch(err => {
+          console.log(err)
+        })
       })
       .catch(err => {
         console.log(err)
