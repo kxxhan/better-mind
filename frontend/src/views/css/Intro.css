@@ -1,4 +1,24 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@font-face {
+  font-family: 'Pretendard-SemiBold';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Eulyoo1945-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/Eulyoo1945-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-Light';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
 html, body {
   overflow: hidden;
 }
@@ -61,8 +81,7 @@ html, body {
   justify-content: center;
   text-align: center;
   flex-flow: column nowrap;
-  color: #fff;
-  font-family: Montserrat;
+  color: rgb(255, 255, 255);
   text-transform: uppercase;
   transform: translateY(40vh);
   will-change: transform;
@@ -70,13 +89,29 @@ html, body {
           backface-visibility: hidden;
   transition: all 1.7s cubic-bezier(0.22, 0.44, 0, 1);
 }
-.content-title {
-  font-size: 12vh;
-  line-height: 1.4;
-}
-
-.content-subtitle {
-  font-size: 4vh;
+/* .glass {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 90px 150px;
+  margin: 0px auto;
+  background-color: rgba(180, 180, 180, 0.377);
+  backdrop-filter: blur(20px);
+  border-radius: 1rem;
+} */
+.glass {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0px auto;
+  padding: 40px 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0px 20px 18px rgba(0, 0, 0, 0.3);
 }
 .background.up-scroll {
   transform: translate3d(0, -15vh, 0);
@@ -102,4 +137,17 @@ html, body {
 }
 .background.down-scroll + .background:not(.down-scroll) .content-wrapper {
   transform: translateY(15vh);
+}
+.content-title {
+  font-size: 12vh;
+  line-height: 1.4;
+  font-family: 'Pretendard-SemiBold';
+}
+.content-subtitle {
+  font-size: 6vh;
+  font-family: 'Eulyoo1945-Regular';
+}
+.content-text {
+  font-family: 'Pretendard-Light';
+  font-size: 2vh;
 }
