@@ -70,8 +70,8 @@
       </v-sheet>
       <PostList :key="renderComponent" @render="deleteRender"/>
     </v-container>
-    <CircleBtn/>
     <Footer/>
+    <CircleBtn/>
   </div>
 </template>
 
@@ -105,7 +105,7 @@ export default {
         url: `/api/v1/postit`,
         data: { content: this.question }
       })
-      .then(() => {
+      .then((res) => {
         this.question = ''
         this.renderComponent += 1
       })
@@ -123,6 +123,7 @@ export default {
         }
       })
       .then(() => {
+        console.log(this.renderComponent)
         this.postContent = ''
         this.renderComponent += 1
       })
