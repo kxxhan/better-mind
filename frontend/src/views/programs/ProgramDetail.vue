@@ -72,7 +72,12 @@
         </v-tab-item>
         <v-tab-item>
           <v-card color="tab-card-item" flat>
-            <v-card-text>{{ program.review }}</v-card-text>
+            <v-card-text
+             v-for="review in program.reviews" 
+             :key="review"
+            >
+              {{ review.userId }}: {{ review.content }}
+            </v-card-text>
           </v-card>
         </v-tab-item>
       </v-tabs-items>

@@ -124,7 +124,6 @@ export default new Vuex.Store({
               url: `/api/v1/program/${program.program_id}`,
             })
             .then(res => {
-              console.log(res.data)
               myprogramlist.push(res.data)
             })
             .catch(err => {
