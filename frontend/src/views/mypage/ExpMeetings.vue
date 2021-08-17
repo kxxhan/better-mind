@@ -35,7 +35,7 @@
                 <v-img
                   class="white--text align-end"
                   height="250px"
-                  src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                  src="https://images.unsplash.com/photo-1542338347-4fff3276af78?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y291bnNlbGluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                 >
                   <v-card-title>
                     <span v-if="program.type === '0'">개인 상담 - </span>
