@@ -167,5 +167,9 @@ export default {
   text-decoration-line:line-through;
   background-color: none;
 }
+#post-it {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
 </style>
