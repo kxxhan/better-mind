@@ -10,6 +10,12 @@
       </v-btn>
       
       <h1 class="d-flex justify-center">Meeting List</h1>
+      <v-card flat color="transparent">
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn text @click="$router.push({ name: 'ExpAddMeeting'})">Add Meeting</v-btn>
+        </v-card-actions>
+      </v-card>
       <!-- 프로그램 목록 -->
       <v-item-group>
         <v-row>
@@ -31,7 +37,11 @@
                   height="250px"
                   src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
                 >
-                  <v-card-title>{{ program.category }}</v-card-title>
+                  <v-card-title>
+                    <span v-if="program.type === '0'">개인 상담 - </span>
+                    <span v-else-if="program.type === '1'">그룹 상담 - </span>
+                    <span v-else></span>
+                    {{ program.category }}</v-card-title>
                 </v-img>
 
                 <v-card-subtitle class="pb-0 text-subtitle-1">
@@ -40,13 +50,14 @@
 
                 <v-card-text class="text--primary">
                   <div>미팅주소</div>
-                  <div>미팅시간</div>
+                  <div>{{ program.date }} | {{ program.time }}</div>
                   <div>{{ program.userId }}</div>
                 </v-card-text>
               </v-card>
             </v-item>
             <!-- 클릭 시 모달폼 -->
             <v-dialog
+              v-if="userList"
               v-model="dialog"
               max-width="600"
             >
@@ -55,20 +66,28 @@
                   {{ selectprogram.name }}
                 </v-card-title>
 
-                <v-card-text>
-                  참가자목록
-                </v-card-text>
-                <v-card-text>
-                  사람선택 체크박스
-                </v-card-text>
-                <v-card-text>
-                  메세지나 메일 알람...??
-                </v-card-text>
+                <v-card-text>상담 신청자 수 : {{ userList.length }}</v-card-text>
+                <v-card-text>상담 활성화 상태 : </v-card-text>
 
                 <v-card-actions>
-                  <v-spacer></v-spacer>
                   <v-btn 
-                    color="green darken-1"
+                    color="green"
+                    text
+                  >
+                    화상 상담 ON
+                  </v-btn>
+                  <v-btn 
+                    color="orange"
+                    text
+                  >
+                    화상 상담 OFF (조건부 렌더링)
+                  </v-btn>
+                </v-card-actions>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+
+                  <v-btn 
+                    color="indigo"
                     text
                     @click="updateProgram(selectprogram)"
                   >
@@ -76,7 +95,7 @@
                   </v-btn>
 
                   <v-btn 
-                    color="green darken-1"
+                    color="indigo"
                     text
                     @click="deleteProgram(selectprogram)"
                   >
@@ -84,7 +103,7 @@
                   </v-btn>
 
                   <v-btn
-                    color="green darken-1"
+                    color="indigo"
                     text
                     @click="dialog = false"
                   >
@@ -117,12 +136,20 @@ export default {
     return {
       dialog: false,
       selectprogram: {},
+      userList : []
     }
   },
   methods: {
     openDetail: function (program) {
       this.selectprogram = program
-      this.dialog = !this.dialog
+      axios({
+        method: 'get',
+        url: `/api/v1/program/programlist/${program.id}`
+      })
+      .then(res => {
+        this.userList = res.data.users
+        this.dialog = !this.dialog
+      })
     },
     // 프로그램 업데이트 링크
     updateProgram: function (selectprogram) {
@@ -149,13 +176,13 @@ export default {
   },
   computed: {
     myprogramlist: function () {
-      const myprogramlist = []
+      const myprogramList = []
       for (const program of this.$store.state.programlist) {
         if (program.userId === this.$store.state.userInfo.userid){
-          myprogramlist.push(program)
+          myprogramList.push(program)
         }
       }
-      return myprogramlist
+      return myprogramList
     },
   },
   created: function () {
@@ -168,5 +195,9 @@ export default {
 .backbtn {
   text-decoration-line:line-through;
   background-color: none;
+}
+#exp-meetings {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 </style>

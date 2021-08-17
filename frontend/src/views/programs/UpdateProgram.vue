@@ -10,6 +10,7 @@
       </v-btn>
 
       <h1 class="d-flex justify-center">Edit Program</h1>
+
       <v-form
         ref="form"
         v-model="valid"
@@ -17,9 +18,24 @@
         class="mt-5"
       >
         <v-text-field
+          v-if="program.type == '0'"
+          value="1:1 상담"
+          label="Personal or Group"
+          readonly
+        >
+        </v-text-field>
+        <v-text-field
+          v-else
+          value="그룹 상담"
+          label="Personal or Group"
+          readonly
+        >
+        </v-text-field>
+
+        <v-text-field
           v-model="program.name"
           :rules="nameRules"
-          label="Name"
+          label="Program Name"
           required
         ></v-text-field>
 
@@ -53,6 +69,7 @@
         ></v-text-field>  
 
         <v-text-field
+          v-if="program.type == '1'"
           v-model="program.count"
           :rules="countRules"
           label="Number of participants"
@@ -69,9 +86,9 @@
         <!-- 카테고리 -->
         <v-sheet
           class="py-4 px-1"
+          color="transparent"
         >
           <v-chip-group
-            multiple
             active-class="primary--text"
           >
             <v-chip
@@ -86,26 +103,26 @@
         
         <v-btn
           :disabled="!valid"
-          color="success"
           class="mr-4"
           @click="addProgram"
         >
           Submit
         </v-btn>
 
-        <v-btn
+        <!-- <v-btn
+          text
           :disabled="!valid"
           color="warning"
           class="mr-4"
           @click="movePost()"
         >
           Back
-        </v-btn>
+        </v-btn> -->
 
       </v-form>
     </v-container>
-    <CircleBtn/>
     <Footer/>
+    <CircleBtn/>
   </div>
 </template>
 
@@ -137,7 +154,8 @@ export default {
       count: 0,
       price: 0,
       category: '',
-      userId: ''
+      userId: '',
+      type: ''
     },
     nameRules: [
       v => !!v || 'Name is required',
@@ -208,7 +226,8 @@ export default {
     this.program.time = this.$store.state.program.time
     this.program.count = this.$store.state.program.count
     this.program.price = this.$store.state.program.price    
-    this.program.category = this.$store.state.program.category    
+    this.program.category = this.$store.state.program.category
+    this.program.type = this.$store.state.program.type
   },
 }
 </script>
