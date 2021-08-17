@@ -89,91 +89,124 @@
     },
 
     methods: {
-      joinSession() {
-        // --- Get an OpenVidu object ---
-        this.OV = new OpenVidu();
-
-        // --- Init a session ---
-        this.session = this.OV.initSession();
-
-        // --- Specify the actions when events take place in the session ---
-
-        // On every new Stream received...
-        this.session.on('streamCreated', ({ stream }) => {
-          const subscriber = this.session.subscribe(stream);
-          this.subscribers.push(subscriber);
-        });
-
-        // On every Stream destroyed...
-        this.session.on('streamDestroyed', ({ stream }) => {
-          const index = this.subscribers.indexOf(stream.streamManager, 0);
-          if (index >= 0) {
-            this.subscribers.splice(index, 1);
-          }
-        });
-
-        // On every asynchronous exception...
-        this.session.on('exception', ({ exception }) => {
-          console.warn(exception);
-        });
-
-        // Chat 수신
-        this.session.on('signal', (event) => {
-          this.chatLog.push([event.data, JSON.parse(event.from.data)])
-          console.log("chat 로그",this.chatLog)
-          console.log("이벤트", event)
-          console.log("이벤트.from.데이터", typeof(JSON.parse(event.from.data)))
+      joinSession: function() {
+        axios({
+          method: 'POST',
+          url: `https://${OPENVIDU_SERVER_URL}/openvidu/api/sessions`,
+          headers: {
+            "mediaMode": "ROUTED",
+            "recordingMode": "MANUAL",
+            "customSessionId": "CUSTOM_SESSION_ID",
+            "forcedVideoCodec": "VP8",
+            "allowTranscoding": "false",
+            "defaultRecordingProperties": {
+              "name": "MyRecording",
+              "hasAudio": true,
+              "hasVideo": true,
+              "outputMode": "COMPOSED",
+              "recordingLayout": "BEST_FIT",
+              "resolution": "1280x720",
+              "frameRate": 25,
+              "shmSize": 536870912,
+              "mediaNode": {
+                "id": "media_i-0c58bcdd26l11d0sd"
+              }
+            },
+            "mediaNode": {
+              "id": "media_i-0c58bcdd26l11d0sd"
+            }
+          }.then((res) => {
+            console.log(res)
+          }).catch((err) => {
+            console.log(err)
+          })
         })
-        
-        // Speech Detection 근데 이게 publisher만 된다는데 여러 유저랑 확인해서 해봐야 할 듯 한데
-        this.session.on('publisherStartSpeaking', (event) => {
-          console.log(event)
-          console.log('User ' + event.connection.data + ' start speaking');
-          // this.$store.dispatch('startSpeaking')
-          this.$store.dispatch('addSpeaker', JSON.parse(event.connection.data).clientData)
-        });
-
-        // Speech Stop Detection
-        this.session.on('publisherStopSpeaking', (event) => {
-          console.log('User ' + event.connection.connectionId + ' stop speaking');
-          // this.$store.dispatch('stopSpeaking')
-          this.$store.dispatch('removeSpeaker', JSON.parse(event.connection.data).clientData)
-        });
-
-        // --- Connect to the session with a valid user token ---
-
-        // 'getToken' method is simulating what your server-side should do.
-        // 'token' parameter should be retrieved and returned by your own backend
-        this.getToken(this.mySessionId).then(token => {
-          this.session.connect(token, { clientData: this.myUserName })
-            .then(() => {
-
-              // --- Get your own camera stream with the desired properties ---
-              console.log("got a token!!!", token)
-              console.log("세션상태확인", this.session)
-              let publisher = this.OV.initPublisher(undefined, {
-                audioSource: undefined, // The source of audio. If undefined default microphone
-                videoSource: undefined, // The source of video. If undefined default webcam
-                publishAudio: true,  	// Whether you want to start publishing with your audio unmuted or not
-                publishVideo: true,  	// Whether you want to start publishing with your video enabled or not
-                resolution: '640x480',  // The resolution of your video
-                frameRate: 30,			// The frame rate of your video
-                insertMode: 'APPEND',	// How the video is inserted in the target element 'video-container'
-                mirror: true,       	// Whether to mirror your local video or not
-              });
-
-              this.mainStreamManager = publisher;
-              this.publisher = publisher;
-
-              // --- Publish your stream ---
-              this.session.publish(this.publisher);
-            })
-            .catch(error => {
-              console.log('There was an error connecting to the session:', error.code, error.message);
-            });
-        });
-        window.addEventListener('beforeunload', this.leaveSession)
       },
+      // joinSession() {
+      //   // --- Get an OpenVidu object ---
+      //   this.OV = new OpenVidu();
+
+      //   // --- Init a session ---
+      //   this.session = this.OV.initSession();
+
+      //   // --- Specify the actions when events take place in the session ---
+
+      //   // On every new Stream received...
+      //   this.session.on('streamCreated', ({ stream }) => {
+      //     const subscriber = this.session.subscribe(stream);
+      //     this.subscribers.push(subscriber);
+      //   });
+
+      //   // On every Stream destroyed...
+      //   this.session.on('streamDestroyed', ({ stream }) => {
+      //     const index = this.subscribers.indexOf(stream.streamManager, 0);
+      //     if (index >= 0) {
+      //       this.subscribers.splice(index, 1);
+      //     }
+      //   });
+
+      //   // On every asynchronous exception...
+      //   this.session.on('exception', ({ exception }) => {
+      //     console.warn(exception);
+      //   });
+
+      //   // Chat 수신
+      //   this.session.on('signal', (event) => {
+      //     this.chatLog.push([event.data, JSON.parse(event.from.data)])
+      //     console.log("chat 로그",this.chatLog)
+      //     console.log("이벤트", event)
+      //     console.log("이벤트.from.데이터", typeof(JSON.parse(event.from.data)))
+      //   })
+        
+      //   // Speech Detection 근데 이게 publisher만 된다는데 여러 유저랑 확인해서 해봐야 할 듯 한데
+      //   this.session.on('publisherStartSpeaking', (event) => {
+      //     console.log(event)
+      //     console.log('User ' + event.connection.data + ' start speaking');
+      //     // this.$store.dispatch('startSpeaking')
+      //     this.$store.dispatch('addSpeaker', JSON.parse(event.connection.data).clientData)
+      //   });
+
+      //   // Speech Stop Detection
+      //   this.session.on('publisherStopSpeaking', (event) => {
+      //     console.log('User ' + event.connection.connectionId + ' stop speaking');
+      //     // this.$store.dispatch('stopSpeaking')
+      //     this.$store.dispatch('removeSpeaker', JSON.parse(event.connection.data).clientData)
+      //   });
+
+      //   // --- Connect to the session with a valid user token ---
+
+      //   // 'getToken' method is simulating what your server-side should do.
+      //   // 'token' parameter should be retrieved and returned by your own backend
+      //   this.getToken(this.mySessionId).then(token => {
+      //     this.session.connect(token, { clientData: this.myUserName })
+      //       .then(() => {
+
+      //         // --- Get your own camera stream with the desired properties ---
+      //         console.log("got a token!!!", token)
+      //         console.log("세션상태확인", this.session)
+      //         let publisher = this.OV.initPublisher(undefined, {
+      //           audioSource: undefined, // The source of audio. If undefined default microphone
+      //           videoSource: undefined, // The source of video. If undefined default webcam
+      //           publishAudio: true,  	// Whether you want to start publishing with your audio unmuted or not
+      //           publishVideo: true,  	// Whether you want to start publishing with your video enabled or not
+      //           resolution: '640x480',  // The resolution of your video
+      //           frameRate: 30,			// The frame rate of your video
+      //           insertMode: 'APPEND',	// How the video is inserted in the target element 'video-container'
+      //           mirror: true,       	// Whether to mirror your local video or not
+      //         });
+
+      //         this.mainStreamManager = publisher;
+      //         this.publisher = publisher;
+
+      //         // --- Publish your stream ---
+      //         this.session.publish(this.publisher);
+      //       })
+      //       .catch(error => {
+      //         console.log('There was an error connecting to the session:', error.code, error.message);
+      //       });
+      //   });
+      //   window.addEventListener('beforeunload', this.leaveSession)
+      // },
 
       leaveSession() {
         // --- Leave the session by calling 'disconnect' method over the Session object ---
