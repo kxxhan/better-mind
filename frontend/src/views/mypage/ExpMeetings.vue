@@ -13,7 +13,7 @@
       <v-card flat color="transparent">
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text @click="$router.push({ name: 'ExpAddMeeting'})">Add Meeting</v-btn>
+          <v-btn color="indigo" text @click="$router.push({ name: 'ExpAddMeeting'})">Add Meeting</v-btn>
         </v-card-actions>
       </v-card>
       <!-- 프로그램 목록 -->
