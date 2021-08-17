@@ -16,10 +16,31 @@
         v-model="valid"
         lazy-validation
       >
+        <v-row>
+          <v-col cols="5">
+            <v-radio-group
+              label="Personal or Group"
+              v-model="program.type"
+              row
+              :rules="typeRules"
+              required
+            >
+              <v-radio
+                label="1:1 상담"
+                value="0"
+              ></v-radio>
+              <v-radio
+                label="그룹 상담"
+                value="1"
+              ></v-radio>
+            </v-radio-group>
+          </v-col>
+        </v-row>
+        
         <v-text-field
           v-model="program.name"
           :rules="nameRules"
-          label="Name"
+          label="Program Name"
           required
         ></v-text-field>
 
@@ -53,6 +74,7 @@
         ></v-text-field>  
 
         <v-text-field
+          v-if="program.type === '0'"
           v-model="program.count"
           :rules="countRules"
           label="Number of participants"
@@ -93,12 +115,12 @@
           Submit
         </v-btn>
 
-        <v-btn
+        <!-- <v-btn
           class="mr-4"
           @click="reset"
         >
           Reset Form
-        </v-btn>
+        </v-btn> -->
       </v-form>
     </v-container>
     <CircleBtn/>
@@ -134,7 +156,8 @@ export default {
       count: 0,
       price: 0,
       category: '',
-      userId: ''
+      userId: '',
+      type: ''
     },
     nameRules: [
       v => !!v || 'Name is required',
@@ -168,6 +191,9 @@ export default {
       v => !!v || 'Category is required',
       v => v.length > 0 || 'Category must be 1 item',
     ],
+    typeRules: [
+      v => !!v || 'You must choose one to continue',
+    ]
   }),
   methods: {
     addProgram: function () {
@@ -207,5 +233,9 @@ export default {
 .backbtn {
   text-decoration-line:line-through;
   background-color: none;
+}
+#exp-add-meeting {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 </style>
