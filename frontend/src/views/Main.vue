@@ -40,6 +40,11 @@
               <p>Mine</p>               
             </button>
           </v-col>
+          <v-col>
+            <button class="main-button noselect" @click="moveRtc()">
+              <p>RTC</p>               
+            </button>
+          </v-col>
         </v-row>
       </v-container>
     </div>
@@ -82,6 +87,9 @@ export default {
         this.$router.push({ name: 'ExpMeetings' })
       }
     },
+    moveRtc: function () {
+      this.$router.push({ name: 'WebRTC' })
+    }
   }
 }
 </script>

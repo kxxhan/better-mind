@@ -9,7 +9,6 @@
           sm="6"
           md="4"
           lg="3"
-          xl="2"
         >
           <div class="postit">
             <v-card class="d-flex flex-column justify-space-between" min-height="235px" max-width="235px" min-width="235px" color="transparent" outlined>
@@ -18,7 +17,7 @@
                   <span class="pl-5">{{ answer.userId }}</span>
                 </div>
                 <div class="pt-3">
-                  <span class="pr-3">10분 전</span>
+                  <!-- <span class="pr-3">10분 전</span> -->
                   <v-btn v-show="answer.userId == userInfo.userid" icon @click="deleteComment(answer)">
                     <v-icon>mdi-window-close</v-icon>
                   </v-btn>
