@@ -27,6 +27,7 @@ import com.ssafy.db.entity.Program_File;
 import com.ssafy.db.entity.Program_Review;
 import com.ssafy.db.entity.User_Program;
 import com.ssafy.db.repository.ProgramRepository;
+import com.ssafy.db.repository.ProgramRepositorySupport;
 import com.ssafy.db.repository.Program_FileRepository;
 import com.ssafy.db.repository.Program_ReviewRepository;
 import com.ssafy.db.repository.UserRepository;
@@ -37,6 +38,9 @@ public class ProgramServiceImpl implements ProgramService {
 
 	@Autowired
 	ProgramRepository repository;
+	
+	@Autowired
+	ProgramRepositorySupport programRepositorySupport;
 	
 	@Autowired
 	UserRepository userRepository;
@@ -226,6 +230,12 @@ public class ProgramServiceImpl implements ProgramService {
 			p.setUsers(users);
 		}
 		return p;
+	}
+
+	@Override
+	public Program findByProgramId(Long program_id) {
+		Program program = programRepositorySupport.findProgramByProgramid(program_id).get();
+		return program;
 	}
 	
 }

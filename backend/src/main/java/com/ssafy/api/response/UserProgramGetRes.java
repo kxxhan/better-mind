@@ -23,6 +23,8 @@ public class UserProgramGetRes {
 //	private List<ProgramPostReq> programs;
 	@ApiModelProperty(name="프로그램 ID")
 	private Long program_id;
+//	@ApiModelProperty(name="나의 프로그램 ID")
+//	private Long myProgram_id;
 	@ApiModelProperty(name="유저 ID")
 	private Long user_id;
 	

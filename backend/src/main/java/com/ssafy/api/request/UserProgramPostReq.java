@@ -14,8 +14,9 @@ public class UserProgramPostReq {
 	
 	@ApiModelProperty(name="유저 ID")
 	private Long user_id;
-//	private List<User_Program> user_id;
 	@ApiModelProperty(name="프로그램 ID")
 	private Long program_id;
-//	private List<User_Program> program_id;
+//	@ApiModelProperty(name="나의 프로그램 ID")
+//	private Long myProgram_id;
+
 }

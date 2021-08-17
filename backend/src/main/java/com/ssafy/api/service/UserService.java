@@ -17,4 +17,6 @@ public interface UserService {
 	User updateUser(Long id, UserRegisterPostReq userRegisterInfo);
 	void deleteUser(Long id);
 	UserRes getOneUserProgram(Long id);
+	User findByUserId(Long user_id);
+	
 }

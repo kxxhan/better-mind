@@ -33,4 +33,6 @@ public interface ProgramService {
 	void deleteReview(Long pId, Long rId);
 	
 	ProgramGetRes getOneProgramUser(Long id); // 프로그램 신청자들
+
+	Program findByProgramId(Long program_id);
 }
