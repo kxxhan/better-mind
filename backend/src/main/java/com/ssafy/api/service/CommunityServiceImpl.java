@@ -108,7 +108,8 @@ public class CommunityServiceImpl implements CommunityService {
 		CommunityPostReq resp;
 		for (Community_Article c : list) {
 			resp = new CommunityPostReq();
-			resp.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).isPresent()); //여기
+//			resp.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).isPresent());
+			resp.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).orElseGet(null));
 			resp.setLikeCount(c.getLike());
 			resp.setId(c.getId());
 			resp.setTitle(c.getTitle());

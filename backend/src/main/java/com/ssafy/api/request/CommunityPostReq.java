@@ -3,6 +3,7 @@ package com.ssafy.api.request;
 import java.util.Date;
 import java.util.List;
 
+import com.ssafy.db.entity.Article_Like;
 import com.ssafy.db.entity.User;
 
 import io.swagger.annotations.ApiModel;
@@ -29,5 +30,9 @@ public class CommunityPostReq {
 	private int likeCount;
 	@ApiModelProperty(name="코멘트")
 	private int commentCount;
+	public void setLike(Article_Like orElseGet) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
