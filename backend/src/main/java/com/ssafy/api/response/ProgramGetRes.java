@@ -43,5 +43,6 @@ public class ProgramGetRes {
 	private String type;
 	@ApiModelProperty(name="신청자들")
 	private List<UserProgramPostReq> users;
+	private boolean isactive;
 	
 }

@@ -35,5 +35,15 @@ public class User_Program extends BaseEntity {
 //		this.getProgram().getId();
 		this.program=program;	
 	}
+
+//	public void setUser(Optional<User_Program> findByUser_id) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	public void setProgram(Optional<User_Program> findByProgram_id) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 	
 }
