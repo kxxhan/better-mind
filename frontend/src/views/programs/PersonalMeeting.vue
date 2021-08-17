@@ -19,9 +19,7 @@
 
       <v-row class="mt-5">
         <!-- 분류 키워드 Chips Group -->
-        <v-col
-          cols="10"
-        >
+        <v-col>
           <v-sheet
             color= transparent
           >
