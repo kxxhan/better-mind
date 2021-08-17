@@ -36,7 +36,7 @@
             <v-card-actions class="pt-4">
               <p class="my-auto">프로그램 가격 : {{ program.price }}</p>
               <v-spacer></v-spacer>
-              <v-btn text class="me-4" @click="registrateProgram(program)">
+              <v-btn text color="indigo" class="me-4" @click="registrateProgram(program)">
                 APPLY
               </v-btn>
             </v-card-actions>
@@ -44,43 +44,45 @@
         </v-row>
       </v-card>
 
-      <v-tabs
-        class="mt-16"
-        background-color="transparent"
-        color="grey darken-2"
-        fixed-tabs
-        v-model="tab"
-      >
-        <v-tabs-slider color="#E1BEE7"></v-tabs-slider>
-        <v-tab>전문가 소개</v-tab>
-        <v-tab>프로그램 소개</v-tab>
-        <v-tab>프로그램 후기</v-tab>
-      </v-tabs>
+      <v-card color="indigo lighten-2" dark flat>
+        <v-tabs
+          class="mt-16"
+          background-color="transparent"
+          fixed-tabs
+          v-model="tab"
+        >
+          <v-tabs-slider color="#E1BEE7"></v-tabs-slider>
+          <v-tab>전문가 소개</v-tab>
+          <v-tab>프로그램 소개</v-tab>
+          <v-tab>프로그램 후기</v-tab>
+        </v-tabs>
 
-      <v-tabs-items 
-        v-model="tab"
-      >
-        <v-tab-item>
-          <v-card color="tab-card-item" flat>
-            <v-card-text style="background-color: transparent;">{{ program.description }}</v-card-text>
-          </v-card>
-        </v-tab-item>
-        <v-tab-item>
-          <v-card color="tab-card-item" flat>
-            <v-card-text>{{ program.report }}</v-card-text>
-          </v-card>
-        </v-tab-item>
-        <v-tab-item>
-          <v-card color="tab-card-item" flat>
-            <v-card-text
-             v-for="review in program.reviews" 
-             :key="review"
-            >
-              {{ review.userId }}: {{ review.content }}
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-      </v-tabs-items>
+        <v-tabs-items 
+          v-model="tab"
+          background-color="transparent"
+        >
+          <v-tab-item>
+            <v-card color="tab-card-item" flat>
+              <v-card-text style="background-color: transparent;">{{ program.description }}</v-card-text>
+            </v-card>
+          </v-tab-item>
+          <v-tab-item>
+            <v-card color="tab-card-item" flat>
+              <v-card-text>{{ program.report }}</v-card-text>
+            </v-card>
+          </v-tab-item>
+          <v-tab-item>
+            <v-card color="tab-card-item" flat>
+              <v-card-text
+              v-for="review in program.reviews" 
+              :key="review"
+              >
+                {{ review.userId }}: {{ review.content }}
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+        </v-tabs-items>
+      </v-card>
     </v-container>
     <Footer/>
     <CircleBtn/>

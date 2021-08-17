@@ -1,57 +1,59 @@
 <template>
-  <v-container>
-    <v-btn 
-      @click="moveBack()"
-      icon
-      x-large
-    >
-      <v-icon>mdi-arrow-left-thick</v-icon>
-    </v-btn>
-    <v-card id="payment">
-      <v-card-title>
-        <h2>{{ program.name }}</h2>
-        <v-spacer></v-spacer>
-        <v-card-subtitle>{{ program.userId }} 전문가</v-card-subtitle>
-      </v-card-title>
-      <hr class="mx-3">
-      <v-card-text>일정 : {{ program.date }}</v-card-text>
-      <v-card-text>시간 : {{ program.time }}</v-card-text>
-      <v-card-text>카테고리 : {{ program.category }}</v-card-text>
-      <hr class="mx-3">
-      <v-card-actions>
-        <v-row class="d-flex flex-column justify-center">
-          <v-col
-            cols="12"
-            md="6"
-          >
-            <v-select
-              :items="pay_methods"
-              outlined
-              label="결제 수단"
-              v-model="pay_method"
-            ></v-select>
-          </v-col>
-          <v-col
-            cols="12"
-            md="6"  
-          >
-            <v-text-field
-              readonly
-              outlined
-              label="결제 금액"
-              v-model="program.price"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-spacer></v-spacer>
-        <v-btn @click="onPayment">
-          결제하기
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-    <CircleBtn/>
-    <Footer/>
-  </v-container>
+  <div id="payment">
+    <v-container>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+      <v-card color="transparent" >
+        <v-card-title>
+          <h2>{{ program.name }}</h2>
+          <v-spacer></v-spacer>
+          <v-card-subtitle>{{ program.userId }} 전문가</v-card-subtitle>
+        </v-card-title>
+        <hr class="mx-3">
+        <v-card-text>일정 : {{ program.date }}</v-card-text>
+        <v-card-text>시간 : {{ program.time }}</v-card-text>
+        <v-card-text>카테고리 : {{ program.category }}</v-card-text>
+        <hr class="mx-3">
+        <v-card-actions>
+          <v-row class="d-flex flex-column justify-center">
+            <v-col
+              cols="12"
+              md="6"
+            >
+              <v-select
+                :items="pay_methods"
+                outlined
+                label="Pay Methods"
+                v-model="pay_method"
+              ></v-select>
+            </v-col>
+            <v-col
+              cols="12"
+              md="6"  
+            >
+              <v-text-field
+                readonly
+                outlined
+                label="Price"
+                v-model="program.price"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-spacer></v-spacer>
+          <v-btn text color="indigo" @click="onPayment">
+            CHECKOUT
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+      <CircleBtn/>
+      <Footer/>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -142,8 +144,9 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  padding-left: 100px;
-  padding-right: 100px;
+#payment {
+  max-width: 1200px;
+  margin: 0 auto;
 }
+
 </style>
