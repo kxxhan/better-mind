@@ -88,11 +88,19 @@ public class UserServiceImpl implements UserService {
 			for(User_Program k : uplist) {
 				UserProgramPostReq l = new UserProgramPostReq();
 				l.setProgram_id(k.getProgram().getId());
+//				l.setProgram_id(k.getMyProgram_id());
+//				l.setMyProgram_id(k.getMyProgram_id());
 				programs.add(l);
 			}
 			u.setPrograms(programs);
 		}
 		return u;
+	}
+
+	@Override
+	public User findByUserId(Long user_id) {
+		User user = userRepositorySupport.findUserByUserid(user_id).get();
+		return user;
 	}
 	
 }

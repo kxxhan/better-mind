@@ -21,29 +21,23 @@ public class User_Program extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", unique = false)
 	private User user;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "program_id", unique = false)
 	private Program program;
-
-	public void setUser(Long user_id) {
-//		this.getUser().getId();
+	
+//	private Long myProgram_id;
+	
+	public void setUser(User user) {
 		this.user=user;
 	}
-
-	public void setProgram(Long program_id) {
-//		this.getProgram().getId();
-		this.program=program;	
+	
+	public void setProgram(Program program) {
+		this.program=program;
 	}
 
-//	public void setUser(Optional<User_Program> findByUser_id) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	public void setProgram(Optional<User_Program> findByProgram_id) {
-//		// TODO Auto-generated method stub
-//		
+//	public void setProgram(Long program_id) {
+//		this.myProgram_id=program_id;	
 //	}
 	
 }

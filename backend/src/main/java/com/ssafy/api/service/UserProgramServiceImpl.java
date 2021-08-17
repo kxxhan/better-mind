@@ -23,21 +23,22 @@ public class UserProgramServiceImpl implements UserProgramService {
 	UserRepository userRepository;
 	
 	@Autowired
+	UserService userService;
+	
+	@Autowired
+	ProgramService programService;
+	
+	@Autowired
 	ProgramRepository programRepository;
 	
 	@Override
 	public User_Program createUserProgram(UserProgramPostReq userprogramPostReq) throws IllegalStateException, IOException{
 		User_Program userprogram = new User_Program();
-		userprogram.setUser(userprogramPostReq.getUser_id()); //왜 null값들어감 ㅡㅡ?
-		userprogram.setProgram(userprogramPostReq.getProgram_id());
-//		System.out.println(userprogramPostReq.getUser_id());
-//		System.out.println(userprogramPostReq.getProgram_id());
-//		userprogram.setUser(userprogramRepository.findByUser_id(userprogramPostReq.getUser_id()));
-//		userprogram.setProgram(userprogramRepository.findByProgram_id(userprogramPostReq.getProgram_id()));
-//		userprogram.setUser(userRepository.findByUser_id(userprogramPostReq.getUser_id().getLong(null)));
-//		userprogram.setUser(userprogramRepository.findByUser_id(userprogramPostReq.getUserid()));
-//		userprogram.setProgram(userprogramRepository.findByProgram_id(userprogramPostReq.getProgramid()));
-//		System.out.println(userprogramRepository.save(userprogram));
+		User user = userService.findByUserId(userprogramPostReq.getUser_id()); // 유저 서비스에서 유저 객체 찾기
+		userprogram.setUser(user); // 유저 프로그램의 유저 셋팅
+		Program program = programService.findByProgramId(userprogramPostReq.getProgram_id());
+		userprogram.setProgram(program);
+//		userprogram.setMyProgram_id(userprogramPostReq.getMyProgram_id());
 		userprogram = userprogramRepository.save(userprogram);
 		return userprogram;
 	}
