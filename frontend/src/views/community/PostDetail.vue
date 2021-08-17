@@ -163,7 +163,7 @@ export default {
     unlikePost: function (post) {
       axios({
         method: 'get',
-        url: `/api/v1/article/like/${this.post.id}`,
+        url: `/api/v1/article/hate/${this.post.id}`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem('jwt')}`
         },
