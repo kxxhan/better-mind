@@ -1,6 +1,12 @@
 <template>
   <v-container>
-    <BackBtn/>
+    <v-btn 
+      @click="moveBack()"
+      icon
+      x-large
+    >
+      <v-icon>mdi-arrow-left-thick</v-icon>
+    </v-btn>
     <v-card id="payment">
       <v-card-title>
         <h2>{{ program.name }}</h2>
@@ -51,7 +57,6 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
-import BackBtn from '@/components/BackBtn.vue'
 import axios from 'axios'
 
 export default {
@@ -59,7 +64,6 @@ export default {
   components: {
     Footer,
     CircleBtn,
-    BackBtn
   },
   data: function () {
     return {
@@ -118,6 +122,13 @@ export default {
         alert(`결제 실패 : ${error_msg}`)
       }
     },
+    moveBack: function () {
+      if (this.program.type === '1') {
+        this.$router.push({ name: 'ProgramDetail', params: {program_pk: this.$route.params.program_pk }})
+      } else {
+        this.$router.push({ name: 'PersonalMeeting' })
+      }
+    }
   },
   created: function () {
     this.$store.dispatch('getProgram', this.$route.params.program_pk)
