@@ -74,7 +74,7 @@
         ></v-text-field>  
 
         <v-text-field
-          v-if="program.type === '0'"
+          v-if="program.type === '1'"
           v-model="program.count"
           :rules="countRules"
           label="Number of participants"
@@ -94,7 +94,6 @@
           color= transparent
         >
           <v-chip-group
-            multiple
             active-class="primary--text"
           >
             <v-chip
