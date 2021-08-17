@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.api.request.UserProgramPostReq;
+import com.ssafy.db.entity.Program;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.User_Program;
 import com.ssafy.db.repository.ProgramRepository;
@@ -34,8 +35,8 @@ public class UserProgramServiceImpl implements UserProgramService {
 //		userprogram.setUser(userprogramRepository.findByUser_id(userprogramPostReq.getUser_id()));
 //		userprogram.setProgram(userprogramRepository.findByProgram_id(userprogramPostReq.getProgram_id()));
 //		userprogram.setUser(userRepository.findByUser_id(userprogramPostReq.getUser_id().getLong(null)));
-//		userprogram.setUser(userprogramRepository.findByUserid(userprogramPostReq.getUser_id()));
-//		userprogram.setProgram(userprogramRepository.findByProgramid(userprogramPostReq.getProgram_id()));
+//		userprogram.setUser((User) userprogramRepository.findByUser_id(userprogramPostReq.getUser_id()));
+//		userprogram.setProgram((Program) userprogramRepository.findByProgram_id(userprogramPostReq.getProgram_id()));
 //		System.out.println(userprogramRepository.save(userprogram));
 		userprogram = userprogramRepository.save(userprogram);
 		return userprogram;
