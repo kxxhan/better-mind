@@ -1,7 +1,13 @@
 <template>
   <!-- <div class="page-layout"> -->
     <v-container id="post-detail">
-      <BackBtn/>
+      <v-btn 
+      @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
       <!-- 게시글 상세내용 -->
       <v-card
         class="mx-auto mb-5"
@@ -22,8 +28,12 @@
           <v-card-actions>
             <span class="grey--text my-font-reg ms-3"># {{ post.category }}</span>
             <v-spacer></v-spacer>
-            <v-btn text class="mx-2" color="grey darken-2">
+            <v-btn v-if="post.like" text class="mx-2" color="grey darken-2" @click="unlikePost(post)">
               <v-icon class="mr-1">mdi-heart</v-icon>
+              <span>{{ post.likeCount }}</span>
+            </v-btn>
+            <v-btn v-else text class="mx-2" color="grey darken-2" @click="likePost(post)">
+              <v-icon class="mr-1">mdi-heart-outline</v-icon>
               <span>{{ post.likeCount }}</span>
             </v-btn>
           </v-card-actions>
@@ -71,8 +81,8 @@
 
       <!-- 댓글 리스트 -->
       <Comment :key="renderComponent" @render="deleteRender"/>
-      <CircleBtn/>
       <Footer/>
+      <CircleBtn/>
     </v-container>
   <!-- </div> -->
 </template>
@@ -80,7 +90,6 @@
 <script>
 import axios from 'axios'
 import Comment from '@/components/community/Comment.vue'
-import BackBtn from '@/components/BackBtn.vue'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
 
@@ -94,7 +103,6 @@ export default {
   },
   components: {
     Comment,
-    BackBtn,
     Footer,
     CircleBtn,
   },
@@ -139,9 +147,37 @@ export default {
         })
       }
     },
+    // 좋아요 기능 확인하기
+    likePost: function (post) {
+      axios({
+        method: 'get',
+        url: `/api/v1/article/like/${this.post.id}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        },
+      })
+      .then(res => {
+        console.log(res.data)
+      })
+    },
+    unlikePost: function (post) {
+      axios({
+        method: 'get',
+        url: `/api/v1/article/like/${this.post.id}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        },
+      })
+      .then(res => {
+        console.log(res.data)
+      })
+    },
     // 삭제후 댓글 컴포넌트만 reload
     deleteRender: function () {
       this.renderComponent += 1
+    },
+    moveBack: function () {
+      this.$router.push({ name: 'PostItems' })
     }
   },
   created: function () {

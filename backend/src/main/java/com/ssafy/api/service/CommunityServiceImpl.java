@@ -150,7 +150,8 @@ public class CommunityServiceImpl implements CommunityService {
 		c.setTitle(article.getTitle());
 		c.setCategory(article.getCategory().name());
 		c.setUserId(article.getUser().getUserid());
-		c.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).isPresent());
+//		c.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).isPresent());
+		c.setLike(likeRepository.findByUser_idAndArticle_id(uid, c.getId()).orElseGet(null));
 		c.setLikeCount(article.getLike());
 		List<Community_Comment> clist = commentRepository.findByCommunityarticle_id(article.getId()).get();
 		if(clist != null) {
@@ -231,16 +232,15 @@ public class CommunityServiceImpl implements CommunityService {
 		Community_Article article = repository.getOne(aId);
 		article.setLike(article.getLike()+1);
 		repository.save(article);
-		
 	}
+	
 	@Override
 	public void downLike(Long aId, Long uId) {
 		// TODO Auto-generated method stub
-		likeRepository.deleteById(likeRepository.findByUser_idAndArticle_id(uId, aId).get().getId());
+		likeRepository.deleteById((likeRepository.findByUser_idAndArticle_id(uId, aId).get()).getId());
 		Community_Article article = repository.getOne(aId);
 		article.setLike(article.getLike()-1);
 		repository.save(article);
 	}
-	
 
 }

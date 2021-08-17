@@ -1,7 +1,14 @@
 <template>
   <div>
     <v-container id="exp-add-meeting">
-      <BackBtn/>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+
       <h1 class="d-flex justify-center">Add Program</h1>
       <v-form
         class="mt-5"
@@ -103,21 +110,21 @@
 import axios from 'axios'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
-import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'ExpAddMeeting',
   components: {
     Footer,
     CircleBtn,
-    BackBtn
   },
   data: () => ({
     valid: true,
-    category: ['우울', '불안', '성격문제', '애착', 
-          '대인기피', '분노조절', '자존감', 
-          '중독', '대인관계', '부부', '가족상담',
-        ],
+    category: [
+      '일반고민', '취업진로', '직장', '연애', 
+      '성추행', '대인관계', '외모', 
+      '가족', '학업', '금전', '이별이혼', 
+      '육아', '중독', '건강', '성격'
+    ],
     program: {
       name: '',
       report: '',
@@ -181,10 +188,13 @@ export default {
     },
     choiceCategory: function (item) {
       this.program.category = item
-    }
+    },
     // reset () {
     //   this.$refs.form.reset()
     // },
+    moveBack: function () {
+      this.$router.push({ name: 'ExpMeetings' })
+    }
   },
 }
 </script>
@@ -193,5 +203,9 @@ export default {
 .container {
   padding-left: 100px;
   padding-right: 100px;
+}
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
 }
 </style>

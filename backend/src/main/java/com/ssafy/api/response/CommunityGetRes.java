@@ -3,6 +3,7 @@ package com.ssafy.api.response;
 import java.util.List;
 
 import com.ssafy.api.request.CommentPostReq;
+import com.ssafy.db.entity.Article_Like;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -30,5 +31,9 @@ public class CommunityGetRes {
 	
 	private boolean like;
 	private int likeCount;
+	public void setLike(Article_Like orElseGet) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

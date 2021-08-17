@@ -22,6 +22,7 @@ export default {
 
 	methods: {
     getConnectionData () {
+      console.log("UV 스트림매니저 데이터", this.streamManager)
       const { connection } = this.streamManager.stream;
 			return JSON.parse(connection.data);
 		},

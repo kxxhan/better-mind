@@ -1,4 +1,4 @@
-
+const path = require("path")
 // Vue3 관련 설정 파일
 module.exports = {
   devServer: {
@@ -17,7 +17,8 @@ module.exports = {
   },
 
   lintOnSave: false,
-  outputDir: '../backend/src/main/resources/dist',
+  // outputDir: '../backend/src/main/resources/dist',
+  outputDir: path.resolve(__dirname, "./dist"),
 
   transpileDependencies: [
     'vuetify'

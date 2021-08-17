@@ -1,18 +1,29 @@
 <template>
-  <div>
-    <v-container id="program-items">
-      <BackBtn/>
-      <!-- 분류 키워드 Chips Group -->
-      <v-row justify="center">
+  <div class="page-layout">
+    <v-container>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+      
+      <h1 class="d-flex justify-center">Personal Counseling</h1>
+
+      <header>
+        <div class="banner">
+          <h2>We help you achieve your goals</h2>
+        </div>
+      </header>
+
+      <v-row class="mt-5">
+        <!-- 분류 키워드 Chips Group -->
         <v-col
-          cols="12"
-          sm="10"
-          md="9"
-          lg="8"
+          cols="10"
         >
           <v-sheet
-            elevation="10"
-            rounded="xl"
+            color= transparent
           >
             <div class="pa-4">
               <v-chip-group
@@ -21,6 +32,7 @@
                 multiple
               >
                 <v-chip
+                  large
                   v-for="item in category"
                   :key="item"
                   @click="selectCategory(item)"
@@ -33,83 +45,85 @@
         </v-col>
       </v-row>
 
-      <!-- 프로그램 리스트 -->
-      <v-item-group>
-        <v-row v-if="selectcategories.length">
-          <!-- 카테고리 미 선택 시 전체 프로그램 렌더링 -->
-          <v-col
-            v-for="program in selectprograms"
-            :key="program.id"
-            cols="12"
-            sm="6"
-            md="4"
-            lg="3"
-          >
-            <v-item class="d-flex flex-column justify-center mb-2">
-              <v-card
-                class="mx-auto"
-                max-width="350"
-                @click="showDetail(program)"
-              >
+      <!-- 선택 카테고리 프로그램 -->
+      <v-row v-if="selectCategories.length">
+        <v-col
+          v-for="program in selectPrograms"
+          :key="program.id"
+          cols="12"
+          md="6"
+        >
+          <v-card class="mt-4" color="transparent" rounded="lg" outlined @click="showDetail(program)">
+            <v-row>
+              <v-col cols="4" class="ps-6 d-flex flex-column justify-center">
                 <v-img
-                  class="white--text align-end"
-                  height="250px"
-                  src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                  class="card-img"
+                  src="https://images.unsplash.com/photo-1604882355447-02f728a295a2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGNvdW5zZWxpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                  width="300px"
                 >
-                  <v-card-title>#{{ program.category }}</v-card-title>
                 </v-img>
+              </v-col>
 
-                <v-card-subtitle class="pb-0 text-subtitle-1">
-                  {{ program.name }} 
+              <v-col cols="8" class="pe-6 d-flex flex-column justify-center">
+                <v-card-title class="card-title text-h5">
+                  {{ program.name }}
+                </v-card-title>
+                <v-card-subtitle>
+                  # {{ program.category }}
                 </v-card-subtitle>
+                <v-card-text class="grey--text">{{ program.userId }} 전문가</v-card-text>
+                <v-divider></v-divider>
+                <v-card-text class="card-content text-body-1">제한인원: {{ program.count }}</v-card-text>
+                <v-card-text class="card-content text-body-1">운영시간: {{ program.time }}</v-card-text>
+                <v-card-actions class="pe-6">
+                  <!-- 상세 페이지로 연결 -->
+                  <v-btn outlined color="indigo">Detail</v-btn>
+                </v-card-actions>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-col>
+      </v-row>
 
-                <v-card-text class="text--primary">
-                  <div>전문가: {{ program.userId }}</div>
-                  <div>제한인원: {{ program.count }}명</div>
-                  <div>{{ program.time }}</div>
-                </v-card-text>
-              </v-card>
-            </v-item>
-          </v-col>
-        </v-row>
-        <v-row v-else>  
-          <!-- 선택 카테고리에 대한 프로그램 렌더링 -->
-          <v-col
-            v-for="program in programlist"
-            :key="program.id"
-            cols="12"
-            sm="6"
-            md="4"
-            lg="3"
-          >
-            <v-item class="d-flex flex-column justify-center mb-2">
-              <v-card
-                class="mx-auto"
-                max-width="350"
-                @click="showDetail(program)"
-              >
+      <!-- 카테고리 미 선택 시 전체 프로그램 -->
+      <v-row v-else>
+        <v-col
+          v-for="program in programlist"
+          :key="program.id"
+          cols="12"
+          md="6"
+        >
+          <v-card class="mt-4" color="transparent" rounded="lg" outlined @click="showDetail(program)">
+            <v-row>
+              <v-col cols="4" class="ps-6 d-flex flex-column justify-center">
                 <v-img
-                  class="white--text align-end"
-                  height="250px"
-                  src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                  class="card-img"
+                  src="https://images.unsplash.com/photo-1604882355447-02f728a295a2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGNvdW5zZWxpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                  width="300px"
                 >
-                  <v-card-title>#{{ program.category }}</v-card-title>
                 </v-img>
+              </v-col>
 
-                <v-card-subtitle class="pb-0 text-subtitle-1">
-                  {{ program.name }} 
+              <v-col cols="8" class="pe-6 d-flex flex-column justify-center">
+                <v-card-title class="card-title text-h5">
+                  {{ program.name }}
+                </v-card-title>
+                <v-card-subtitle>
+                  # {{ program.category }}
                 </v-card-subtitle>
-
-                <v-card-text class="text--primary">
-                  <div>전문가: {{ program.userId }}</div>
-                  <div>제한인원: {{ program.count }}명</div>
-                  <div>{{ program.time }}</div>
-                </v-card-text>
-              </v-card>
-            </v-item>
-          </v-col>
-        </v-row>
-      </v-item-group>
+                <v-card-text class="grey--text">{{ program.userId }} 전문가</v-card-text>
+                <v-divider></v-divider>
+                <v-card-text class="card-content text-body-1">제한인원: {{ program.count }}</v-card-text>
+                <v-card-text class="card-content text-body-1">운영시간: {{ program.time }}</v-card-text>
+                <v-card-actions class="pe-6">
+                  <!-- 상세 페이지로 연결 -->
+                  <v-btn outlined color="indigo">Detail</v-btn>
+                </v-card-actions>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-col>
+      </v-row>
     </v-container>
     <CircleBtn/>
     <Footer/>
@@ -119,22 +133,22 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
-import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'ProgramItems',
   components: {
     Footer,
     CircleBtn,
-    BackBtn
   },
   data: () => ({
-    category: ['우울', '불안', '성격문제', '애착', 
-          '대인기피', '분노조절', '자존감', 
-          '중독', '대인관계', '부부', '가족상담',
-        ],
-    selectcategories: [],
-    selectprograms: []
+    category: [
+      '일반고민', '취업진로', '직장', '연애', 
+      '성추행', '대인관계', '외모', 
+      '가족', '학업', '금전', '이별이혼', 
+      '육아', '중독', '건강', '성격'
+    ],
+    selectCategories: [],
+    selectPrograms: []
   }),
   methods: {
     showDetail: function (program) {     
@@ -142,25 +156,34 @@ export default {
     },
     // 선택한 카테고리에 해당하는 프로그램만 렌더링
     selectCategory: function (item) {
-      this.selectprograms = []
-      if (this.selectcategories.includes(item)){
-        const idx = this.selectcategories.indexOf(item)
-        this.selectcategories.splice(idx, 1)
+      this.selectPrograms = []
+      if (this.selectCategories.includes(item)){
+        const idx = this.selectCategories.indexOf(item)
+        this.selectCategories.splice(idx, 1)
       } else {
-        this.selectcategories.push(item)
+        this.selectCategories.push(item)
       }      
-      for (const category of this.selectcategories) {
+      for (const category of this.selectCategories) {
         for (const program of this.$store.state.programlist) {
-            if (program.category === category){
-            this.selectprograms.push(program)
+            if (program.category === category && program.type === '1'){
+            this.selectPrograms.push(program)
           }
         }
       }
     },
+    moveBack: function () {
+      this.$router.push({ name: 'Main' })
+    }
   },
   computed: {
     programlist: function () {
-      return this.$store.state.programlist
+      const programset = []
+      for (const program of this.$store.state.programlist) {
+        if (program.type === '1'){
+          programset.push(program)
+        }        
+      }
+      return programset
     }
   },
   created: function () {
@@ -170,7 +193,54 @@ export default {
 </script>
 
 <style scoped>
-/* #program-items {
-  margin-top: 3vw !important;
-} */
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.page-layout {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+header{
+  background:#ededed;
+}
+.banner{
+  background:#B5C3D5;
+  height:280px;
+  margin-top: 20px;
+}
+.banner>h2{
+  /* height:50px; */
+  line-height:50px;
+  position:relative;
+  text-align:center;
+  top:115px;
+  margin:0 auto;  
+  width:50%;
+  font-size:2.5em;
+  color:#25271E;
+}
+.card-img {
+  border-radius: 20px;
+}
+.card-title {
+  font-family: 'NEXON Lv1 Gothic OTF Bold' !important;
+}
+.card-content {
+  font-family: 'NEXON Lv1 Gothic OTF' !important;
+}
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
+}
 </style>

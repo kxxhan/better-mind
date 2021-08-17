@@ -1,6 +1,12 @@
 <template>
   <div>
-    <BackBtn/>
+    <v-btn 
+      @click="moveBack()"
+      icon
+      x-large
+    >
+      <v-icon>mdi-arrow-left-thick</v-icon>
+    </v-btn>
     <v-container id="pub-meetings">
       <v-item-group>
         <v-row>
@@ -47,23 +53,27 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
-import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'PubMeetings',
   components: {
     Footer,
     CircleBtn,
-    BackBtn,
   },
   methods: {
-    showDetail: function () {
-      this.$router.push({ name: 'ProgramDetail' })
+    showDetail: function (program) {     
+      this.$router.push({ name: 'ProgramDetail', params: { program_pk: program.id }})
     },
+    moveBack: function () {
+      this.$router.push({ name: 'Main' })
+    }
   },
 }
 </script>
 
-<style>
-
+<style scoped>
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
+}
 </style>

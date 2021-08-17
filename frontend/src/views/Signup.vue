@@ -1,7 +1,14 @@
 <template>
   <div>
     <v-container>
-      <BackBtn/>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+
       <h1 class="d-flex justify-center">Singup</h1>
       <v-form
         class="mt-5"
@@ -133,22 +140,22 @@
 <script>
 import axios from 'axios'
 import Footer from '@/components/footer/Footer.vue'
-import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'Signup',
   components: {
     Footer,
-    BackBtn
   },
   data: function () {
     return {
       valid: true,
       show: false,
-      categories: ['우울', '불안', '성격문제', '애착', 
-          '대인기피', '분노조절', '자존감', 
-          '중독', '대인관계', '부부', '가족상담',
-        ],
+      categories: [
+        '일반고민', '취업진로', '직장', '연애', 
+        '성추행', '대인관계', '외모', 
+        '가족', '학업', '금전', '이별이혼', 
+        '육아', '중독', '건강', '성격'
+      ],
       credentials: {
         id: '',
         password: '',
@@ -230,6 +237,9 @@ export default {
       this.credentials.phone = ''
       this.credentials.role = ''
       this.credentials.address = ''
+    },
+    moveBack: function () {
+      this.$router.push({ name: 'Login' })
     }
   }
 }
@@ -239,5 +249,9 @@ export default {
 .container {
   padding-left: 100px;
   padding-right: 100px;
+}
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
 }
 </style>

@@ -1,7 +1,14 @@
 <template>
   <div class="page-layout">
     <v-container>
-      <BackBtn/>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+
       <h1 class="d-flex justify-center">SelfGroup Meeting</h1>
 
       <header>
@@ -10,288 +17,77 @@
         </div>
       </header>
       <!-- 카드 -->
-      <v-row class="mt-5">
-        
+      <v-row>
+        <!-- 모달폼 -->
         <v-col
-          class="d-flex justify-center"
+          v-for="(item, i) in items"
+          :key="i"
+          class="d-flex justify-center mt-5"
           cols="12"
           sm="6"
           md="4"
           lg="3"
         >
-          <a href="#" class="card color1">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-account-star
-            </v-icon>
-            <p class="card-title">취업/진로</p>
-          </a>
+          <v-dialog
+            transition="dialog-bottom-transition"
+            max-width="600"
+          >
+            <!-- 카드 -->
+            <template v-slot:activator="{ on, attrs }">
+              <a 
+                :class="item.class"
+                v-bind="attrs"
+                v-on="on"
+                @click="selectPrograms(item.name)"
+              >            
+                <div class="overlay"></div>
+                <v-icon 
+                  class="circle"
+                  x-large
+                >
+                  {{ item.icon }}
+                </v-icon>
+                <p class="card-title">{{ item.name }}</p>
+              </a>
+            </template>
+            <!-- 폼 -->
+            <template v-slot:default="dialog">
+              <v-card 
+                class="modal-font"
+              >
+                <v-toolbar
+                  color="#D1C4E9"
+                  class="text-h5"
+                  dark
+                >자조모임 신청하기</v-toolbar>
+                <v-col
+                  v-for= "program in selectprograms"
+                  :key="program.id"
+                >
+                  <v-card-text>
+                    <v-icon>mdi-palette-outline</v-icon>
+                    <span class="text-h6 m-2">{{ program.time }}</span>
+                    <v-btn 
+                      outlined 
+                      color="#D1C4E9" 
+                      class="ms-2"
+                      @click="applyProgram(program)"
+                    >                    
+                      Apply
+                    </v-btn>
+                    <br>
+                  </v-card-text>
+                </v-col>
+                <v-card-actions class="justify-end">
+                  <v-btn
+                    text
+                    @click="dialog.value = false"
+                  >Close</v-btn>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
         </v-col>
-
-        <v-col
-          class="d-flex justify-center"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <a href="#" class="card color2">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-office-building
-            </v-icon>
-            <p class="card-title">직장</p>
-          </a>
-        </v-col>
-
-        <v-col
-          class="d-flex justify-center"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <a href="#" class="card color3">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-account-heart
-            </v-icon>
-            <p class="card-title">연애</p>
-          </a>
-        </v-col>
-
-        <v-col
-          class="d-flex justify-center"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <a href="#" class="card color4">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-account-group
-            </v-icon>
-            <p class="card-title">대인관계</p>
-          </a>
-        </v-col>
-
-        <v-col
-          class="d-flex justify-center"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <a href="#" class="card color5">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-face-woman-shimmer
-            </v-icon>
-            <p class="card-title">외모</p>
-          </a>
-        </v-col>
-
-        <v-col
-          class="d-flex justify-center"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <a href="#" class="card color6">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-home-heart
-            </v-icon>
-            <p class="card-title">가족</p>
-          </a>
-        </v-col>
-
-        <v-col
-          class="d-flex justify-center"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <a href="#" class="card color7">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-book-open-variant
-            </v-icon>
-            <p class="card-title">학업</p>
-          </a>
-        </v-col>
-
-        <v-col
-          class="d-flex justify-center"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <a href="#" class="card color8">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-currency-usd
-            </v-icon>
-            <p class="card-title">금전</p>
-          </a>
-        </v-col>
-
-        <v-col
-          class="d-flex justify-center"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <a href="#" class="card color9">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-baby-face-outline
-            </v-icon>
-            <p class="card-title">육아</p>
-          </a>
-        </v-col>
-
-        <v-col
-          class="d-flex justify-center"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <a href="#" class="card color10">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-head-sync-outline
-            </v-icon>
-            <p class="card-title">성격</p>
-          </a>
-        </v-col>
-
-        <v-col
-          class="d-flex justify-center"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <a href="#" class="card color11">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-hospital-box-outline
-            </v-icon>
-            <p class="card-title">건강</p>
-          </a>
-        </v-col>
-
-        <v-col
-          class="d-flex justify-center"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <a href="#" class="card color12">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-emoticon-dead-outline
-            </v-icon>
-            <p class="card-title">중독</p>
-          </a>
-        </v-col>
-
-        <v-col
-          class="d-flex justify-center"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <a href="#" class="card color13">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-emoticon-cry-outline
-            </v-icon>
-            <p class="card-title">성추행</p>
-          </a>
-        </v-col>
-
-        <v-col
-          class="d-flex justify-center"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-        >
-          <a href="#" class="card color14">
-            
-            <div class="overlay"></div>
-            <v-icon 
-              class="circle"
-              x-large
-            >
-              mdi-heart-broken
-            </v-icon>
-            <p class="card-title">이별/이혼</p>
-          </a>
-        </v-col>
-
       </v-row>
     </v-container>
     <CircleBtn/>
@@ -302,23 +98,129 @@
 <script>
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
-import BackBtn from '@/components/BackBtn.vue'
+import axios from 'axios'
 
 export default {
   name: 'SelfGroupMeeting',
   components: {
     Footer,
     CircleBtn,
-    BackBtn,
   },
   data: () => ({
-    category: [
-      '취업/진로', '직장', '연애', 
-      '성추행', '대인관계', '외모', 
-      '가족', '학업', '금전', '이별/이혼', 
-      '육아', '중독', '건강', '성격'
-    ],
+    selectcategories: [],
+    selectprograms: [],
+    items: [
+      {
+        name: '취업진로',
+        class: 'card color1',
+        icon: 'mdi-account-star'
+      },
+      {
+        name: '직장',
+        class: 'card color2',
+        icon: 'mdi-office-building'
+      },
+      {
+        name: '연애',
+        class: 'card color3',
+        icon: 'mdi-account-heart'
+      },
+      {
+        name: '대인관계',
+        class: 'card color4',
+        icon: 'mdi-account-group'
+      },
+      {
+        name: '외모',
+        class: 'card color5',
+        icon: 'mdi-face-woman-shimmer'
+      },
+      {
+        name: '가족',
+        class: 'card color6',
+        icon: 'mdi-home-heart'
+      },
+      {
+        name: '학업',
+        class: 'card color7',
+        icon: 'mdi-book-open-variant'
+      },
+      {
+        name: '금전',
+        class: 'card color8',
+        icon: 'mdi-currency-usd'
+      },
+      {
+        name: '육아',
+        class: 'card color9',
+        icon: 'mdi-baby-face-outline'
+      },
+      {
+        name: '성격',
+        class: 'card color10',
+        icon: 'mdi-head-sync-outline'
+      },
+      {
+        name: '건강',
+        class: 'card color11',
+        icon: 'mdi-hospital-box-outline'
+      },
+      {
+        name: '중독',
+        class: 'card color12',
+        icon: 'mdi-emoticon-dead-outline'
+      },
+      {
+        name: '성추행',
+        class: 'card color13',
+        icon: 'mdi-emoticon-cry-outline'
+      },
+      {
+        name: '이별이혼',
+        class: 'card color14',
+        icon: 'mdi-heart-broken'
+      },
+    ]
   }),
+  methods: {
+    // 선택한 카테고리에 해당하는 프로그램만 렌더링
+    selectPrograms: function (category) {
+      this.selectprograms = []
+      for (const program of this.$store.state.programlist) {
+        if (program.type === '2' && program.category === category){
+          this.selectprograms.push(program)
+        }
+      }
+    },
+    moveBack: function () {
+      this.$router.push({ name: 'Main' })
+    },
+    // 프로그램 신청
+    applyProgram: function(program) {
+      const applyInfo = {
+          program_id: program.id,
+          user_id: this.$store.state.userInfo.id
+        }
+        console.log(applyInfo)
+        axios ({
+          method: 'post',
+          url: '/api/v1/userprogram',
+          data: applyInfo
+        })
+        .then(() => {
+          console.log('신청성공')
+          this.$router.push({ name: 'PersonalMeeting' })
+        })
+    }
+  },
+  computed: {
+    programlist: function () {
+      return this.$store.state.programlist
+    }
+  },
+  created: function () {
+    this.$store.dispatch('getPrograms')
+  }
 }
 </script>
 
@@ -348,5 +250,9 @@ header{
   width:50%;
   font-size:2.5em;
   color:#25271E;
+}
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
 }
 </style>

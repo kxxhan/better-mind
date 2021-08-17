@@ -1,7 +1,14 @@
 <template>
   <div class="page-layout">
     <v-container>   
-      <BackBtn/>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+
       <h1 class="d-flex justify-center">Community</h1>
       <header>
         <div class="banner">
@@ -45,7 +52,7 @@
             outlined 
             color="indigo"
           >
-            create
+            NEW
           </v-btn>
         </v-col>
       </v-row>
@@ -73,9 +80,25 @@
                 #{{ post.category }}
               </v-card-subtitle>
 
-              <v-card-text class="card-content text-subtitle-1">
+              <v-card-text class="card-content text-subtitle-1 text-truncate">
                 {{ post.content }}
               </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <div>
+                  <v-icon>mdi-comment</v-icon>
+                  <span class="ms-1 text-overline grey--text text--darken-2">{{ post.commentCount }}</span>
+                </div>
+                <div class="ms-3" v-if="post.like">
+                  <v-icon>mdi-heart</v-icon>
+                  <span class="ms-1 text-overline grey--text text--darken-2">{{ post.likeCount }}</span>
+                </div>
+                <div class="ms-3" v-else>
+                  <v-icon>mdi-heart-outline</v-icon>
+                  <span class="ms-1 text-overline grey--text text--darken-2">{{ post.likeCount }}</span>
+                </div>
+              </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
@@ -100,21 +123,36 @@
                 #{{ post.category }}
               </v-card-subtitle>
 
-              <v-card-text class="card-content text-subtitle-1">
+              <v-card-text class="card-content text-subtitle-1 text-truncate">
                 {{ post.content }}
               </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <div>
+                  <v-icon>mdi-comment</v-icon>
+                  <span class="ms-1 text-overline grey--text text--darken-2">{{ post.commentCount }}</span>
+                </div>
+                <div class="ms-3" v-if="post.like">
+                  <v-icon>mdi-heart</v-icon>
+                  <span class="ms-1 text-overline grey--text text--darken-2">{{ post.likeCount }}</span>
+                </div>
+                <div class="ms-3" v-else>
+                  <v-icon>mdi-heart-outline</v-icon>
+                  <span class="ms-1 text-overline grey--text text--darken-2">{{ post.likeCount }}</span>
+                </div>
+              </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
       </v-container>
-      <CircleBtn/>
-      <Footer/>
     </v-container>
+    <Footer/>
+    <CircleBtn/>
   </div>
 </template>
 
 <script>
-import BackBtn from '@/components/BackBtn.vue'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
 
@@ -122,22 +160,20 @@ export default {
   name: 'PostItems',
   data: () => ({
     category: [
-      '일반고민', '취업/진로', '직장', '연애', 
+      '일반고민', '취업진로', '직장', '연애', 
       '성추행', '대인관계', '외모', 
-      '가족', '학업', '금전', '이별/이혼', 
+      '가족', '학업', '금전', '이별이혼', 
       '육아', '중독', '건강', '성격'
     ],
     selectCategories: [],
     selectPosts: []
   }),
   components: {
-    BackBtn,
     Footer,
     CircleBtn,
   },
   methods: {
     showDetail: function (post) {
-      console.log(post)
       this.$router.push({ name: 'PostDetail', params: { post_pk: post.id }})
     },
     createPost: function () {
@@ -160,6 +196,9 @@ export default {
         }
       }
     },
+    moveBack: function () {
+      this.$router.push({ name: 'Main' })
+    }
   },
   // 전체 게시글 호출 API 연결 store
   computed: {
@@ -218,5 +257,9 @@ header{
 }
 .card-content {
   font-family: 'NEXON Lv1 Gothic OTF' !important;
+}
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
 }
 </style>

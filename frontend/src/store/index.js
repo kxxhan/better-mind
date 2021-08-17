@@ -99,6 +99,7 @@ export default new Vuex.Store({
         url: `/api/v1/program/${program_pk}`,
       })
       .then(res => {
+        console.log(res.data)
         commit('GET_PROGRAM', res.data)
       })
       .catch(err => {
@@ -116,6 +117,8 @@ export default new Vuex.Store({
       })
       .then(res => {
         commit('GET_POSTS', res.data)
+        console.log(res.data)
+        console.log(this.state.userInfo)
       })
       .catch(err => {
         console.log(err)

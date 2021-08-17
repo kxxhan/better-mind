@@ -1,8 +1,15 @@
 <template>
   <div>
     <v-container id="exp-meetings">
-      <BackBtn/>
-      <h1>전문가의 모임 정보</h1>
+      <v-btn 
+        @click="moveBack()"
+        icon
+        x-large
+      >
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+      
+      <h1 class="d-flex justify-center">Meeting List</h1>
       <!-- 프로그램 목록 -->
       <v-item-group>
         <v-row>
@@ -99,14 +106,12 @@
 import axios from 'axios'
 import Footer from '@/components/footer/Footer.vue'
 import CircleBtn from '@/components/footer/CircleBtn.vue'
-import BackBtn from '@/components/BackBtn.vue'
 
 export default {
   name: 'ExpMeetings',
   components: {
     Footer,
     CircleBtn,
-    BackBtn
   },
   data: function () {
     return {
@@ -137,6 +142,9 @@ export default {
       .catch((err) => {
         console.log(err)
       })
+    },
+    moveBack: function () {
+      this.$router.push({ name: 'Main' })
     }
   },
   computed: {
@@ -156,6 +164,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.backbtn {
+  text-decoration-line:line-through;
+  background-color: none;
+}
 </style>
