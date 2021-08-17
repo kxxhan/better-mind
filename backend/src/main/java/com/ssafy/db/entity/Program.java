@@ -41,12 +41,12 @@ public class Program extends BaseEntity {
 	private String type; // 화상미팅 타입
 	
 	// 화상미팅 관련 ... 수정필요
-	private Boolean is_active;
-	private Date call_start_time;
-	private Date call_end_time;
+	private Boolean isactive;
+//	private Date call_start_time;
+//	private Date call_end_time;
 	
-	@PrePersist
-	public void createdAt() {
-		this.call_start_time = new Date();
-	}
+//	@PrePersist
+//	public void createdAt() {
+//		this.call_start_time = new Date();
+//	}
 }
