@@ -36,8 +36,8 @@ public class UserProgramServiceImpl implements UserProgramService {
 		User_Program userprogram = new User_Program();
 		User user = userService.findByUserId(userprogramPostReq.getUser_id()); // 유저 서비스에서 유저 객체 찾기
 		userprogram.setUser(user); // 유저 프로그램의 유저 셋팅
-		Program program = programService.findByProgramId(userprogramPostReq.getProgram_id());
-		userprogram.setProgram(program);
+		Program program = programService.findByProgramId(userprogramPostReq.getProgram_id()); // 프로그램 서비스에서 프로그램 객체 찾기
+		userprogram.setProgram(program); // 유저 프로그램의 프로그램 셋팅
 //		userprogram.setMyProgram_id(userprogramPostReq.getMyProgram_id());
 		userprogram = userprogramRepository.save(userprogram);
 		return userprogram;
