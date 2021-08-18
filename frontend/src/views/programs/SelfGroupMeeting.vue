@@ -9,13 +9,18 @@
         <v-icon>mdi-arrow-left-thick</v-icon>
       </v-btn>
 
-      <h1 class="d-flex justify-center">SelfGroup Meeting</h1>
+      <h1 class="d-flex justify-center text-h2 font-weight-medium mb-7">MIND WITH</h1>
 
-      <header>
-        <div class="banner">
-          <h2>We help you achieve your goals</h2>
-        </div>
-      </header>
+      <v-row>
+        <v-col
+          cols="12"
+        >
+          <v-img
+            src="../../assets/banner_self.png"
+          ></v-img>
+        </v-col>
+      </v-row>
+
       <!-- 카드 -->
       <v-row>
         <!-- 모달폼 -->
@@ -233,23 +238,20 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
 }
-header{
-  background:#ededed;
-}
 .banner{
-  background:#B5C3D5;
+  background:transparent;
   height:280px;
   margin-top: 20px;
 }
 .banner>h2{
-  /* height:50px; */
+  height:50px;
   line-height:50px;
   position:relative;
   text-align:center;
-  top:115px;
+  top:70px;
   margin:0 auto;  
   width:50%;
-  font-size:2.5em;
+  font-size:1.8em;
   color:#25271E;
 }
 .backbtn {

@@ -9,7 +9,7 @@
         <v-icon>mdi-arrow-left-thick</v-icon>
       </v-btn>
       
-      <h1 class="d-flex justify-center">Meeting List</h1>
+      <h1 class="d-flex justify-center text-h2 font-weight-medium">MY MEETING</h1>
       <v-card flat color="transparent">
         <v-card-actions>
           <v-spacer></v-spacer>

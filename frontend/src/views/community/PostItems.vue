@@ -9,12 +9,17 @@
         <v-icon>mdi-arrow-left-thick</v-icon>
       </v-btn>
 
-      <h1 class="d-flex justify-center">Community</h1>
-      <header>
-        <div class="banner">
-          <h2>We help you achieve your goals</h2>
-        </div>
-      </header>
+      <h1 class="d-flex justify-center text-h2 font-weight-medium mb-7">BETTER TOUCH</h1>
+      
+      <v-row>
+        <v-col
+          cols="12"
+        >
+          <v-img
+            src="../../assets/banner_community.png"
+          ></v-img>
+        </v-col>
+      </v-row>
 
       <v-row class="mt-5">
         <!-- 분류 키워드 Chips Group -->
@@ -231,25 +236,6 @@ export default {
 .page-layout {
   max-width: 1200px;
   margin: 0 auto;
-}
-header{
-  background:#ededed;
-}
-.banner{
-  background:#B5C3D5;
-  height:280px;
-  margin-top: 20px;
-}
-.banner>h2{
-  /* height:50px; */
-  line-height:50px;
-  position:relative;
-  text-align:center;
-  top:115px;
-  margin:0 auto;  
-  width:50%;
-  font-size:2.5em;
-  color:#25271E;
 }
 .card-title {
   font-family: 'NEXON Lv1 Gothic OTF Bold' !important;

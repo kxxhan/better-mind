@@ -8,6 +8,8 @@
       >
         <v-icon>mdi-arrow-left-thick</v-icon>
       </v-btn>
+      <h1 class="d-flex justify-center text-h2 font-weight-medium">MY MEETING</h1>
+      
       <v-container id="pub-meetings">
         <v-item-group>
           <v-row>
