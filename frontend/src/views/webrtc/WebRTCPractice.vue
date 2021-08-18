@@ -60,7 +60,7 @@
   // 한건 로컬 주소
   // const OPENVIDU_SERVER_URL = "https://192.168.0.11:4443";
   // EC2 public ipV4
-  const OPENVIDU_SERVER_URL = "https://i5b208.p.ssafy.io:8443";
+  const OPENVIDU_SERVER_URL = "https://i5b208.p.ssafy.io:8444";
   const OPENVIDU_SERVER_SECRET = "MY_SECRET";
 
   export default {
