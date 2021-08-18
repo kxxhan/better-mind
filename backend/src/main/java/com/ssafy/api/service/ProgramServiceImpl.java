@@ -143,7 +143,7 @@ public class ProgramServiceImpl implements ProgramService {
 		p.setTime(program.getTime());
 		p.setCategory(program.getCategory().name());
 		p.setType(program.getType());
-//		p.setIsactive(program.getIsactive());
+		p.setIsactive(repository.findById(id).isPresent());
 		List<Program_Review> plist = reviewRepository.findByProgram_id(program.getId()).get();
 		if(plist != null) {
 			List<ReviewPostReq> reviews = new ArrayList<>();
@@ -182,6 +182,7 @@ public class ProgramServiceImpl implements ProgramService {
 		program.setTime(programPostReq.getTime());
 		program.setCategory(CategoryEnum.valueOf(programPostReq.getCategory()));
 		program.setType(programPostReq.getType());
+		program.setIsactive(programPostReq.isIsactive());
 		return repository.save(program);
 	}
 	
