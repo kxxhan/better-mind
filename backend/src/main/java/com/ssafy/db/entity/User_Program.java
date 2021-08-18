@@ -15,7 +15,7 @@ import lombok.Setter;
 
 @Entity
 @Getter
-@Setter
+//@Setter
 //@Data
 public class User_Program extends BaseEntity {
 	//ManyToOne은 즉시 로딩이 기본값인데 연결된 엔티티 정보까지 한 번에 가져오려고 해서 성능에 문제가 발생할 수 있다.
@@ -26,6 +26,9 @@ public class User_Program extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "program_id")
 	private Program program;
+	
+//	@Column(name = "program_id")
+//	private Long program;
 	
 //	private Long myProgram_id;
 	
