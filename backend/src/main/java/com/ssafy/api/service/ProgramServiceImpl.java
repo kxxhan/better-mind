@@ -72,6 +72,7 @@ public class ProgramServiceImpl implements ProgramService {
 		program.setTime(programPostReq.getTime());
 		program.setCategory(CategoryEnum.valueOf(programPostReq.getCategory()));
 		program.setType(programPostReq.getType());
+		program.setIsactive(programPostReq.isIsactive());
 		program = repository.save(program);
 		// 성무님 코드 참고...
 		if(files != null) {
@@ -117,7 +118,7 @@ public class ProgramServiceImpl implements ProgramService {
 			resp.setTime(p.getTime());
 			resp.setCategory(p.getCategory().name());
 			resp.setType(p.getType());
-//			resp.setIsactive(p.getIsactive());
+			resp.setIsactive(p.getIsactive());
 			copy.add(resp);
 		}
 		return copy;
@@ -143,7 +144,7 @@ public class ProgramServiceImpl implements ProgramService {
 		p.setTime(program.getTime());
 		p.setCategory(program.getCategory().name());
 		p.setType(program.getType());
-		p.setIsactive(repository.findById(id).isPresent());
+		p.setIsactive(program.getIsactive());
 		List<Program_Review> plist = reviewRepository.findByProgram_id(program.getId()).get();
 		if(plist != null) {
 			List<ReviewPostReq> reviews = new ArrayList<>();

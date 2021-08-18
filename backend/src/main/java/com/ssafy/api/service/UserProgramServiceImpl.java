@@ -40,8 +40,10 @@ public class UserProgramServiceImpl implements UserProgramService {
 		userprogram.setUser(user); // 유저 프로그램의 유저 셋팅
 		Program program = programService.findByProgramId(userprogramPostReq.getProgram_id()); // 프로그램 서비스에서 프로그램 객체 찾기
 		userprogram.setProgram(program); // 유저 프로그램의 프로그램 셋팅
+//		userprogram.setProgram(userprogramPostReq.getProgram_id());
 //		userprogram.setMyProgram_id(userprogramPostReq.getMyProgram_id());
 		userprogram = userprogramRepository.save(userprogram);
+//		userprogramRepository.flush();
 		return userprogram;
 	}
 
