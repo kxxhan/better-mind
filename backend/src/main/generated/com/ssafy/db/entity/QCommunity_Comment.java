@@ -24,7 +24,7 @@ public class QCommunity_Comment extends EntityPathBase<Community_Comment> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final QCommunity_Article community_article;
+    public final QCommunity_Article communityarticle;
 
     public final StringPath content = createString("content");
 
@@ -55,7 +55,7 @@ public class QCommunity_Comment extends EntityPathBase<Community_Comment> {
 
     public QCommunity_Comment(Class<? extends Community_Comment> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.community_article = inits.isInitialized("community_article") ? new QCommunity_Article(forProperty("community_article"), inits.get("community_article")) : null;
+        this.communityarticle = inits.isInitialized("communityarticle") ? new QCommunity_Article(forProperty("communityarticle"), inits.get("communityarticle")) : null;
         this.user = inits.isInitialized("user") ? new QUser(forProperty("user")) : null;
     }
 

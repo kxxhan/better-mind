@@ -28,8 +28,14 @@ public class QProgram extends EntityPathBase<Program> {
 
     public final NumberPath<Integer> count = createNumber("count", Integer.class);
 
+    public final StringPath date = createString("date");
+
+    public final StringPath description = createString("description");
+
     //inherited
     public final NumberPath<Long> id = _super.id;
+
+    public final BooleanPath isactive = createBoolean("isactive");
 
     public final StringPath name = createString("name");
 
@@ -39,7 +45,11 @@ public class QProgram extends EntityPathBase<Program> {
 
     public final StringPath time = createString("time");
 
+    public final StringPath type = createString("type");
+
     public final QUser user;
+
+    public final ListPath<User_Program, QUser_Program> users = this.<User_Program, QUser_Program>createList("users", User_Program.class, QUser_Program.class, PathInits.DIRECT2);
 
     public QProgram(String variable) {
         this(Program.class, forVariable(variable), INITS);
