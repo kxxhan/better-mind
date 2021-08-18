@@ -19,11 +19,11 @@ import lombok.Setter;
 public class User_Program extends BaseEntity {
 	//ManyToOne은 즉시 로딩이 기본값인데 연결된 엔티티 정보까지 한 번에 가져오려고 해서 성능에 문제가 발생할 수 있다.
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", unique = false)
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "program_id", unique = false)
+	@JoinColumn(name = "program_id")
 	private Program program;
 	
 //	private Long myProgram_id;
@@ -36,8 +36,8 @@ public class User_Program extends BaseEntity {
 		this.program=program;
 	}
 
-//	public void setProgram(Long program_id) {
-//		this.myProgram_id=program_id;	
+//	public void setProgram(Long myprogram_id) {
+//		this.myProgram_id=myprogram_id;	
 //	}
 	
 }
