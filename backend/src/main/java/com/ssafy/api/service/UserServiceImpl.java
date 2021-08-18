@@ -96,6 +96,24 @@ public class UserServiceImpl implements UserService {
 		}
 		return u;
 	}
+	
+//	@Override
+//	public UserRes getOneUserProgram(Long id) {
+//		User user = userRepository.findById(id).get();
+//		UserRes u = new UserRes();
+//		u.setId(user.getId());
+//		List<User_Program> uplist = userprogramRepository.findByUser_id(user.getId());
+//		if(uplist != null) {
+//			List<UserProgramPostReq> myprograms = new ArrayList<>();
+//			for(User_Program k : uplist) {
+//				UserProgramPostReq l = new UserProgramPostReq();
+//				l.setMyProgram_id(k.getMyProgram_id());
+//				myprograms.add(l);
+//			}
+//			u.setPrograms(myprograms);
+//		}
+//		return u;
+//	}
 
 	@Override
 	public User findByUserId(Long user_id) {
