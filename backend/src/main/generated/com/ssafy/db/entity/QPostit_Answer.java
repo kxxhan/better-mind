@@ -11,20 +11,18 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QCommunity_Article is a Querydsl query type for Community_Article
+ * QPostit_Answer is a Querydsl query type for Postit_Answer
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QCommunity_Article extends EntityPathBase<Community_Article> {
+public class QPostit_Answer extends EntityPathBase<Postit_Answer> {
 
-    private static final long serialVersionUID = -2106785026L;
+    private static final long serialVersionUID = 166907984L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QCommunity_Article community_Article = new QCommunity_Article("community_Article");
+    public static final QPostit_Answer postit_Answer = new QPostit_Answer("postit_Answer");
 
     public final QBaseEntity _super = new QBaseEntity(this);
-
-    public final ComparablePath<Enum<CategoryEnum>> category = createComparable("category", Enum.class);
 
     public final StringPath content = createString("content");
 
@@ -33,32 +31,31 @@ public class QCommunity_Article extends EntityPathBase<Community_Article> {
     //inherited
     public final NumberPath<Long> id = _super.id;
 
-    public final NumberPath<Integer> like = createNumber("like", Integer.class);
-
-    public final StringPath title = createString("title");
+    public final QPostit_Question postitquestion;
 
     public final DateTimePath<java.util.Date> updated_at = createDateTime("updated_at", java.util.Date.class);
 
     public final QUser user;
 
-    public QCommunity_Article(String variable) {
-        this(Community_Article.class, forVariable(variable), INITS);
+    public QPostit_Answer(String variable) {
+        this(Postit_Answer.class, forVariable(variable), INITS);
     }
 
-    public QCommunity_Article(Path<? extends Community_Article> path) {
+    public QPostit_Answer(Path<? extends Postit_Answer> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QCommunity_Article(PathMetadata metadata) {
+    public QPostit_Answer(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QCommunity_Article(PathMetadata metadata, PathInits inits) {
-        this(Community_Article.class, metadata, inits);
+    public QPostit_Answer(PathMetadata metadata, PathInits inits) {
+        this(Postit_Answer.class, metadata, inits);
     }
 
-    public QCommunity_Article(Class<? extends Community_Article> type, PathMetadata metadata, PathInits inits) {
+    public QPostit_Answer(Class<? extends Postit_Answer> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.postitquestion = inits.isInitialized("postitquestion") ? new QPostit_Question(forProperty("postitquestion")) : null;
         this.user = inits.isInitialized("user") ? new QUser(forProperty("user")) : null;
     }
 
