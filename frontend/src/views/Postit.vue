@@ -8,7 +8,7 @@
       >
         <v-icon>mdi-arrow-left-thick</v-icon>
       </v-btn>
-      <h1 class="d-flex justify-center">Post it</h1>
+      <h1 class="d-flex justify-center text-h2 font-weight-medium">TOUCH POSTit</h1>
 
       <!-- 관리자 질문 등록용 -->
       <v-sheet v-if="isAdmin" class="mx-auto my-5" max-width="1000px" color="transparent">
