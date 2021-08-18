@@ -88,7 +88,6 @@ public class UserServiceImpl implements UserService {
 			for(User_Program k : uplist) {
 				UserProgramPostReq l = new UserProgramPostReq();
 				l.setProgram_id(k.getProgram().getId());
-//				l.setProgram_id(k.getMyProgram_id());
 //				l.setMyProgram_id(k.getMyProgram_id());
 				programs.add(l);
 			}

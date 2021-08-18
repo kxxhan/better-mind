@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.api.request.UserProgramPostReq;
 import com.ssafy.db.entity.Program;
@@ -32,6 +33,7 @@ public class UserProgramServiceImpl implements UserProgramService {
 	ProgramRepository programRepository;
 	
 	@Override
+	@Transactional
 	public User_Program createUserProgram(UserProgramPostReq userprogramPostReq) throws IllegalStateException, IOException{
 		User_Program userprogram = new User_Program();
 		User user = userService.findByUserId(userprogramPostReq.getUser_id()); // 유저 서비스에서 유저 객체 찾기
