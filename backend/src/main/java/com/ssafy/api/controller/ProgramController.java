@@ -209,16 +209,16 @@ public class ProgramController {
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
 	}
 	
-//	@GetMapping("/programlist/{programId}")
-//	@ApiOperation(value = "프로그램 신청자들", notes = "<strong>프로그램 신청자들</strong>")
-//	@ApiResponses({
-//		@ApiResponse(code = 200, message = "성공"),
-//        @ApiResponse(code = 401, message = "토큰 인증 실패"),
-//        @ApiResponse(code = 500, message = "서버 오류")
-//	})
-//	
-//	public ResponseEntity<ProgramGetRes> getOneProgramUser(@PathVariable(name="programId")Long id) {
-//		ProgramGetRes program = service.getOneProgramUser(id);
-//		return ResponseEntity.status(200).body(program);
-//	}
+	@GetMapping("/programlist/{programId}")
+	@ApiOperation(value = "프로그램 신청자들", notes = "<strong>프로그램 신청자들</strong>")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 401, message = "토큰 인증 실패"),
+        @ApiResponse(code = 500, message = "서버 오류")
+	})
+	
+	public ResponseEntity<ProgramGetRes> getOneProgramUser(@PathVariable(name="programId")Long id) {
+		ProgramGetRes program = service.getOneProgramUser(id);
+		return ResponseEntity.status(200).body(program);
+	}
 }
