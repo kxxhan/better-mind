@@ -67,20 +67,24 @@
                 </v-card-title>
 
                 <v-card-text>상담 신청자 수 : {{ userList.length }}</v-card-text>
-                <v-card-text>상담 활성화 상태 : </v-card-text>
+                <v-card-text>상담 활성화 상태 : {{ selectprogram.isactive }}</v-card-text>
 
                 <v-card-actions>
                   <v-btn 
-                    color="green"
-                    text
-                  >
-                    화상 상담 ON
-                  </v-btn>
-                  <v-btn 
+                    v-if="selectprogram.isactive"
                     color="orange"
                     text
+                    @click="isActive(selectprogram)"
                   >
                     화상 상담 OFF (조건부 렌더링)
+                  </v-btn>
+                  <v-btn 
+                    v-else
+                    color="green"
+                    text
+                    @click="isActive(selectprogram)"
+                  >
+                    화상 상담 ON
                   </v-btn>
                 </v-card-actions>
                 <v-card-actions>
@@ -165,6 +169,25 @@ export default {
       .then(() => {
         this.$router.go()
         this.dialog = !this.dialog
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
+    // 미팅 활성화
+    isActive: function (selectprogram) {
+      this.selectprogram.isactive = !this.selectprogram.isactive
+      axios ({
+        method: 'put',
+        url: `/api/v1/program/${selectprogram.id}`,
+        data: this.selectprogram
+      })
+      .then (() => {
+        if (this.selectprogram.isactive) {
+          alert('미팅룸이 활성화되었습니다.')
+        } else {
+          alert('미팅룸이 비활성화되었습니다.')
+        }
       })
       .catch((err) => {
         console.log(err)
