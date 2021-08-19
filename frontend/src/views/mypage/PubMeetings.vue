@@ -170,6 +170,10 @@ export default {
     },
     moveBack: function () {
       this.$router.push({ name: 'Main' })
+    },
+    //상담 입장
+    enterConsult: function () {
+      this.$router.push({ name: 'WebRTC' })
     }
   },
   computed: {
