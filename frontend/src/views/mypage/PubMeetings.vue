@@ -100,6 +100,7 @@
                       v-if="selectprogram.isactive"
                       color="green"
                       text
+                      @click="enterConsult()"
                     >
                       상담 입장
                     </v-btn>
