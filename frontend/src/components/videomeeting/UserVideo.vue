@@ -52,13 +52,13 @@ export default {
   .startSpeaking {
     border-style: solid;
     border-width: 2px;
-    border-color: cyan;
-    border-radius: 2em;
+    border-color: #4FC3F7;
+    border-radius: 0.3em;
   }
   .stopSpeaking {
     border-style: solid;
     border-width: 2px;
     border-color: transparent;
-    border-radius: 2em;
+    border-radius: 0.3em;
   }
 </style>

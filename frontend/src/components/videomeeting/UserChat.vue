@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <!-- <div class="chatbox">
       <h1>Chat Here</h1>
       <p v-for="chat in chatLog" :key="chat.id">{{ chat[0] }} from {{ chat[1].clientData }}</p> 
@@ -29,7 +29,7 @@
         </ul>
       </div>
       
-      <div class="chat-message clearfix">
+      <div id="chat" class="chat-message clearfix">
         <form @submit.prevent="chatOccur(msg)" id="chatForm" action="#">
           <textarea 
             name="message-to-send" 
@@ -42,7 +42,7 @@
         </form>
       </div>
     </div>
-  </div>
+  </v-container>
 
 </template>
 
@@ -195,5 +195,8 @@ export default {
   content: " ";
   clear: both;
   height: 0;
+}
+#chat {
+  display: inline;
 }
 </style>
