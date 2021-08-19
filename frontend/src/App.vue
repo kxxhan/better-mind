@@ -15,7 +15,7 @@ export default {
   components: {
   },
   created: function () {
-    if (this.$route.path !== '/intro') {
+    if (this.$route.path !== '/') {
       // 현재 사용자의 로그인 상태
       const token = localStorage.getItem('jwt')
       if (token) {
