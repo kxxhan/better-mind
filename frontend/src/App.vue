@@ -1,10 +1,5 @@
 <template>
   <v-app style="background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);">
-    <!-- <v-container>
-      <NavBar/>
-      <v-main class="my-4">
-      </v-main>
-    </v-container> -->
     <router-view/>
   </v-app>
 </template>
