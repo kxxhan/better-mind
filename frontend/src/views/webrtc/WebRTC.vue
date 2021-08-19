@@ -1,6 +1,6 @@
 <template>
   <div id="main-container" class="container">
-    <id id="join" v-if="!session">
+    <div id="join" v-if="!session">
       <div id="join-dialog" class="jumbotron vertical-center">
         <h1>Join a video session</h1>
         <div class="form-group">
@@ -17,24 +17,14 @@
           </p>
         </div>
       </div>
-    </id>
+    </div>
     
     <div id="session" v-if="session">
       <div id="session-header" class="d-flex justify-space-between">
 
         <h1 id="session-title">{{ mySessionId }}</h1>
         <div class="d-flex justify-center align-center">
-          <span>
-            <v-btn 
-              outlined 
-              color="indigo"
-              @click="leaveSession"
-              class="mx-1 mt-3"
-            >
-              Leave session
-            </v-btn>
-          </span>
-          <BottomBar :publisher="publisher" @onFilter="onFilter" @offFilter="offFilter"/>
+          <BottomBar :publisher="publisher" @leaveSession="leaveSession" @onFilter="onFilter" @offFilter="offFilter"/>
         </div>
       </div>
       <!-- <v-container> -->
@@ -58,9 +48,6 @@
                 <UserVideo v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub"
                   @click.native="updateMainVideoStreamManager(sub)" />
                 <!-- <button v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub" @click=subscriber.subscribeToAudio(audioEnabled)></button> -->
-              </div>
-              <div>
-                <button @click="getHost">location.hostname test</button>
               </div>
             </v-col>
           </v-row>
@@ -265,10 +252,6 @@
           .catch(error => {
             console.error(error);
           });
-      },
-
-      getHost() {
-        console.log('로케이션.호스트네임 = ', location.hostname)
       },
 
       /**
