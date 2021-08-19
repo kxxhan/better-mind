@@ -19,9 +19,9 @@
   font-style: normal;
 }
 
-html, body {
+/* html, body {
   overflow: hidden;
-}
+} */
 
 .background {
   background-size: cover;
