@@ -37,13 +37,13 @@
               <v-icon>
                 mdi-file-edit-outline
               </v-icon>
-              EDIT
+              수정
             </v-btn>
             <v-btn text @click="deletePost(post)" color="grey darken-1">
               <v-icon>
                 mdi-delete
               </v-icon>
-              DELETE
+              삭제
             </v-btn>
           </v-card-actions>
         </v-container>
@@ -57,7 +57,7 @@
           auto-grow
           prepend-inner-icon="mdi-comment"
           class="mx-2"
-          label="comment"
+          label="댓글 내용"
           rows="1"
           cols="10"
           v-model="commentContent"
@@ -68,7 +68,7 @@
           cols="1"
           @click="createComment(post)"
         >
-          SUBMIT
+          댓글 작성
         </v-btn>
       </v-row>
 

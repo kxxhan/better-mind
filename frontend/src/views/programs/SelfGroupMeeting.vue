@@ -73,12 +73,12 @@
                     <v-icon>mdi-palette-outline</v-icon>
                     <span class="text-h6 m-2">{{ program.time }}</span>
                     <v-btn 
-                      outlined 
-                      color="#D1C4E9" 
+                      text 
+                      color="indigo" 
                       class="ms-2"
                       @click="applyProgram(program)"
                     >                    
-                      Apply
+                      신청
                     </v-btn>
                     <br>
                   </v-card-text>
@@ -87,7 +87,7 @@
                   <v-btn
                     text
                     @click="dialog.value = false"
-                  >Close</v-btn>
+                  >닫기</v-btn>
                 </v-card-actions>
               </v-card>
             </template>

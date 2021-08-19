@@ -34,10 +34,10 @@
             </v-card-text>
             <v-divider class="me-4"></v-divider>
             <v-card-actions class="pt-4">
-              <p class="my-auto">프로그램 가격 : {{ program.price }}</p>
+              <p class="my-auto">프로그램 가격 : {{ won }}</p>
               <v-spacer></v-spacer>
               <v-btn text color="indigo" class="me-4" @click="registrateProgram(program)">
-                APPLY
+                신청
               </v-btn>
             </v-card-actions>
           </v-col>
@@ -138,6 +138,9 @@ export default {
   computed: {
     program: function () {
       return this.$store.state.program
+    },
+    won: function () {
+      return this.$store.state.program.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
   }
 }

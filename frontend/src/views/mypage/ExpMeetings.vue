@@ -10,10 +10,10 @@
       </v-btn>
       
       <h1 class="d-flex justify-center text-h2 font-weight-medium">MY MEETING</h1>
-      <v-card flat color="transparent">
+      <v-card flat color="transparent" class="my-10">
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="indigo" text @click="$router.push({ name: 'ExpAddMeeting'})">Add Meeting</v-btn>
+          <v-btn color="indigo" text @click="$router.push({ name: 'ExpAddMeeting'})">프로그램 추가</v-btn>
         </v-card-actions>
       </v-card>
       <!-- 프로그램 목록 -->
@@ -76,7 +76,7 @@
                     color="green"
                     text
                   >
-                    화상 상담 입장
+                    상담 입장
                   </v-btn>
                 </v-card-actions>
                 <v-card-actions>
@@ -105,7 +105,7 @@
                     text
                     @click="updateProgram(selectprogram)"
                   >
-                    Update
+                    수정
                   </v-btn>
 
                   <v-btn 
@@ -113,7 +113,7 @@
                     text
                     @click="deleteProgram(selectprogram)"
                   >
-                    Delete
+                    삭제
                   </v-btn>
 
                   <v-btn
@@ -121,7 +121,7 @@
                     text
                     @click="dialog = false"
                   >
-                    Close
+                    닫기
                   </v-btn>
                 </v-card-actions>
               </v-card>

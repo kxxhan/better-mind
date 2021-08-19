@@ -55,7 +55,7 @@
           cols="12"
           md="6"
         >
-          <v-card class="mt-4" color="transparent" rounded="lg" outlined @click="showDetail(program)">
+          <v-card class="mt-4" color="transparent" rounded="lg" outlined>
             <v-row>
               <v-col cols="4" class="ps-6 d-flex flex-column justify-center">
                 <v-img
@@ -78,8 +78,9 @@
                 <v-card-text class="card-content text-body-1">제한인원: {{ program.count }}</v-card-text>
                 <v-card-text class="card-content text-body-1">운영시간: {{ program.time }}</v-card-text>
                 <v-card-actions class="pe-6">
+                  <v-spacer></v-spacer>
                   <!-- 상세 페이지로 연결 -->
-                  <v-btn outlined color="indigo">Detail</v-btn>
+                  <v-btn text color="indigo" @click="showDetail(program)">세부정보</v-btn>
                 </v-card-actions>
               </v-col>
             </v-row>
@@ -95,7 +96,7 @@
           cols="12"
           md="6"
         >
-          <v-card class="mt-4" color="transparent" rounded="lg" outlined @click="showDetail(program)">
+          <v-card class="mt-4" color="transparent" rounded="lg" outlined>
             <v-row>
               <v-col cols="4" class="ps-6 d-flex flex-column justify-center">
                 <v-img
@@ -118,8 +119,9 @@
                 <v-card-text class="card-content text-body-1">제한인원: {{ program.count }}</v-card-text>
                 <v-card-text class="card-content text-body-1">운영시간: {{ program.time }}</v-card-text>
                 <v-card-actions class="pe-6">
+                  <v-spacer></v-spacer>
                   <!-- 상세 페이지로 연결 -->
-                  <v-btn outlined color="indigo">Detail</v-btn>
+                  <v-btn text color="indigo" @click="showDetail(program)">세부정보</v-btn>
                 </v-card-actions>
               </v-col>
             </v-row>

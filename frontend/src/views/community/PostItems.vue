@@ -53,10 +53,10 @@
           @click="createPost()"
         >
           <v-btn
-            outlined 
+            text
             color="indigo"
           >
-            NEW
+            글 작성
           </v-btn>
         </v-col>
       </v-row>
