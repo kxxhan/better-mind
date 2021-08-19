@@ -11,10 +11,10 @@
           <h2>
             {{ programName }}
           </h2>
-          <!-- <p>
+          <p>
             <label>Session</label>
             <input v-model="mySessionId" class="form-control" type="text" required>
-          </p> -->
+          </p>
           <p class="text-center">
             <button class="btn btn-lg btn-success" @click="joinSession()">Join!</button>
           </p>
@@ -333,9 +333,9 @@
         });
       },
     },
-    mounted: function () {
-      this.mySessionId = this.programId
-      },
+    // mounted: function () {
+    //   this.mySessionId = this.programId
+    //   },
     destroyed: function () {
       leaveSession()
     }
