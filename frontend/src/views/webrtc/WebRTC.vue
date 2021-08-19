@@ -133,7 +133,8 @@
         this.session = this.OV.initSession();
 
         // --- Specify the actions when events take place in the session ---
-
+        console.log("joinSession 후후후", this.mySessionId)
+        
         // On every new Stream received...
         this.session.on('streamCreated', ({ stream }) => {
           const subscriber = this.session.subscribe(stream);
