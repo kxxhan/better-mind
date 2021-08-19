@@ -5,7 +5,7 @@ module.exports = {
     // https://mc500.tistory.com/196 Invalid Host header 임시방편
     disableHostCheck: true,
     https: true,
-    port: 8083,
+    port: 443,
     open: true,
     proxy: {
       '/api/v1': {
