@@ -55,7 +55,7 @@
           cols="12"
           md="6"
         >
-          <v-card class="mt-4" color="transparent" rounded="lg" outlined>
+          <v-card class="mt-4" color="transparent" rounded="lg" outlined max-height="584px">
             <v-row>
               <v-col cols="4" class="ps-6 d-flex flex-column justify-center">
                 <v-img
@@ -77,8 +77,9 @@
                 <v-divider></v-divider>
                 <v-card-text class="card-content text-body-1">{{ program.report }}</v-card-text>
                 <v-card-actions class="pe-6">
+                  <v-spacer></v-spacer>
                   <!-- 결제 페이지로 바로 연결 -->
-                  <v-btn outlined color="indigo">APPLY</v-btn>
+                  <v-btn text color="indigo" @click="registrateProgram(program)">신청</v-btn>
                 </v-card-actions>
               </v-col>
             </v-row>
@@ -116,8 +117,9 @@
                 <v-divider></v-divider>
                 <v-card-text class="card-content text-body-1">{{ program.report }}</v-card-text>
                 <v-card-actions class="pe-6">
+                  <v-spacer></v-spacer>
                   <!-- 결제 페이지로 바로 연결 -->
-                  <v-btn outlined color="indigo" @click="registrateProgram(program)">APPLY</v-btn>
+                  <v-btn text color="indigo" @click="registrateProgram(program)">신청</v-btn>
                 </v-card-actions>
               </v-col>
             </v-row>

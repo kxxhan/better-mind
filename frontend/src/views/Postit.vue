@@ -62,7 +62,7 @@
             x-large
             @click="postSubmit"
           >
-            Submit
+            SUBMIT
           </v-btn>
 
           <EditBtn v-if="isAdmin" :key="renderComponent"/>

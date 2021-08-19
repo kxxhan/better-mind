@@ -8,7 +8,7 @@
       >
         <v-icon>mdi-arrow-left-thick</v-icon>
       </v-btn>
-      <h1 class="d-flex justify-center text-h2 font-weight-medium">MY MEETING</h1>
+      <h1 class="d-flex justify-center text-h2 font-weight-medium mb-10">MY MEETING</h1>
       
       <v-container id="pub-meetings">
         <v-item-group>
@@ -89,7 +89,7 @@
                       cols="1"
                       @click="createReview(selectprogram)"
                     >
-                      SUBMIT
+                      댓글 작성
                     </v-btn>
                   </v-row>
                   <br>
@@ -101,7 +101,7 @@
                       color="green"
                       text
                     >
-                      화상 상담 입장
+                      상담 입장
                     </v-btn>
                   </v-card-actions>
                   <v-card-actions>
@@ -111,7 +111,7 @@
                       text
                       @click="dialog = false"
                     >
-                      Close
+                      닫기
                     </v-btn>
                   </v-card-actions>
                 </v-card>

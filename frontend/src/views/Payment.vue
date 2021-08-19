@@ -28,7 +28,7 @@
               <v-select
                 :items="pay_methods"
                 outlined
-                label="Pay Methods"
+                label="지불 방법"
                 v-model="pay_method"
               ></v-select>
             </v-col>
@@ -39,14 +39,14 @@
               <v-text-field
                 readonly
                 outlined
-                label="Price"
-                v-model="program.price"
+                label="가격"
+                v-model="won"
               ></v-text-field>
             </v-col>
           </v-row>
           <v-spacer></v-spacer>
-          <v-btn text color="indigo" @click="onPayment">
-            CHECKOUT
+          <v-btn outlined text color="indigo" @click="onPayment" class="me-5" x-large>
+            결제
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -71,7 +71,6 @@ export default {
     return {
       pay_methods: ['card', 'trans', 'vbank', 'phone', 'samsun', 'kpay', 'kakaopay', 'payco', 'lpay', 'ssgpay', 'tosspay', 'cultureland', 'smartculture', 'happymoney'],
       pay_method: '',
-      price: 1,
     }
   },
   methods: {
@@ -139,6 +138,9 @@ export default {
     program: function () {
       return this.$store.state.program
     },
+    won: function () {
+      return this.$store.state.program.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
   }
 }
 </script>
