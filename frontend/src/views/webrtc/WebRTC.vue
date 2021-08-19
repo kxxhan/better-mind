@@ -96,8 +96,7 @@
         // required: true
       },
       programId: {
-        type: String,
-        default: 'SessionA',
+        type: Number,
         // required: true,
       }
     },
@@ -339,8 +338,10 @@
     },
     created: function () {
       console.log('콘솔찍혀!!!', this.programId)
-      this.mySessionId = this.programId
+      console.log('현재 programId의 type', typeof(this.programId))
+      this.mySessionId = this.programId.toString()
       console.log('mySessionId 바뀜?', this.mySessionId)
+      console.log('mySessionId의 type', typeof(this.mySessionId))
       },
     destroyed: function () {
       leaveSession()
