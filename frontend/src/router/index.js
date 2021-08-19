@@ -134,7 +134,8 @@ const routes = [
     // WebRTC
     path: '/webrtc',
     name: 'WebRTC',
-    component: WebRTC
+    component: WebRTC,
+    props: true,
   },
   {
     // path 이름 자체 서비스명으로 교체 필요
