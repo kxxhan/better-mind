@@ -1,8 +1,8 @@
 <template>
   <!-- video height width 조정  -->
-  <!-- <video autoplay height="180" width="288"/> -->
+  <video autoplay height="180" width="288"/>
   <!-- video speech detection border test -->
-  <video autoplay/>
+  <!-- <video autoplay/> -->
   <!-- <video autoplay/> -->
 </template>
 

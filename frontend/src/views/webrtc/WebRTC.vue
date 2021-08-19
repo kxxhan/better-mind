@@ -18,31 +18,64 @@
         </div>
       </div>
     </id>
-
+    
     <div id="session" v-if="session">
-      <div id="session-header">
+      <div id="session-header" class="d-flex justify-space-between">
+
         <h1 id="session-title">{{ mySessionId }}</h1>
-        <input class="btn btn-large btn-danger" type="button" id="buttonLeaveSession" @click="leaveSession"
-          value="Leave session">
+        <div class="d-flex justify-center align-center">
+          <span>
+            <v-btn 
+              outlined 
+              color="indigo"
+              @click="leaveSession"
+              class="mx-1 mt-3"
+            >
+              Leave session
+            </v-btn>
+          </span>
+          <BottomBar :publisher="publisher" @onFilter="onFilter" @offFilter="offFilter"/>
+        </div>
       </div>
-      <!-- 자기자신 보여주는 비디오 -->
-      <!-- <div id="main-video" class="col-md-6">
-				<user-video :stream-manager="mainStreamManager"/>
-			</div> -->
-      <!-- 세션 참여자 모두를 보여줌 -->
-      <div id="video-container" class="col-md-6">
-        <UserVideo :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)"/>
-        <UserVideo v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub"
-          @click.native="updateMainVideoStreamManager(sub)" />
-        <!-- <button v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub" @click=subscriber.subscribeToAudio(audioEnabled)></button> -->
-      </div>
-      <div>
-        <button @click="getHost">location.hostname test</button>
-      </div>
-      <div>
-        <UserChat :chatLog="chatLog" @sendMessage="sendMessage"/>
-        <BottomBar :publisher="publisher" @onFilter="onFilter" @offFilter="offFilter"/>
-      </div>
+      <!-- <v-container> -->
+      <v-row no-gutters>
+
+        <v-col cols="9">
+          <v-row>
+            <v-col
+              v-for="n in 1"
+              :key="n"
+              cols="12"
+              sm="4"
+            >
+              <!-- 자기자신 보여주는 비디오 -->
+              <!-- <div id="main-video" class="col-md-6">
+                <user-video :stream-manager="mainStreamManager"/>
+              </div> -->
+              <!-- 세션 참여자 모두를 보여줌 -->
+              <div id="video-container" class="col-md-6">
+                <UserVideo :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)"/>
+                <UserVideo v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub"
+                  @click.native="updateMainVideoStreamManager(sub)" />
+                <!-- <button v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub" @click=subscriber.subscribeToAudio(audioEnabled)></button> -->
+              </div>
+              <div>
+                <button @click="getHost">location.hostname test</button>
+              </div>
+            </v-col>
+          </v-row>
+        </v-col>
+
+        <v-col cols="3">
+          <UserChat :chatLog="chatLog" @sendMessage="sendMessage"/>
+        </v-col>
+
+      </v-row>
+
+        <!-- <v-row no-gutters>
+          <BottomBar :publisher="publisher" @onFilter="onFilter" @offFilter="offFilter"/>
+        </v-row> -->
+      <!-- </v-container> -->
     </div>
   </div>
 </template>
