@@ -62,7 +62,8 @@ export default {
     login: function () {
       axios({
         method: 'post',
-        url: '/api/v1/auth/login',
+        // url: '/api/v1/auth/login',
+        url: ':8443/auth/login'
         data: this.credentials,
       })
       .then((res) => {
