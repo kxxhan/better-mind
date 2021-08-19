@@ -64,6 +64,7 @@
               <v-dialog
                 v-model="dialog"
                 max-width="600"
+                :retain-focus="false"
               >
                 <v-card>
                   <v-card-title class="text-h5">
@@ -102,12 +103,6 @@
                     >
                       화상 상담 입장
                     </v-btn>
-                    <!-- <v-btn 
-                      color="orange"
-                      text
-                    >
-                      화상 상담 OFF (조건부 렌더링)
-                    </v-btn> -->
                   </v-card-actions>
                   <v-card-actions>
                     <v-spacer></v-spacer>
