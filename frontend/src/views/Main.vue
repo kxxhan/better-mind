@@ -1,5 +1,11 @@
 <template>
   <div id="main">
+    <div class="d-none d-lg-flex" style="position: absolute; top: 150px; left: 0px">
+      <img src="../assets/tree_0.png" width="400px">
+    </div>
+    <div class="d-none d-lg-flex" style="position: absolute; top: 350px; right: 0px">
+      <img src="../assets/tree_1.png" width="400px">
+    </div>
     <Header/>
     <div class="page-layout">
       <v-container class="body">
