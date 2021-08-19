@@ -8,13 +8,13 @@
             <label>Participant</label>
             <input v-model="myUserName" class="form-control" type="text" required>
           </p>
-          <p>
+          <h2 v-model="mySessionId">
             {{ programName }}
-          </p>
-          <p>
+          </h2>
+          <!-- <p>
             <label>Session</label>
             <input v-model="mySessionId" class="form-control" type="text" required>
-          </p>
+          </p> -->
           <p class="text-center">
             <button class="btn btn-lg btn-success" @click="joinSession()">Join!</button>
           </p>
