@@ -9,7 +9,7 @@ module.exports = {
     open: true,
     proxy: {
       '/api/v1': {
-        target: 'https://localhost:8443/'
+        target: 'https://i5b208.p.ssayf.io:8443/'
       }
     },
     historyApiFallback: true,
