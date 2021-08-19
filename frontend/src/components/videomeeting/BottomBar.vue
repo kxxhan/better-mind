@@ -2,6 +2,9 @@
   <div>
     <!-- <h1>BootomBar Test</h1> -->
     <span>
+      <v-btn class="mx-1 mt-3" outlined color="indigo" @click="leaveSession">세션나가기</v-btn>
+    </span>
+    <span>
       <v-btn class="mx-1 mt-3" outlined color="indigo" v-if="this.publisher.stream.audioActive" @click="publisher.publishAudio(false);">음소거</v-btn>
       <v-btn class="mx-1 mt-3" outlined color="indigo" v-else @click="publisher.publishAudio(true);">음소거 해제</v-btn>
     </span>
@@ -32,6 +35,9 @@ export default {
     },
     offFilter () {
       this.$emit('offFilter')
+    },
+    leaveSession () {
+      this.$emit('leaveSession')
     }
   },
 
