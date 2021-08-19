@@ -339,6 +339,7 @@
     created: function () {
       console.log('콘솔찍혀!!!', this.programId)
       this.mySessionId = this.programId
+      console.log('mySessionId 바뀜?', this.mySessionId)
       },
     destroyed: function () {
       leaveSession()
