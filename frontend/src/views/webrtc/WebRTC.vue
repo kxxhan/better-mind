@@ -11,10 +11,10 @@
           <h2>
             {{ programName }}
           </h2>
-          <p>
+          <!-- <p>
             <label>Session</label>
             <input v-model="mySessionId" class="form-control" type="text" required>
-          </p>
+          </p> -->
           <p class="text-center">
             <button class="btn btn-lg btn-success" @click="joinSession()">Join!</button>
           </p>
@@ -92,10 +92,13 @@
     props: {
       programName: {
         type: String,
-        default : ''
+        default : 'No Name',
+        // required: true
       },
       programId: {
         type: String,
+        default: 'SessionA',
+        // required: true,
       }
     },
 
@@ -333,9 +336,10 @@
         });
       },
     },
-    // mounted: function () {
-    //   this.mySessionId = this.programId
-    //   },
+    mounted: function () {
+      console.log(programId)
+      this.mySessionId = programId
+      },
     destroyed: function () {
       leaveSession()
     }
