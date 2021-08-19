@@ -9,6 +9,9 @@
             <input v-model="myUserName" class="form-control" type="text" required>
           </p>
           <p>
+            {{ programName }}
+          </p>
+          <p>
             <label>Session</label>
             <input v-model="mySessionId" class="form-control" type="text" required>
           </p>
@@ -85,6 +88,13 @@
 
   export default {
     name: 'WebRTC.vue',
+    
+    props: {
+      programName: {
+        type: String,
+        default : ''
+      }
+    },
 
     components: {
       UserVideo,
