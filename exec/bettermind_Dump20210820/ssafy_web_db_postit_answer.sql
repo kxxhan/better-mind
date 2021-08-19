@@ -16,35 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `program_review`
+-- Table structure for table `postit_answer`
 --
 
-DROP TABLE IF EXISTS `program_review`;
+DROP TABLE IF EXISTS `postit_answer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `program_review` (
+CREATE TABLE `postit_answer` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `content` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` datetime(6) DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
-  `program_id` bigint DEFAULT NULL,
+  `postitquestion_id` bigint DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKhsaxxx0i4ottf7axsaefti1i` (`program_id`),
-  KEY `FKfkh8qlskv0j28y81pqy4dpy3r` (`user_id`),
-  CONSTRAINT `FKfkh8qlskv0j28y81pqy4dpy3r` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `FKhsaxxx0i4ottf7axsaefti1i` FOREIGN KEY (`program_id`) REFERENCES `program` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `FKliv58dmma73ygac8074feiqf4` (`postitquestion_id`),
+  KEY `FKhwvty3sxrf3hy7blbdmg7k2w9` (`user_id`),
+  CONSTRAINT `FKhwvty3sxrf3hy7blbdmg7k2w9` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `FKliv58dmma73ygac8074feiqf4` FOREIGN KEY (`postitquestion_id`) REFERENCES `postit_question` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `program_review`
+-- Dumping data for table `postit_answer`
 --
 
-LOCK TABLES `program_review` WRITE;
-/*!40000 ALTER TABLE `program_review` DISABLE KEYS */;
-INSERT INTO `program_review` VALUES (2,'자존감이 올라갈 수 있도록 사라들과 소통하고 감정을 공유할 수 있어서 좋았어요! ','2021-08-20 03:44:31.645000','2021-08-20 03:44:31.645000',29,12),(3,'알코올 의지 상태를 항상 고치고 싶었습니다. 이번 기회로 그룹 테라피를 통해 같은 경험을 가진 사람들과 의지를 다질 수 있었고, 상담가님의 따뜻한 응원과 조언으로 중독에 벗어날 수 있었습니다!','2021-08-20 03:50:04.953000','2021-08-20 03:50:04.953000',4,12),(4,'긴 취업기간으로 슬럼프가 오고있었는데, 그룹 테라피 상담을 통해 편하게 이야기하면서 취업에 대한 자신감을 얻을 수 있었습니다. ','2021-08-20 05:08:11.123000','2021-08-20 05:08:11.123000',9,12);
-/*!40000 ALTER TABLE `program_review` ENABLE KEYS */;
+LOCK TABLES `postit_answer` WRITE;
+/*!40000 ALTER TABLE `postit_answer` DISABLE KEYS */;
+INSERT INTO `postit_answer` VALUES (9,'1. 가족들과 넷플릭스 영화보기 2. 남편과 저녁외식 데이트 3. 가족과 하이킹, 낚시 4. 아이들이 깔깔대고 웃는 소리','2021-08-19 22:50:38.745000','2021-08-19 22:50:38.745000',2,12),(10,'누군가가 내가 만든 것들을 맛있게 먹는 모습을 보는 일','2021-08-19 22:51:13.085000','2021-08-19 22:51:13.085000',2,2),(12,'도움을 청하거나 무슨일이 있을때 가장 나한테 먼저 연락하는 사람이 내 행복 그 자체에요','2021-08-19 23:26:28.324000','2021-08-19 23:26:28.324000',2,11),(13,'우리 가족','2021-08-20 05:38:27.201000','2021-08-20 05:38:27.201000',2,11);
+/*!40000 ALTER TABLE `postit_answer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-20  6:40:36
+-- Dump completed on 2021-08-20  7:23:43

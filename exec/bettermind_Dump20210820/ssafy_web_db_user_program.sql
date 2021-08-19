@@ -16,32 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `article_like`
+-- Table structure for table `user_program`
 --
 
-DROP TABLE IF EXISTS `article_like`;
+DROP TABLE IF EXISTS `user_program`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `article_like` (
+CREATE TABLE `user_program` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `article_id` bigint DEFAULT NULL,
+  `program_id` bigint DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKnltwhxwiusvhxkgt1cr1hu88v` (`article_id`),
-  KEY `FKm3fo00rg4vr6dbnsbu31ep972` (`user_id`),
-  CONSTRAINT `FKm3fo00rg4vr6dbnsbu31ep972` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `FKnltwhxwiusvhxkgt1cr1hu88v` FOREIGN KEY (`article_id`) REFERENCES `community_article` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `FK3w6262yvh37mmec2ukvryobdo` (`program_id`),
+  KEY `FKj0gfrrt70n7nuonltud91h97w` (`user_id`),
+  CONSTRAINT `FK3w6262yvh37mmec2ukvryobdo` FOREIGN KEY (`program_id`) REFERENCES `program` (`id`),
+  CONSTRAINT `FKj0gfrrt70n7nuonltud91h97w` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `article_like`
+-- Dumping data for table `user_program`
 --
 
-LOCK TABLES `article_like` WRITE;
-/*!40000 ALTER TABLE `article_like` DISABLE KEYS */;
-INSERT INTO `article_like` VALUES (4,3,2),(6,5,2),(7,5,17),(10,3,12),(11,5,12),(13,3,17);
-/*!40000 ALTER TABLE `article_like` ENABLE KEYS */;
+LOCK TABLES `user_program` WRITE;
+/*!40000 ALTER TABLE `user_program` DISABLE KEYS */;
+INSERT INTO `user_program` VALUES (13,9,12),(14,9,2),(15,29,12),(17,23,17),(18,4,17),(19,24,19),(21,25,19),(22,22,12);
+/*!40000 ALTER TABLE `user_program` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-20  6:40:35
+-- Dump completed on 2021-08-20  7:23:44

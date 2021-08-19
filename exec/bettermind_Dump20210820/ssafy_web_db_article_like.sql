@@ -16,31 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `program_file`
+-- Table structure for table `article_like`
 --
 
-DROP TABLE IF EXISTS `program_file`;
+DROP TABLE IF EXISTS `article_like`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `program_file` (
+CREATE TABLE `article_like` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `originfile` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `savefile` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `savefolder` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `program_id` bigint DEFAULT NULL,
+  `article_id` bigint DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKpinyiq7xnpyf0aruuw96pe1ir` (`program_id`),
-  CONSTRAINT `FKpinyiq7xnpyf0aruuw96pe1ir` FOREIGN KEY (`program_id`) REFERENCES `program` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `FKnltwhxwiusvhxkgt1cr1hu88v` (`article_id`),
+  KEY `FKm3fo00rg4vr6dbnsbu31ep972` (`user_id`),
+  CONSTRAINT `FKm3fo00rg4vr6dbnsbu31ep972` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `FKnltwhxwiusvhxkgt1cr1hu88v` FOREIGN KEY (`article_id`) REFERENCES `community_article` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `program_file`
+-- Dumping data for table `article_like`
 --
 
-LOCK TABLES `program_file` WRITE;
-/*!40000 ALTER TABLE `program_file` DISABLE KEYS */;
-/*!40000 ALTER TABLE `program_file` ENABLE KEYS */;
+LOCK TABLES `article_like` WRITE;
+/*!40000 ALTER TABLE `article_like` DISABLE KEYS */;
+INSERT INTO `article_like` VALUES (4,3,2),(6,5,2),(7,5,17),(10,3,12),(11,5,12),(13,3,17);
+/*!40000 ALTER TABLE `article_like` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-20  6:40:36
+-- Dump completed on 2021-08-20  7:23:43
