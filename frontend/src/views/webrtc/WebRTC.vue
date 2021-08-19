@@ -329,6 +329,9 @@
             .catch(error => reject(error.response));
         });
       },
-    }
+    },
+    created: function () {
+          this.mySessionId = programName
+        }
   }
 </script>
