@@ -12,10 +12,6 @@
           {{ programName }}
         </h1>
         <div class="form-group">
-          <!-- <p>
-            <label>Participant</label>
-            <input v-model="myUserName" class="form-control" type="text" required>
-          </p> -->
           <v-text-field
             label="Nickname"
             hide-details="auto"
@@ -24,25 +20,42 @@
             required
             class="nickname"
           ></v-text-field>
-          <!-- <p>
-            <label>Session</label>
-            <input v-model="mySessionId" class="form-control" type="text" required>
-          </p> -->
           <div class="text-center">
             <v-btn class="start-btn" block elevation="2" large @click="joinSession()">
               미팅 시작!
             </v-btn>
-            <!-- <button class="btn btn-lg btn-success" @click="joinSession()">
-              Join!
-            </button> -->
           </div>
         </div>
       </div>
     </div>
 
     <div id="session" v-if="session">
-      <div id="session-header" class="d-flex justify-space-between">
-        <h1 id="session-title">{{ mySessionId }}</h1>
+      <!-- <v-container> -->
+      <v-row no-gutters>
+        <v-col id="video-container" cols="11">
+            <!-- 세션 참여자 모두를 보여줌 -->
+            <!-- <div id="video-container" class="col-md-6"> -->
+              <UserVideo
+                id="pub-video"
+                :stream-manager="publisher"
+                @click.native="updateMainVideoStreamManager(publisher)"
+                class="user-video col-3"
+              />
+              <UserVideo
+                id="sub-video"
+                v-for="sub in subscribers"
+                :key="sub.stream.connection.connectionId"
+                :stream-manager="sub"
+                @click.native="updateMainVideoStreamManager(sub)"
+                class="user-video col-3"
+              />
+        </v-col>
+        <v-col cols="1">
+          <UserChat id="user-chat" :chatLog="chatLog" @sendMessage="sendMessage" />
+        </v-col>
+      </v-row>
+      <div id="session-header">
+        <!-- <h1 id="session-title">{{ mySessionId }}</h1> -->
         <div class="d-flex justify-center align-center">
           <BottomBar
             :publisher="publisher"
@@ -52,37 +65,6 @@
           />
         </div>
       </div>
-      <!-- <v-container> -->
-      <v-row no-gutters>
-        <v-col cols="9">
-          <!-- <v-row>
-            <v-col v-for="n in 1" :key="n" cols="12" sm="4"> -->
-              <!-- 자기자신 보여주는 비디오 -->
-              <!-- <div id="main-video" class="col-md-6">
-                <user-video :stream-manager="mainStreamManager"/>
-              </div> -->
-              <!-- 세션 참여자 모두를 보여줌 -->
-              <div id="video-container" class="col-md-6">
-                <UserVideo
-                  :stream-manager="publisher"
-                  @click.native="updateMainVideoStreamManager(publisher)"
-                />
-                <UserVideo
-                  v-for="sub in subscribers"
-                  :key="sub.stream.connection.connectionId"
-                  :stream-manager="sub"
-                  @click.native="updateMainVideoStreamManager(sub)"
-                />
-                <!-- <button v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub" @click=subscriber.subscribeToAudio(audioEnabled)></button> -->
-              </div>
-            <!-- </v-col>
-          </v-row> -->
-        </v-col>
-
-        <v-col cols="3">
-          <UserChat :chatLog="chatLog" @sendMessage="sendMessage" />
-        </v-col>
-      </v-row>
 
       <!-- <v-row no-gutters>
           <BottomBar :publisher="publisher" @onFilter="onFilter" @offFilter="offFilter"/>
@@ -404,8 +386,12 @@ export default {
 };
 </script>
 <style scoped>
-#main-container {
-  max-width: 1200px;
+#session {
+  display: block;
+  justify-content: center;
+	align-items: center;
+	justify-content: center;
+  margin-right: 10%;
 }
 #join {
 	height: 70vh;
@@ -414,9 +400,6 @@ export default {
   justify-content: center;
 	align-items: center;
 	justify-content: center;
-}
-#video-container {
-  display: inline-block;
 }
 .program-name {
   margin-top: 1.5rem;
@@ -431,4 +414,29 @@ export default {
   text-decoration-line: line-through;
   background-color: none;
 }
+#video-container {
+  border-style: solid;
+  border-width: 5px;
+  border-color: #FFCDD2;
+  border-radius: 2em;
+  padding: 0.7%;
+}
+#pub-video {
+  display: inline-block;
+}
+#sub-video {
+  display: inline-block;
+}
+#user-chat {
+  margin-left: 1rem;
+}
+#session-header {
+  display: flex;
+  justify-content: center;
+	align-items: center;
+	justify-content: center;
+}
+/* .user-video {
+  margin: 2rem;
+} */
 </style>
