@@ -336,9 +336,9 @@
         });
       },
     },
-    mounted: function () {
-      console.log(programId)
-      this.mySessionId = programId
+    created: function () {
+      console.log('콘솔찍혀!!!', this.programId)
+      this.mySessionId = this.programId
       },
     destroyed: function () {
       leaveSession()
