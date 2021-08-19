@@ -93,6 +93,9 @@
       programName: {
         type: String,
         default : ''
+      },
+      programId: {
+        type: String,
       }
     },
 
@@ -331,7 +334,10 @@
       },
     },
     mounted: function () {
-          this.mySessionId = this.programName
-        }
+      this.mySessionId = this.programId
+      },
+    destroyed: function () {
+      leaveSession()
+    }
   }
 </script>

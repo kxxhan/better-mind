@@ -209,7 +209,7 @@ export default {
     },
     //상담 입장
     enterConsult: function () {
-      this.$router.push({ name: 'WebRTC', params:{programName: this.selectprogram.name} })
+      this.$router.push({ name: 'WebRTC', params:{programName: this.selectprogram.name, programId: this.selectprogram.id} })
     }
   },
   computed: {
