@@ -8,7 +8,7 @@
             <label>Participant</label>
             <input v-model="myUserName" class="form-control" type="text" required>
           </p>
-          <h2 v-model="mySessionId">
+          <h2>
             {{ programName }}
           </h2>
           <!-- <p>
@@ -330,8 +330,8 @@
         });
       },
     },
-    created: function () {
-          this.mySessionId = programName
+    mounted: function () {
+          this.mySessionId = this.programName
         }
   }
 </script>
