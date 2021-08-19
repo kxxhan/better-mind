@@ -64,7 +64,7 @@
   const OPENVIDU_SERVER_SECRET = "MY_SECRET";
 
   export default {
-    name: 'WebRTCPractice.vue',
+    name: 'WebRTC.vue',
 
     components: {
       UserVideo,
