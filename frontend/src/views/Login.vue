@@ -61,7 +61,6 @@ export default {
     },
     login: function () {
       axios({
-        console.log('/api/v1/auth/login')
         method: 'post',
         url: '/api/v1/auth/login',
         data: this.credentials,
