@@ -376,6 +376,7 @@ export default {
   },
   created: function() {
     this.mySessionId = this.programId.toString();
+    console.log('유저인포', this.$store.state.userInfo)
   },
   // destroyed: function () {
   //   leaveSession()
