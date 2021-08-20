@@ -9,7 +9,7 @@
         <v-icon>mdi-arrow-left-thick</v-icon>
       </v-btn>
 
-      <h1 class="d-flex justify-center">Singup</h1>
+      <h1 class="d-flex justify-center">Signup</h1>
       <v-form
         class="mt-5"
         ref="form"

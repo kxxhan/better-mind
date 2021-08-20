@@ -123,6 +123,7 @@ export default {
       mySessionId: "SessionA",
       myUserName: "",
 
+      myUserId: "",
       // chat
       chatLog: [],
     };
@@ -245,12 +246,12 @@ export default {
 
     // filter 적용 test Ubuntu 18.04 Version FaceOverlayFilter 사용 불가
     onFilter() {
-      // this.publisher.stream.applyFilter("GStreamerFilter", { "command": "textoverlay text='Embedded text' valignment=top halignment=right font-desc='Cantarell 25'" })
-      this.publisher.stream
-        .applyFilter("GStreamerFilter", {
-          command:
-            "gdkpixbufoverlay location=/tmp/santa-hat-transparent-11549385190r3okqt8gir.png offset-x=10 offset-y=10 overlay-height=50 overlay-width=50",
-        })
+      this.publisher.stream.applyFilter("GStreamerFilter", { "command": "textoverlay text='" + this.myUserId + "' valignment=top halignment=right font-desc='Cantarell 25'" })
+      // this.publisher.stream
+      //   .applyFilter("GStreamerFilter", {
+      //     command:
+      //       "gdkpixbufoverlay location=/tmp/santa-hat-transparent-11549385190r3okqt8gir.png offset-x=10 offset-y=10 overlay-height=50 overlay-width=50",
+      //   })
         // EC2 안에 있는 hat 파일 이름 다름 주의
         // this.publisher.stream.applyFilter("GStreamerFilter", { "command": "gdkpixbufoverlay location=/tmp/santa-hat-transparent-11549385190r3okqt8gir.png offset-x=10 offset-y=10 overlay-height=50 overlay-width=50" })
         .then(() => {
@@ -376,7 +377,7 @@ export default {
   },
   created: function() {
     this.mySessionId = this.programId.toString();
-    console.log('유저인포', this.$store.state.userInfo)
+    this.myUserId = this.$store.state.userInfo.userid
   },
   // destroyed: function () {
   //   leaveSession()
