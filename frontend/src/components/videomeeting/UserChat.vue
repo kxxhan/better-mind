@@ -64,12 +64,8 @@ export default {
     chatOccur(msg) {
       this.$emit('sendMessage', msg)
       this.msg = ''
-      console.log('에밋 발새애애애애애앵')
     },
   },
-	mounted () {
-		console.log("hello! it's UserChat.vue!!")
-	},
 };
 </script>
 <style scoped>

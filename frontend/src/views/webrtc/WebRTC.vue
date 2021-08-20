@@ -161,9 +161,6 @@ export default {
       // Chat 수신
       this.session.on("signal", (event) => {
         this.chatLog.push([event.data, JSON.parse(event.from.data)]);
-        console.log("chat 로그", this.chatLog);
-        console.log("이벤트", event);
-        console.log("이벤트.from.데이터", typeof JSON.parse(event.from.data));
       });
 
       // Speech Detection 근데 이게 publisher만 된다는데 여러 유저랑 확인해서 해봐야 할 듯 한데
@@ -252,7 +249,7 @@ export default {
       this.publisher.stream
         .applyFilter("GStreamerFilter", {
           command:
-            "gdkpixbufoverlay location=/tmp/312341-middle.png offset-x=10 offset-y=10 overlay-height=50 overlay-width=50",
+            "gdkpixbufoverlay location=/tmp/santa-hat-transparent-11549385190r3okqt8gir.png offset-x=10 offset-y=10 overlay-height=50 overlay-width=50",
         })
         // EC2 안에 있는 hat 파일 이름 다름 주의
         // this.publisher.stream.applyFilter("GStreamerFilter", { "command": "gdkpixbufoverlay location=/tmp/santa-hat-transparent-11549385190r3okqt8gir.png offset-x=10 offset-y=10 overlay-height=50 overlay-width=50" })
