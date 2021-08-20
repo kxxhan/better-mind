@@ -1,7 +1,7 @@
 <template>
 <div v-if="streamManager">
 	<ov-video :stream-manager="streamManager" :class="{startSpeaking: hasSpeaker, stopSpeaking: !hasSpeaker}"/>
-	<div><p>{{ clientData }}</p></div>
+	<div><p class="text-subtitle-2 text-center fonr-weight-black">{{ clientData }}</p></div>
 </div>
 </template>
 
@@ -46,6 +46,7 @@ export default {
       }
     }
   },
+
 };
 </script>
 <style>
