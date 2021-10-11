@@ -4,8 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -67,5 +71,45 @@ public class UserController {
 		User user = userService.getUserByUserId(userId);
 	
 		return ResponseEntity.status(200).body(UserRes.of(user));
+	}
+	
+	@PutMapping("/{userId}")
+	@ApiOperation(value="회원정보 수정", notes="<strong>회원정보 수정</strong>")
+	@ApiResponses({
+        @ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 401, message = "인증 실패"),
+        @ApiResponse(code = 404, message = "사용자 없음"),
+        @ApiResponse(code = 500, message = "서버 오류")
+    })
+	public ResponseEntity<BaseResponseBody> updateUserInfo(@PathVariable(name = "userId") Long id,
+			@RequestBody UserRegisterPostReq userregisterPostReq) {
+		User result = userService.updateUser(id, userregisterPostReq);
+		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+	}
+	
+	@DeleteMapping("/{userId}")
+	@ApiOperation(value = "회원정보 삭제", notes="<strong>회원정보 삭제</strong>")
+	@ApiResponses({
+        @ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 401, message = "인증 실패"),
+        @ApiResponse(code = 404, message = "사용자 없음"),
+        @ApiResponse(code = 500, message = "서버 오류")
+    })
+	public ResponseEntity<BaseResponseBody> deleteUser(@PathVariable(name = "userId") Long id) {
+		userService.deleteUser(id);
+		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+	}
+	
+	@GetMapping("/{userId}")
+	@ApiOperation(value = "신청 프로그램", notes = "<strong>신청 프로그램</strong>")
+	@ApiResponses({
+        @ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 401, message = "인증 실패"),
+        @ApiResponse(code = 404, message = "사용자 없음"),
+        @ApiResponse(code = 500, message = "서버 오류")
+    })
+	public ResponseEntity<UserRes> getOneUserProgram(@PathVariable(name="userId")Long id) {
+		UserRes user = userService.getOneUserProgram(id);
+		return ResponseEntity.status(200).body(user);
 	}
 }

@@ -1,9 +1,11 @@
 package com.ssafy.db.repository;
 
+import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.db.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -14,5 +16,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
 	// 아래와 같이, Query Method 인터페이스(반환값, 메소드명, 인자) 정의를 하면 자동으로 Query Method 구현됨.
 	// 필드 검색을 위해서 메서드 이름으로 쿼리 생성 가능 접두어로 findBy를 사용해야함
-	Optional<User> findByUserId(String userId);
+	Optional<User> findByUserid(String userId);
+//	User findByUser_id(Long userid);
+
 }

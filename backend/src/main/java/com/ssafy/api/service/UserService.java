@@ -1,6 +1,11 @@
 package com.ssafy.api.service;
 
+import java.util.List;
+
+import org.springframework.data.domain.Pageable;
+
 import com.ssafy.api.request.UserRegisterPostReq;
+import com.ssafy.api.response.UserRes;
 import com.ssafy.db.entity.User;
 
 /**
@@ -9,4 +14,9 @@ import com.ssafy.db.entity.User;
 public interface UserService {
 	User createUser(UserRegisterPostReq userRegisterInfo);
 	User getUserByUserId(String userId);
+	User updateUser(Long id, UserRegisterPostReq userRegisterInfo);
+	void deleteUser(Long id);
+	UserRes getOneUserProgram(Long id);
+	User findByUserId(Long user_id);
+	
 }

@@ -16,11 +16,11 @@ import lombok.Setter;
 @Setter
 public class Conference_History extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "conference_id")
+	@JoinColumn
 	private Conference conference;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn
 	private User user;
 
 	private Short action;

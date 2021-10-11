@@ -7,7 +7,6 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
-import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -18,8 +17,6 @@ public class QConference extends EntityPathBase<Conference> {
 
     private static final long serialVersionUID = -625543586L;
 
-    private static final PathInits INITS = PathInits.DIRECT2;
-
     public static final QConference conference = new QConference("conference");
 
     public final QBaseEntity _super = new QBaseEntity(this);
@@ -28,7 +25,7 @@ public class QConference extends EntityPathBase<Conference> {
 
     public final DateTimePath<java.util.Date> call_start_time = createDateTime("call_start_time", java.util.Date.class);
 
-    public final QConference_Category conference_category;
+    public final ComparablePath<Enum<CategoryEnum>> category = createComparable("category", Enum.class);
 
     public final StringPath description = createString("description");
 
@@ -42,24 +39,15 @@ public class QConference extends EntityPathBase<Conference> {
     public final StringPath title = createString("title");
 
     public QConference(String variable) {
-        this(Conference.class, forVariable(variable), INITS);
+        super(Conference.class, forVariable(variable));
     }
 
     public QConference(Path<? extends Conference> path) {
-        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
+        super(path.getType(), path.getMetadata());
     }
 
     public QConference(PathMetadata metadata) {
-        this(metadata, PathInits.getFor(metadata, INITS));
-    }
-
-    public QConference(PathMetadata metadata, PathInits inits) {
-        this(Conference.class, metadata, inits);
-    }
-
-    public QConference(Class<? extends Conference> type, PathMetadata metadata, PathInits inits) {
-        super(type, metadata, inits);
-        this.conference_category = inits.isInitialized("conference_category") ? new QConference_Category(forProperty("conference_category")) : null;
+        super(Conference.class, metadata);
     }
 
 }

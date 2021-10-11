@@ -12,15 +12,31 @@ import lombok.Setter;
 @Setter
 @ApiModel("UserRegisterPostRequest")
 public class UserRegisterPostReq {
+	
+	@ApiModelProperty(name="유저 ID")
+	private Long user_id;
+	@ApiModelProperty(name="프로그램 ID")
+	private Long program_id;
 	@ApiModelProperty(name = "유저 ID", example = "ssafy_web")
-	String id;
+	private String id;
 	@ApiModelProperty(name = "유저 Password", example = "your_password")
-	String password;
-	@ApiModelProperty(name = "유저 직책", example = "교육생")
-	String position;
-	@ApiModelProperty(name = "유저 소속", example = "SSAFY")
-	String department;
+	private String password;
+	@ApiModelProperty(name = "유저 email", example = "your_email")
+	private String email;
+//	@ApiModelProperty(name = "유저 주소", example = "경기도 용인시 처인구 남동")
+//	private String address;
+	@ApiModelProperty(name = "유저 전화번호", example = "010-2222-1111")
+	private String phone;
 	@ApiModelProperty(name = "유저 이름", example = "홍길동")
-	String name;
-
+	private String name;
+	@ApiModelProperty(name = "설명", example = "자기 소개")
+	private String description;
+	@ApiModelProperty(name = "분류", example = "증상이나 감정")
+	private String category;
+	@ApiModelProperty(name = "권한", example = "0->일반 사용자 , 1->전문가, 2->관리자")
+	private String role;	
+	@ApiModelProperty(name = "자격번호", example = "000000000")
+	private String certificate;
+	
+	
 }

@@ -49,7 +49,7 @@ public class QUser_Conference extends EntityPathBase<User_Conference> {
 
     public QUser_Conference(Class<? extends User_Conference> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.conference = inits.isInitialized("conference") ? new QConference(forProperty("conference"), inits.get("conference")) : null;
+        this.conference = inits.isInitialized("conference") ? new QConference(forProperty("conference")) : null;
         this.user = inits.isInitialized("user") ? new QUser(forProperty("user")) : null;
     }
 

@@ -1,6 +1,8 @@
 package com.ssafy.api.response;
 
-import com.ssafy.common.model.response.BaseResponseBody;
+import java.util.List;
+
+import com.ssafy.api.request.UserProgramPostReq;
 import com.ssafy.db.entity.User;
 
 import io.swagger.annotations.ApiModel;
@@ -15,23 +17,34 @@ import lombok.Setter;
 @Setter
 @ApiModel("UserResponse")
 public class UserRes{
-	@ApiModelProperty(name="직책")
-	private String position;
-	@ApiModelProperty(name="소속")
-	private String department;
-	@ApiModelProperty(name="이름")
+	@ApiModelProperty(name = "유저 pk", example = "Long")
+	private Long id;
+	@ApiModelProperty(name = "유저 ID", example = "String")
+	private String userid;
+	@ApiModelProperty(name = "유저 email")
+	private String email;
+	@ApiModelProperty(name = "유저 전화번호")
+	private String phone;
+	@ApiModelProperty(name = "유저 이름")
 	private String name;
-	@ApiModelProperty(name="User ID")
-	private String userId;
-	@ApiModelProperty(name="허가")
+	@ApiModelProperty(name = "유저 카테고리")
+	private String category;
+	@ApiModelProperty(name = "유저 설명")
+	private String description;
+	@ApiModelProperty(name = "권한")
 	private String role;
+	@ApiModelProperty(name = "신청 프로그램")
+	private List<UserProgramPostReq> programs;
 	
 	public static UserRes of(User user) {
 		UserRes res = new UserRes();
-		res.setUserId(user.getUserId());
-		res.setDepartment(user.getDepartment());
+		res.setId(user.getId());
+		res.setUserid(user.getUserid());
 		res.setName(user.getName());
-		res.setPosition(user.getPosition());
+		res.setEmail(user.getEmail());
+		res.setPhone(user.getPhone());
+		res.setCategory(user.getCategory().toString());
+		res.setDescription(user.getDescription());
 		res.setRole(user.getRole());
 		return res;
 	}
