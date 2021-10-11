@@ -1,8 +1,6 @@
 # BetterMind 한사랑코딩회
 
 > 삼성 청년 SW 아카데미 5기 첫번째 프로젝트  
->
-> SSAFY 규정 상 코드 반출 불가
 
 ![image](https://user-images.githubusercontent.com/67505208/135769272-cc58f926-b056-4b01-b947-1970e2a4cc78.png)
 
