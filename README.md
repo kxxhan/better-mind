@@ -1,4 +1,4 @@
-# BetterMind 한사랑코딩회
+# BetterMind
 
 > 삼성 청년 SW 아카데미 5기 첫번째 프로젝트  
 
