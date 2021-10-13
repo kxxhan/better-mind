@@ -50,3 +50,9 @@
   - 회원, 상담 관련 컴포넌트 SPA 구현
 - CSS 스타일링
 - UCC 제작
+
+## 개발 기간
+- 2021.07.05 ~ 2021.08.20
+- Jira Spring Report
+
+  ![image](https://user-images.githubusercontent.com/67505208/137156560-ba192678-3b71-44a3-92c9-0641cdfd65d0.png)
